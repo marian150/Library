@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.0" prefWidth="468.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lms.controllers.LoginController">
+   <children>
+      <BorderPane prefHeight="342.0" prefWidth="468.0" AnchorPane.bottomAnchor="-0.39999999999997726" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Pane prefHeight="400.0" prefWidth="465.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TabPane prefHeight="342.0" prefWidth="468.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Login">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="357.0">
+                                 <children>
+                                    <TextField id="login_email_id" fx:id="login_email_id" layoutX="160.0" layoutY="79.0" promptText="Email" />
+                                    <PasswordField id="login_passwd_id" fx:id="login_passwd_id" layoutX="160.0" layoutY="130.0" promptText="Password" />
+                                    <Button id="login_btn_id" fx:id="login_btn_id" layoutX="182.0" layoutY="189.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="35.0" prefWidth="104.0" text="Login" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Button>
+                                    <Label layoutX="175.0" layoutY="28.0" prefHeight="34.0" prefWidth="118.0" text="Login Form" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Register">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="131.0" layoutY="36.0" text="Register as a Reader">
+                                       <font>
+                                          <Font size="23.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField id="reg_last_name_id" layoutX="160.0" layoutY="89.0" promptText="First Name" />
+                                    <TextField id="reg_last_name_id" layoutX="160.0" layoutY="131.0" promptText="Last Name" />
+                                    <TextField id="reg_email_id" layoutX="160.0" layoutY="175.0" promptText="Email" />
+                                    <PasswordField id="reg_passwd_id" layoutX="161.0" layoutY="217.0" promptText="Password" />
+                                    <Button layoutX="192.0" layoutY="253.0" mnemonicParsing="false" text="Sign Up">
+                                       <font>
+                                          <Font size="17.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
