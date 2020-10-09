@@ -30,11 +30,7 @@ public class LoginController {
 
         User user = loginService.login(loginDto);
 
-<<<<<<< HEAD
-=======
         System.out.println(loginDto.getEmail() + " " + loginDto.getPassword());
-
->>>>>>> a5d49b7... Added hibernate.cfg.xml and Manage SessionFactory
         return user;
     }
 
