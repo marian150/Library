@@ -1,5 +1,9 @@
 package com.lms.models.entities;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a5d49b7... Added hibernate.cfg.xml and Manage SessionFactory
 import javax.persistence.*;
 
 @Entity
