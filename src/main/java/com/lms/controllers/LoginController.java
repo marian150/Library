@@ -29,8 +29,8 @@ public class LoginController {
         loginDto.setPassword(login_passwd_id.getText());
 
         User user = loginService.login(loginDto);
-
-        System.out.println(loginDto.getEmail() + " " + loginDto.getPassword());
+        System.out.println(user.getFirstName() + " " + user.getLastName() + " " + user.getRegDate());
+        //System.out.println(loginDto.getEmail() + " " + loginDto.getPassword());
         return user;
     }
 

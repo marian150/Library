@@ -15,7 +15,7 @@
         <!-- Assume test is the database name -->
 
         <property name = "hibernate.connection.url">
-            jdbc:oracle:thin:@//localhost:1522/xe
+            jdbc:oracle:thin:@//localhost:1521/xe
         </property>
 
         <property name = "hibernate.connection.username">
@@ -24,6 +24,10 @@
 
         <property name = "hibernate.connection.password">
             orcl123
+        </property>
+
+        <property name="hibernate.current_session_context_class">
+            org.hibernate.context.internal.ThreadLocalSessionContext
         </property>
 
         <!-- List of XML mapping files -->
