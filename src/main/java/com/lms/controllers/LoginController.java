@@ -30,13 +30,15 @@ public class LoginController {
 
         User user = loginService.login(loginDto);
         System.out.println(user.getFirstName() + " " + user.getLastName() + " " + user.getRegDate());
-        //System.out.println(loginDto.getEmail() + " " + loginDto.getPassword());
         return user;
     }
 
     public void initialize() {
         login_btn_id.setOnAction(event -> {
-            login();
+            User pesho = login();
+            if(pesho.getTypeId() == 2) {
+
+            }
         });
     }
 }
