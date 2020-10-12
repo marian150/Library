@@ -1,6 +1,7 @@
 package com.lms.models.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "users_data")
@@ -22,10 +23,11 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "phone")
     private String phone;
 
     @Column(name = "reg_date")
-    private String regDate;
+    private LocalDate regDate;
 
     @Column(name = "type_id")
     private long typeId;
@@ -33,7 +35,7 @@ public class User {
     public User() {}
 
     public User(long userId, String firstName, String lastName,
-                String email, String password, String phone, String regDate, long typeId) {
+                String email, String password, String phone, LocalDate regDate, long typeId) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -92,11 +94,11 @@ public class User {
         this.phone = phone;
     }
 
-    public String getRegDate() {
+    public LocalDate getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(String regDate) {
+    public void setRegDate(LocalDate regDate) {
         this.regDate = regDate;
     }
 

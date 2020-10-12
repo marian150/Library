@@ -25,7 +25,7 @@ public class LoginRepositoryImpl implements LoginRepository {
                 "='" + loginDTO.getPassword() + "'";
         Query query = session.createQuery(hql);
         User result = (User) query.getSingleResult();
-
+        session.close();
         return result;
     }
 }
