@@ -5,10 +5,15 @@ import com.lms.models.dtos.LoginDTO;
 import com.lms.models.entities.User;
 import com.lms.services.LoginService;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import javax.inject.Inject;
+import java.io.IOException;
 
 public class LoginController {
     @Inject
@@ -36,8 +41,23 @@ public class LoginController {
     public void initialize() {
         login_btn_id.setOnAction(event -> {
             User pesho = login();
-            if(pesho.getTypeId() == 2) {
-
+            if(pesho != null) {
+                switch ((int)pesho.getTypeId()) {
+                    case 1:
+                        break;
+                    case 2:
+                        ((Stage) login_email_id.getScene().getWindow()).close();
+                        try {
+                            Parent parent = FXMLLoader.load(getClass().getResource("/fxml/reader.fxml"));
+                            Stage stage = new Stage();
+                            stage.setTitle("Reader View");
+                            stage.setScene(new Scene(parent));
+                            stage.show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                }
             }
         });
     }
