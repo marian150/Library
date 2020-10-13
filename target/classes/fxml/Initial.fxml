@@ -21,7 +21,7 @@
                     <tabs>
                       <Tab text="Login">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="357.0">
+                          <AnchorPane fx:id="login_anchor" minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="357.0">
                                  <children>
                                     <TextField id="login_email_id" fx:id="login_email_id" layoutX="160.0" layoutY="79.0" promptText="Email" />
                                     <PasswordField id="login_passwd_id" fx:id="login_passwd_id" layoutX="160.0" layoutY="130.0" promptText="Password" />

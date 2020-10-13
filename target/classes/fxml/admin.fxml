@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.DatePicker?>
+<AnchorPane prefHeight="473.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <SplitPane dividerPositions="0.16963528413910092" layoutX="-1.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="473.0" prefWidth="806.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="79.0" prefWidth="805.0">
+                    <children>
+                        <Label layoutX="40.0" layoutY="15.0" text="LMS" textFill="#111111">
+                            <font>
+                                <Font name="David Libre Regular" size="43.0" />
+                            </font>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </Label>
+                        <Label fx:id="greeting_label" layoutX="349.0" layoutY="29.0" text="Hello, Yana Ilieva">
+                            <font>
+                                <Font name="David Libre Regular" size="18.0" />
+                            </font>
+                        </Label>
+                        <Button fx:id="logout_btn" layoutX="733.0" layoutY="26.0" mnemonicParsing="false" text="Log out" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TabPane prefHeight="389.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Return Book">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.20014917951268027" layoutX="-1.0" layoutY="-1.0" prefHeight="362.0" prefWidth="806.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <TextField layoutX="5.0" layoutY="73.0" promptText="First Name" />
+                                                <TextField layoutX="5.0" layoutY="112.0" promptText="Last Name" />
+                                                <TextField layoutX="5.0" layoutY="33.0" promptText="ID" />
+                                                <Label layoutX="47.0" layoutY="14.0" text="User Details" />
+                                                <Label layoutX="45.0" layoutY="162.0" text="Book Details" />
+                                                <TextField layoutX="4.0" layoutY="180.0" promptText="ISBN" />
+                                                <TextField layoutX="5.0" layoutY="219.0" promptText="Title" />
+                                                <Button layoutX="52.0" layoutY="277.0" mnemonicParsing="false" text="Search" />
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                      <Tab text="Lend Book">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <SplitPane dividerPositions="0.28717056190949775" layoutX="-2.0" prefHeight="362.0" prefWidth="806.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <TextField disable="true" layoutX="65.0" layoutY="40.0" />
+                                                <TextField disable="true" layoutX="65.0" layoutY="73.0" />
+                                                <TextField disable="true" layoutX="65.0" layoutY="107.0" />
+                                                <TextField disable="true" layoutX="65.0" layoutY="143.0" />
+                                                <Button layoutX="114.0" layoutY="180.0" mnemonicParsing="false" text="Browse" />
+                                                <Label layoutX="40.0" layoutY="44.0" text="ID:" />
+                                                <Label layoutX="19.0" layoutY="77.0" text="Name:" />
+                                                <Label layoutX="20.0" layoutY="111.0" text="Email:" />
+                                                <Label layoutX="18.0" layoutY="147.0" text="Phone:" />
+                                                <Label layoutX="65.0" text="Reader details">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                             </children></AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <Button layoutX="390.0" layoutY="14.0" mnemonicParsing="false" text="Browse Book" />
+                                                <ListView layoutY="69.0" prefHeight="294.0" prefWidth="570.0" />
+                                                <Button layoutX="513.0" layoutY="14.0" mnemonicParsing="false" text="Finish" />
+                                                <Label layoutX="14.0" layoutY="22.0" text="Chosen books">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </children></AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                        <Tab text="Add Book">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TextField layoutX="98.0" layoutY="118.0" promptText="Title" />
+                                    <TextField layoutX="98.0" layoutY="165.0" promptText="ISBN" />
+                                    <Button layoutX="301.0" layoutY="191.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="144.0" text="Add" />
+                                    <TextField layoutX="98.0" layoutY="72.0" promptText="Inventory number" />
+                                    <TextField layoutX="98.0" layoutY="254.0" promptText="Publisher" />
+                                    <TextField layoutX="98.0" layoutY="213.0" promptText="Author" />
+                                    <ComboBox layoutX="298.0" layoutY="118.0" prefWidth="150.0" promptText="Genre" />
+                                    <ComboBox layoutX="298.0" layoutY="72.0" prefWidth="150.0" promptText="Cover" />
+                                    <Label layoutX="128.0" layoutY="14.0" text="Add book">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="98.0" layoutY="297.0" promptText="Issue date" />
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Archive Book">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Button layoutX="690.0" layoutY="311.0" mnemonicParsing="false" text="Archive book" />
+                                    <Button layoutX="482.0" layoutY="162.0" mnemonicParsing="false" text="Browse" />
+                                    <TextField disable="true" layoutX="125.0" layoutY="34.0" />
+                                    <TextField disable="true" layoutX="125.0" layoutY="73.0" />
+                                    <TextField disable="true" layoutX="125.0" layoutY="117.0" />
+                                    <TextField disable="true" layoutX="125.0" layoutY="155.0" />
+                                    <TextField disable="true" layoutX="125.0" layoutY="198.0" />
+                                    <TextField disable="true" layoutX="388.0" layoutY="34.0" />
+                                    <TextField disable="true" layoutX="388.0" layoutY="72.0" />
+                                    <Label layoutX="15.0" layoutY="37.0" text="Inventory number" />
+                                    <Label layoutX="26.0" layoutY="76.0" text="ISBN" />
+                                    <Label layoutX="26.0" layoutY="120.0" text="Title" />
+                                    <Label layoutX="26.0" layoutY="157.0" text="Author" />
+                                    <Label layoutX="26.0" layoutY="201.0" text="Publisher" />
+                                    <Label layoutX="344.0" layoutY="38.0" text="Cover" />
+                                    <Label layoutX="344.0" layoutY="76.0" text="Genre" />
+                                    <TextField disable="true" layoutX="388.0" layoutY="117.0" />
+                                    <Label layoutX="322.0" layoutY="120.0" text="Issue date" />
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Create Reader">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Label layoutX="277.0" layoutY="14.0" text="Create Reader Profile">
+                                       <font>
+                                          <Font size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="329.0" layoutY="75.0" promptText="First Name" />
+                                    <TextField layoutX="329.0" layoutY="114.0" promptText="Last Name" />
+                                    <TextField layoutX="329.0" layoutY="157.0" promptText="Email" />
+                                    <TextField layoutX="329.0" layoutY="244.0" promptText="Phone" />
+                                    <PasswordField layoutX="329.0" layoutY="201.0" promptText="Password" />
+                                    <Button layoutX="377.0" layoutY="292.0" mnemonicParsing="false" text="Create" />
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Create Operator">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <Button layoutX="377.0" layoutY="306.0" mnemonicParsing="false" text="Create" />
+                                    <TextField layoutX="329.0" layoutY="89.0" promptText="FIrst Name" />
+                                    <TextField layoutX="329.0" layoutY="130.0" promptText="Last Name" />
+                                    <TextField layoutX="329.0" layoutY="175.0" promptText="Email" />
+                                    <TextField layoutX="329.0" layoutY="262.0" promptText="Phone" />
+                                    <PasswordField layoutX="329.0" layoutY="218.0" promptText="Password" />
+                                    <Label layoutX="265.0" layoutY="25.0" text="Create Operator Profile">
+                                       <font>
+                                          <Font size="27.0" />
+                                       </font>
+                                    </Label>
+                                 </children></AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Search Book">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <SplitPane dividerPositions="0.29797979797979796" layoutX="-3.0" layoutY="-3.0" prefHeight="368.0" prefWidth="814.0">
+                                            <items>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                    <children>
+                                                        <TextField layoutX="46.0" layoutY="14.0" promptText="Inventory number" />
+                                                        <TextField layoutX="46.0" layoutY="51.0" promptText="ISBN" />
+                                                        <TextField layoutX="45.0" layoutY="90.0" promptText="Title" />
+                                                        <TextField layoutX="45.0" layoutY="126.0" promptText="Author" />
+                                                        <TextField layoutX="45.0" layoutY="164.0" promptText="Genre" />
+                                                        <TextField layoutX="46.0" layoutY="201.0" promptText="Publisher" />
+                                                        <TextField layoutX="46.0" layoutY="238.0" promptText="Issue date" />
+                                                        <ComboBox layoutX="45.0" layoutY="278.0" prefWidth="150.0" promptText="State" />
+                                                        <Button layoutX="94.0" layoutY="319.0" mnemonicParsing="false" text="Search" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                                            </items>
+                                        </SplitPane>
+                                    </children></AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Search User">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <SplitPane dividerPositions="0.29797979797979796" prefHeight="359.0" prefWidth="805.0">
+                                            <items>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                    <children>
+                                                        <TextField layoutX="44.0" layoutY="21.0" promptText="First Name" />
+                                                        <DatePicker layoutX="31.0" layoutY="209.0" promptText="From" />
+                                                        <TextField layoutX="44.0" layoutY="61.0" promptText="Last Name" />
+                                                        <TextField layoutX="44.0" layoutY="104.0" promptText="Email" />
+                                                        <TextField layoutX="44.0" layoutY="144.0" promptText="Phone" />
+                                                        <DatePicker layoutX="31.0" layoutY="251.0" promptText="To" />
+                                                        <Label layoutX="51.0" layoutY="179.0" text="Registrated in the period:" />
+                                                        <Button layoutX="90.0" layoutY="305.0" mnemonicParsing="false" text="Search" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="670.0" />
+                                            </items>
+                                        </SplitPane>
+                                    </children></AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>

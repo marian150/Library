@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import javax.enterprise.context.Dependent;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 @Dependent
@@ -24,8 +25,15 @@ public class LoginRepositoryImpl implements LoginRepository {
         String hql = "FROM User u WHERE u.email LIKE '" + loginDTO.getEmail() + "' AND u.password" +
                 "='" + loginDTO.getPassword() + "'";
         Query query = session.createQuery(hql);
-        User result = (User) query.getSingleResult();
-        session.close();
-        return result;
+
+        User result = null;
+
+        try {
+            result = (User) query.getSingleResult();
+            session.close();
+            return result;
+        } catch (NoResultException e) {}
+
+        return null;
     }
 }

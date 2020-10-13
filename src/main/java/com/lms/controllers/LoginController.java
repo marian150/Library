@@ -9,7 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import javax.inject.Inject;
@@ -24,6 +27,8 @@ public class LoginController {
     private Button login_btn_id;
     @FXML
     private TextField login_passwd_id;
+    @FXML
+    private AnchorPane login_anchor;
 
     public LoginController() {}
     
@@ -31,7 +36,6 @@ public class LoginController {
 
         LoginDTO loginDto = new LoginDTO(login_email_id.getText(), login_passwd_id.getText());
         User user = loginService.login(loginDto);
-        System.out.println(user.getFirstName() + " " + user.getLastName() + " " + user.getRegDate());
         return user;
     }
 
@@ -55,6 +59,12 @@ public class LoginController {
                         }
                         break;
                 }
+            } else {
+                login_email_id.clear();
+                login_passwd_id.clear();
+                Label wrongCredentials = new Label("You have entered wrong credentials. Try again");
+                wrongCredentials.setTextFill(Color.RED);
+                login_anchor.getChildren().add(wrongCredentials);
             }
         });
     }
