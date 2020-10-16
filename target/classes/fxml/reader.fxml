@@ -22,7 +22,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Label>
-                  <Label fx:id="greeting_label" layoutX="349.0" layoutY="29.0" text="Hello, Yana Ilieva">
+                  <Label fx:id="greeting_label" layoutX="349.0" layoutY="29.0">
                      <font>
                         <Font name="David Libre Regular" size="18.0" />
                      </font>

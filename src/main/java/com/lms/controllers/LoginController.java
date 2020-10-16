@@ -1,6 +1,5 @@
 package com.lms.controllers;
 
-
 import com.lms.models.dtos.LoginDTO;
 import com.lms.models.entities.User;
 import com.lms.services.LoginService;
@@ -17,10 +16,13 @@ import javafx.stage.Stage;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class LoginController {
     @Inject
     private LoginService loginService;
+    @Inject
+    FXMLLoader fxmlLoader;
     @FXML
     private TextField login_email_id;
     @FXML
@@ -45,19 +47,39 @@ public class LoginController {
             if(pesho != null) {
                 switch ((int)pesho.getTypeId()) {
                     case 1:
-                        break;
-                    case 2:
                         ((Stage) login_email_id.getScene().getWindow()).close();
                         try {
-                            Parent parent = FXMLLoader.load(getClass().getResource("/fxml/reader.fxml"));
+                            Parent parent = FXMLLoader.load(getClass().getResource("/fxml/operator.fxml"));
                             Stage stage = new Stage();
-                            stage.setTitle("Reader View");
+                            stage.setTitle("Operator View");
                             stage.setScene(new Scene(parent));
                             stage.show();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                         break;
+                    case 2:
+                        ((Stage) login_email_id.getScene().getWindow()).close();
+                        try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/reader.fxml")){
+                            Parent root = (Parent) fxmlLoader.load(fxml);
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                        } catch(IOException e) {
+                            e.printStackTrace();
+                        }
+                        break;
+                    case 3:
+                        ((Stage) login_email_id.getScene().getWindow()).close();
+                        try {
+                            Parent parent = FXMLLoader.load(getClass().getResource("/fxml/admin.fxml"));
+                            Stage stage = new Stage();
+                            stage.setTitle("Admin View");
+                            stage.setScene(new Scene(parent));
+                            stage.show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                 }
             } else {
                 login_email_id.clear();

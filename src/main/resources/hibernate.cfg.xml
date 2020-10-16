@@ -33,6 +33,17 @@
         <!-- List of XML mapping files -->
 
         <mapping class="com.lms.models.entities.User" />
+        <mapping class="com.lms.models.entities.Book" />
+        <mapping class="com.lms.models.entities.BookState" />
+        <mapping class="com.lms.models.entities.BookCovers" />
+        <mapping class="com.lms.models.entities.RentBook" />
+        <mapping class="com.lms.models.entities.Author" />
+        <mapping class="com.lms.models.entities.UserType" />
+        <mapping class="com.lms.models.entities.ReturnBook" />
+        <mapping class="com.lms.models.entities.Genre" />
+        <mapping class="com.lms.models.entities.Publisher" />
+        <mapping class="com.lms.models.entities.ReaderRating" />
+        <mapping class="com.lms.models.entities.Form" />
 
     </session-factory>
 </hibernate-configuration>
