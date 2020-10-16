@@ -35,6 +35,16 @@
         <mapping class="com.lms.models.entities.User" />
         <mapping class="com.lms.models.entities.Form" />
         <mapping class="com.lms.models.entities.FormStatus" />
+        <mapping class="com.lms.models.entities.Author" />
+        <mapping class="com.lms.models.entities.BookAuthor" />
+        <mapping class="com.lms.models.entities.BookCovers" />
+        <mapping class="com.lms.models.entities.BookState" />
+        <mapping class="com.lms.models.entities.Genre" />
+        <mapping class="com.lms.models.entities.Publisher" />
+        <mapping class="com.lms.models.entities.ReaderRating" />
+        <mapping class="com.lms.models.entities.RentBook" />
+        <mapping class="com.lms.models.entities.ReturnBook" />
+        <mapping class="com.lms.models.entities.UserType" />
 
     </session-factory>
 </hibernate-configuration>

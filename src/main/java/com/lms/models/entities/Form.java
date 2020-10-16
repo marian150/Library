@@ -1,11 +1,8 @@
 package com.lms.models.entities;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
-import org.hibernate.annotations.Parameter;
 @Entity
 @Table(name = "form")
 public class Form {
@@ -34,7 +31,7 @@ public class Form {
     private LocalDate submitDate;
 
     @ManyToOne()
-    @JoinColumn(name = "status_id", foreignKey = @ForeignKey(name = "Form_Form_status_FK" ))
+    @JoinColumn(name = "status_id", foreignKey = @ForeignKey(name = "FORM_FORM_STATUS_FK" ))
     private FormStatus formStatus;
 
     public Form() {}

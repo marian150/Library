@@ -26,6 +26,7 @@ public class ReaderRepositoryImpl implements ReaderRepository {
                 "join rb.client uc \n" +
                 "join rb.librarian ul \n" +
                 "join rb.book b \n" +
+                "join " +
                 "join b.authors aut \n" +
                 "join b.publisher pub \n" +
                 "join b.genre gen \n" +
