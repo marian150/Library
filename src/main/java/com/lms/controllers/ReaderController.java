@@ -1,5 +1,6 @@
 package com.lms.controllers;
 
+import com.lms.models.entities.RentBook;
 import com.lms.services.ReaderService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -25,7 +26,11 @@ public class ReaderController {
 
     public void initialize() {
         greeting_label.setText("Hello ");
-        loadBooks();
+        List<Object[]> books = loadBooks();
+        for(Object b : books){
+            System.out.println(b.toString());
+        }
+
 
     }
 }

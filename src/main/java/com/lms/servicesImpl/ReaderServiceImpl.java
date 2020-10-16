@@ -1,5 +1,6 @@
 package com.lms.servicesImpl;
 
+import com.lms.models.entities.RentBook;
 import com.lms.repositories.ReaderRepository;
 import com.lms.services.ReaderService;
 

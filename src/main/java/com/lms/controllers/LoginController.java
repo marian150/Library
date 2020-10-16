@@ -62,7 +62,7 @@ public class LoginController {
         login_btn_id.setOnAction(event -> {
             User pesho = login();
             if(pesho != null) {
-                switch ((int)pesho.getTypeId()) {
+                switch (pesho.getUserType().getTypeId().intValue()) {
                     case 1:
                         ((Stage) login_email_id.getScene().getWindow()).close();
                         try {

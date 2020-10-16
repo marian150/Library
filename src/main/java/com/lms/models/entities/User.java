@@ -29,13 +29,14 @@ public class User {
     @Column(name = "reg_date")
     private LocalDate regDate;
 
-    @Column(name = "type_id")
-    private long typeId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_id", foreignKey = @ForeignKey(name = "USER_USER_TYPE_FK"))
+    private UserType userType;
 
     public User() {}
 
     public User(long userId, String firstName, String lastName,
-                String email, String password, String phone, LocalDate regDate, long typeId) {
+                String email, String password, String phone, LocalDate regDate, UserType userType) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,7 +44,7 @@ public class User {
         this.password = password;
         this.phone = phone;
         this.regDate = regDate;
-        this.typeId = typeId;
+        this.userType = userType;
     }
 
     public Long getUserId() {
@@ -102,11 +103,11 @@ public class User {
         this.regDate = regDate;
     }
 
-    public long getTypeId() {
-        return typeId;
+    public UserType getUserType() {
+        return userType;
     }
 
-    public void setTypeId(long typeId) {
-        this.typeId = typeId;
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 }

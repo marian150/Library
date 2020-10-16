@@ -11,11 +11,11 @@ public class RentBook {
     private Long rentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey (name = "RENT_BOOK_USER_FKV2"))
+    @JoinColumn(name = "client_id", referencedColumnName= "user_id", foreignKey = @ForeignKey (name = "RENT_BOOK_USER_FKV2"))
     private User client;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey (name = "RENT_BOOK_USER_FK"), insertable = false, updatable = false)
+    @JoinColumn(name = "lib_id", referencedColumnName= "user_id", foreignKey = @ForeignKey (name = "RENT_BOOK_USER_FK"))
     private User librarian;
 
     @ManyToOne(fetch = FetchType.LAZY)
