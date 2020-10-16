@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name = "form_status")
 public class FormStatus {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "status_id")
     private Long statusId;
     @Column(name = "status_name")

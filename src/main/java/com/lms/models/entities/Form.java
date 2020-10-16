@@ -1,13 +1,17 @@
 package com.lms.models.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
+import org.hibernate.annotations.Parameter;
 @Entity
 @Table(name = "form")
 public class Form {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "form_sequence", sequenceName = "form_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="form_sequence")
     @Column(name = "form_id")
     private Long formId;
 
