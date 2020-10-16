@@ -1,6 +1,7 @@
 package com.lms.controllers;
 
 import com.lms.models.dtos.LoginDTO;
+import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.User;
 import com.lms.services.LoginService;
 import javafx.fxml.FXML;
@@ -30,6 +31,18 @@ public class LoginController {
     @FXML
     private TextField login_passwd_id;
     @FXML
+    private TextField reg_first_name_id;
+    @FXML
+    private TextField reg_last_name_id;
+    @FXML
+    private TextField reg_email_id;
+    @FXML
+    private TextField reg_passwd_id;
+    @FXML
+    private TextField reg_phone_id;
+    @FXML
+    private Button reg_signup_btn;
+    @FXML
     private AnchorPane login_anchor;
 
     public LoginController() {}
@@ -39,6 +52,10 @@ public class LoginController {
         LoginDTO loginDto = new LoginDTO(login_email_id.getText(), login_passwd_id.getText());
         User user = loginService.login(loginDto);
         return user;
+    }
+    public void signup(){
+        SignUpDTO signUpDTO = new SignUpDTO(reg_first_name_id.getText(), reg_last_name_id.getText(), reg_email_id.getText(), reg_passwd_id.getText(), reg_phone_id.getText());
+        loginService.signup(signUpDTO);
     }
 
     public void initialize() {
@@ -88,6 +105,9 @@ public class LoginController {
                 wrongCredentials.setTextFill(Color.RED);
                 login_anchor.getChildren().add(wrongCredentials);
             }
+        });
+        reg_signup_btn.setOnAction(event -> {
+            signup();
         });
     }
 }

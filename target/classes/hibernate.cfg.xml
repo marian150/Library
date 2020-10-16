@@ -15,7 +15,7 @@
         <!-- Assume test is the database name -->
 
         <property name = "hibernate.connection.url">
-            jdbc:oracle:thin:@//localhost:1522/xe
+            jdbc:oracle:thin:@//localhost:1521/xe
         </property>
 
         <property name = "hibernate.connection.username">
@@ -33,17 +33,8 @@
         <!-- List of XML mapping files -->
 
         <mapping class="com.lms.models.entities.User" />
-        <mapping class="com.lms.models.entities.Book" />
-        <mapping class="com.lms.models.entities.BookState" />
-        <mapping class="com.lms.models.entities.BookCovers" />
-        <mapping class="com.lms.models.entities.RentBook" />
-        <mapping class="com.lms.models.entities.Author" />
-        <mapping class="com.lms.models.entities.UserType" />
-        <mapping class="com.lms.models.entities.ReturnBook" />
-        <mapping class="com.lms.models.entities.Genre" />
-        <mapping class="com.lms.models.entities.Publisher" />
-        <mapping class="com.lms.models.entities.ReaderRating" />
         <mapping class="com.lms.models.entities.Form" />
+        <mapping class="com.lms.models.entities.FormStatus" />
 
     </session-factory>
 </hibernate-configuration>

@@ -43,20 +43,21 @@
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <Label layoutX="131.0" layoutY="36.0" text="Register as a Reader">
+                                    <Label layoutX="131.0" layoutY="14.0" text="Register as a Reader">
                                        <font>
                                           <Font size="23.0" />
                                        </font>
                                     </Label>
-                                    <TextField id="reg_last_name_id" layoutX="160.0" layoutY="89.0" promptText="First Name" />
-                                    <TextField id="reg_last_name_id" layoutX="160.0" layoutY="131.0" promptText="Last Name" />
-                                    <TextField id="reg_email_id" layoutX="160.0" layoutY="175.0" promptText="Email" />
-                                    <PasswordField id="reg_passwd_id" layoutX="161.0" layoutY="217.0" promptText="Password" />
-                                    <Button layoutX="192.0" layoutY="253.0" mnemonicParsing="false" text="Sign Up">
+                                    <TextField id="reg_first_name_id" fx:id="reg_first_name_id" layoutX="159.0" layoutY="63.0" promptText="First Name" />
+                                    <TextField id="reg_last_name_id" fx:id="reg_last_name_id" layoutX="159.0" layoutY="104.0" promptText="Last Name" />
+                                    <TextField id="reg_email_id" fx:id="reg_email_id" layoutX="159.0" layoutY="143.0" promptText="Email" />
+                                    <PasswordField id="reg_passwd_id" fx:id="reg_passwd_id" layoutX="160.0" layoutY="183.0" promptText="Password" />
+                                    <Button fx:id="reg_signup_btn" layoutX="191.0" layoutY="259.0" mnemonicParsing="false" text="Sign Up">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Button>
+                                    <TextField fx:id="reg_phone_id" layoutX="160.0" layoutY="220.0" promptText="Phone" />
                                  </children>
                               </AnchorPane>
                         </content>

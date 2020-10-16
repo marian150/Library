@@ -7,9 +7,9 @@ import java.time.LocalDate;
 @Table(name = "users_data")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "user_id")
-    private long userId;
+    private Long userId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -46,11 +46,11 @@ public class User {
         this.typeId = typeId;
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
