@@ -22,6 +22,14 @@ public class ReaderRepositoryImpl implements ReaderRepository {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
+        String hql = "select b.title, aut.name, pub.publisherName, rb.rentDate, rb.dueDate " +
+                    "from RentBook rb \n" +
+                    "join rb.client uc \n" +
+                    "join rb.book b \n" +
+                    "join b.authors aut \n" +
+                    "join b.publisher pub \n" +
+                    "where uc.firstName like :fname and uc.lastName like :lname";
+    /*
         String hql = "select uc.firstName, ul.firstName, b.title, aut.name, pub.publisherName, gen.name, bc.coverName, bs.stateName\n" +
                 "from RentBook rb \n" +
                 "join rb.client uc \n" +
@@ -33,17 +41,23 @@ public class ReaderRepositoryImpl implements ReaderRepository {
                 "join b.bookCovers bc \n" +
                 "join b.bookState bs \n" +
                 "where CONCAT(CONCAT(uc.firstName, ' '), uc.lastName) like 'Pesho Peshev'";
-
+*/
 
         Query query = session.createQuery(hql);
+        query.setParameter("fname", "Pesho");
+        query.setParameter("lname", "Peshev");
 
         List<Object[]> result;
 
         try {
             result = query.getResultList();
-            session.close();
             return result;
-        } catch (NoResultException e){}
+        } catch (NoResultException e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
 
         return null;
     }

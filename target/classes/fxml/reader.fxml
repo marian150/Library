@@ -5,22 +5,28 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:controller="com.lms.controllers.ReaderController" prefHeight="473.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="473.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lms.controllers.ReaderController">
    <children>
       <SplitPane dividerPositions="0.16963528413910092" layoutX="-1.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="473.0" prefWidth="806.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="79.0" prefWidth="805.0">
                <children>
-                  <Label layoutX="40.0" layoutY="15.0" text="LMS" textFill="#111111">
+                  <Label layoutX="34.0" layoutY="11.0" text="LMS" textFill="#111111">
                      <font>
                         <Font name="David Libre Regular" size="43.0" />
                      </font>
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
+                     <effect>
+                        <Glow />
+                     </effect>
                   </Label>
                   <Label fx:id="greeting_label" layoutX="349.0" layoutY="29.0">
                      <font>
@@ -37,7 +43,7 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
                               <ListView fx:id="personal_data_list" layoutX="-1.0" layoutY="33.0" prefHeight="200.0" prefWidth="190.0" />
-                              <Label layoutX="44.0" layoutY="14.0" text="Personal Data">
+                              <Label layoutX="39.0" layoutY="5.0" text="Personal Data">
                                  <font>
                                     <Font name="David Libre Regular" size="18.0" />
                                  </font>
@@ -45,7 +51,26 @@
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <ListView fx:id="book_list" prefHeight="388.0" prefWidth="610.0" />
+                              <TableView fx:id="books_table_view" layoutY="34.0" prefHeight="354.0" prefWidth="610.0">
+                                <columns>
+                                  <TableColumn fx:id="title_column_id" prefWidth="75.0" text="Title" />
+                                  <TableColumn fx:id="author_column_id" prefWidth="75.0" text="Author" />
+                                    <TableColumn fx:id="publisher_column_id" prefWidth="75.0" text="Publisher" />
+                                    <TableColumn fx:id="lenddate_column_id" prefWidth="75.0" text="Lend Date" />
+                                    <TableColumn fx:id="duedate_column_id" prefWidth="75.0" text="Due Date" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                              <Label layoutX="224.0" layoutY="6.0" text="Currently lent books">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <effect>
+                                    <Glow />
+                                 </effect>
+                              </Label>
                            </children>
                         </AnchorPane>
                     </items>
