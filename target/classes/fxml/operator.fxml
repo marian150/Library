@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="473.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="com.lms.controllers.OperatorController" prefHeight="473.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <SplitPane dividerPositions="0.16963528413910092" layoutX="-1.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="473.0" prefWidth="806.0">
             <items>
@@ -168,12 +168,12 @@
                                                         <Font size="27.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField layoutX="329.0" layoutY="75.0" promptText="First Name" />
-                                                <TextField layoutX="329.0" layoutY="114.0" promptText="Last Name" />
-                                                <TextField layoutX="329.0" layoutY="157.0" promptText="Email" />
-                                                <TextField layoutX="329.0" layoutY="244.0" promptText="Phone" />
-                                                <PasswordField layoutX="329.0" layoutY="201.0" promptText="Password" />
-                                                <Button layoutX="377.0" layoutY="292.0" mnemonicParsing="false" text="Create" />
+                                                <TextField fx:id="fname" layoutX="329.0" layoutY="75.0" promptText="First Name" />
+                                                <TextField fx:id="lname" layoutX="329.0" layoutY="114.0" promptText="Last Name" />
+                                                <TextField fx:id="email" layoutX="329.0" layoutY="157.0" promptText="Email" />
+                                                <TextField fx:id="phone" layoutX="329.0" layoutY="244.0" promptText="Phone" />
+                                                <PasswordField fx:id="pass" layoutX="329.0" layoutY="201.0" promptText="Password" />
+                                                <Button fx:id="create_btn" layoutX="377.0" layoutY="292.0" mnemonicParsing="false" text="Create" />
                                             </children></AnchorPane>
                                     </content>
                                 </Tab>

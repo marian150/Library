@@ -1,6 +1,5 @@
 package com.lms.controllers;
 
-import com.lms.models.entities.RentBook;
 import com.lms.services.ReaderService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,7 +14,6 @@ public class ReaderController {
 
     @FXML
     private Label greeting_label;
-
 
     public ReaderController() {}
 

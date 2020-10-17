@@ -10,7 +10,6 @@ import com.lms.services.LoginService;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-import java.time.LocalDate;
 
 @Dependent
 public class LoginServiceImpl implements LoginService {

@@ -19,6 +19,9 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
 
+import static com.lms.security.Password.checkPassword;
+import static com.lms.security.Password.getSaltedHash;
+
 public class LoginController {
     @Inject
     private LoginService loginService;
@@ -65,13 +68,12 @@ public class LoginController {
                 switch (pesho.getUserType().getTypeId().intValue()) {
                     case 1:
                         ((Stage) login_email_id.getScene().getWindow()).close();
-                        try {
-                            Parent parent = FXMLLoader.load(getClass().getResource("/fxml/operator.fxml"));
+                        try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/operator.fxml")){
+                            Parent root = (Parent) fxmlLoader.load(fxml);
                             Stage stage = new Stage();
-                            stage.setTitle("Operator View");
-                            stage.setScene(new Scene(parent));
+                            stage.setScene(new Scene(root));
                             stage.show();
-                        } catch (IOException e) {
+                        } catch(IOException e) {
                             e.printStackTrace();
                         }
                         break;
