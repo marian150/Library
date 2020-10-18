@@ -50,8 +50,11 @@ public class ReaderController {
     public void initialize() {
         greeting_label.setText("Hello ");
         List<Object[]> books = loadBooks();
-        for(Object[] b : books){
-            System.out.println(b[0] + " " + b[1] + " " + b[2] + " " + b[3] + " " + b[4]);
+        Object[][] array = books.toArray(new Object[books.size()][]);
+        for (int i = 0; i < array.length; i++) {
+            for(int j = 0; j < array[i].length; j++) {
+                System.out.println(array[i][j]);
+            }
         }
     }
 }
