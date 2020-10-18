@@ -61,6 +61,7 @@ public class LoginController {
     }
 
     public void initialize() {
+        System.out.println(Password.hashPassword("666"));
         login_btn_id.setOnAction(event -> {
             User pesho = login();
             if(pesho != null) {
