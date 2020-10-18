@@ -6,6 +6,7 @@ import com.lms.models.entities.Form;
 import com.lms.models.entities.FormStatus;
 import com.lms.models.entities.User;
 import com.lms.repositories.LoginRepository;
+import com.lms.security.Password;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -28,7 +29,7 @@ public class LoginRepositoryImpl implements LoginRepository {
         session.beginTransaction();
 
         String hql = "FROM User u WHERE u.email LIKE '" + loginDTO.getEmail() + "' AND u.password" +
-                "='" + loginDTO.getPassword() + "'";
+                " = '" + Password.hashPassword(loginDTO.getPassword()) + "'";
         Query query = session.createQuery(hql);
         User result = null;
 
@@ -36,7 +37,7 @@ public class LoginRepositoryImpl implements LoginRepository {
             result = (User) query.getSingleResult();
             session.close();
             return result;
-        } catch (NoResultException e) {
+        } catch (Exception e) {
             session.close();
         }
 

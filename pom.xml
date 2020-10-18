@@ -43,6 +43,11 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>5.4.10.Final</version>
         </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.9</version>
+        </dependency>
 
     </dependencies>
 

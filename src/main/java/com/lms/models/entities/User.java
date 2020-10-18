@@ -7,7 +7,8 @@ import java.time.LocalDate;
 @Table(name = "users_data")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="user_sequence")
     @Column(name = "user_id")
     private Long userId;
 

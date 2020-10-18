@@ -3,6 +3,7 @@ package com.lms.controllers;
 import com.lms.models.dtos.LoginDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.User;
+import com.lms.security.Password;
 import com.lms.services.LoginService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,13 +15,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.apache.commons.codec.binary.Hex;
 
 import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
-
-import static com.lms.security.Password.checkPassword;
-import static com.lms.security.Password.getSaltedHash;
 
 public class LoginController {
     @Inject
