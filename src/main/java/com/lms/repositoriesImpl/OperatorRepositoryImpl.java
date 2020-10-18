@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class OperatorRepositoryImpl implements OperatorRepository {
 
     @Override
-    public void createReader(SignUpDTO signUpDTO) {
+    public boolean createReader(SignUpDTO signUpDTO) {
         Configuration config = new Configuration();
         config.configure();
         SessionFactory sessionFactory = config.buildSessionFactory();
@@ -43,9 +43,10 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             System.out.println(userType.getTypeId() + " "+ userType.getTypeName());
             session.save(user);
             tx.commit();
+            return true;
         } catch (Exception e){
             if(tx != null) tx.rollback();
-            e.printStackTrace();
+            return false;
         } finally {
             session.close();
         }

@@ -28,7 +28,7 @@
                                 <Insets />
                             </opaqueInsets>
                         </Label>
-                        <Label fx:id="greeting_label" layoutX="349.0" layoutY="29.0" text="Hello, Yana Ilieva">
+                        <Label fx:id="greeting_label" layoutX="349.0" layoutY="29.0" text="Hello, ">
                             <font>
                                 <Font name="David Libre Regular" size="18.0" />
                             </font>
@@ -161,7 +161,7 @@
                                 </Tab>
                                 <Tab text="Create Reader">
                                     <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                        <AnchorPane fx:id="create_reader_anchor" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                             <children>
                                                 <Label layoutX="277.0" layoutY="14.0" text="Create Reader Profile">
                                                     <font>

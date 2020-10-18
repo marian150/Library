@@ -14,7 +14,7 @@ public class OperatorServiceImpl implements OperatorService {
     private OperatorRepository operatorRepository;
 
     @Override
-    public void createReader(SignUpDTO signUpDTO) {
-        operatorRepository.createReader(signUpDTO);
+    public boolean createReader(SignUpDTO signUpDTO) {
+        return operatorRepository.createReader(signUpDTO);
     }
 }

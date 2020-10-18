@@ -48,9 +48,8 @@ public class LoginController {
     private AnchorPane login_anchor;
 
     public LoginController() {}
-    
-    public User login() {
 
+    public User login() {
         LoginDTO loginDto = new LoginDTO(login_email_id.getText(), login_passwd_id.getText());
         User user = loginService.login(loginDto);
         return user;
@@ -61,15 +60,17 @@ public class LoginController {
     }
 
     public void initialize() {
-        System.out.println(Password.hashPassword("666"));
         login_btn_id.setOnAction(event -> {
-            User pesho = login();
-            if(pesho != null) {
-                switch (pesho.getUserType().getTypeId().intValue()) {
+            User loadedUser = login();
+            if(loadedUser != null) {
+                switch (loadedUser.getUserType().getTypeId().intValue()) {
                     case 1:
                         ((Stage) login_email_id.getScene().getWindow()).close();
                         try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/operator.fxml")){
                             Parent root = (Parent) fxmlLoader.load(fxml);
+                            OperatorController operatorController = fxmlLoader.getController();
+                            operatorController.setGreeting_label("Hello, " + loadedUser.getFirstName() + " " + loadedUser.getLastName());
+                            operatorController.setCurrentUser(loadedUser);
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root));
                             stage.show();
@@ -81,6 +82,9 @@ public class LoginController {
                         ((Stage) login_email_id.getScene().getWindow()).close();
                         try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/reader.fxml")){
                             Parent root = (Parent) fxmlLoader.load(fxml);
+                            ReaderController readerController = fxmlLoader.getController();
+                            readerController.setGreeting_label("Hello, " + loadedUser.getFirstName() + " " + loadedUser.getLastName());
+                            readerController.setCurrentUser(loadedUser);
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root));
                             stage.show();
@@ -90,13 +94,15 @@ public class LoginController {
                         break;
                     case 3:
                         ((Stage) login_email_id.getScene().getWindow()).close();
-                        try {
-                            Parent parent = FXMLLoader.load(getClass().getResource("/fxml/admin.fxml"));
+                        try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/admin.fxml")){
+                            Parent root = (Parent) fxmlLoader.load(fxml);
+                            OperatorController operatorController = fxmlLoader.getController();
+                            operatorController.setGreeting_label("Hello, " + loadedUser.getFirstName() + " " + loadedUser.getLastName());
+                            operatorController.setCurrentUser(loadedUser);
                             Stage stage = new Stage();
-                            stage.setTitle("Admin View");
-                            stage.setScene(new Scene(parent));
+                            stage.setScene(new Scene(root));
                             stage.show();
-                        } catch (IOException e) {
+                        } catch(IOException e) {
                             e.printStackTrace();
                         }
                 }
