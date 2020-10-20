@@ -12,14 +12,11 @@ import org.hibernate.cfg.Configuration;
 
 import javax.enterprise.context.Dependent;
 import javax.persistence.NoResultException;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.time.LocalDate;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -64,6 +61,8 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
     @Override
     public List<User> searchReader(Map<String, String> values) {
+        HashMap<String, String> values1 = (HashMap<String, String>) values;
+
         Configuration config = new Configuration();
         config.configure();
         SessionFactory sessionFactory = config.buildSessionFactory();
@@ -71,21 +70,34 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
         Transaction tx = session.beginTransaction();
 
-        StringBuffer hql = new StringBuffer(
-                        "select u from User u " +
-                        "join u.userType ut " +
-                        //"join ReaderRating rr " +
-                        "where ut.typeName like 'Reader' ");
+        List<Predicate> predicates = new ArrayList<>();
 
-        for(Map.Entry<String, String> x : values.entrySet()){
-            hql.append("and u." + x.getKey() + " like '" + x.getValue() + "' ");
-        }
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<User> cq = cb.createQuery(User.class);
+        Root<User> u = cq.from(User.class);
+        Join<User, UserType> userTypeJoin = u.join("userType");
+        cq.select(u);
 
-        TypedQuery<User> query = session.createQuery(String.valueOf(hql), User.class);
+        if(values1.containsKey("firstName"))
+            predicates.add(cb.equal(u.get("firstName"), values1.get("firstName")));
+        if(values1.containsKey("lastName"))
+            predicates.add(cb.equal(u.get("lastName"), values1.get("lastName")));
+        if(values1.containsKey("email"))
+            predicates.add(cb.equal(u.get("email"), values1.get("email")));
+        if(values1.containsKey("phone"))
+            predicates.add(cb.equal(u.get("phone"), values1.get("phone")));
+        if(values1.containsKey("fromDate") && values1.containsKey("toDate"))
+            predicates.add(cb.between(u.get("regDate"), LocalDate.parse(values1.get("fromDate")), LocalDate.parse(values1.get("toDate"))));
+
+        Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
+        cq.where(finalPredicate);
+
+        TypedQuery<User> typedQuery = session.createQuery(cq);
+
         List<User> result;
 
         try {
-            result = query.getResultList();
+            result = typedQuery.getResultList();
             return result;
         } catch (NoResultException e){
             e.printStackTrace();
@@ -93,6 +105,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         finally {
             session.close();
         }
+
         return null;
     }
 }
