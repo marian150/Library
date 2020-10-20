@@ -3,15 +3,19 @@ package com.lms.controllers;
 
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.User;
+import com.lms.models.nonpersistentclasses.ReaderTableView;
+import com.lms.models.nonpersistentclasses.SearchReaderTableView;
 import com.lms.services.OperatorService;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -33,54 +37,56 @@ public class OperatorController {
 
     @Inject
     FXMLLoader fxmlLoader;
-
     @FXML
     private Label greeting_label;
-
     @FXML
     private TextField fname;
-
     @FXML
     private TextField lname;
-
     @FXML
     private TextField email;
-
     @FXML
     private TextField pass;
-
     @FXML
     private TextField phone;
-
     @FXML
     private Button create_btn;
-
     @FXML
     private Button logout_btn;
-
     @FXML
     private AnchorPane create_reader_anchor;
-
     @FXML
     private TextField search_reader_fname;
-
     @FXML
     private TextField search_reader_lname;
-
     @FXML
     private TextField search_reader_email;
-
     @FXML
     private TextField search_reader_phone;
-
     @FXML
     private DatePicker search_reader_from;
-
     @FXML
     private DatePicker search_reader_to;
-
     @FXML
     private Button search_reader_btn;
+    @FXML
+    private TableView<SearchReaderTableView> reader_table_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> readerid_column_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> fname_column_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> lname_column_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> email_column_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> phone_column_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> regdate_column_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> rating_column_id;
+
+    ObservableList<SearchReaderTableView> readersObservableList = FXCollections.observableArrayList();
 
     public OperatorController() {}
 
@@ -110,6 +116,24 @@ public class OperatorController {
         search_reader_from.setValue(null);
         search_reader_to.setValue(null);
         return operatorService.searchReader(values);
+    }
+    public void displayUsers(List<User> users){
+        for(int i = 0; i < users.size(); i ++){
+            readersObservableList.add(new SearchReaderTableView(
+                    new SimpleLongProperty(users.get(i).getUserId()),
+                    new SimpleStringProperty(users.get(i).getFirstName()),
+                    new SimpleStringProperty(users.get(i).getLastName()),
+                    new SimpleStringProperty(users.get(i).getEmail()),
+                    new SimpleStringProperty(users.get(i).getPhone()),
+                    new SimpleStringProperty(users.get(i).getRegDate().toString())));
+        }
+        readerid_column_id.setCellValueFactory(new PropertyValueFactory<>("id"));
+        fname_column_id.setCellValueFactory(new PropertyValueFactory<>("fname"));
+        lname_column_id.setCellValueFactory(new PropertyValueFactory<>("lname"));
+        email_column_id.setCellValueFactory(new PropertyValueFactory<>("email"));
+        phone_column_id.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        regdate_column_id.setCellValueFactory(new PropertyValueFactory<>("regdate"));
+        reader_table_id.setItems(readersObservableList);
     }
 
     public void setCurrentUser(User user) {
@@ -149,9 +173,7 @@ public class OperatorController {
 
         search_reader_btn.setOnAction(event -> {
             List<User> result = searchReader();
-            for (int i = 0; i < result.size(); i++) {
-                System.out.println(result.get(i).getFirstName());
-            }
+            displayUsers(result);
         });
 
         logout_btn.setOnAction(event -> {
