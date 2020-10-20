@@ -118,6 +118,7 @@ public class OperatorController {
         return operatorService.searchReader(values);
     }
     public void displayUsers(List<User> users){
+        reader_table_id.getItems().clear();
         for(int i = 0; i < users.size(); i ++){
             readersObservableList.add(new SearchReaderTableView(
                     new SimpleLongProperty(users.get(i).getUserId()),

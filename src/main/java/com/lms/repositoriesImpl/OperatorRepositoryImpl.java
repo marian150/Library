@@ -89,6 +89,8 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         if(values1.containsKey("fromDate") && values1.containsKey("toDate"))
             predicates.add(cb.between(u.get("regDate"), LocalDate.parse(values1.get("fromDate")), LocalDate.parse(values1.get("toDate"))));
 
+        predicates.add(cb.like(userTypeJoin.get("typeName"), "Reader"));
+
         Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
         cq.where(finalPredicate);
 
