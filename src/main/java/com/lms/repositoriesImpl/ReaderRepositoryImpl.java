@@ -1,6 +1,7 @@
 package com.lms.repositoriesImpl;
 
 import com.lms.models.entities.RentBook;
+import com.lms.models.entities.User;
 import com.lms.repositories.ReaderRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,6 +23,10 @@ public class ReaderRepositoryImpl implements ReaderRepository {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
+        // Query for current reader's personal data
+        //String hql = "select u.firstName, u.lastName, u.email, u.phone, u.regDate from User u ";
+
+        // Query for the books currently taken by the reader
         String hql = "select b.title, aut.name, pub.publisherName, rb.rentDate, rb.dueDate " +
                     "from RentBook rb \n" +
                     "join rb.client uc \n" +
@@ -29,19 +34,6 @@ public class ReaderRepositoryImpl implements ReaderRepository {
                     "join b.authors aut \n" +
                     "join b.publisher pub \n" +
                     "where uc.firstName like :fname and uc.lastName like :lname";
-    /*
-        String hql = "select uc.firstName, ul.firstName, b.title, aut.name, pub.publisherName, gen.name, bc.coverName, bs.stateName\n" +
-                "from RentBook rb \n" +
-                "join rb.client uc \n" +
-                "join rb.librarian ul \n" +
-                "join rb.book b \n" +
-                "join b.authors aut \n" +
-                "join b.publisher pub \n" +
-                "join b.genre gen \n" +
-                "join b.bookCovers bc \n" +
-                "join b.bookState bs \n" +
-                "where CONCAT(CONCAT(uc.firstName, ' '), uc.lastName) like 'Pesho Peshev'";
-*/
 
         Query query = session.createQuery(hql);
         query.setParameter("fname", "Pesho");

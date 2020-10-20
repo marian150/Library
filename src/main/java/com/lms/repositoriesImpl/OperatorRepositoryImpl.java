@@ -11,12 +11,15 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import javax.enterprise.context.Dependent;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Root;
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -68,21 +71,28 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
         Transaction tx = session.beginTransaction();
 
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<User> cq = cb.createQuery(User.class);
-        Root<User> u = cq.from(User.class);
-        Join<User, UserType> userTypeJoin = u.join("userType");
-        cq.select(u);
-        for(Map.Entry<String, String> params : values.entrySet()) {
-            
-            cq.where(cb.equal(u.get("email"), "yana199@gmail.com"));
+        StringBuffer hql = new StringBuffer(
+                        "select u from User u " +
+                        "join u.userType ut " +
+                        //"join ReaderRating rr " +
+                        "where ut.typeName like 'Reader' ");
+
+        for(Map.Entry<String, String> x : values.entrySet()){
+            hql.append("and u." + x.getKey() + " like '" + x.getValue() + "' ");
         }
 
+        TypedQuery<User> query = session.createQuery(String.valueOf(hql), User.class);
+        List<User> result;
 
-        TypedQuery<User> typedQuery = session.createQuery(cq);
-        typedQuery.getResultList().forEach(System.out::println);
-
-
+        try {
+            result = query.getResultList();
+            return result;
+        } catch (NoResultException e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
         return null;
     }
 }

@@ -1,9 +1,6 @@
 package com.lms.models.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "reader_rating")
@@ -14,7 +11,12 @@ public class ReaderRating {
 
     @Column(name = "rating")
     private int rating;
-
+/*
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "rating_id")
+    @MapsId
+    private User user;
+*/
     public ReaderRating() {}
 
     public ReaderRating(Long ratingId, int rating) {

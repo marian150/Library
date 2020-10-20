@@ -10,6 +10,8 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -220,7 +222,23 @@
                                                             <Button fx:id="search_reader_btn" layoutX="90.0" layoutY="305.0" mnemonicParsing="false" text="Search" />
                                              </children>
                                           </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="670.0" />
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="670.0">
+                                             <children>
+                                                <TableView fx:id="reader_table_id" layoutX="-6.0" layoutY="-2.0" prefHeight="363.0" prefWidth="571.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="readerid_column_id" prefWidth="75.0" text="Reader ID" />
+                                                    <TableColumn fx:id="fname_column_id" prefWidth="75.0" text="First Name" />
+                                                      <TableColumn fx:id="lname_column_id" prefWidth="75.0" text="Last Name" />
+                                                      <TableColumn fx:id="email_column_id" prefWidth="75.0" text="Email" />
+                                                      <TableColumn fx:id="phone_column_id" prefWidth="75.0" text="Phone" />
+                                                      <TableColumn fx:id="regdate_column_id" prefWidth="75.0" text="Registration Date" />
+                                                      <TableColumn fx:id="rating_column_id" prefWidth="75.0" text="Rating" />
+                                                  </columns>
+                                                   <columnResizePolicy>
+                                                      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                                   </columnResizePolicy>
+                                                </TableView>
+                                             </children></AnchorPane>
                                       </items>
                                     </SplitPane>
                                             </children></AnchorPane>

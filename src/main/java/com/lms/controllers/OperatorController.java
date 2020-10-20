@@ -148,7 +148,11 @@ public class OperatorController {
         });
 
         search_reader_btn.setOnAction(event -> {
-            searchReader();
+            List<User> users_list = searchReader();
+            for( int i = 0; i < users_list.size(); i++) {
+                System.out.println(users_list.get(i).getLastName());
+            }
+
         });
 
         logout_btn.setOnAction(event -> {

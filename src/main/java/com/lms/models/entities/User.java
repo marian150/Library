@@ -33,7 +33,10 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id", foreignKey = @ForeignKey(name = "USER_USER_TYPE_FK"))
     private UserType userType;
-
+/*
+    @OneToOne(mappedBy = "user")
+    private ReaderRating readerRating;
+*/
     public User() {}
 
     public User(long userId, String firstName, String lastName,
