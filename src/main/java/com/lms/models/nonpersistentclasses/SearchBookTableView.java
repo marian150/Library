@@ -12,7 +12,7 @@ public class SearchBookTableView {
     private SimpleStringProperty year;
     private SimpleStringProperty state;
 
-    public SearchBookTableView(SimpleStringProperty inventoryNumber, SimpleStringProperty title, SimpleStringProperty author, SimpleStringProperty isbn, SimpleStringProperty genre, SimpleStringProperty publisher, SimpleStringProperty year, SimpleStringProperty state) {
+    public SearchBookTableView(SimpleStringProperty inventoryNumber, SimpleStringProperty title, SimpleStringProperty author, SimpleStringProperty isbn, SimpleStringProperty publisher, SimpleStringProperty year, SimpleStringProperty genre, SimpleStringProperty state) {
         this.inventoryNumber = inventoryNumber;
         this.title = title;
         this.author = author;
