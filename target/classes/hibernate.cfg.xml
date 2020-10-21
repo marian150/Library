@@ -30,6 +30,11 @@
             org.hibernate.context.internal.ThreadLocalSessionContext
         </property>
 
+        <property name="hibernate.enable_lazy_load_no_trans">
+            true
+        </property>
+
+
         <!-- List of XML mapping files -->
 
         <mapping class="com.lms.models.entities.User" />

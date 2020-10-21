@@ -52,17 +52,25 @@ public class Book {
     public Book () {}
 
     public Book(Long bookId, BookState bookState, Publisher publisher, BookCovers bookCovers,
-                Genre genre, String title, String isbn, LocalDate issueDate) {
+                Genre genre, String title, Set<Author> authors, String isbn, LocalDate issueDate) {
         this.bookId = bookId;
         this.bookState = bookState;
         this.publisher = publisher;
         this.bookCovers = bookCovers;
         this.genre = genre;
         this.title = title;
+        this.authors = authors;
         this.isbn = isbn;
         this.issueDate = issueDate;
     }
 
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
 
     public Long getBookId() {
         return bookId;

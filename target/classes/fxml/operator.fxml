@@ -16,11 +16,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="473.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lms.controllers.OperatorController">
+<AnchorPane prefHeight="475.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lms.controllers.OperatorController">
     <children>
         <SplitPane dividerPositions="0.16963528413910092" layoutX="-1.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="473.0" prefWidth="806.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="79.0" prefWidth="805.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="77.0" prefWidth="806.0">
                     <children>
                         <Label layoutX="40.0" layoutY="15.0" text="LMS" textFill="#111111">
                             <font>
@@ -183,22 +183,36 @@
                                     <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <SplitPane dividerPositions="0.29797979797979796" layoutX="-3.0" layoutY="-3.0" prefHeight="368.0" prefWidth="814.0">
+                                    <SplitPane dividerPositions="0.25" layoutX="-3.0" layoutY="-3.0" prefHeight="368.0" prefWidth="814.0">
                                       <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="366.0" prefWidth="210.0">
                                              <children>
-                                                <TextField layoutX="46.0" layoutY="14.0" promptText="Inventory number" />
-                                                <TextField layoutX="46.0" layoutY="51.0" promptText="ISBN" />
-                                                <TextField layoutX="45.0" layoutY="90.0" promptText="Title" />
-                                                <TextField layoutX="45.0" layoutY="126.0" promptText="Author" />
-                                                <TextField layoutX="45.0" layoutY="164.0" promptText="Genre" />
-                                                <TextField layoutX="46.0" layoutY="201.0" promptText="Publisher" />
-                                                <TextField layoutX="46.0" layoutY="238.0" promptText="Issue date" />
-                                                <ComboBox layoutX="45.0" layoutY="278.0" prefWidth="150.0" promptText="State" />
-                                                <Button layoutX="94.0" layoutY="319.0" mnemonicParsing="false" text="Search" />
+                                                <TextField fx:id="search_book_inv" layoutX="26.0" layoutY="14.0" promptText="Inventory number" />
+                                                <TextField fx:id="search_book_isbn" layoutX="26.0" layoutY="51.0" promptText="ISBN" />
+                                                <TextField fx:id="search_book_title" layoutX="25.0" layoutY="90.0" promptText="Title" />
+                                                <TextField fx:id="search_book_author" layoutX="25.0" layoutY="126.0" promptText="Author" />
+                                                <TextField fx:id="search_book_genre" layoutX="25.0" layoutY="164.0" promptText="Genre" />
+                                                <TextField fx:id="search_book_publisher" layoutX="26.0" layoutY="201.0" promptText="Publisher" />
+                                                <TextField fx:id="search_book_date" layoutX="26.0" layoutY="238.0" promptText="Issue date" />
+                                                <ComboBox fx:id="search_book_state" layoutX="25.0" layoutY="278.0" prefWidth="150.0" promptText="State" />
+                                                <Button fx:id="search_book_btn" layoutX="74.0" layoutY="320.0" mnemonicParsing="false" text="Search" />
                                              </children>
                                           </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                             <children>
+                                                <TableView fx:id="search_book_table_view" layoutY="2.0" prefHeight="363.0" prefWidth="604.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="invnum_column_id" prefWidth="75.0" text="Inventory number" />
+                                                    <TableColumn fx:id="title_column_id" prefWidth="75.0" text="Title" />
+                                                      <TableColumn fx:id="author_column_id" prefWidth="75.0" text="Author" />
+                                                      <TableColumn fx:id="isbn_column_id" prefWidth="75.0" text="ISBN" />
+                                                      <TableColumn fx:id="genre_column_id" prefWidth="75.0" text="Genre" />
+                                                      <TableColumn fx:id="publisher_column_id" prefWidth="75.0" text="Publisher" />
+                                                      <TableColumn fx:id="year_column_id" prefWidth="75.0" text="Year" />
+                                                      <TableColumn fx:id="state_column_id" prefWidth="75.0" text="State" />
+                                                  </columns>
+                                                </TableView>
+                                             </children></AnchorPane>
                                       </items>
                                     </SplitPane>
                                  </children></AnchorPane>

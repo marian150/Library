@@ -1,8 +1,7 @@
 package com.lms.repositoriesImpl;
 
 import com.lms.models.dtos.SignUpDTO;
-import com.lms.models.entities.User;
-import com.lms.models.entities.UserType;
+import com.lms.models.entities.*;
 import com.lms.repositories.OperatorRepository;
 import com.lms.security.Password;
 import org.hibernate.Session;
@@ -11,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import javax.enterprise.context.Dependent;
+import javax.persistence.JoinColumn;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
@@ -61,8 +61,6 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
     @Override
     public List<User> searchReader(Map<String, String> values) {
-        HashMap<String, String> values1 = (HashMap<String, String>) values;
-
         Configuration config = new Configuration();
         config.configure();
         SessionFactory sessionFactory = config.buildSessionFactory();
@@ -78,16 +76,16 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         Join<User, UserType> userTypeJoin = u.join("userType");
         cq.select(u);
 
-        if(values1.containsKey("firstName"))
-            predicates.add(cb.equal(u.get("firstName"), values1.get("firstName")));
-        if(values1.containsKey("lastName"))
-            predicates.add(cb.equal(u.get("lastName"), values1.get("lastName")));
-        if(values1.containsKey("email"))
-            predicates.add(cb.equal(u.get("email"), values1.get("email")));
-        if(values1.containsKey("phone"))
-            predicates.add(cb.equal(u.get("phone"), values1.get("phone")));
-        if(values1.containsKey("fromDate") && values1.containsKey("toDate"))
-            predicates.add(cb.between(u.get("regDate"), LocalDate.parse(values1.get("fromDate")), LocalDate.parse(values1.get("toDate"))));
+        if(values.containsKey("firstName"))
+            predicates.add(cb.equal(u.get("firstName"), values.get("firstName")));
+        if(values.containsKey("lastName"))
+            predicates.add(cb.equal(u.get("lastName"), values.get("lastName")));
+        if(values.containsKey("email"))
+            predicates.add(cb.equal(u.get("email"), values.get("email")));
+        if(values.containsKey("phone"))
+            predicates.add(cb.equal(u.get("phone"), values.get("phone")));
+        if(values.containsKey("fromDate") && values.containsKey("toDate"))
+            predicates.add(cb.between(u.get("regDate"), LocalDate.parse(values.get("fromDate")), LocalDate.parse(values.get("toDate"))));
 
         predicates.add(cb.like(userTypeJoin.get("typeName"), "Reader"));
 
@@ -100,6 +98,65 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
         try {
             result = typedQuery.getResultList();
+            return result;
+        } catch (NoResultException e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<Book> searchBook(Map<String, String> values) {
+        Configuration config = new Configuration();
+        config.configure();
+        SessionFactory sessionFactory = config.buildSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+
+        Transaction tx = session.beginTransaction();
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Book> cq = cb.createQuery(Book.class);
+        Root<Book> b = cq.from(Book.class);
+        Join<Book, Publisher> publisherJoin = b.join("publisher");
+        Join<Book, Author> authorJoin = b.join("authors");
+        Join<Book, Genre> genreJoin = b.join("genre");
+        Join<Book, BookState> bookStateJoin = b.join("bookState");
+        cq.select(b);
+
+
+        if(values.containsKey("publisher"))
+            predicates.add(cb.like(publisherJoin.get("publisherName"), values.get("publisher")));
+        if(values.containsKey("author"))
+            predicates.add(cb.like(authorJoin.get("name"), values.get("author")));
+        if(values.containsKey("genre"))
+            predicates.add(cb.like(genreJoin.get("name"), values.get("genre")));
+        if(values.containsKey("bookState"))
+            predicates.add(cb.like(bookStateJoin.get("stateName"), values.get("bookState")));
+        if(values.containsKey("title"))
+            predicates.add(cb.like(b.get("title"), values.get("title")));
+        if(values.containsKey("isbn"))
+            predicates.add(cb.like(b.get("isbn"), values.get("isbn")));
+        if(values.containsKey("bookId"))
+            predicates.add(cb.equal(b.get("bookId"), Long.parseLong(values.get("bookId"))));
+        if(values.containsKey("issueDate"))
+            predicates.add(cb.like(b.get("issueDate"), values.get("issueDate")));
+
+        Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
+        cq.where(finalPredicate);
+
+        TypedQuery<Book> typedQuery = session.createQuery(cq);
+
+        List<Book> result;
+
+        try {
+            result = typedQuery.getResultList();
+            System.out.println(result.size());
             return result;
         } catch (NoResultException e){
             e.printStackTrace();

@@ -2,8 +2,11 @@ package com.lms.controllers;
 
 
 import com.lms.models.dtos.SignUpDTO;
+import com.lms.models.entities.Author;
+import com.lms.models.entities.Book;
 import com.lms.models.entities.User;
 import com.lms.models.nonpersistentclasses.ReaderTableView;
+import com.lms.models.nonpersistentclasses.SearchBookTableView;
 import com.lms.models.nonpersistentclasses.SearchReaderTableView;
 import com.lms.services.OperatorService;
 import javafx.beans.property.SimpleLongProperty;
@@ -19,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -70,6 +74,24 @@ public class OperatorController {
     @FXML
     private Button search_reader_btn;
     @FXML
+    private Button search_book_btn;
+    @FXML
+    private TextField search_book_inv;
+    @FXML
+    private TextField search_book_isbn;
+    @FXML
+    private TextField search_book_title;
+    @FXML
+    private TextField search_book_author;
+    @FXML
+    private TextField search_book_publisher;
+    @FXML
+    private TextField search_book_genre;
+    @FXML
+    private TextField search_book_date;
+    @FXML
+    private ComboBox search_book_state;
+    @FXML
     private TableView<SearchReaderTableView> reader_table_id;
     @FXML
     private TableColumn<SearchReaderTableView, String> readerid_column_id;
@@ -85,8 +107,19 @@ public class OperatorController {
     private TableColumn<SearchReaderTableView, String> regdate_column_id;
     @FXML
     private TableColumn<SearchReaderTableView, String> rating_column_id;
+    @FXML
+    private TableView<SearchBookTableView> search_book_table_view;
+    @FXML private TableColumn<SearchBookTableView, String> invnum_column_id;
+    @FXML private TableColumn<SearchBookTableView, String> title_column_id;
+    @FXML private TableColumn<SearchBookTableView, String> author_column_id;
+    @FXML private TableColumn<SearchBookTableView, String> isbn_column_id;
+    @FXML private TableColumn<SearchBookTableView, String> genre_column_id;
+    @FXML private TableColumn<SearchBookTableView, String> publisher_column_id;
+    @FXML private TableColumn<SearchBookTableView, String> year_column_id;
+    @FXML private TableColumn<SearchBookTableView, String> state_column_id;
 
     ObservableList<SearchReaderTableView> readersObservableList = FXCollections.observableArrayList();
+    ObservableList<SearchBookTableView> searchBooksObservableList = FXCollections.observableArrayList();
 
     public OperatorController() {}
 
@@ -137,6 +170,61 @@ public class OperatorController {
         reader_table_id.setItems(readersObservableList);
     }
 
+    public List<Book> searchBook() {
+        Map<String, String> values = new HashMap<>();
+        if(search_book_inv.getText() != "")
+            values.put("bookId", search_book_inv.getText());
+        if(search_book_title.getText() != "")
+            values.put("title", search_book_inv.getText());
+        if(search_book_isbn.getText() != "")
+            values.put("isbn", search_book_isbn.getText());
+        if(search_book_author.getText() != "")
+            values.put("authors", search_book_author.getText());
+        if(search_book_genre.getText() != "")
+            values.put("genre", search_book_genre.getText());
+        if(search_book_publisher.getText() != "")
+            values.put("publisher", search_book_publisher.getText());
+        if(search_book_date.getText() != "")
+            values.put("issueDate", search_book_date.getText());
+        if(search_book_state.getValue() != null)
+            values.put("bookState", String.valueOf(search_book_state.getValue()));
+        search_book_title.clear();
+        search_book_isbn.clear();
+        search_book_author.clear();
+        search_book_genre.clear();
+        search_book_publisher.clear();
+        search_book_date.clear();
+        search_book_state.setValue(null);
+        return operatorService.searchBook(values);
+    }
+
+    public void displayBooks(List<Book> books){
+        search_book_table_view.getItems().clear();
+        for(int i = 0; i < books.size(); i ++){
+            String authors = "";
+            for(Author a : books.get(i).getAuthors()){
+                authors += a.getName() + ", ";
+            }
+            searchBooksObservableList.add(new SearchBookTableView(
+                    new SimpleStringProperty(Long.toString(books.get(i).getBookId())),
+                    new SimpleStringProperty(books.get(i).getTitle()),
+                    new SimpleStringProperty(authors),
+                    new SimpleStringProperty(books.get(i).getIsbn()),
+                    new SimpleStringProperty(books.get(i).getPublisher().getPublisherName()),
+                    new SimpleStringProperty(books.get(i).getIssueDate().toString()),
+                    new SimpleStringProperty(books.get(i).getGenre().getName()),
+                    new SimpleStringProperty(books.get(i).getBookState().getStateName())));
+        }
+        invnum_column_id.setCellValueFactory(new PropertyValueFactory<>("inventoryNumber"));
+        title_column_id.setCellValueFactory(new PropertyValueFactory<>("title"));
+        author_column_id.setCellValueFactory(new PropertyValueFactory<>("author"));
+        isbn_column_id.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        genre_column_id.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        year_column_id.setCellValueFactory(new PropertyValueFactory<>("year"));
+        publisher_column_id.setCellValueFactory(new PropertyValueFactory<>("publisher"));
+        state_column_id.setCellValueFactory(new PropertyValueFactory<>("state"));
+        search_book_table_view.setItems(searchBooksObservableList);
+    }
     public void setCurrentUser(User user) {
         this.currentUser = user;
     }
@@ -175,6 +263,11 @@ public class OperatorController {
         search_reader_btn.setOnAction(event -> {
             List<User> result = searchReader();
             displayUsers(result);
+        });
+
+        search_book_btn.setOnAction(event -> {
+            List<Book> result = searchBook();
+            displayBooks(result);
         });
 
         logout_btn.setOnAction(event -> {

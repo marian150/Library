@@ -1,6 +1,7 @@
 package com.lms.servicesImpl;
 
 import com.lms.models.dtos.SignUpDTO;
+import com.lms.models.entities.Book;
 import com.lms.models.entities.User;
 import com.lms.repositories.OperatorRepository;
 import com.lms.services.OperatorService;
@@ -27,5 +28,10 @@ public class OperatorServiceImpl implements OperatorService {
     @Override
     public List<User> searchReader(Map<String, String> values) {
         return operatorRepository.searchReader(values);
+    }
+
+    @Override
+    public List<Book> searchBook(Map<String, String> values) {
+        return operatorRepository.searchBook(values);
     }
 }
