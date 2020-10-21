@@ -23,10 +23,7 @@ public class LoginRepositoryImpl implements LoginRepository {
 
     public User findByEmailAndPass(LoginDTO loginDTO) {
 
-        Configuration config = new Configuration();
-        config.configure();
-        SessionFactory sessionFactory = config.buildSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
 
         String hql = "FROM User u WHERE u.email LIKE '" + loginDTO.getEmail() + "' AND u.password" +
