@@ -5,6 +5,7 @@ import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.Author;
 import com.lms.models.entities.Book;
 import com.lms.models.entities.User;
+import com.lms.models.nonpersistentclasses.BrowseReaderTableView;
 import com.lms.models.nonpersistentclasses.ReaderTableView;
 import com.lms.models.nonpersistentclasses.SearchBookTableView;
 import com.lms.models.nonpersistentclasses.SearchReaderTableView;
@@ -15,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -96,6 +98,14 @@ public class OperatorController {
     private TextField search_book_date;
     @FXML
     private ComboBox search_book_state;
+    @FXML
+    private TextField lend_rd_id;
+    @FXML
+    private TextField lend_rd_name;
+    @FXML
+    private TextField lend_rd_email;
+    @FXML
+    private TextField lend_rd_phone;
     @FXML
     private TableView<SearchReaderTableView> reader_table_id;
     @FXML
@@ -239,6 +249,13 @@ public class OperatorController {
         greeting_label.setText(names);
     }
 
+    public void setBrowsedUserDetails(BrowseReaderTableView user) {
+        lend_rd_id.setText(String.valueOf(user.getId()));
+        lend_rd_name.setText(user.getFname() + " " + user.getLname());
+        lend_rd_email.setText(user.getEmail());
+        lend_rd_phone.setText(user.getPhone());
+    }
+
     public void logout() {
         ((Stage) greeting_label.getScene().getWindow()).close();
         try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/initial.fxml")){
@@ -277,10 +294,12 @@ public class OperatorController {
         });
 
         lend_browse_reader_btn.setOnAction(event -> {
-            try{
-                Parent root = (Parent) FXMLLoader.load(getClass().getResource("/fxml/lendBookBrowseReader.fxml"));
+            try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/lendBookBrowseReader.fxml")){
+                Parent root = (Parent) fxmlLoader.load(fxml);
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(((Node)event.getSource()).getScene().getWindow());
                 stage.show();
             } catch(IOException e) {
                 e.printStackTrace();

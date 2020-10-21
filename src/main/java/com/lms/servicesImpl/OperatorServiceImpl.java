@@ -31,4 +31,9 @@ public class OperatorServiceImpl implements OperatorService {
     public List<Book> searchBook(Map<String, String> values) {
         return operatorRepository.searchBook(values);
     }
+
+    @Override
+    public User browseUser(Map<String, String> values) {
+        return operatorRepository.browseUser(values);
+    }
 }

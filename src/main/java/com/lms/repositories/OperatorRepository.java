@@ -12,4 +12,5 @@ public interface OperatorRepository {
     boolean createReader(SignUpDTO signUpDTO);
     List<User> searchReader(Map<String, String> values);
     List<Book> searchBook(Map<String, String> values);
+    User browseUser(Map<String, String> values);
 }

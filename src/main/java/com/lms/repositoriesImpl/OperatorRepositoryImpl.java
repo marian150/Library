@@ -164,4 +164,47 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
         return null;
     }
+
+    @Override
+    public User browseUser(Map<String, String> values) {
+        if(values.isEmpty())
+            return null;
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        Transaction tx = session.beginTransaction();
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<User> cq = cb.createQuery(User.class);
+        Root<User> u = cq.from(User.class);
+        Join<User, UserType> userTypeJoin = u.join("userType");
+        cq.select(u);
+
+        if(values.containsKey("readerId"))
+            predicates.add(cb.equal(u.get("userId"), Long.parseLong(values.get("readerId"))));
+        if(values.containsKey("email"))
+            predicates.add(cb.like(u.get("email"), values.get("email")));
+
+
+        predicates.add(cb.like(userTypeJoin.get("typeName"), "Reader"));
+        Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
+        cq.where(finalPredicate);
+
+        TypedQuery<User> typedQuery = session.createQuery(cq);
+
+        User result;
+
+        try {
+            result = typedQuery.getSingleResult();
+            return result;
+        } catch (NoResultException e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+
+        return null;
+    }
 }
