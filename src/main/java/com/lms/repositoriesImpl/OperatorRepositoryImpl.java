@@ -1,5 +1,6 @@
 package com.lms.repositoriesImpl;
 
+import com.lms.config.ConfigurationSessionFactory;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.repositories.OperatorRepository;
@@ -10,11 +11,13 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 import javax.persistence.JoinColumn;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,10 +28,8 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
     @Override
     public boolean createReader(SignUpDTO signUpDTO) {
-        Configuration config = new Configuration();
-        config.configure();
-        SessionFactory sessionFactory = config.buildSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
+
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
 
         User user = new User();
 
@@ -61,10 +62,8 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
     @Override
     public List<User> searchReader(Map<String, String> values) {
-        Configuration config = new Configuration();
-        config.configure();
-        SessionFactory sessionFactory = config.buildSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
+
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
 
         Transaction tx = session.beginTransaction();
 
@@ -111,10 +110,8 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
     @Override
     public List<Book> searchBook(Map<String, String> values) {
-        Configuration config = new Configuration();
-        config.configure();
-        SessionFactory sessionFactory = config.buildSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
+
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
 
         Transaction tx = session.beginTransaction();
 
@@ -145,7 +142,8 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         if(values.containsKey("bookId"))
             predicates.add(cb.equal(b.get("bookId"), Long.parseLong(values.get("bookId"))));
         if(values.containsKey("issueDate"))
-            predicates.add(cb.like(b.get("issueDate"), values.get("issueDate")));
+            predicates.add(cb.equal(b.get("issueDate"), LocalDate.parse(values.get("issueDate")+"-01-01")));
+
 
         Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
         cq.where(finalPredicate);
@@ -156,7 +154,6 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
         try {
             result = typedQuery.getResultList();
-            System.out.println(result.size());
             return result;
         } catch (NoResultException e){
             e.printStackTrace();

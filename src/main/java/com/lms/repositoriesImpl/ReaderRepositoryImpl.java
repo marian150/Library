@@ -1,5 +1,6 @@
 package com.lms.repositoriesImpl;
 
+import com.lms.config.ConfigurationSessionFactory;
 import com.lms.models.entities.RentBook;
 import com.lms.models.entities.User;
 import com.lms.repositories.ReaderRepository;
@@ -17,10 +18,7 @@ public class ReaderRepositoryImpl implements ReaderRepository {
     @Override
     public List<Object[]> loadBooks() {
 
-        Configuration config = new Configuration();
-        config.configure();
-        SessionFactory sessionFactory = config.buildSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
 
         // Query for current reader's personal data

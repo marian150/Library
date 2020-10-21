@@ -180,7 +180,7 @@ public class OperatorController {
         if(search_book_inv.getText() != "")
             values.put("bookId", search_book_inv.getText());
         if(search_book_title.getText() != "")
-            values.put("title", search_book_inv.getText());
+            values.put("title", search_book_title.getText());
         if(search_book_isbn.getText() != "")
             values.put("isbn", search_book_isbn.getText());
         if(search_book_author.getText() != "")
@@ -193,6 +193,7 @@ public class OperatorController {
             values.put("issueDate", search_book_date.getText());
         if(search_book_state.getValue() != null)
             values.put("bookState", String.valueOf(search_book_state.getValue()));
+        search_book_inv.clear();
         search_book_title.clear();
         search_book_isbn.clear();
         search_book_author.clear();

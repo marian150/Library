@@ -1,5 +1,6 @@
 package com.lms;
 
+import com.lms.config.ConfigurationSessionFactory;
 import com.lms.config.FXApplicationConfig;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -8,6 +9,7 @@ import org.jboss.weld.environment.se.Weld;
 public class LibraryManagementSystemApplication extends Application {
 
     private Weld weld;
+    private ConfigurationSessionFactory configurationSessionFactory;
 
     public static void main(String[] args) {
         Application.launch(args);
