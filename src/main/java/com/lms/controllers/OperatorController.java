@@ -21,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.w3c.dom.Text;
 
@@ -73,6 +74,10 @@ public class OperatorController {
     private DatePicker search_reader_to;
     @FXML
     private Button search_reader_btn;
+    @FXML
+    private Button lend_browse_reader_btn;
+    @FXML
+    private Button lend_browse_book_btn;
     @FXML
     private Button search_book_btn;
     @FXML
@@ -268,6 +273,17 @@ public class OperatorController {
         search_book_btn.setOnAction(event -> {
             List<Book> result = searchBook();
             displayBooks(result);
+        });
+
+        lend_browse_reader_btn.setOnAction(event -> {
+            try{
+                Parent root = (Parent) FXMLLoader.load(getClass().getResource("/fxml/lendBookBrowseReader.fxml"));
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch(IOException e) {
+                e.printStackTrace();
+            }
         });
 
         logout_btn.setOnAction(event -> {
