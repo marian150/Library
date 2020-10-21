@@ -1,5 +1,6 @@
 package com.lms.repositoriesImpl;
 
+import com.lms.config.ConfigurationSessionFactory;
 import com.lms.models.dtos.LoginDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.Form;
@@ -46,10 +47,7 @@ public class LoginRepositoryImpl implements LoginRepository {
 
     @Override
     public void persistNewReaderForm(SignUpDTO signUpDTO) {
-        Configuration config = new Configuration();
-        config.configure();
-        SessionFactory sessionFactory = config.buildSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
 
         Form form = new Form();
         form.setFirstName(signUpDTO.getFirstname());
