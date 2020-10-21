@@ -156,7 +156,6 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
         try {
             result = typedQuery.getResultList();
-            System.out.println(result.size());
             return result;
         } catch (NoResultException e){
             e.printStackTrace();
