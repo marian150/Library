@@ -1,7 +1,8 @@
 package com.lms.controllers;
 
 
-import com.lms.controllers.commonComponentsLogic.commonUserFunctionalities;
+import com.lms.controllers.commonComponentsLogic.CommonAdminOperatorFunctionalities;
+import com.lms.controllers.commonComponentsLogic.CommonUserFunctionalities;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.Author;
 import com.lms.models.entities.Book;
@@ -38,7 +39,9 @@ public class OperatorController {
     @Inject
     private OperatorService operatorService;
     @Inject
-    private commonUserFunctionalities commonUserFunctionalities;
+    private CommonUserFunctionalities commonUserFunctionalities;
+    @Inject
+    private CommonAdminOperatorFunctionalities commonAdminOperatorFunctionalities;
 
     private User currentUser;
 
@@ -46,34 +49,23 @@ public class OperatorController {
     FXMLLoader fxmlLoader;
     @FXML
     private Label greeting_label;
-    @FXML
-    private TextField fname;
-    @FXML
-    private TextField lname;
-    @FXML
-    private TextField email;
-    @FXML
-    private TextField pass;
-    @FXML
-    private TextField phone;
+    @FXML private TextField fname;
+    @FXML private TextField lname;
+    @FXML private TextField email;
+    @FXML private TextField pass;
+    @FXML private TextField phone;
     @FXML
     private Button create_btn;
     @FXML
     private Button logout_btn;
     @FXML
     private AnchorPane create_reader_anchor;
-    @FXML
-    private TextField search_reader_fname;
-    @FXML
-    private TextField search_reader_lname;
-    @FXML
-    private TextField search_reader_email;
-    @FXML
-    private TextField search_reader_phone;
-    @FXML
-    private DatePicker search_reader_from;
-    @FXML
-    private DatePicker search_reader_to;
+    @FXML private TextField search_reader_fname;
+    @FXML private TextField search_reader_lname;
+    @FXML private TextField search_reader_email;
+    @FXML private TextField search_reader_phone;
+    @FXML private DatePicker search_reader_from;
+    @FXML private DatePicker search_reader_to;
     @FXML
     private Button search_reader_btn;
     @FXML
@@ -108,20 +100,13 @@ public class OperatorController {
     private TextField lend_rd_phone;
     @FXML
     private TableView<SearchReaderTableView> reader_table_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> readerid_column_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> fname_column_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> lname_column_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> email_column_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> phone_column_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> regdate_column_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> rating_column_id;
+    @FXML private TableColumn<SearchReaderTableView, String> readerid_column_id;
+    @FXML private TableColumn<SearchReaderTableView, String> fname_column_id;
+    @FXML private TableColumn<SearchReaderTableView, String> lname_column_id;
+    @FXML private TableColumn<SearchReaderTableView, String> email_column_id;
+    @FXML private TableColumn<SearchReaderTableView, String> phone_column_id;
+    @FXML private TableColumn<SearchReaderTableView, String> regdate_column_id;
+    @FXML private TableColumn<SearchReaderTableView, String> rating_column_id;
     @FXML
     private TableView<SearchBookTableView> search_book_table_view;
     @FXML private TableColumn<SearchBookTableView, String> invnum_column_id;
@@ -143,104 +128,6 @@ public class OperatorController {
         return operatorService.createReader(signUpDTO);
     }
 
-    public List<User> searchReader() {
-        Map<String, String> values = new HashMap<>();
-        if(search_reader_fname.getText() != "")
-            values.put("firstName", search_reader_fname.getText());
-        if(search_reader_lname.getText() != "")
-            values.put("lastName", search_reader_lname.getText());
-        if(search_reader_email.getText() != "")
-            values.put("email", search_reader_email.getText());
-        if(search_reader_phone.getText() != "")
-            values.put("phone", search_reader_phone.getText());
-        if(search_reader_from.getValue() != null)
-            values.put("fromDate", search_reader_from.getValue().toString());
-        if(search_reader_to.getValue() != null)
-            values.put("toDate", search_reader_to.getValue().toString());
-        search_reader_fname.clear();
-        search_reader_lname.clear();
-        search_reader_email.clear();
-        search_reader_phone.clear();
-        search_reader_from.setValue(null);
-        search_reader_to.setValue(null);
-        return operatorService.searchReader(values);
-    }
-    public void displayUsers(List<User> users){
-        reader_table_id.getItems().clear();
-        for(int i = 0; i < users.size(); i ++){
-            readersObservableList.add(new SearchReaderTableView(
-                    new SimpleLongProperty(users.get(i).getUserId()),
-                    new SimpleStringProperty(users.get(i).getFirstName()),
-                    new SimpleStringProperty(users.get(i).getLastName()),
-                    new SimpleStringProperty(users.get(i).getEmail()),
-                    new SimpleStringProperty(users.get(i).getPhone()),
-                    new SimpleStringProperty(users.get(i).getRegDate().toString())));
-        }
-        readerid_column_id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        fname_column_id.setCellValueFactory(new PropertyValueFactory<>("fname"));
-        lname_column_id.setCellValueFactory(new PropertyValueFactory<>("lname"));
-        email_column_id.setCellValueFactory(new PropertyValueFactory<>("email"));
-        phone_column_id.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        regdate_column_id.setCellValueFactory(new PropertyValueFactory<>("regdate"));
-        reader_table_id.setItems(readersObservableList);
-    }
-
-    public List<Book> searchBook() {
-        Map<String, String> values = new HashMap<>();
-        if(search_book_inv.getText() != "")
-            values.put("bookId", search_book_inv.getText());
-        if(search_book_title.getText() != "")
-            values.put("title", search_book_title.getText());
-        if(search_book_isbn.getText() != "")
-            values.put("isbn", search_book_isbn.getText());
-        if(search_book_author.getText() != "")
-            values.put("authors", search_book_author.getText());
-        if(search_book_genre.getText() != "")
-            values.put("genre", search_book_genre.getText());
-        if(search_book_publisher.getText() != "")
-            values.put("publisher", search_book_publisher.getText());
-        if(search_book_date.getText() != "")
-            values.put("issueDate", search_book_date.getText());
-        if(search_book_state.getValue() != null)
-            values.put("bookState", String.valueOf(search_book_state.getValue()));
-        search_book_inv.clear();
-        search_book_title.clear();
-        search_book_isbn.clear();
-        search_book_author.clear();
-        search_book_genre.clear();
-        search_book_publisher.clear();
-        search_book_date.clear();
-        search_book_state.setValue(null);
-        return operatorService.searchBook(values);
-    }
-
-    public void displayBooks(List<Book> books){
-        search_book_table_view.getItems().clear();
-        for(int i = 0; i < books.size(); i ++){
-            String authors = "";
-            for(Author a : books.get(i).getAuthors()){
-                authors += a.getName() + ", ";
-            }
-            searchBooksObservableList.add(new SearchBookTableView(
-                    new SimpleStringProperty(Long.toString(books.get(i).getBookId())),
-                    new SimpleStringProperty(books.get(i).getTitle()),
-                    new SimpleStringProperty(authors),
-                    new SimpleStringProperty(books.get(i).getIsbn()),
-                    new SimpleStringProperty(books.get(i).getPublisher().getPublisherName()),
-                    new SimpleStringProperty(books.get(i).getIssueDate()),
-                    new SimpleStringProperty(books.get(i).getGenre().getName()),
-                    new SimpleStringProperty(books.get(i).getBookState().getStateName())));
-        }
-        invnum_column_id.setCellValueFactory(new PropertyValueFactory<>("inventoryNumber"));
-        title_column_id.setCellValueFactory(new PropertyValueFactory<>("title"));
-        author_column_id.setCellValueFactory(new PropertyValueFactory<>("author"));
-        isbn_column_id.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-        genre_column_id.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        year_column_id.setCellValueFactory(new PropertyValueFactory<>("year"));
-        publisher_column_id.setCellValueFactory(new PropertyValueFactory<>("publisher"));
-        state_column_id.setCellValueFactory(new PropertyValueFactory<>("state"));
-        search_book_table_view.setItems(searchBooksObservableList);
-    }
     public void setCurrentUser(User user) {
         this.currentUser = user;
     }
@@ -272,13 +159,27 @@ public class OperatorController {
         });
 
         search_reader_btn.setOnAction(event -> {
-            List<User> result = searchReader();
-            displayUsers(result);
+            List<User> result = commonAdminOperatorFunctionalities.searchReader(
+                    search_reader_fname,search_reader_lname, search_reader_email, search_reader_phone,
+                    search_reader_from, search_reader_to, operatorService
+            );
+            // rating_column_id is still missing, to be added later
+            commonAdminOperatorFunctionalities.displayUsers(
+                    result, reader_table_id, readersObservableList, readerid_column_id,
+                    fname_column_id, lname_column_id, email_column_id, phone_column_id,
+                    regdate_column_id
+            );
         });
 
         search_book_btn.setOnAction(event -> {
-            List<Book> result = searchBook();
-            displayBooks(result);
+            List<Book> result = commonAdminOperatorFunctionalities.searchBook(
+                    search_book_inv, search_book_title,search_book_isbn,
+                    search_book_author,search_book_genre,search_book_publisher,
+                    search_book_date,search_book_state,operatorService);
+            commonAdminOperatorFunctionalities.displayBooks(
+                    result, search_book_table_view,searchBooksObservableList,
+                    invnum_column_id, title_column_id, author_column_id,
+                    isbn_column_id, genre_column_id, year_column_id, publisher_column_id, state_column_id);
         });
 
         lend_browse_reader_btn.setOnAction(event -> {
@@ -298,5 +199,4 @@ public class OperatorController {
             commonUserFunctionalities.logout(greeting_label, fxmlLoader);
         });
     }
-
 }

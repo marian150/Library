@@ -1,6 +1,6 @@
 package com.lms.controllers;
 
-import com.lms.controllers.commonComponentsLogic.commonUserFunctionalities;
+import com.lms.controllers.commonComponentsLogic.CommonUserFunctionalities;
 import com.lms.models.entities.User;
 import com.lms.models.nonpersistentclasses.ReaderTableView;
 import com.lms.services.ReaderService;
@@ -22,7 +22,7 @@ public class ReaderController {
     @Inject
     FXMLLoader fxmlLoader;
     @Inject
-    private commonUserFunctionalities commonUserFunctionalities;
+    private CommonUserFunctionalities commonUserFunctionalities;
 
     private User currentUser;
     @FXML
@@ -46,6 +46,7 @@ public class ReaderController {
 
     public ReaderController() {}
 
+    // Object[] to be changed to RentBook entity
     public List<Object[]> loadBooks() {
         List<Object[]> books = readerService.loadBooks();
         return books;
@@ -59,13 +60,8 @@ public class ReaderController {
         greeting_label.setText(names);
     }
 
+    public void displayBooks(List<Object[]> books){
 
-    public void initialize() {
-        logout_btn.setOnAction(event -> {
-            commonUserFunctionalities.logout(greeting_label, fxmlLoader);
-        });
-
-        List<Object[]> books = loadBooks();
         Object[][] array = books.toArray(new Object[books.size()][]);
         for(int i = 0; i < array.length; i ++){
             booksObservableList.add(new ReaderTableView(
@@ -81,5 +77,13 @@ public class ReaderController {
         lenddate_column_id.setCellValueFactory(new PropertyValueFactory<>("lenddate"));
         duedate_column_id.setCellValueFactory(new PropertyValueFactory<>("duedate"));
         books_table_view.setItems(booksObservableList);
+    }
+
+    public void initialize() {
+        logout_btn.setOnAction(event -> {
+            commonUserFunctionalities.logout(greeting_label, fxmlLoader);
+        });
+
+        displayBooks(loadBooks());
     }
 }

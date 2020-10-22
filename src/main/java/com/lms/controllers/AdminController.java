@@ -1,6 +1,6 @@
 package com.lms.controllers;
 
-import com.lms.controllers.commonComponentsLogic.commonUserFunctionalities;
+import com.lms.controllers.commonComponentsLogic.CommonUserFunctionalities;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.services.AdminService;
 import javafx.fxml.FXML;
@@ -20,7 +20,7 @@ public class AdminController {
     @Inject
     FXMLLoader fxmlLoader;
     @Inject
-    private commonUserFunctionalities commonUserFunctionalities;
+    private CommonUserFunctionalities commonUserFunctionalities;
     @FXML
     private Label greeting_label;
     @FXML
