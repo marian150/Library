@@ -46,7 +46,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         try {
             tx = session.beginTransaction();
 
-            UserType userType = (UserType) session.load(UserType.class, (Long)(long)2);
+            UserType userType = (UserType) session.load(UserType.class, 2L);
             user.setUserType(userType);
             System.out.println(userType.getTypeId() + " "+ userType.getTypeName());
             session.save(user);
@@ -142,7 +142,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         if(values.containsKey("bookId"))
             predicates.add(cb.equal(b.get("bookId"), Long.parseLong(values.get("bookId"))));
         if(values.containsKey("issueDate"))
-            predicates.add(cb.equal(b.get("issueDate"), LocalDate.parse(values.get("issueDate")+"-01-01")));
+            predicates.add(cb.like(b.get("issueDate"), values.get("issueDate")));
 
 
         Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));

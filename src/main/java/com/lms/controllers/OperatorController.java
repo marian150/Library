@@ -1,12 +1,12 @@
 package com.lms.controllers;
 
 
+import com.lms.controllers.commonComponentsLogic.commonUserFunctionalities;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.Author;
 import com.lms.models.entities.Book;
 import com.lms.models.entities.User;
 import com.lms.models.nonpersistentclasses.BrowseReaderTableView;
-import com.lms.models.nonpersistentclasses.ReaderTableView;
 import com.lms.models.nonpersistentclasses.SearchBookTableView;
 import com.lms.models.nonpersistentclasses.SearchReaderTableView;
 import com.lms.services.OperatorService;
@@ -25,12 +25,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
 
 import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +37,8 @@ public class OperatorController {
 
     @Inject
     private OperatorService operatorService;
+    @Inject
+    private commonUserFunctionalities commonUserFunctionalities;
 
     private User currentUser;
 
@@ -227,7 +227,7 @@ public class OperatorController {
                     new SimpleStringProperty(authors),
                     new SimpleStringProperty(books.get(i).getIsbn()),
                     new SimpleStringProperty(books.get(i).getPublisher().getPublisherName()),
-                    new SimpleStringProperty(books.get(i).getIssueDate().toString()),
+                    new SimpleStringProperty(books.get(i).getIssueDate()),
                     new SimpleStringProperty(books.get(i).getGenre().getName()),
                     new SimpleStringProperty(books.get(i).getBookState().getStateName())));
         }
@@ -254,18 +254,6 @@ public class OperatorController {
         lend_rd_name.setText(user.getFname() + " " + user.getLname());
         lend_rd_email.setText(user.getEmail());
         lend_rd_phone.setText(user.getPhone());
-    }
-
-    public void logout() {
-        ((Stage) greeting_label.getScene().getWindow()).close();
-        try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/initial.fxml")){
-            Parent root = (Parent) fxmlLoader.load(fxml);
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void initialize() {
@@ -307,7 +295,7 @@ public class OperatorController {
         });
 
         logout_btn.setOnAction(event -> {
-            logout();
+            commonUserFunctionalities.logout(greeting_label, fxmlLoader);
         });
     }
 

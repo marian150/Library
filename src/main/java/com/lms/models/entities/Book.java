@@ -47,12 +47,12 @@ public class Book {
     private String isbn;
 
     @Column(name = "issue_date")
-    private LocalDate issueDate;
+    private String issueDate;
 
     public Book () {}
 
     public Book(Long bookId, BookState bookState, Publisher publisher, BookCovers bookCovers,
-                Genre genre, String title, Set<Author> authors, String isbn, LocalDate issueDate) {
+                Genre genre, String title, Set<Author> authors, String isbn, String issueDate) {
         this.bookId = bookId;
         this.bookState = bookState;
         this.publisher = publisher;
@@ -97,11 +97,11 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public LocalDate getIssueDate() {
+    public String getIssueDate() {
         return issueDate;
     }
 
-    public void setIssueDate(LocalDate issueDate) {
+    public void setIssueDate(String issueDate) {
         this.issueDate = issueDate;
     }
 

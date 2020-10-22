@@ -1,5 +1,6 @@
 package com.lms.controllers;
 
+import com.lms.controllers.commonComponentsLogic.commonUserFunctionalities;
 import com.lms.models.entities.User;
 import com.lms.models.nonpersistentclasses.ReaderTableView;
 import com.lms.services.ReaderService;
@@ -8,15 +9,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 import javax.inject.Inject;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 public class ReaderController {
@@ -25,6 +21,8 @@ public class ReaderController {
     private ReaderService readerService;
     @Inject
     FXMLLoader fxmlLoader;
+    @Inject
+    private commonUserFunctionalities commonUserFunctionalities;
 
     private User currentUser;
     @FXML
@@ -61,21 +59,10 @@ public class ReaderController {
         greeting_label.setText(names);
     }
 
-    public void logout() {
-        ((Stage) greeting_label.getScene().getWindow()).close();
-        try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/initial.fxml")){
-            Parent root = (Parent) fxmlLoader.load(fxml);
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void initialize() {
         logout_btn.setOnAction(event -> {
-            logout();
+            commonUserFunctionalities.logout(greeting_label, fxmlLoader);
         });
 
         List<Object[]> books = loadBooks();

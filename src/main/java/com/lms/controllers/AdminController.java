@@ -1,21 +1,17 @@
 package com.lms.controllers;
 
+import com.lms.controllers.commonComponentsLogic.commonUserFunctionalities;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.services.AdminService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 
 import javax.inject.Inject;
-import java.io.IOException;
-import java.io.InputStream;
 
 public class AdminController {
 
@@ -23,6 +19,8 @@ public class AdminController {
     private AdminService adminService;
     @Inject
     FXMLLoader fxmlLoader;
+    @Inject
+    private commonUserFunctionalities commonUserFunctionalities;
     @FXML
     private Label greeting_label;
     @FXML
@@ -43,23 +41,13 @@ public class AdminController {
     private AnchorPane create_operator_anchor;
 
     public boolean createOperator(){
-        return false;
+        SignUpDTO signUpDTO = new SignUpDTO(create_fname_id.getText(), create_lname_id.getText(), create_email_id.getText(), create_password_id.getText(), create_phone_id.getText());
+        return adminService.createOperator(signUpDTO);
     }
 
-    public void logout() {
-        ((Stage) greeting_label.getScene().getWindow()).close();
-        try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/initial.fxml")){
-            Parent root = (Parent) fxmlLoader.load(fxml);
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
     public void initialize(){
         logout_btn.setOnAction(event -> {
-            logout();
+            commonUserFunctionalities.logout(greeting_label, fxmlLoader);
         });
         create_operator_btn.setOnAction(event -> {
             create_fname_id.clear(); create_lname_id.clear(); create_email_id.clear(); create_password_id.clear(); create_phone_id.clear();
