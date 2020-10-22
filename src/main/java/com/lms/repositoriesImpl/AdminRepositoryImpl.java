@@ -1,4 +1,9 @@
 package com.lms.repositoriesImpl;
 
-public class AdminRepositoryImpl {
+import com.lms.repositories.AdminRepository;
+
+import javax.enterprise.context.Dependent;
+
+@Dependent
+public class AdminRepositoryImpl implements AdminRepository {
 }
