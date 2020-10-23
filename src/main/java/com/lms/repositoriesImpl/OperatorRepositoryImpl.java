@@ -121,21 +121,20 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<Book> cq = cb.createQuery(Book.class);
         Root<Book> b = cq.from(Book.class);
-        Join<Book, Publisher> publisherJoin = b.join("publisher");
-        Join<Book, Author> authorJoin = b.join("authors");
-        Join<Book, Genre> genreJoin = b.join("genre");
-        Join<Book, BookState> bookStateJoin = b.join("bookState");
-        cq.select(b);
-
-
+        b.fetch("publisher", JoinType.LEFT);
+        b.fetch("authors", JoinType.LEFT);
+        b.fetch("genre", JoinType.LEFT);
+        b.fetch("bookState", JoinType.LEFT);
+        cq.select(b).distinct(true);
+        
         if(values.containsKey("publisher"))
-            predicates.add(cb.like(publisherJoin.get("publisherName"), values.get("publisher")));
+            predicates.add(cb.like(b.get("publisherName"), values.get("publisher")));
         if(values.containsKey("authors"))
-            predicates.add(cb.like(authorJoin.get("name"), values.get("authors")));
+            predicates.add(cb.like(b.get("name"), values.get("authors")));
         if(values.containsKey("genre"))
-            predicates.add(cb.like(genreJoin.get("name"), values.get("genre")));
+            predicates.add(cb.like(b.get("name"), values.get("genre")));
         if(values.containsKey("bookState"))
-            predicates.add(cb.like(bookStateJoin.get("stateName"), values.get("bookState")));
+            predicates.add(cb.like(b.get("stateName"), values.get("bookState")));
         if(values.containsKey("title"))
             predicates.add(cb.like(b.get("title"), values.get("title")));
         if(values.containsKey("isbn"))
@@ -225,13 +224,18 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         for(String temp : authorListString) {
             predicates.add(cb.like(a.get("name"), temp));
         }
-        Predicate finalPredicate = cb.and(predicates.toArray((new Predicate[predicates.size()])));
+        Predicate finalPredicate = cb.or(predicates.toArray((new Predicate[predicates.size()])));
+
+
         cq.where(finalPredicate);
         TypedQuery<Author> typedQuery = session.createQuery(cq);
         List<Author> authorsList = typedQuery.getResultList();
         Set<Author> authors = new HashSet<>(authorsList);
+        for(Author au : authors) {
+            System.out.println("Authors:\n" + au.getAuthorId() + " " + au.getName());
+        }
 
-        Query queryBs = session.createQuery("Select bs from BookState bs where bs.stateName like 'New'");
+        Query queryBs = session.createQuery("Select bs from BookState bs where bs.stateName like 'NEW'");
         BookState bookState = (BookState)queryBs.getSingleResult();
 
         Query queryBc = session.createQuery("Select bc from BookCovers bc where bc.coverName like :bookCover");
