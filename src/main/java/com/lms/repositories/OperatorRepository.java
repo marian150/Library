@@ -1,7 +1,10 @@
 package com.lms.repositories;
 
+import com.lms.models.dtos.AddBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.Book;
+import com.lms.models.entities.BookCovers;
+import com.lms.models.entities.Genre;
 import com.lms.models.entities.User;
 
 
@@ -13,4 +16,7 @@ public interface OperatorRepository {
     List<User> searchReader(Map<String, String> values);
     List<Book> searchBook(Map<String, String> values);
     User browseUser(Map<String, String> values);
+    boolean addBook(AddBookDTO addBookDTO);
+    List<BookCovers> retrieveBookCovers();
+    List<Genre> retrieveBookGenre();
 }

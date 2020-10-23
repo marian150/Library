@@ -1,12 +1,8 @@
 package com.lms.repositoriesImpl;
 
 import com.lms.config.ConfigurationSessionFactory;
-import com.lms.models.entities.RentBook;
-import com.lms.models.entities.User;
 import com.lms.repositories.ReaderRepository;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 import javax.enterprise.context.Dependent;
 import javax.persistence.NoResultException;

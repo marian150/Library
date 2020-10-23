@@ -56,9 +56,10 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         tableView.getItems().clear();
         for(int i = 0; i < books.size(); i ++){
             String authors = "";
-            for(Author a : books.get(i).getAuthors()){
+            for (Author a : books.get(i).getAuthors()) {
                 authors += a.getName() + ", ";
             }
+
             observableList.add(new SearchBookTableView(
                     new SimpleStringProperty(Long.toString(books.get(i).getBookId())),
                     new SimpleStringProperty(books.get(i).getTitle()),

@@ -1,13 +1,13 @@
 package com.lms.controllers;
 
 
+import com.lms.models.dtos.AddBookDTO;
 import com.lms.controllers.commonComponentsLogic.CommonAdminOperatorFunctionalities;
 import com.lms.controllers.commonComponentsLogic.CommonUserFunctionalities;
 import com.lms.models.dtos.SignUpDTO;
-import com.lms.models.entities.Author;
-import com.lms.models.entities.Book;
-import com.lms.models.entities.User;
+import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.BrowseReaderTableView;
+import com.lms.models.nonpersistentclasses.ReaderTableView;
 import com.lms.models.nonpersistentclasses.SearchBookTableView;
 import com.lms.models.nonpersistentclasses.SearchReaderTableView;
 import com.lms.services.OperatorService;
@@ -26,10 +26,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
 
 import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,23 +51,34 @@ public class OperatorController {
     FXMLLoader fxmlLoader;
     @FXML
     private Label greeting_label;
-    @FXML private TextField fname;
-    @FXML private TextField lname;
-    @FXML private TextField email;
-    @FXML private TextField pass;
-    @FXML private TextField phone;
+    @FXML
+    private TextField fname;
+    @FXML
+    private TextField lname;
+    @FXML
+    private TextField email;
+    @FXML
+    private TextField pass;
+    @FXML
+    private TextField phone;
     @FXML
     private Button create_btn;
     @FXML
     private Button logout_btn;
     @FXML
     private AnchorPane create_reader_anchor;
-    @FXML private TextField search_reader_fname;
-    @FXML private TextField search_reader_lname;
-    @FXML private TextField search_reader_email;
-    @FXML private TextField search_reader_phone;
-    @FXML private DatePicker search_reader_from;
-    @FXML private DatePicker search_reader_to;
+    @FXML
+    private TextField search_reader_fname;
+    @FXML
+    private TextField search_reader_lname;
+    @FXML
+    private TextField search_reader_email;
+    @FXML
+    private TextField search_reader_phone;
+    @FXML
+    private DatePicker search_reader_from;
+    @FXML
+    private DatePicker search_reader_to;
     @FXML
     private Button search_reader_btn;
     @FXML
@@ -99,14 +112,39 @@ public class OperatorController {
     @FXML
     private TextField lend_rd_phone;
     @FXML
+    private TextField add_book_ID;
+    @FXML
+    private TextField add_book_isbn;
+    @FXML
+    private TextField add_book_title;
+    @FXML
+    private TextField add_book_author;
+    @FXML
+    private TextField add_book_publisher;
+    @FXML
+    private ComboBox add_book_genre;
+    @FXML
+    private ComboBox add_book_cover;
+    @FXML
+    private TextField add_book_issue_date;
+    @FXML
+    private Button add_book_btn;
+    @FXML
     private TableView<SearchReaderTableView> reader_table_id;
-    @FXML private TableColumn<SearchReaderTableView, String> readerid_column_id;
-    @FXML private TableColumn<SearchReaderTableView, String> fname_column_id;
-    @FXML private TableColumn<SearchReaderTableView, String> lname_column_id;
-    @FXML private TableColumn<SearchReaderTableView, String> email_column_id;
-    @FXML private TableColumn<SearchReaderTableView, String> phone_column_id;
-    @FXML private TableColumn<SearchReaderTableView, String> regdate_column_id;
-    @FXML private TableColumn<SearchReaderTableView, String> rating_column_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> readerid_column_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> fname_column_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> lname_column_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> email_column_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> phone_column_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> regdate_column_id;
+    @FXML
+    private TableColumn<SearchReaderTableView, String> rating_column_id;
     @FXML
     private TableView<SearchBookTableView> search_book_table_view;
     @FXML private TableColumn<SearchBookTableView, String> invnum_column_id;
@@ -128,6 +166,27 @@ public class OperatorController {
         return operatorService.createReader(signUpDTO);
     }
 
+    public boolean addBook() {
+        AddBookDTO addBookDTO = new AddBookDTO();
+        addBookDTO.setBookId(Long.parseLong(add_book_ID.getText()));
+        addBookDTO.setIsbn(add_book_isbn.getText());
+        addBookDTO.setIssueDate(add_book_issue_date.getText());
+        addBookDTO.setGenre(add_book_genre.getValue().toString());
+        addBookDTO.setBookCovers(add_book_cover.getValue().toString());
+        addBookDTO.setPublisher(add_book_publisher.getText());
+        addBookDTO.setTitle(add_book_title.getText());
+        addBookDTO.setAuthor(add_book_author.getText());
+        return operatorService.addBook(addBookDTO);
+    }
+
+    public List<BookCovers> retrieveBookCovers() {
+        return operatorService.retrieveBookCovers();
+    }
+
+    public List<Genre> retrieveBookGenre() {
+        return operatorService.retrieveBookGenre();
+    }
+
     public void setCurrentUser(User user) {
         this.currentUser = user;
     }
@@ -137,13 +196,34 @@ public class OperatorController {
     }
 
     public void setBrowsedUserDetails(BrowseReaderTableView user) {
+        System.out.println(user.getId() + " " + user.getFname());
         lend_rd_id.setText(String.valueOf(user.getId()));
+        System.out.println(lend_rd_id.getText());
         lend_rd_name.setText(user.getFname() + " " + user.getLname());
         lend_rd_email.setText(user.getEmail());
         lend_rd_phone.setText(user.getPhone());
     }
 
+    public void logout() {
+        ((Stage) greeting_label.getScene().getWindow()).close();
+        try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/initial.fxml")){
+            Parent root = (Parent) fxmlLoader.load(fxml);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void initialize() {
+        for (BookCovers bc : retrieveBookCovers()) {
+            add_book_cover.getItems().add(bc.getCoverName());
+        }
+
+        for (Genre g : retrieveBookGenre()) {
+            add_book_genre.getItems().add(g.getName());
+        }
         create_btn.setOnAction(event -> {
             if(createReader()) {
                 fname.clear(); lname.clear(); email.clear(); pass.clear(); phone.clear();
@@ -185,6 +265,7 @@ public class OperatorController {
         lend_browse_reader_btn.setOnAction(event -> {
             try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/lendBookBrowseReader.fxml")){
                 Parent root = (Parent) fxmlLoader.load(fxml);
+                BrowseReaderController browseReaderController = fxmlLoader.getController();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.initModality(Modality.WINDOW_MODAL);
@@ -195,8 +276,15 @@ public class OperatorController {
             }
         });
 
+        add_book_btn.setOnAction(event -> {
+            if (addBook())
+                System.out.println("Successfully added a book!");
+            else System.out.println("Error");
+        });
+
         logout_btn.setOnAction(event -> {
             commonUserFunctionalities.logout(greeting_label, fxmlLoader);
         });
     }
+
 }

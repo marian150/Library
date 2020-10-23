@@ -1,6 +1,7 @@
 package com.lms.repositoriesImpl;
 
 import com.lms.config.ConfigurationSessionFactory;
+import com.lms.models.dtos.AddBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.repositories.OperatorRepository;
@@ -14,14 +15,15 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.JoinColumn;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Dependent
 public class OperatorRepositoryImpl implements OperatorRepository {
@@ -48,7 +50,6 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
             UserType userType = (UserType) session.load(UserType.class, 2L);
             user.setUserType(userType);
-            System.out.println(userType.getTypeId() + " "+ userType.getTypeName());
             session.save(user);
             tx.commit();
             return true;
@@ -129,8 +130,8 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
         if(values.containsKey("publisher"))
             predicates.add(cb.like(publisherJoin.get("publisherName"), values.get("publisher")));
-        if(values.containsKey("author"))
-            predicates.add(cb.like(authorJoin.get("name"), values.get("author")));
+        if(values.containsKey("authors"))
+            predicates.add(cb.like(authorJoin.get("name"), values.get("authors")));
         if(values.containsKey("genre"))
             predicates.add(cb.like(genreJoin.get("name"), values.get("genre")));
         if(values.containsKey("bookState"))
@@ -206,5 +207,104 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         }
 
         return null;
+    }
+
+    @Override
+    public boolean addBook(AddBookDTO addBookDTO) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        Book book = new Book();
+
+        List<String> authorListString = Arrays.asList(addBookDTO.getAuthor().split(","));
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Author> cq = cb.createQuery(Author.class);
+        Root<Author> a = cq.from(Author.class);
+        cq.select(a);
+        List<Predicate> predicates = new ArrayList<>();
+
+        for(String temp : authorListString) {
+            predicates.add(cb.like(a.get("name"), temp));
+        }
+        Predicate finalPredicate = cb.and(predicates.toArray((new Predicate[predicates.size()])));
+        cq.where(finalPredicate);
+        TypedQuery<Author> typedQuery = session.createQuery(cq);
+        List<Author> authorsList = typedQuery.getResultList();
+        Set<Author> authors = new HashSet<>(authorsList);
+
+        Query queryBs = session.createQuery("Select bs from BookState bs where bs.stateName like 'New'");
+        BookState bookState = (BookState)queryBs.getSingleResult();
+
+        Query queryBc = session.createQuery("Select bc from BookCovers bc where bc.coverName like :bookCover");
+        queryBc.setParameter("bookCover", addBookDTO.getBookCovers());
+        BookCovers bookCovers = (BookCovers)queryBc.getSingleResult();
+
+        Query queryG = session.createQuery("Select g from Genre g where g.name like :genre");
+        queryG.setParameter("genre", addBookDTO.getGenre());
+        Genre genre = (Genre) queryG.getSingleResult();
+
+        Query queryP = session.createQuery("Select p from Publisher p where p.publisherName like :pName");
+        queryP.setParameter("pName", addBookDTO.getPublisher());
+        Publisher publisher = (Publisher) queryP.getSingleResult();
+
+        book.setPublisher(publisher);
+        book.setBookCovers(bookCovers);
+        book.setGenre(genre);
+        book.setAuthors(authors);
+        book.setBookState(bookState);
+        book.setBookId(addBookDTO.getBookId());
+        book.setIsbn(addBookDTO.getIsbn());
+        book.setTitle(addBookDTO.getTitle());
+        book.setIssueDate(addBookDTO.getIssueDate());
+
+        Transaction tx = null;
+        try {
+
+            tx = session.beginTransaction();
+
+            session.save(book);
+            tx.commit();
+            return true;
+        } catch (Exception e){
+            if(tx != null) tx.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<BookCovers> retrieveBookCovers() {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        String hql = "Select bc from BookCovers bc";
+        Query query = session.createQuery(hql);
+
+        try {
+            List<BookCovers> bookCovers = query.getResultList();
+            session.close();
+            return  bookCovers;
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.close();
+            return null;
+        }
+    }
+
+    @Override
+    public List<Genre> retrieveBookGenre() {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        String hql = "Select g from Genre g";
+        Query query = session.createQuery(hql);
+
+        try {
+            List<Genre> genres = query.getResultList();
+            session.close();
+            return genres;
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.close();
+            return null;
+        }
     }
 }

@@ -2,7 +2,6 @@ package com.lms.controllers;
 
 import com.lms.models.entities.User;
 import com.lms.models.nonpersistentclasses.BrowseReaderTableView;
-import com.lms.models.nonpersistentclasses.SearchReaderTableView;
 import com.lms.services.OperatorService;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,6 +18,7 @@ import javafx.stage.Stage;
 
 import javax.inject.Inject;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -95,14 +95,13 @@ public class BrowseReaderController {
         });
 
         browse_view_choose_reader_btn.setOnAction(event -> {
-            /*
             ((Stage) browse_reader_table.getScene().getWindow()).close();
             BrowseReaderTableView selectedUser = browse_reader_table.getSelectionModel().getSelectedItem();
-            System.out.println(selectedUser.getId() + " " + selectedUser.getFname() + " " + selectedUser.getLname());
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/operator.fxml"));
-            OperatorController operatorController = loader.getController();
-            operatorController.setBrowsedUserDetails(selectedUser);
-             */
+            try(InputStream fxml = OperatorController.class.getResourceAsStream("/fxml/operator.fxml")) {
+                Parent root = (Parent) fxmlLoader.load(fxml);
+                OperatorController operatorController = fxmlLoader.getController();
+                operatorController.setBrowsedUserDetails(selectedUser);
+            } catch (IOException e) { e.printStackTrace();}
         });
     }
 

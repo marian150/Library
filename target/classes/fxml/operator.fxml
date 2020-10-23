@@ -83,8 +83,8 @@
                                                     <items>
                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                             <children>
-                                                                <TextField fx:id="lend_rd_id" disable="true" layoutX="65.0" layoutY="40.0" />
-                                                                <TextField fx:id="lend_rd_name" disable="true" layoutX="65.0" layoutY="73.0" />
+                                                                <TextField fx:id="lend_rd_id" layoutX="65.0" layoutY="40.0" />
+                                                                <TextField fx:id="lend_rd_name" layoutX="65.0" layoutY="73.0" />
                                                                 <TextField fx:id="lend_rd_email" disable="true" layoutX="65.0" layoutY="107.0" />
                                                                 <TextField fx:id="lend_rd_phone" disable="true" layoutX="65.0" layoutY="143.0" />
                                                                 <Button fx:id="lend_browse_reader_btn" layoutX="114.0" layoutY="180.0" mnemonicParsing="false" text="Browse" />
@@ -119,20 +119,20 @@
                                     <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                             <children>
-                                                <TextField layoutX="98.0" layoutY="118.0" promptText="Title" />
-                                                <TextField layoutX="98.0" layoutY="165.0" promptText="ISBN" />
-                                                <Button layoutX="301.0" layoutY="191.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="144.0" text="Add" />
-                                                <TextField layoutX="98.0" layoutY="72.0" promptText="Inventory number" />
-                                                <TextField layoutX="98.0" layoutY="254.0" promptText="Publisher" />
-                                                <TextField layoutX="98.0" layoutY="213.0" promptText="Author" />
-                                                <ComboBox layoutX="298.0" layoutY="118.0" prefWidth="150.0" promptText="Genre" />
-                                                <ComboBox layoutX="298.0" layoutY="72.0" prefWidth="150.0" promptText="Cover" />
+                                                <TextField fx:id="add_book_title" layoutX="98.0" layoutY="118.0" promptText="Title" />
+                                                <TextField fx:id="add_book_isbn" layoutX="98.0" layoutY="165.0" promptText="ISBN" />
+                                                <Button fx:id="add_book_btn" layoutX="301.0" layoutY="191.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="144.0" text="Add" />
+                                                <TextField fx:id="add_book_ID" layoutX="98.0" layoutY="72.0" promptText="Inventory number" />
+                                                <TextField fx:id="add_book_publisher" layoutX="98.0" layoutY="254.0" promptText="Publisher" />
+                                                <TextField fx:id="add_book_author" layoutX="98.0" layoutY="213.0" promptText="Author" />
+                                                <ComboBox fx:id="add_book_genre" layoutX="298.0" layoutY="118.0" prefWidth="150.0" promptText="Genre" />
+                                                <ComboBox fx:id="add_book_cover" layoutX="298.0" layoutY="72.0" prefWidth="150.0" promptText="Cover" />
                                                 <Label layoutX="128.0" layoutY="14.0" text="Add book">
                                                     <font>
                                                         <Font size="20.0" />
                                                     </font>
                                                 </Label>
-                                                <TextField layoutX="98.0" layoutY="297.0" promptText="Issue date" />
+                                                <TextField fx:id="add_book_issue_date" layoutX="98.0" layoutY="297.0" promptText="Issue date" />
                                             </children></AnchorPane>
                                     </content>
                                 </Tab>
