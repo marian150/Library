@@ -1,5 +1,7 @@
 package com.lms.controllers.commonComponentsLogicImpl;
 
+import com.lms.controllers.BrowseReaderController;
+import com.lms.controllers.LoginController;
 import com.lms.controllers.commonComponentsLogic.CommonAdminOperatorFunctionalities;
 import com.lms.models.entities.Author;
 import com.lms.models.entities.Book;
@@ -10,10 +12,19 @@ import com.lms.services.PrivilegedUserService;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import javax.enterprise.context.Dependent;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -126,4 +137,20 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         to.setValue(null);
         return pu.searchReader(values);
     }
+
+    @Override
+    public void showLendBrowseReaderWindow(ActionEvent event, FXMLLoader fxmlLoader) {
+        try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/lendBookBrowseReader.fxml")){
+            Parent root = (Parent) fxmlLoader.load(fxml);
+            BrowseReaderController browseReaderController = fxmlLoader.getController();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node)event.getSource()).getScene().getWindow());
+            stage.show();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

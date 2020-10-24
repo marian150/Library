@@ -226,15 +226,11 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             predicates.add(cb.like(a.get("name"), temp));
         }
         Predicate finalPredicate = cb.or(predicates.toArray((new Predicate[predicates.size()])));
-
-
         cq.where(finalPredicate);
+
         TypedQuery<Author> typedQuery = session.createQuery(cq);
         List<Author> authorsList = typedQuery.getResultList();
         Set<Author> authors = new HashSet<>(authorsList);
-        for(Author au : authors) {
-            System.out.println("Authors:\n" + au.getAuthorId() + " " + au.getName());
-        }
 
         Query queryBs = session.createQuery("Select bs from BookState bs where bs.stateName like 'New'");
         BookState bookState = (BookState)queryBs.getSingleResult();
@@ -263,9 +259,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
         Transaction tx = null;
         try {
-
             tx = session.beginTransaction();
-
             session.save(book);
             tx.commit();
             return true;

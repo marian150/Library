@@ -6,6 +6,8 @@ import com.lms.models.nonpersistentclasses.SearchBookTableView;
 import com.lms.models.nonpersistentclasses.SearchReaderTableView;
 import com.lms.services.PrivilegedUserService;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
 import java.util.List;
@@ -24,4 +26,6 @@ public interface CommonAdminOperatorFunctionalities {
                       TableColumn<SearchReaderTableView, String> phone, TableColumn<SearchReaderTableView, String> date);
     List<User> searchReader(TextField fname, TextField lname, TextField email, TextField phone,
                             DatePicker from, DatePicker to, PrivilegedUserService pu);
+
+    void showLendBrowseReaderWindow(ActionEvent event, FXMLLoader fxmlLoader);
 }
