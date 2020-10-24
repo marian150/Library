@@ -1,14 +1,13 @@
 package com.lms.models.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "publisher")
 public class Publisher {
     @Id
+    @SequenceGenerator(name = "publisher_sequence", sequenceName = "publisher_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="publisher_sequence")
     @Column(name = "publisher_id")
     private Long publisherId;
 

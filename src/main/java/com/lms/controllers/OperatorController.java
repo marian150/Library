@@ -32,6 +32,7 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -130,6 +131,8 @@ public class OperatorController {
     @FXML
     private Button add_book_btn;
     @FXML
+    private AnchorPane add_book_anchor;
+    @FXML
     private TableView<SearchReaderTableView> reader_table_id;
     @FXML
     private TableColumn<SearchReaderTableView, String> readerid_column_id;
@@ -187,6 +190,8 @@ public class OperatorController {
         return operatorService.retrieveBookGenre();
     }
 
+    public boolean searchPublisher(String publisherName) {return operatorService.searchPublisher(publisherName);}
+
     public void setCurrentUser(User user) {
         this.currentUser = user;
     }
@@ -202,6 +207,32 @@ public class OperatorController {
         lend_rd_name.setText(user.getFname() + " " + user.getLname());
         lend_rd_email.setText(user.getEmail());
         lend_rd_phone.setText(user.getPhone());
+    }
+    public void nullifyAddBookFields() {
+        add_book_genre.setValue(null);
+        add_book_cover.setValue(null);
+        add_book_isbn.clear();
+        add_book_ID.clear();
+        add_book_author.clear();
+        add_book_issue_date.clear();
+        add_book_publisher.clear();
+        add_book_title.clear();
+    }
+
+    public void nullifyCreateReaderFields() {
+        fname.clear(); lname.clear(); email.clear(); pass.clear(); phone.clear();
+    }
+
+    public boolean addPublisher(String publisherName) {
+        return operatorService.addPublisher(publisherName);
+    }
+
+    public boolean searchAuthor(String author) {
+        return operatorService.searchAuthor(author);
+    }
+
+    public boolean addAuthor(String author) {
+        return operatorService.addAuthor(author);
     }
 
     public void logout() {
@@ -224,18 +255,18 @@ public class OperatorController {
         for (Genre g : retrieveBookGenre()) {
             add_book_genre.getItems().add(g.getName());
         }
+
         create_btn.setOnAction(event -> {
             if(createReader()) {
-                fname.clear(); lname.clear(); email.clear(); pass.clear(); phone.clear();
                 Label createdUser = new Label("Successfully created user.");
                 createdUser.setTextFill(Color.GREEN);
                 create_reader_anchor.getChildren().add(createdUser);
             } else {
-                fname.clear(); lname.clear(); email.clear(); pass.clear(); phone.clear();
                 Label wentWrong = new Label("Something went wrong");
                 wentWrong.setTextFill(Color.RED);
                 create_reader_anchor.getChildren().add(wentWrong);
             }
+            nullifyCreateReaderFields();
         });
 
         search_reader_btn.setOnAction(event -> {
@@ -277,9 +308,30 @@ public class OperatorController {
         });
 
         add_book_btn.setOnAction(event -> {
-            if (addBook())
-                System.out.println("Successfully added a book!");
-            else System.out.println("Error");
+            boolean addBookSuccessfull = false;
+            List<String> authorListString = Arrays.asList(add_book_author.getText().split(","));
+            for (String authorName : authorListString) {
+                if(!searchAuthor(authorName)) {
+                    System.out.println(authorName);
+                    System.out.println(addAuthor(authorName));
+                }
+            }
+            if(searchPublisher(add_book_publisher.getText())) {
+                addBookSuccessfull = addBook();
+            } else {
+                addPublisher(add_book_publisher.getText());
+                addBookSuccessfull = addBook();
+            }
+            if (addBookSuccessfull) {
+                Label addedBook = new Label("Successfully added Book.");
+                addedBook.setTextFill(Color.GREEN);
+                add_book_anchor.getChildren().add(addedBook);
+            }else {
+                Label addedBook = new Label("Something went wrong.");
+                addedBook.setTextFill(Color.RED);
+                add_book_anchor.getChildren().add(addedBook);
+            }
+            nullifyAddBookFields();
         });
 
         logout_btn.setOnAction(event -> {

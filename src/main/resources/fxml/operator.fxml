@@ -117,7 +117,7 @@
                                 </Tab>
                                 <Tab text="Add Book">
                                     <content>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                        <AnchorPane fx:id="add_book_anchor" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                             <children>
                                                 <TextField fx:id="add_book_title" layoutX="98.0" layoutY="118.0" promptText="Title" />
                                                 <TextField fx:id="add_book_isbn" layoutX="98.0" layoutY="165.0" promptText="ISBN" />

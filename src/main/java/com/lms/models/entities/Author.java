@@ -8,6 +8,8 @@ import java.util.Set;
 @Table(name = "author")
 public class Author {
     @Id
+    @SequenceGenerator(name = "author_sequence", sequenceName = "author_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="author_sequence")
     @Column(name = "author_id")
     private Long authorId;
 

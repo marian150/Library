@@ -54,4 +54,24 @@ public class OperatorServiceImpl implements OperatorService {
     public List<Genre> retrieveBookGenre() {
         return operatorRepository.retrieveBookGenre();
     }
+
+    @Override
+    public boolean addPublisher(String publisherName) {
+        return operatorRepository.addPublisher(publisherName);
+    }
+
+    @Override
+    public boolean searchPublisher(String publisherName) {
+        return operatorRepository.searchPublisher(publisherName);
+    }
+
+    @Override
+    public boolean searchAuthor(String author) {
+        return operatorRepository.searchAuthor(author);
+    }
+
+    @Override
+    public boolean addAuthor(String author) {
+        return operatorRepository.addAuthor(author);
+    }
 }
