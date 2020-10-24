@@ -1,5 +1,6 @@
 package com.lms.servicesImpl;
 
+import com.lms.models.dtos.AddBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.Book;
 import com.lms.models.entities.User;
@@ -29,5 +30,20 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<User> searchReader(Map<String, String> values) {
         return null;
+    }
+
+    @Override
+    public boolean createReader(SignUpDTO signUpDTO) {
+        return false;
+    }
+
+    @Override
+    public User browseUser(Map<String, String> values) {
+        return null;
+    }
+
+    @Override
+    public boolean addBook(AddBookDTO addBookDTO) {
+        return false;
     }
 }

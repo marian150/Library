@@ -129,13 +129,13 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         cq.select(b).distinct(true);
 
         if(values.containsKey("publisher"))
-            predicates.add(cb.like(b.get("publisherName"), values.get("publisher")));
+            predicates.add(cb.like(b.get("publisher").get("publisherName"), values.get("publisher")));
         if(values.containsKey("authors"))
-            predicates.add(cb.like(b.get("name"), values.get("authors")));
+            predicates.add(cb.like(b.join("authors").get("name"), values.get("authors")));
         if(values.containsKey("genre"))
-            predicates.add(cb.like(b.get("name"), values.get("genre")));
+            predicates.add(cb.like(b.get("genre").get("name"), values.get("genre")));
         if(values.containsKey("bookState"))
-            predicates.add(cb.like(b.get("stateName"), values.get("bookState")));
+            predicates.add(cb.like(b.get("bookState").get("stateName"), values.get("bookState")));
         if(values.containsKey("title"))
             predicates.add(cb.like(b.get("title"), values.get("title")));
         if(values.containsKey("isbn"))
@@ -144,7 +144,6 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             predicates.add(cb.equal(b.get("bookId"), Long.parseLong(values.get("bookId"))));
         if(values.containsKey("issueDate"))
             predicates.add(cb.like(b.get("issueDate"), values.get("issueDate")));
-
 
         Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
         cq.where(finalPredicate);
