@@ -204,18 +204,6 @@ public class OperatorController {
         lend_rd_phone.setText(user.getPhone());
     }
 
-    public void logout() {
-        ((Stage) greeting_label.getScene().getWindow()).close();
-        try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/initial.fxml")){
-            Parent root = (Parent) fxmlLoader.load(fxml);
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void initialize() {
         for (BookCovers bc : retrieveBookCovers()) {
             add_book_cover.getItems().add(bc.getCoverName());

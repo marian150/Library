@@ -126,7 +126,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         b.fetch("genre", JoinType.LEFT);
         b.fetch("bookState", JoinType.LEFT);
         cq.select(b).distinct(true);
-        
+
         if(values.containsKey("publisher"))
             predicates.add(cb.like(b.get("publisherName"), values.get("publisher")));
         if(values.containsKey("authors"))
@@ -235,7 +235,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             System.out.println("Authors:\n" + au.getAuthorId() + " " + au.getName());
         }
 
-        Query queryBs = session.createQuery("Select bs from BookState bs where bs.stateName like 'NEW'");
+        Query queryBs = session.createQuery("Select bs from BookState bs where bs.stateName like 'New'");
         BookState bookState = (BookState)queryBs.getSingleResult();
 
         Query queryBc = session.createQuery("Select bc from BookCovers bc where bc.coverName like :bookCover");
