@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.jboss.weld.exceptions.NullInstanceException;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -309,6 +310,84 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             e.printStackTrace();
             session.close();
             return null;
+        }
+    }
+
+    @Override
+    public boolean addPublisher(String publisherName) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        Publisher publisher = new Publisher();
+        publisher.setPublisherName(publisherName);
+
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+
+            session.save(publisher);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            if(tx != null )tx.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean searchPublisher(String publisherName) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        String hql = "select p from Publisher p where p.publisherName like :pName";
+        Query query = session.createQuery(hql);
+        query.setParameter("pName", publisherName);
+
+        try {
+            Object publisher = query.getSingleResult();
+            return true;
+        } catch (NoResultException e) {return false;}
+        finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean searchAuthor(String author) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        String hql = "select a from Author a where a.name like :aName";
+        Query query = session.createQuery(hql);
+        query.setParameter("aName", author);
+
+        try {
+            Object authorObject = query.getSingleResult();
+            return true;
+        } catch (NoResultException e) {return false;}
+        finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean addAuthor(String author) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        Author authorObject = new Author();
+        authorObject.setName(author);
+
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+
+            session.save(authorObject);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            if(tx != null)tx.rollback();
+            return false;
+        } finally {
+            session.close();
         }
     }
 }

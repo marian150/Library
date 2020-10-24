@@ -18,4 +18,8 @@ public interface OperatorService extends PrivilegedUserService {
     boolean addBook(AddBookDTO addBookDTO);
     List<BookCovers> retrieveBookCovers();
     List<Genre> retrieveBookGenre();
+    boolean addPublisher(String publisherName);
+    boolean searchPublisher(String publisherName);
+    boolean searchAuthor(String author);
+    boolean addAuthor(String author);
 }
