@@ -4,16 +4,20 @@ import com.lms.controllers.commonComponentsLogic.CommonUserFunctionalities;
 import com.lms.models.entities.User;
 import com.lms.models.nonpersistentclasses.ReaderTableView;
 import com.lms.services.ReaderService;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.inject.Inject;
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class ReaderController {
 
@@ -84,6 +88,11 @@ public class ReaderController {
             commonUserFunctionalities.logout(greeting_label, fxmlLoader);
         });
 
+        System.out.println(currentUser.getFirstName());
+
+        Platform.runLater(() -> {
+            System.out.println(currentUser.getFirstName());
+        });
         displayBooks(loadBooks());
     }
 }

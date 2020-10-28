@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 import org.jboss.weld.exceptions.NullInstanceException;
 
 import javax.enterprise.context.Dependent;
@@ -77,6 +78,8 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         Join<User, UserType> userTypeJoin = u.join("userType");
         cq.select(u);
 
+        if(values.containsKey("id"))
+            predicates.add(cb.equal(u.get("userId"), values.get("id")));
         if(values.containsKey("firstName"))
             predicates.add(cb.equal(u.get("firstName"), values.get("firstName")));
         if(values.containsKey("lastName"))
@@ -127,9 +130,9 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         b.fetch("genre", JoinType.LEFT);
         b.fetch("bookState", JoinType.LEFT);
         cq.select(b).distinct(true);
-
+        
         if(values.containsKey("publisher"))
-            predicates.add(cb.like(b.get("publisher").get("publisherName"), values.get("publisher")));
+            predicates.add(cb.like(cb.lower(b.get("publisher").get("publisherName")), values.get("publisher").toLowerCase()));
         if(values.containsKey("authors"))
             predicates.add(cb.like(b.join("authors").get("name"), values.get("authors")));
         if(values.containsKey("genre"))
@@ -144,6 +147,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             predicates.add(cb.equal(b.get("bookId"), Long.parseLong(values.get("bookId"))));
         if(values.containsKey("issueDate"))
             predicates.add(cb.like(b.get("issueDate"), values.get("issueDate")));
+
 
         Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
         cq.where(finalPredicate);
@@ -225,11 +229,15 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             predicates.add(cb.like(a.get("name"), temp));
         }
         Predicate finalPredicate = cb.or(predicates.toArray((new Predicate[predicates.size()])));
-        cq.where(finalPredicate);
 
+
+        cq.where(finalPredicate);
         TypedQuery<Author> typedQuery = session.createQuery(cq);
         List<Author> authorsList = typedQuery.getResultList();
         Set<Author> authors = new HashSet<>(authorsList);
+        for(Author au : authors) {
+            System.out.println("Authors:\n" + au.getAuthorId() + " " + au.getName());
+        }
 
         Query queryBs = session.createQuery("Select bs from BookState bs where bs.stateName like 'New'");
         BookState bookState = (BookState)queryBs.getSingleResult();
@@ -258,7 +266,9 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
         Transaction tx = null;
         try {
+
             tx = session.beginTransaction();
+
             session.save(book);
             tx.commit();
             return true;
@@ -299,6 +309,24 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             List<Genre> genres = query.getResultList();
             session.close();
             return genres;
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.close();
+            return null;
+        }
+    }
+
+    @Override
+    public List<BookState> retrieveBookState() {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        String hql = "Select bs from BookState bs";
+        Query query = session.createQuery(hql);
+
+        try {
+            List<BookState> bookStates = query.getResultList();
+            session.close();
+            return bookStates;
         } catch (Exception e) {
             e.printStackTrace();
             session.close();

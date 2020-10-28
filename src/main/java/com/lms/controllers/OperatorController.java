@@ -32,10 +32,7 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class OperatorController {
 
@@ -53,6 +50,16 @@ public class OperatorController {
     @FXML
     private Label greeting_label;
     @FXML
+    private ListView add_book_for_rent_listview;
+    @FXML
+    private Button add_book_to_listview_btn;
+    @FXML
+    private Button add_listview_to_rent_book_btn;
+    @FXML
+    private ListView chosen_books_for_rent;
+    @FXML
+    private TabPane tabPane;
+    @FXML
     private TextField fname;
     @FXML
     private TextField lname;
@@ -69,6 +76,8 @@ public class OperatorController {
     @FXML
     private AnchorPane create_reader_anchor;
     @FXML
+    private TextField search_reader_ID;
+    @FXML
     private TextField search_reader_fname;
     @FXML
     private TextField search_reader_lname;
@@ -83,9 +92,7 @@ public class OperatorController {
     @FXML
     private Button search_reader_btn;
     @FXML
-    private Button lend_browse_reader_btn;
-    @FXML
-    private Button lend_browse_book_btn;
+    private Button reader_to_rent_book_btn;
     @FXML
     private Button search_book_btn;
     @FXML
@@ -99,7 +106,7 @@ public class OperatorController {
     @FXML
     private TextField search_book_publisher;
     @FXML
-    private TextField search_book_genre;
+    private ComboBox search_book_genre;
     @FXML
     private TextField search_book_date;
     @FXML
@@ -190,6 +197,8 @@ public class OperatorController {
         return operatorService.retrieveBookGenre();
     }
 
+    public List<BookState> retrieveBookState() {return operatorService.retrieveBookState();}
+
     public boolean searchPublisher(String publisherName) {return operatorService.searchPublisher(publisherName);}
 
     public void setCurrentUser(User user) {
@@ -201,7 +210,9 @@ public class OperatorController {
     }
 
     public void setBrowsedUserDetails(BrowseReaderTableView user) {
+        System.out.println(user.getId() + " " + user.getFname());
         lend_rd_id.setText(String.valueOf(user.getId()));
+        System.out.println(lend_rd_id.getText());
         lend_rd_name.setText(user.getFname() + " " + user.getLname());
         lend_rd_email.setText(user.getEmail());
         lend_rd_phone.setText(user.getPhone());
@@ -233,80 +244,115 @@ public class OperatorController {
         return operatorService.addAuthor(author);
     }
 
+    public void logout() {
+        ((Stage) greeting_label.getScene().getWindow()).close();
+        try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/initial.fxml")){
+            Parent root = (Parent) fxmlLoader.load(fxml);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void initialize() {
         for (BookCovers bc : retrieveBookCovers()) {
             add_book_cover.getItems().add(bc.getCoverName());
         }
 
-        for (Genre g : retrieveBookGenre()) {
-            add_book_genre.getItems().add(g.getName());
+        search_book_state.getItems().add("All");
+        for (BookState bs : retrieveBookState()) {
+            search_book_state.getItems().add(bs.getStateName());
         }
 
+        search_book_genre.getItems().add("All");
+        for (Genre g : retrieveBookGenre()) {
+            add_book_genre.getItems().add(g.getName());
+            search_book_genre.getItems().add(g.getName());
+        }
+        search_book_genre.getSelectionModel().selectFirst();
+        search_book_state.getSelectionModel().selectFirst();
+
         create_btn.setOnAction(event -> {
-            Label resultLabel = new Label();
-            resultLabel.setText("");
             if(createReader()) {
-                resultLabel.setText("Successfully created user.");
-                resultLabel.setTextFill(Color.GREEN);
+                Label createdUser = new Label("Successfully created user.");
+                createdUser.setTextFill(Color.GREEN);
+                create_reader_anchor.getChildren().add(createdUser);
             } else {
-                resultLabel.setText("Something went wrong");
-                resultLabel.setTextFill(Color.RED);
+                Label wentWrong = new Label("Something went wrong");
+                wentWrong.setTextFill(Color.RED);
+                create_reader_anchor.getChildren().add(wentWrong);
             }
-            create_reader_anchor.getChildren().add(resultLabel);
             nullifyCreateReaderFields();
         });
 
         search_reader_btn.setOnAction(event -> {
-            List<User> result = commonAdminOperatorFunctionalities.searchReader(
+            List<User> result = commonAdminOperatorFunctionalities.searchReader(search_reader_ID,
                     search_reader_fname,search_reader_lname, search_reader_email, search_reader_phone,
                     search_reader_from, search_reader_to, operatorService
             );
             // rating_column_id is still missing, to be added later
             commonAdminOperatorFunctionalities.displayUsers(
-                    result, reader_table_id, readersObservableList, readerid_column_id, fname_column_id,
-                    lname_column_id, email_column_id, phone_column_id, regdate_column_id
+                    result, reader_table_id, readersObservableList, readerid_column_id,
+                    fname_column_id, lname_column_id, email_column_id, phone_column_id,
+                    regdate_column_id
             );
         });
 
         search_book_btn.setOnAction(event -> {
             List<Book> result = commonAdminOperatorFunctionalities.searchBook(
-                    search_book_inv, search_book_title,search_book_isbn, search_book_author,search_book_genre,
-                    search_book_publisher, search_book_date,search_book_state,operatorService
-            );
+                    search_book_inv, search_book_title,search_book_isbn,
+                    search_book_author,search_book_genre,search_book_publisher,
+                    search_book_date,search_book_state,operatorService);
             commonAdminOperatorFunctionalities.displayBooks(
-                    result, search_book_table_view,searchBooksObservableList, invnum_column_id, title_column_id,
-                    author_column_id, isbn_column_id, genre_column_id, year_column_id, publisher_column_id, state_column_id
-            );
+                    result, search_book_table_view,searchBooksObservableList,
+                    invnum_column_id, title_column_id, author_column_id,
+                    isbn_column_id, genre_column_id, year_column_id, publisher_column_id, state_column_id);
         });
 
-        lend_browse_reader_btn.setOnAction(event -> {
-            commonAdminOperatorFunctionalities.showLendBrowseReaderWindow(event, fxmlLoader);
+        reader_to_rent_book_btn.setOnAction(event -> {
+            SearchReaderTableView selectedReader = reader_table_id.getSelectionModel().getSelectedItem();
+            tabPane.getSelectionModel().select(2);
+            lend_rd_id.setText(selectedReader.getId().toString());
+            lend_rd_name.setText(selectedReader.getFname() + " " + selectedReader.getLname());
+            lend_rd_email.setText(selectedReader.getEmail());
+            lend_rd_phone.setText(selectedReader.getPhone());
         });
 
         add_book_btn.setOnAction(event -> {
-            boolean addBookSuccessful = false;
+            boolean addBookSuccessfull = false;
             List<String> authorListString = Arrays.asList(add_book_author.getText().split(","));
-            for (String authorName : authorListString) {
-                if(!searchAuthor(authorName)) {
-                    System.out.println(authorName);
-                    System.out.println(addAuthor(authorName));
-                }
-            }
-            if(!searchPublisher(add_book_publisher.getText())) {
-                addPublisher(add_book_publisher.getText());
-            }
-            addBookSuccessful = addBook();
-
-            Label addedBook = new Label();
-            if (addBookSuccessful) {
-                addedBook.setText("Successfully added Book.");
-                addedBook.setTextFill(Color.GREEN);
+            if(searchPublisher(add_book_publisher.getText())) {
+                addBookSuccessfull = addBook();
             } else {
-                addedBook.setText("Something went wrong.");
-                addedBook.setTextFill(Color.RED);
+                addPublisher(add_book_publisher.getText());
+                addBookSuccessfull = addBook();
             }
-            add_book_anchor.getChildren().add(addedBook);
+            if (addBookSuccessfull) {
+                Label addedBook = new Label("Successfully added Book.");
+                addedBook.setTextFill(Color.GREEN);
+                add_book_anchor.getChildren().add(addedBook);
+            }else {
+                Label addedBook = new Label("Something went wrong.");
+                addedBook.setTextFill(Color.RED);
+                add_book_anchor.getChildren().add(addedBook);
+            }
             nullifyAddBookFields();
+        });
+
+        add_book_to_listview_btn.setOnAction(event -> {
+            SearchBookTableView selectedBook = search_book_table_view.getSelectionModel().getSelectedItem();
+            if(selectedBook != null) {
+                add_book_for_rent_listview.getItems().add(selectedBook.getInventoryNumber() + "  " +
+                        selectedBook.getTitle() + "  " + selectedBook.getAuthor() + "  " + selectedBook.getState());
+            }
+        });
+
+        add_listview_to_rent_book_btn.setOnAction(event -> {
+            chosen_books_for_rent.getItems().addAll(add_book_for_rent_listview.getItems());
+            tabPane.getSelectionModel().select(2);
+            add_book_for_rent_listview.getItems().clear();
         });
 
         logout_btn.setOnAction(event -> {

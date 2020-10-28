@@ -2,10 +2,7 @@ package com.lms.servicesImpl;
 
 import com.lms.models.dtos.AddBookDTO;
 import com.lms.models.dtos.SignUpDTO;
-import com.lms.models.entities.Book;
-import com.lms.models.entities.BookCovers;
-import com.lms.models.entities.Genre;
-import com.lms.models.entities.User;
+import com.lms.models.entities.*;
 import com.lms.repositories.OperatorRepository;
 import com.lms.services.OperatorService;
 
@@ -53,6 +50,11 @@ public class OperatorServiceImpl implements OperatorService {
     @Override
     public List<Genre> retrieveBookGenre() {
         return operatorRepository.retrieveBookGenre();
+    }
+
+    @Override
+    public List<BookState> retrieveBookState() {
+        return operatorRepository.retrieveBookState();
     }
 
     @Override

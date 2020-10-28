@@ -40,7 +40,7 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                     <children>
-                        <TabPane prefHeight="389.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane fx:id="tabPane" prefHeight="389.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE">
                             <tabs>
                                 <Tab text="Notifications">
                                     <content>
@@ -83,11 +83,10 @@
                                                     <items>
                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                             <children>
-                                                                <TextField fx:id="lend_rd_id" layoutX="65.0" layoutY="40.0" />
-                                                                <TextField fx:id="lend_rd_name" layoutX="65.0" layoutY="73.0" />
+                                                                <TextField fx:id="lend_rd_id" disable="true" layoutX="65.0" layoutY="40.0" />
+                                                                <TextField fx:id="lend_rd_name" disable="true" layoutX="65.0" layoutY="73.0" />
                                                                 <TextField fx:id="lend_rd_email" disable="true" layoutX="65.0" layoutY="107.0" />
                                                                 <TextField fx:id="lend_rd_phone" disable="true" layoutX="65.0" layoutY="143.0" />
-                                                                <Button fx:id="lend_browse_reader_btn" layoutX="114.0" layoutY="180.0" mnemonicParsing="false" text="Browse" />
                                                                 <Label layoutX="40.0" layoutY="44.0" text="ID:" />
                                                                 <Label layoutX="19.0" layoutY="77.0" text="Name:" />
                                                                 <Label layoutX="20.0" layoutY="111.0" text="Email:" />
@@ -100,8 +99,7 @@
                                                             </children></AnchorPane>
                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                             <children>
-                                                                <Button fx:id="lend_browse_book_btn" layoutX="390.0" layoutY="14.0" mnemonicParsing="false" text="Browse Book" />
-                                                                <ListView layoutY="69.0" prefHeight="294.0" prefWidth="570.0" />
+                                                                <ListView fx:id="chosen_books_for_rent" layoutY="69.0" prefHeight="294.0" prefWidth="570.0" />
                                                                 <Button fx:id="lend_finish_btn" layoutX="513.0" layoutY="14.0" mnemonicParsing="false" text="Finish" />
                                                                 <Label layoutX="14.0" layoutY="22.0" text="Chosen books">
                                                                     <font>
@@ -125,14 +123,16 @@
                                                 <TextField fx:id="add_book_ID" layoutX="98.0" layoutY="72.0" promptText="Inventory number" />
                                                 <TextField fx:id="add_book_publisher" layoutX="98.0" layoutY="254.0" promptText="Publisher" />
                                                 <TextField fx:id="add_book_author" layoutX="98.0" layoutY="213.0" promptText="Author" />
-                                                <ComboBox fx:id="add_book_genre" layoutX="298.0" layoutY="118.0" prefWidth="150.0" promptText="Genre" />
-                                                <ComboBox fx:id="add_book_cover" layoutX="298.0" layoutY="72.0" prefWidth="150.0" promptText="Cover" />
+                                                <ComboBox fx:id="add_book_genre" layoutX="328.0" layoutY="118.0" prefWidth="150.0" promptText="Genre" />
+                                                <ComboBox fx:id="add_book_cover" layoutX="328.0" layoutY="72.0" prefWidth="150.0" promptText="Cover" />
                                                 <Label layoutX="128.0" layoutY="14.0" text="Add book">
                                                     <font>
                                                         <Font size="20.0" />
                                                     </font>
                                                 </Label>
                                                 <TextField fx:id="add_book_issue_date" layoutX="98.0" layoutY="297.0" promptText="Issue date" />
+                                    <Label layoutX="284.0" layoutY="76.0" text="Cover:" />
+                                    <Label layoutX="283.0" layoutY="122.0" text="Genre:" />
                                             </children></AnchorPane>
                                     </content>
                                 </Tab>
@@ -191,16 +191,18 @@
                                                 <TextField fx:id="search_book_isbn" layoutX="26.0" layoutY="51.0" promptText="ISBN" />
                                                 <TextField fx:id="search_book_title" layoutX="25.0" layoutY="90.0" promptText="Title" />
                                                 <TextField fx:id="search_book_author" layoutX="25.0" layoutY="126.0" promptText="Author" />
-                                                <TextField fx:id="search_book_genre" layoutX="25.0" layoutY="164.0" promptText="Genre" />
-                                                <TextField fx:id="search_book_publisher" layoutX="26.0" layoutY="201.0" promptText="Publisher" />
-                                                <TextField fx:id="search_book_date" layoutX="26.0" layoutY="238.0" promptText="Issue date" />
-                                                <ComboBox fx:id="search_book_state" layoutX="25.0" layoutY="278.0" prefWidth="150.0" promptText="State" />
+                                                <TextField fx:id="search_book_publisher" layoutX="25.0" layoutY="170.0" promptText="Publisher" />
+                                                <TextField fx:id="search_book_date" layoutX="25.0" layoutY="211.0" promptText="Issue date" />
+                                                <ComboBox fx:id="search_book_genre" layoutX="41.0" layoutY="245.0" prefWidth="150.0" />
+                                                <ComboBox fx:id="search_book_state" layoutX="41.0" layoutY="278.0" prefWidth="150.0" />
                                                 <Button fx:id="search_book_btn" layoutX="74.0" layoutY="320.0" mnemonicParsing="false" text="Search" />
+                                                <Label layoutX="6.0" layoutY="249.0" text="Genre:" />
+                                                <Label layoutX="9.0" layoutY="282.0" text="State:" />
                                              </children>
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                              <children>
-                                                <TableView fx:id="search_book_table_view" layoutY="2.0" prefHeight="363.0" prefWidth="604.0">
+                                                <TableView fx:id="search_book_table_view" layoutY="2.0" prefHeight="172.0" prefWidth="604.0">
                                                   <columns>
                                                     <TableColumn fx:id="invnum_column_id" prefWidth="75.0" text="Inventory number" />
                                                     <TableColumn fx:id="title_column_id" prefWidth="75.0" text="Title" />
@@ -212,6 +214,9 @@
                                                       <TableColumn fx:id="state_column_id" prefWidth="75.0" text="State" />
                                                   </columns>
                                                 </TableView>
+                                                <ListView fx:id="add_book_for_rent_listview" layoutY="229.0" prefHeight="137.0" prefWidth="602.0" />
+                                                <Button fx:id="add_book_to_listview_btn" layoutX="266.0" layoutY="189.0" mnemonicParsing="false" text="Add to List" />
+                                                <Button fx:id="add_listview_to_rent_book_btn" layoutX="489.0" layoutY="189.0" mnemonicParsing="false" text="Add list for Rent" />
                                              </children></AnchorPane>
                                       </items>
                                     </SplitPane>
@@ -226,19 +231,20 @@
                                       <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                              <children>
-                                                            <TextField fx:id="search_reader_fname" layoutX="44.0" layoutY="21.0" promptText="First Name" />
-                                                <DatePicker fx:id="search_reader_from" layoutX="31.0" layoutY="209.0" promptText="From" />
-                                                            <TextField fx:id="search_reader_lname" layoutX="44.0" layoutY="61.0" promptText="Last Name" />
-                                                            <TextField fx:id="search_reader_email" layoutX="44.0" layoutY="104.0" promptText="Email" />
-                                                            <TextField fx:id="search_reader_phone" layoutX="44.0" layoutY="144.0" promptText="Phone" />
-                                                <DatePicker fx:id="search_reader_to" layoutX="31.0" layoutY="251.0" promptText="To" />
-                                                <Label layoutX="51.0" layoutY="179.0" text="Registrated in the period:" />
-                                                            <Button fx:id="search_reader_btn" layoutX="90.0" layoutY="305.0" mnemonicParsing="false" text="Search" />
+                                                            <TextField fx:id="search_reader_fname" layoutX="44.0" layoutY="57.0" promptText="First Name" />
+                                                <DatePicker fx:id="search_reader_from" layoutX="31.0" layoutY="246.0" promptText="From" />
+                                                            <TextField fx:id="search_reader_lname" layoutX="44.0" layoutY="96.0" promptText="Last Name" />
+                                                            <TextField fx:id="search_reader_email" layoutX="44.0" layoutY="139.0" promptText="Email" />
+                                                            <TextField fx:id="search_reader_phone" layoutX="44.0" layoutY="179.0" promptText="Phone" />
+                                                <DatePicker fx:id="search_reader_to" layoutX="31.0" layoutY="282.0" promptText="To" />
+                                                <Label layoutX="51.0" layoutY="219.0" text="Registrated in the period:" />
+                                                            <Button fx:id="search_reader_btn" layoutX="92.0" layoutY="318.0" mnemonicParsing="false" text="Search" />
+                                                <TextField fx:id="search_reader_ID" layoutX="44.0" layoutY="14.0" promptText="ID" />
                                              </children>
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="670.0">
                                              <children>
-                                                <TableView fx:id="reader_table_id" layoutX="-6.0" layoutY="-2.0" prefHeight="363.0" prefWidth="571.0">
+                                                <TableView fx:id="reader_table_id" layoutX="-6.0" layoutY="-2.0" prefHeight="275.0" prefWidth="571.0">
                                                   <columns>
                                                     <TableColumn fx:id="readerid_column_id" prefWidth="75.0" text="Reader ID" />
                                                     <TableColumn fx:id="fname_column_id" prefWidth="75.0" text="First Name" />
@@ -252,6 +258,7 @@
                                                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                                    </columnResizePolicy>
                                                 </TableView>
+                                                <Button fx:id="reader_to_rent_book_btn" layoutX="237.0" layoutY="287.0" mnemonicParsing="false" text="To Rent Book" />
                                              </children></AnchorPane>
                                       </items>
                                     </SplitPane>
