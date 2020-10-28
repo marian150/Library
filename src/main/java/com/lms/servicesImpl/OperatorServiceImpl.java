@@ -5,6 +5,7 @@ import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.repositories.OperatorRepository;
 import com.lms.services.OperatorService;
+import com.lms.services.PrivilegedUserService;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -43,6 +44,11 @@ public class OperatorServiceImpl implements OperatorService {
     }
 
     @Override
+    public boolean scrapBook(PrivilegedUserService pu, Long bookId) {
+        return operatorRepository.scrapBook(bookId);
+    }
+
+    @Override
     public List<BookCovers> retrieveBookCovers() {
         return operatorRepository.retrieveBookCovers();
     }
@@ -76,4 +82,6 @@ public class OperatorServiceImpl implements OperatorService {
     public boolean addAuthor(String author) {
         return operatorRepository.addAuthor(author);
     }
+
+
 }

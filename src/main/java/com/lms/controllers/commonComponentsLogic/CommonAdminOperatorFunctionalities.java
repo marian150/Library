@@ -28,4 +28,5 @@ public interface CommonAdminOperatorFunctionalities {
                             DatePicker from, DatePicker to, PrivilegedUserService pu);
 
     void showLendBrowseReaderWindow(ActionEvent event, FXMLLoader fxmlLoader);
+    boolean scrapBook(PrivilegedUserService pu, TextField bookId);
 }

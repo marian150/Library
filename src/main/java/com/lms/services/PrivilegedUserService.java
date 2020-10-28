@@ -14,4 +14,5 @@ public interface PrivilegedUserService {
     boolean createReader(SignUpDTO signUpDTO);
     User browseUser(Map<String, String> values);
     boolean addBook(AddBookDTO addBookDTO);
+    boolean scrapBook(PrivilegedUserService pu, Long bookId);
 }

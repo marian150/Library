@@ -136,28 +136,25 @@
                                             </children></AnchorPane>
                                     </content>
                                 </Tab>
-                                <Tab text="Archive Book">
+                                <Tab text="Scrap Book">
                                     <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                             <children>
-                                                <Button layoutX="690.0" layoutY="311.0" mnemonicParsing="false" text="Archive book" />
-                                                <Button layoutX="482.0" layoutY="162.0" mnemonicParsing="false" text="Browse" />
-                                                <TextField disable="true" layoutX="125.0" layoutY="34.0" />
-                                                <TextField disable="true" layoutX="125.0" layoutY="73.0" />
-                                                <TextField disable="true" layoutX="125.0" layoutY="117.0" />
-                                                <TextField disable="true" layoutX="125.0" layoutY="155.0" />
-                                                <TextField disable="true" layoutX="125.0" layoutY="198.0" />
-                                                <TextField disable="true" layoutX="388.0" layoutY="34.0" />
-                                                <TextField disable="true" layoutX="388.0" layoutY="72.0" />
+                                                <Button fx:id="scrap_btn" layoutX="690.0" layoutY="311.0" mnemonicParsing="false" text="Scrap book" />
+                                                <TextField fx:id="scrap_inv_id" disable="true" layoutX="125.0" layoutY="34.0" />
+                                                <TextField fx:id="scrap_isbn_id" disable="true" layoutX="125.0" layoutY="73.0" />
+                                                <TextField fx:id="scrap_title_id" disable="true" layoutX="125.0" layoutY="117.0" />
+                                                <TextField fx:id="scrap_author_id" disable="true" layoutX="125.0" layoutY="155.0" />
+                                                <TextField fx:id="scrap_publ_id" disable="true" layoutX="125.0" layoutY="198.0" />
+                                                <TextField fx:id="scrap_genre_id" disable="true" layoutX="387.0" layoutY="34.0" />
                                                 <Label layoutX="15.0" layoutY="37.0" text="Inventory number" />
                                                 <Label layoutX="26.0" layoutY="76.0" text="ISBN" />
                                                 <Label layoutX="26.0" layoutY="120.0" text="Title" />
                                                 <Label layoutX="26.0" layoutY="157.0" text="Author" />
                                                 <Label layoutX="26.0" layoutY="201.0" text="Publisher" />
-                                                <Label layoutX="344.0" layoutY="38.0" text="Cover" />
-                                                <Label layoutX="344.0" layoutY="76.0" text="Genre" />
-                                                <TextField disable="true" layoutX="388.0" layoutY="117.0" />
-                                                <Label layoutX="322.0" layoutY="120.0" text="Issue date" />
+                                                <Label layoutX="343.0" layoutY="38.0" text="Genre" />
+                                                <TextField fx:id="scrap_year_id" disable="true" layoutX="387.0" layoutY="79.0" />
+                                                <Label layoutX="321.0" layoutY="82.0" text="Issue date" />
                                             </children></AnchorPane>
                                     </content>
                                 </Tab>
@@ -217,6 +214,7 @@
                                                 <ListView fx:id="add_book_for_rent_listview" layoutY="229.0" prefHeight="137.0" prefWidth="602.0" />
                                                 <Button fx:id="add_book_to_listview_btn" layoutX="266.0" layoutY="189.0" mnemonicParsing="false" text="Add to List" />
                                                 <Button fx:id="add_listview_to_rent_book_btn" layoutX="489.0" layoutY="189.0" mnemonicParsing="false" text="Add list for Rent" />
+                                                <Button fx:id="add_scrap_btn" layoutX="14.0" layoutY="189.0" mnemonicParsing="false" text="Add for Scrap" />
                                              </children></AnchorPane>
                                       </items>
                                     </SplitPane>

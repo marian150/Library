@@ -21,4 +21,5 @@ public interface OperatorRepository {
     boolean searchPublisher(String publisherName);
     boolean searchAuthor(String author);
     boolean addAuthor(String author);
+    boolean scrapBook(Long id);
 }

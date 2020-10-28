@@ -6,6 +6,7 @@ import com.lms.models.entities.Book;
 import com.lms.models.entities.User;
 import com.lms.repositories.AdminRepository;
 import com.lms.services.AdminService;
+import com.lms.services.PrivilegedUserService;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -46,4 +47,11 @@ public class AdminServiceImpl implements AdminService {
     public boolean addBook(AddBookDTO addBookDTO) {
         return false;
     }
+
+    @Override
+    public boolean scrapBook(PrivilegedUserService pu, Long bookId) {
+        return false;
+    }
+
+
 }

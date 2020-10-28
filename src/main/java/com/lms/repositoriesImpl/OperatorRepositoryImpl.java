@@ -411,4 +411,25 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             session.close();
         }
     }
+
+    @Override
+    public boolean scrapBook(Long id) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Query query = session.createQuery("select bs from BookState bs where bs.stateName like 'Obsolete'");
+            BookState bs = (BookState)query.getSingleResult();
+            Book book = (Book)session.load(Book.class, id);
+            book.setBookState(bs);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            if(tx != null)tx.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
 }

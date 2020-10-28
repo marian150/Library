@@ -165,7 +165,15 @@ public class OperatorController {
     @FXML private TableColumn<SearchBookTableView, String> publisher_column_id;
     @FXML private TableColumn<SearchBookTableView, String> year_column_id;
     @FXML private TableColumn<SearchBookTableView, String> state_column_id;
-
+    @FXML private Button scrap_btn;
+    @FXML private TextField scrap_inv_id;
+    @FXML private TextField scrap_isbn_id;
+    @FXML private TextField scrap_title_id;
+    @FXML private TextField scrap_author_id;
+    @FXML private TextField scrap_publ_id;
+    @FXML private TextField scrap_genre_id;
+    @FXML private TextField scrap_year_id;
+    @FXML private Button add_scrap_btn;
     ObservableList<SearchReaderTableView> readersObservableList = FXCollections.observableArrayList();
     ObservableList<SearchBookTableView> searchBooksObservableList = FXCollections.observableArrayList();
 
@@ -357,6 +365,22 @@ public class OperatorController {
 
         logout_btn.setOnAction(event -> {
             commonUserFunctionalities.logout(greeting_label, fxmlLoader);
+        });
+
+        scrap_btn.setOnAction(event -> {
+            commonAdminOperatorFunctionalities.scrapBook(operatorService, scrap_inv_id);
+        });
+        add_scrap_btn.setOnAction(event -> {
+            SearchBookTableView selectedBook = search_book_table_view.getSelectionModel().getSelectedItem();
+            if(selectedBook != null) {
+                scrap_inv_id.setText(selectedBook.getInventoryNumber());
+                scrap_isbn_id.setText(selectedBook.getIsbn());
+                scrap_author_id.setText(selectedBook.getAuthor());
+                scrap_title_id.setText(selectedBook.getTitle());
+                scrap_publ_id.setText(selectedBook.getPublisher());
+                scrap_genre_id.setText(selectedBook.getGenre());
+                scrap_year_id.setText(selectedBook.getYear());
+            }
         });
     }
 
