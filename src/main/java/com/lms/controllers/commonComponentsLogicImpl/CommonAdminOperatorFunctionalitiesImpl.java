@@ -20,7 +20,7 @@ import java.util.Map;
 
 @Dependent
 public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperatorFunctionalities {
-    public List<Book> searchBook(TextField inv, TextField title, TextField isbn, TextField author, TextField genre, TextField publ, TextField year, ComboBox state, PrivilegedUserService pu) {
+    public List<Book> searchBook(TextField inv, TextField title, TextField isbn, TextField author, ComboBox genre, TextField publ, TextField year, ComboBox state, PrivilegedUserService pu) {
         Map<String, String> values = new HashMap<>();
         if(inv.getText() != "")
             values.put("bookId", inv.getText());
@@ -30,22 +30,20 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
             values.put("isbn", isbn.getText());
         if(author.getText() != "")
             values.put("authors", author.getText());
-        if(genre.getText() != "")
-            values.put("genre", genre.getText());
+        if(genre.getValue() != null && genre.getValue() != "All")
+            values.put("genre", String.valueOf(genre.getValue()));
         if(publ.getText() != "")
             values.put("publisher", publ.getText());
         if(year.getText() != "")
             values.put("issueDate", year.getText());
-        if(state.getValue() != null)
+        if(state.getValue() != null && state.getValue() != "All")
             values.put("bookState", String.valueOf(state.getValue()));
         inv.clear();
         title.clear();
         isbn.clear();
         author.clear();
-        genre.clear();
         publ.clear();
         year.clear();
-        state.setValue(null);
         return pu.searchBook(values);
     }
     public void displayBooks(List<Book> books, TableView tableView, ObservableList<SearchBookTableView> observableList,
@@ -103,9 +101,11 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         date.setCellValueFactory(new PropertyValueFactory<>("regdate"));
         tableView.setItems(observableList);
     }
-    public List<User> searchReader(TextField fname, TextField lname, TextField email, TextField phone,
+    public List<User> searchReader(TextField id, TextField fname, TextField lname, TextField email, TextField phone,
                                    DatePicker from, DatePicker to, PrivilegedUserService pu) {
         Map<String, String> values = new HashMap<>();
+        if(id.getText() != "")
+            values.put("id", id.getText());
         if(fname.getText() != "")
             values.put("firstName", fname.getText());
         if(lname.getText() != "")
@@ -118,6 +118,7 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
             values.put("fromDate", from.getValue().toString());
         if(to.getValue() != null)
             values.put("toDate", to.getValue().toString());
+        id.clear();
         fname.clear();
         lname.clear();
         email.clear();

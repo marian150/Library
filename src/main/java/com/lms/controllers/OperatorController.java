@@ -32,10 +32,7 @@ import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class OperatorController {
 
@@ -53,6 +50,16 @@ public class OperatorController {
     @FXML
     private Label greeting_label;
     @FXML
+    private ListView add_book_for_rent_listview;
+    @FXML
+    private Button add_book_to_listview_btn;
+    @FXML
+    private Button add_listview_to_rent_book_btn;
+    @FXML
+    private ListView chosen_books_for_rent;
+    @FXML
+    private TabPane tabPane;
+    @FXML
     private TextField fname;
     @FXML
     private TextField lname;
@@ -69,6 +76,8 @@ public class OperatorController {
     @FXML
     private AnchorPane create_reader_anchor;
     @FXML
+    private TextField search_reader_ID;
+    @FXML
     private TextField search_reader_fname;
     @FXML
     private TextField search_reader_lname;
@@ -83,9 +92,7 @@ public class OperatorController {
     @FXML
     private Button search_reader_btn;
     @FXML
-    private Button lend_browse_reader_btn;
-    @FXML
-    private Button lend_browse_book_btn;
+    private Button reader_to_rent_book_btn;
     @FXML
     private Button search_book_btn;
     @FXML
@@ -99,7 +106,7 @@ public class OperatorController {
     @FXML
     private TextField search_book_publisher;
     @FXML
-    private TextField search_book_genre;
+    private ComboBox search_book_genre;
     @FXML
     private TextField search_book_date;
     @FXML
@@ -190,6 +197,8 @@ public class OperatorController {
         return operatorService.retrieveBookGenre();
     }
 
+    public List<BookState> retrieveBookState() {return operatorService.retrieveBookState();}
+
     public boolean searchPublisher(String publisherName) {return operatorService.searchPublisher(publisherName);}
 
     public void setCurrentUser(User user) {
@@ -252,9 +261,18 @@ public class OperatorController {
             add_book_cover.getItems().add(bc.getCoverName());
         }
 
+        search_book_state.getItems().add("All");
+        for (BookState bs : retrieveBookState()) {
+            search_book_state.getItems().add(bs.getStateName());
+        }
+
+        search_book_genre.getItems().add("All");
         for (Genre g : retrieveBookGenre()) {
             add_book_genre.getItems().add(g.getName());
+            search_book_genre.getItems().add(g.getName());
         }
+        search_book_genre.getSelectionModel().selectFirst();
+        search_book_state.getSelectionModel().selectFirst();
 
         create_btn.setOnAction(event -> {
             if(createReader()) {
@@ -270,7 +288,7 @@ public class OperatorController {
         });
 
         search_reader_btn.setOnAction(event -> {
-            List<User> result = commonAdminOperatorFunctionalities.searchReader(
+            List<User> result = commonAdminOperatorFunctionalities.searchReader(search_reader_ID,
                     search_reader_fname,search_reader_lname, search_reader_email, search_reader_phone,
                     search_reader_from, search_reader_to, operatorService
             );
@@ -293,29 +311,18 @@ public class OperatorController {
                     isbn_column_id, genre_column_id, year_column_id, publisher_column_id, state_column_id);
         });
 
-        lend_browse_reader_btn.setOnAction(event -> {
-            try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/lendBookBrowseReader.fxml")){
-                Parent root = (Parent) fxmlLoader.load(fxml);
-                BrowseReaderController browseReaderController = fxmlLoader.getController();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.initModality(Modality.WINDOW_MODAL);
-                stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-                stage.show();
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
+        reader_to_rent_book_btn.setOnAction(event -> {
+            SearchReaderTableView selectedReader = reader_table_id.getSelectionModel().getSelectedItem();
+            tabPane.getSelectionModel().select(2);
+            lend_rd_id.setText(selectedReader.getId().toString());
+            lend_rd_name.setText(selectedReader.getFname() + " " + selectedReader.getLname());
+            lend_rd_email.setText(selectedReader.getEmail());
+            lend_rd_phone.setText(selectedReader.getPhone());
         });
 
         add_book_btn.setOnAction(event -> {
             boolean addBookSuccessfull = false;
             List<String> authorListString = Arrays.asList(add_book_author.getText().split(","));
-            for (String authorName : authorListString) {
-                if(!searchAuthor(authorName)) {
-                    System.out.println(authorName);
-                    System.out.println(addAuthor(authorName));
-                }
-            }
             if(searchPublisher(add_book_publisher.getText())) {
                 addBookSuccessfull = addBook();
             } else {
@@ -332,6 +339,20 @@ public class OperatorController {
                 add_book_anchor.getChildren().add(addedBook);
             }
             nullifyAddBookFields();
+        });
+
+        add_book_to_listview_btn.setOnAction(event -> {
+            SearchBookTableView selectedBook = search_book_table_view.getSelectionModel().getSelectedItem();
+            if(selectedBook != null) {
+                add_book_for_rent_listview.getItems().add(selectedBook.getInventoryNumber() + "  " +
+                        selectedBook.getTitle() + "  " + selectedBook.getAuthor() + "  " + selectedBook.getState());
+            }
+        });
+
+        add_listview_to_rent_book_btn.setOnAction(event -> {
+            chosen_books_for_rent.getItems().addAll(add_book_for_rent_listview.getItems());
+            tabPane.getSelectionModel().select(2);
+            add_book_for_rent_listview.getItems().clear();
         });
 
         logout_btn.setOnAction(event -> {

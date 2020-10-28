@@ -16,6 +16,7 @@ public interface OperatorRepository {
     boolean addBook(AddBookDTO addBookDTO);
     List<BookCovers> retrieveBookCovers();
     List<Genre> retrieveBookGenre();
+    List<BookState> retrieveBookState();
     boolean addPublisher(String publisherName);
     boolean searchPublisher(String publisherName);
     boolean searchAuthor(String author);

@@ -11,7 +11,7 @@ import javafx.scene.control.*;
 import java.util.List;
 
 public interface CommonAdminOperatorFunctionalities {
-    List<Book> searchBook(TextField inv, TextField title, TextField isbn, TextField author, TextField genre,
+    List<Book> searchBook(TextField inv, TextField title, TextField isbn, TextField author, ComboBox genre,
                           TextField publ, TextField year, ComboBox state, PrivilegedUserService os);
     void displayBooks(List<Book> books, TableView tableView, ObservableList<SearchBookTableView> observableList,
                       TableColumn<SearchBookTableView, String> inv, TableColumn<SearchBookTableView, String> title,
@@ -22,6 +22,6 @@ public interface CommonAdminOperatorFunctionalities {
                       TableColumn<SearchReaderTableView, String> rid, TableColumn<SearchReaderTableView, String> fname,
                       TableColumn<SearchReaderTableView, String> lname, TableColumn<SearchReaderTableView, String> email,
                       TableColumn<SearchReaderTableView, String> phone, TableColumn<SearchReaderTableView, String> date);
-    List<User> searchReader(TextField fname, TextField lname, TextField email, TextField phone,
+    List<User> searchReader(TextField id, TextField fname, TextField lname, TextField email, TextField phone,
                             DatePicker from, DatePicker to, PrivilegedUserService pu);
 }
