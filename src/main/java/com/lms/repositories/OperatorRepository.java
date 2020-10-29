@@ -1,6 +1,7 @@
 package com.lms.repositories;
 
 import com.lms.models.dtos.AddBookDTO;
+import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 
@@ -21,5 +22,6 @@ public interface OperatorRepository {
     boolean searchPublisher(String publisherName);
     boolean searchAuthor(String author);
     boolean addAuthor(String author);
+    boolean lendBook(LendBookDTO lendBookDTO, Long userId);
     boolean scrapBook(Long id);
 }

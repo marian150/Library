@@ -4,6 +4,7 @@ package com.lms.controllers;
 import com.lms.models.dtos.AddBookDTO;
 import com.lms.controllers.commonComponentsLogic.CommonAdminOperatorFunctionalities;
 import com.lms.controllers.commonComponentsLogic.CommonUserFunctionalities;
+import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.BrowseReaderTableView;
@@ -58,6 +59,10 @@ public class OperatorController {
     @FXML
     private ListView chosen_books_for_rent;
     @FXML
+    private Button clear_all_lend_book_listview_btn;
+    @FXML
+    private Button clear_archived_lend_book_listview_btn;
+    @FXML
     private TabPane tabPane;
     @FXML
     private TextField fname;
@@ -73,6 +78,10 @@ public class OperatorController {
     private Button create_btn;
     @FXML
     private Button logout_btn;
+    @FXML
+    private Button lend_for_home_btn;
+    @FXML
+    private Button lend_for_reading_room_btn;
     @FXML
     private AnchorPane create_reader_anchor;
     @FXML
@@ -239,6 +248,12 @@ public class OperatorController {
     public void nullifyCreateReaderFields() {
         fname.clear(); lname.clear(); email.clear(); pass.clear(); phone.clear();
     }
+    public void nullifyLendBookUserDetails() {
+        lend_rd_phone.clear();
+        lend_rd_email.clear();
+        lend_rd_name.clear();
+        lend_rd_id.clear();
+    }
 
     public boolean addPublisher(String publisherName) {
         return operatorService.addPublisher(publisherName);
@@ -251,6 +266,17 @@ public class OperatorController {
     public boolean addAuthor(String author) {
         return operatorService.addAuthor(author);
     }
+
+    public boolean lendBook() {
+        LendBookDTO lendBookDTO = new LendBookDTO();
+        lendBookDTO.setUserID(Long.parseLong(lend_rd_id.getText()));
+        List<Long> books = new ArrayList<>();
+        for(Object item : chosen_books_for_rent.getItems()) {
+            books.add(Long.parseLong(item.toString().substring(0, 1)));
+        }
+        lendBookDTO.setBookIDs(books);
+        return operatorService.lendBook(lendBookDTO, currentUser.getUserId());
+    };
 
     public void logout() {
         ((Stage) greeting_label.getScene().getWindow()).close();
@@ -361,6 +387,43 @@ public class OperatorController {
             chosen_books_for_rent.getItems().addAll(add_book_for_rent_listview.getItems());
             tabPane.getSelectionModel().select(2);
             add_book_for_rent_listview.getItems().clear();
+        });
+
+        lend_for_reading_room_btn.setOnAction(event -> {
+            lendBook();
+            chosen_books_for_rent.getItems().clear();
+            nullifyLendBookUserDetails();
+        });
+
+        lend_for_home_btn.setOnAction(event -> {
+            boolean containsArchivedBook = false;
+            for (Object item : chosen_books_for_rent.getItems()) {
+                if(item.toString().contains("Archived")) {
+                    containsArchivedBook = true;
+                    break;
+                }
+            }
+            if(containsArchivedBook) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("You cannot lend Archived books for home!");
+                alert.show();
+            } else {
+                lendBook();
+                chosen_books_for_rent.getItems().clear();
+                nullifyLendBookUserDetails();
+            }
+        });
+
+        clear_all_lend_book_listview_btn.setOnAction(event -> {
+            chosen_books_for_rent.getItems().clear();
+        });
+
+        clear_archived_lend_book_listview_btn.setOnAction(event -> {
+            for(Object item : chosen_books_for_rent.getItems()) {
+                if(item.toString().contains("Archived")) {
+                    chosen_books_for_rent.getItems().remove(item);
+                }
+            }
         });
 
         logout_btn.setOnAction(event -> {

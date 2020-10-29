@@ -2,10 +2,12 @@ package com.lms.repositoriesImpl;
 
 import com.lms.config.ConfigurationSessionFactory;
 import com.lms.models.dtos.AddBookDTO;
+import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.repositories.OperatorRepository;
 import com.lms.security.Password;
+import net.bytebuddy.asm.Advice;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -423,6 +425,47 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             BookState bs = (BookState)query.getSingleResult();
             Book book = (Book)session.load(Book.class, id);
             book.setBookState(bs);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            if(tx != null)tx.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean lendBook(LendBookDTO lendBookDTO, Long userId) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        Transaction tx = null;
+        tx = session.beginTransaction();
+
+        for(Long bookId : lendBookDTO.getBookIDs()) {
+            RentBook rentBook = new RentBook();
+
+            Query queryB = session.createQuery("Select b from Book b where b.bookId = :bookId");
+            queryB.setParameter("bookId", bookId);
+            Book book = (Book) queryB.getSingleResult();
+            rentBook.setBook(book);
+
+            Query queryC = session.createQuery("Select u from User u where u.userId = :userId");
+            queryC.setParameter("userId", lendBookDTO.getUserID());
+            User client = (User) queryC.getSingleResult();
+            rentBook.setClient(client);
+
+            Query queryL = session.createQuery("Select u from User u where u.userId = :userId");
+            queryL.setParameter("userId", lendBookDTO.getUserID());
+            User lib = (User) queryL.getSingleResult();
+            rentBook.setLibrarian(lib);
+            rentBook.setRentDate(LocalDate.now());
+            rentBook.setDueDate(LocalDate.now().plusMonths(1));
+            session.save(rentBook);
+        }
+
+
+        try {
             tx.commit();
             return true;
         } catch (Exception e) {

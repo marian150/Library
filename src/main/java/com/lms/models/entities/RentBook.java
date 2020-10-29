@@ -7,6 +7,8 @@ import java.time.LocalDate;
 @Table(name = "rent_book")
 public class RentBook {
     @Id
+    @SequenceGenerator(name = "rent_book_sequence", sequenceName = "rent_book_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="rent_book_sequence")
     @Column(name = "rent_id")
     private Long rentId;
 

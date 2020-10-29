@@ -99,13 +99,16 @@
                                                             </children></AnchorPane>
                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                                             <children>
-                                                                <ListView fx:id="chosen_books_for_rent" layoutY="69.0" prefHeight="294.0" prefWidth="570.0" />
-                                                                <Button fx:id="lend_finish_btn" layoutX="513.0" layoutY="14.0" mnemonicParsing="false" text="Finish" />
+                                                                <ListView fx:id="chosen_books_for_rent" layoutY="69.0" prefHeight="229.0" prefWidth="570.0" />
+                                                                <Button fx:id="lend_for_home_btn" layoutX="460.0" layoutY="22.0" mnemonicParsing="false" text="Lend for Home" />
                                                                 <Label layoutX="14.0" layoutY="22.0" text="Chosen books">
                                                                     <font>
                                                                         <Font size="24.0" />
                                                                     </font>
                                                                 </Label>
+                                                <Button fx:id="lend_for_reading_room_btn" layoutX="310.0" layoutY="22.0" mnemonicParsing="false" text="Lend for Reading Room" />
+                                                <Button fx:id="clear_all_lend_book_listview_btn" layoutX="310.0" layoutY="308.0" mnemonicParsing="false" text="Clear All" />
+                                                <Button fx:id="clear_archived_lend_book_listview_btn" layoutX="381.0" layoutY="308.0" mnemonicParsing="false" text="Clear Archived Books" />
                                                             </children></AnchorPane>
                                                     </items>
                                                 </SplitPane>

@@ -1,6 +1,7 @@
 package com.lms.servicesImpl;
 
 import com.lms.models.dtos.AddBookDTO;
+import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.repositories.OperatorRepository;
@@ -83,5 +84,8 @@ public class OperatorServiceImpl implements OperatorService {
         return operatorRepository.addAuthor(author);
     }
 
-
+    @Override
+    public boolean lendBook(LendBookDTO lendBookDTO, Long userId) {
+        return operatorRepository.lendBook(lendBookDTO, userId);
+    }
 }
