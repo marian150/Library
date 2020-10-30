@@ -449,10 +449,9 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             Root<RentBook> rb = cq.from(RentBook.class);
             rb.fetch("client", JoinType.LEFT);
             rb.fetch("librarian", JoinType.LEFT);
-            rb.fetch("book", JoinType.LEFT);
-            rb.fetch("rentDate", JoinType.LEFT);
-            rb.fetch("dueDate", JoinType.LEFT);
-            cq.select(rb).distinct(true);
+            rb.fetch("book", JoinType.LEFT).fetch("authors", JoinType.LEFT);
+            rb.fetch("rentType", JoinType.LEFT);
+            cq.select(rb);
 
             if(values.containsKey("userId"))
                 predicates.add(cb.equal(rb.get("client").get("userId"), Long.parseLong(values.get("userId"))));
@@ -461,7 +460,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             if(values.containsKey("lastName"))
                 predicates.add(cb.like(rb.get("client").get("lastName"), values.get("lastName")));
             if(values.containsKey("bookId"))
-                predicates.add(cb.like(rb.get("book").get("bookId"), values.get("bookId")));
+                predicates.add(cb.equal(rb.get("book").get("bookId"), Long.parseLong(values.get("bookId"))));
             if(values.containsKey("title"))
                 predicates.add(cb.like(rb.get("book").get("title"), values.get("title")));
             Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
@@ -500,11 +499,19 @@ public class OperatorRepositoryImpl implements OperatorRepository {
                 rentBook.setClient(client);
 
                 Query queryL = session.createQuery("Select u from User u where u.userId = :userId");
-                queryL.setParameter("userId", lendBookDTO.getUserID());
+                queryL.setParameter("userId", 1L); // this must be current operator's ID
                 User lib = (User) queryL.getSingleResult();
+
+                Query queryRT = session.createQuery("Select rt from RentType rt where rt.typeId = :typeId");
+                queryRT.setParameter("typeId", lendBookDTO.getLendType());
+                RentType rt = (RentType) queryRT.getSingleResult();
+                rentBook.setRentType(rt);
+
                 rentBook.setLibrarian(lib);
                 rentBook.setRentDate(LocalDate.now());
                 rentBook.setDueDate(LocalDate.now().plusMonths(1));
+
+
                 session.save(rentBook);
             }
             tx.commit();

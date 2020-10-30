@@ -221,7 +221,7 @@ public class OperatorController {
         return operatorService.addAuthor(author);
     }
 
-    public boolean lendBook() {
+    public boolean lendBook(Long lendType) {
         LendBookDTO lendBookDTO = new LendBookDTO();
         lendBookDTO.setUserID(Long.parseLong(lend_rd_id.getText()));
         List<Long> books = new ArrayList<>();
@@ -229,6 +229,7 @@ public class OperatorController {
             books.add(Long.parseLong(item.toString().substring(0, 1)));
         }
         lendBookDTO.setBookIDs(books);
+        lendBookDTO.setLendType(lendType);
         return operatorService.lendBook(lendBookDTO, currentUser.getUserId());
     };
 
@@ -332,7 +333,7 @@ public class OperatorController {
         });
 
         lend_for_reading_room_btn.setOnAction(event -> {
-            lendBook();
+            lendBook(2L);
             chosen_books_for_rent.getItems().clear();
             nullifyLendBookUserDetails();
         });
@@ -350,7 +351,7 @@ public class OperatorController {
                 alert.setContentText("You cannot lend Archived books for home!");
                 alert.show();
             } else {
-                lendBook();
+                lendBook(1L);
                 chosen_books_for_rent.getItems().clear();
                 nullifyLendBookUserDetails();
             }
@@ -391,7 +392,9 @@ public class OperatorController {
             List<RentBook> result = commonAdminOperatorFunctionalities.findLentBooks(operatorService, return_reader_id,
                     return_fname_id, return_lname_id, return_inv_id, return_title_id
                     );
-            //commonAdminOperatorFunctionalities.displayLentBooks();
+            commonAdminOperatorFunctionalities.displayLentBooks(result, return_table_view, returnObservableList, return_reader_col_id,
+                    return_inv_col_id,return_title_col_id, return_author_col_id,return_lend_col_id,
+                    return_due_col_id, return_operator_col_id);
         });
     }
 }

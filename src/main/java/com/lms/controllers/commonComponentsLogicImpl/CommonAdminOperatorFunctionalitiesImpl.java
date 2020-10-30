@@ -182,7 +182,7 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
                                  TableColumn<ReturnBookTableView, String> inv, TableColumn<ReturnBookTableView, String> title, TableColumn<ReturnBookTableView, String> author,
                                  TableColumn<ReturnBookTableView, String> lend, TableColumn<ReturnBookTableView, String> due, TableColumn<ReturnBookTableView, String> operator) {
         tableView.getItems().clear();
-        for(int i = 0; i < books.size(); i ++){
+        for(int i = 0; i < books.size(); i++){
             String authors = "";
             for (Author a : books.get(i).getBook().getAuthors()) {
                 authors += a.getName() + ", ";
