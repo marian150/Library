@@ -3,19 +3,18 @@ package com.lms.controllers;
 import com.lms.models.dtos.LoginDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.User;
-import com.lms.security.Password;
 import com.lms.services.LoginService;
+import com.lms.validation.*;
+import com.lms.validation.Error;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import org.apache.commons.codec.binary.Hex;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -56,7 +55,23 @@ public class LoginController {
     }
     public void signup(){
         SignUpDTO signUpDTO = new SignUpDTO(reg_first_name_id.getText(), reg_last_name_id.getText(), reg_email_id.getText(), reg_passwd_id.getText(), reg_phone_id.getText());
-        loginService.signup(signUpDTO);
+        Error emailError = new EmailError();
+        Error passError = new UpperErrorDecorator(new LongLengthErrorDecorator(new ShortLengthErrorDecorator(new PasswordError())));
+        if(emailError.errors(signUpDTO.getEmail()) != null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(emailError.errors(signUpDTO.getEmail()));
+            alert.show();
+        } else if(passError.errors(signUpDTO.getPassword()) != "Password errors:") {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(passError.errors(signUpDTO.getPassword()));
+            alert.show();
+        }else{
+            loginService.signup(signUpDTO);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("You have successfully send a registration form. \n" +
+                    "Your account will be ready in 1 hour.");
+            alert.show();
+        }
     }
 
     public void initialize() {
@@ -109,9 +124,9 @@ public class LoginController {
             } else {
                 login_email_id.clear();
                 login_passwd_id.clear();
-                Label wrongCredentials = new Label("You have entered wrong credentials. Try again");
-                wrongCredentials.setTextFill(Color.RED);
-                login_anchor.getChildren().add(wrongCredentials);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("You have entered wrong credentials!");
+                alert.show();
             }
         });
         reg_signup_btn.setOnAction(event -> {
