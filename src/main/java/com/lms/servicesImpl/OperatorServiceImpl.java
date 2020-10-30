@@ -88,4 +88,9 @@ public class OperatorServiceImpl implements OperatorService {
     public boolean lendBook(LendBookDTO lendBookDTO, Long userId) {
         return operatorRepository.lendBook(lendBookDTO, userId);
     }
+
+    @Override
+    public List<RentBook> findLentBooks(Map<String, String> values) {
+        return operatorRepository.findLentBooks(values);
+    }
 }

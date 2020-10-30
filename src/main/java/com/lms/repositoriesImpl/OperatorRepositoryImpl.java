@@ -192,7 +192,6 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         if(values.containsKey("email"))
             predicates.add(cb.like(u.get("email"), values.get("email")));
 
-
         predicates.add(cb.like(userTypeJoin.get("typeName"), "Reader"));
         Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
         cq.where(finalPredicate);
@@ -436,40 +435,82 @@ public class OperatorRepositoryImpl implements OperatorRepository {
     }
 
     @Override
+    public List<RentBook> findLentBooks(Map<String, String> values) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+
+            List<Predicate> predicates = new ArrayList<>();
+
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<RentBook> cq = cb.createQuery(RentBook.class);
+            Root<RentBook> rb = cq.from(RentBook.class);
+            rb.fetch("client", JoinType.LEFT);
+            rb.fetch("librarian", JoinType.LEFT);
+            rb.fetch("book", JoinType.LEFT);
+            rb.fetch("rentDate", JoinType.LEFT);
+            rb.fetch("dueDate", JoinType.LEFT);
+            cq.select(rb).distinct(true);
+
+            if(values.containsKey("userId"))
+                predicates.add(cb.equal(rb.get("client").get("userId"), Long.parseLong(values.get("userId"))));
+            if(values.containsKey("firstName"))
+                predicates.add(cb.like(rb.get("client").get("firstName"), values.get("firstName")));
+            if(values.containsKey("lastName"))
+                predicates.add(cb.like(rb.get("client").get("lastName"), values.get("lastName")));
+            if(values.containsKey("bookId"))
+                predicates.add(cb.like(rb.get("book").get("bookId"), values.get("bookId")));
+            if(values.containsKey("title"))
+                predicates.add(cb.like(rb.get("book").get("title"), values.get("title")));
+            Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
+            cq.where(finalPredicate);
+            TypedQuery<RentBook> typedQuery = session.createQuery(cq);
+
+            List<RentBook> result = typedQuery.getResultList();
+            return result;
+        } catch (Exception e) {
+            if(tx != null) tx.rollback();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
     public boolean lendBook(LendBookDTO lendBookDTO, Long userId) {
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
 
         Transaction tx = null;
-        tx = session.beginTransaction();
-
-        for(Long bookId : lendBookDTO.getBookIDs()) {
-            RentBook rentBook = new RentBook();
-
-            Query queryB = session.createQuery("Select b from Book b where b.bookId = :bookId");
-            queryB.setParameter("bookId", bookId);
-            Book book = (Book) queryB.getSingleResult();
-            rentBook.setBook(book);
-
-            Query queryC = session.createQuery("Select u from User u where u.userId = :userId");
-            queryC.setParameter("userId", lendBookDTO.getUserID());
-            User client = (User) queryC.getSingleResult();
-            rentBook.setClient(client);
-
-            Query queryL = session.createQuery("Select u from User u where u.userId = :userId");
-            queryL.setParameter("userId", lendBookDTO.getUserID());
-            User lib = (User) queryL.getSingleResult();
-            rentBook.setLibrarian(lib);
-            rentBook.setRentDate(LocalDate.now());
-            rentBook.setDueDate(LocalDate.now().plusMonths(1));
-            session.save(rentBook);
-        }
-
-
         try {
+            tx = session.beginTransaction();
+
+            for (Long bookId : lendBookDTO.getBookIDs()) {
+                RentBook rentBook = new RentBook();
+
+                Query queryB = session.createQuery("Select b from Book b where b.bookId = :bookId");
+                queryB.setParameter("bookId", bookId);
+                Book book = (Book) queryB.getSingleResult();
+                rentBook.setBook(book);
+
+                Query queryC = session.createQuery("Select u from User u where u.userId = :userId");
+                queryC.setParameter("userId", lendBookDTO.getUserID());
+                User client = (User) queryC.getSingleResult();
+                rentBook.setClient(client);
+
+                Query queryL = session.createQuery("Select u from User u where u.userId = :userId");
+                queryL.setParameter("userId", lendBookDTO.getUserID());
+                User lib = (User) queryL.getSingleResult();
+                rentBook.setLibrarian(lib);
+                rentBook.setRentDate(LocalDate.now());
+                rentBook.setDueDate(LocalDate.now().plusMonths(1));
+                session.save(rentBook);
+            }
             tx.commit();
             return true;
         } catch (Exception e) {
-            if(tx != null)tx.rollback();
+            if (tx != null) tx.rollback();
             return false;
         } finally {
             session.close();

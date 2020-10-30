@@ -30,16 +30,21 @@ public class RentBook {
     @Column(name = "due_date")
     private LocalDate dueDate;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rent_type",  referencedColumnName= "rent_type_id", foreignKey = @ForeignKey(name = "RENT_TYPE_FK"))
+    private RentType rentType;
+
     public RentBook() {}
 
     public RentBook(Long rentId, User client, User librarian,
-                    Book book, LocalDate rentDate, LocalDate dueDate) {
+                    Book book, LocalDate rentDate, LocalDate dueDate, RentType rentType) {
         this.rentId = rentId;
         this.client = client;
         this.librarian = librarian;
         this.book = book;
         this.rentDate = rentDate;
         this.dueDate = dueDate;
+        this.rentType = rentType;
     }
 
     public Long getRentId() {
@@ -89,4 +94,8 @@ public class RentBook {
     public void setBook(Book book) {
         this.book = book;
     }
+
+    public RentType getRentType() { return rentType; }
+
+    public void setRentType(RentType rentType) { this.rentType = rentType; }
 }

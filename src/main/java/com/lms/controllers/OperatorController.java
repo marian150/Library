@@ -7,10 +7,7 @@ import com.lms.controllers.commonComponentsLogic.CommonUserFunctionalities;
 import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
-import com.lms.models.nonpersistentclasses.BrowseReaderTableView;
-import com.lms.models.nonpersistentclasses.ReaderTableView;
-import com.lms.models.nonpersistentclasses.SearchBookTableView;
-import com.lms.models.nonpersistentclasses.SearchReaderTableView;
+import com.lms.models.nonpersistentclasses.*;
 import com.lms.services.OperatorService;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -27,7 +24,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
+import net.bytebuddy.asm.Advice;
+import org.dom4j.Text;
 
 import javax.inject.Inject;
 import java.io.IOException;
@@ -43,129 +41,68 @@ public class OperatorController {
     private CommonUserFunctionalities commonUserFunctionalities;
     @Inject
     private CommonAdminOperatorFunctionalities commonAdminOperatorFunctionalities;
-
     private User currentUser;
-
     @Inject
     FXMLLoader fxmlLoader;
-    @FXML
-    private Label greeting_label;
-    @FXML
-    private ListView add_book_for_rent_listview;
-    @FXML
-    private Button add_book_to_listview_btn;
-    @FXML
-    private Button add_listview_to_rent_book_btn;
-    @FXML
-    private ListView chosen_books_for_rent;
-    @FXML
-    private Button clear_all_lend_book_listview_btn;
-    @FXML
-    private Button clear_archived_lend_book_listview_btn;
-    @FXML
-    private TabPane tabPane;
-    @FXML
-    private TextField fname;
-    @FXML
-    private TextField lname;
-    @FXML
-    private TextField email;
-    @FXML
-    private TextField pass;
-    @FXML
-    private TextField phone;
-    @FXML
-    private Button create_btn;
-    @FXML
-    private Button logout_btn;
-    @FXML
-    private Button lend_for_home_btn;
-    @FXML
-    private Button lend_for_reading_room_btn;
-    @FXML
-    private AnchorPane create_reader_anchor;
-    @FXML
-    private TextField search_reader_ID;
-    @FXML
-    private TextField search_reader_fname;
-    @FXML
-    private TextField search_reader_lname;
-    @FXML
-    private TextField search_reader_email;
-    @FXML
-    private TextField search_reader_phone;
-    @FXML
-    private DatePicker search_reader_from;
-    @FXML
-    private DatePicker search_reader_to;
-    @FXML
-    private Button search_reader_btn;
-    @FXML
-    private Button reader_to_rent_book_btn;
-    @FXML
-    private Button search_book_btn;
-    @FXML
-    private TextField search_book_inv;
-    @FXML
-    private TextField search_book_isbn;
-    @FXML
-    private TextField search_book_title;
-    @FXML
-    private TextField search_book_author;
-    @FXML
-    private TextField search_book_publisher;
-    @FXML
-    private ComboBox search_book_genre;
-    @FXML
-    private TextField search_book_date;
-    @FXML
-    private ComboBox search_book_state;
-    @FXML
-    private TextField lend_rd_id;
-    @FXML
-    private TextField lend_rd_name;
-    @FXML
-    private TextField lend_rd_email;
-    @FXML
-    private TextField lend_rd_phone;
-    @FXML
-    private TextField add_book_ID;
-    @FXML
-    private TextField add_book_isbn;
-    @FXML
-    private TextField add_book_title;
-    @FXML
-    private TextField add_book_author;
-    @FXML
-    private TextField add_book_publisher;
-    @FXML
-    private ComboBox add_book_genre;
-    @FXML
-    private ComboBox add_book_cover;
-    @FXML
-    private TextField add_book_issue_date;
-    @FXML
-    private Button add_book_btn;
-    @FXML
-    private AnchorPane add_book_anchor;
-    @FXML
-    private TableView<SearchReaderTableView> reader_table_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> readerid_column_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> fname_column_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> lname_column_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> email_column_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> phone_column_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> regdate_column_id;
-    @FXML
-    private TableColumn<SearchReaderTableView, String> rating_column_id;
-    @FXML
-    private TableView<SearchBookTableView> search_book_table_view;
+    @FXML private Label greeting_label;
+    @FXML private ListView add_book_for_rent_listview;
+    @FXML private Button add_book_to_listview_btn;
+    @FXML private Button add_listview_to_rent_book_btn;
+    @FXML private ListView chosen_books_for_rent;
+    @FXML private Button clear_all_lend_book_listview_btn;
+    @FXML private Button clear_archived_lend_book_listview_btn;
+    @FXML private TabPane tabPane;
+    @FXML private TextField fname;
+    @FXML private TextField lname;
+    @FXML private TextField email;
+    @FXML private TextField pass;
+    @FXML private TextField phone;
+    @FXML private Button create_btn;
+    @FXML private Button logout_btn;
+    @FXML private Button lend_for_home_btn;
+    @FXML private Button lend_for_reading_room_btn;
+    @FXML private AnchorPane create_reader_anchor;
+    @FXML private TextField search_reader_ID;
+    @FXML private TextField search_reader_fname;
+    @FXML private TextField search_reader_lname;
+    @FXML private TextField search_reader_email;
+    @FXML private TextField search_reader_phone;
+    @FXML private DatePicker search_reader_from;
+    @FXML private DatePicker search_reader_to;
+    @FXML private Button search_reader_btn;
+    @FXML private Button reader_to_rent_book_btn;
+    @FXML private Button search_book_btn;
+    @FXML private TextField search_book_inv;
+    @FXML private TextField search_book_isbn;
+    @FXML private TextField search_book_title;
+    @FXML private TextField search_book_author;
+    @FXML private TextField search_book_publisher;
+    @FXML private ComboBox search_book_genre;
+    @FXML private TextField search_book_date;
+    @FXML private ComboBox search_book_state;
+    @FXML private TextField lend_rd_id;
+    @FXML private TextField lend_rd_name;
+    @FXML private TextField lend_rd_email;
+    @FXML private TextField lend_rd_phone;
+    @FXML private TextField add_book_ID;
+    @FXML private TextField add_book_isbn;
+    @FXML private TextField add_book_title;
+    @FXML private TextField add_book_author;
+    @FXML private TextField add_book_publisher;
+    @FXML private ComboBox add_book_genre;
+    @FXML private ComboBox add_book_cover;
+    @FXML private TextField add_book_issue_date;
+    @FXML private Button add_book_btn;
+    @FXML private AnchorPane add_book_anchor;
+    @FXML private TableView<SearchReaderTableView> reader_table_id;
+    @FXML private TableColumn<SearchReaderTableView, String> readerid_column_id;
+    @FXML private TableColumn<SearchReaderTableView, String> fname_column_id;
+    @FXML private TableColumn<SearchReaderTableView, String> lname_column_id;
+    @FXML private TableColumn<SearchReaderTableView, String> email_column_id;
+    @FXML private TableColumn<SearchReaderTableView, String> phone_column_id;
+    @FXML private TableColumn<SearchReaderTableView, String> regdate_column_id;
+    @FXML private TableColumn<SearchReaderTableView, String> rating_column_id;
+    @FXML private TableView<SearchBookTableView> search_book_table_view;
     @FXML private TableColumn<SearchBookTableView, String> invnum_column_id;
     @FXML private TableColumn<SearchBookTableView, String> title_column_id;
     @FXML private TableColumn<SearchBookTableView, String> author_column_id;
@@ -183,9 +120,26 @@ public class OperatorController {
     @FXML private TextField scrap_genre_id;
     @FXML private TextField scrap_year_id;
     @FXML private Button add_scrap_btn;
+    @FXML private Button return_search_btn;
+    @FXML private TextField return_reader_id;
+    @FXML private TextField return_fname_id;
+    @FXML private TextField return_lname_id;
+    @FXML private TextField return_inv_id;
+    @FXML private TextField return_title_id;
+    @FXML private Button return_btn;
+    @FXML private Button return_extend_btn;
+    @FXML private TableView<ReturnBookTableView> return_table_view;
+    @FXML private TableColumn<ReturnBookTableView, String> return_reader_col_id;
+    @FXML private TableColumn<ReturnBookTableView, String> return_inv_col_id;
+    @FXML private TableColumn<ReturnBookTableView, String> return_title_col_id;
+    @FXML private TableColumn<ReturnBookTableView, String> return_author_col_id;
+    @FXML private TableColumn<ReturnBookTableView, String> return_lend_col_id;
+    @FXML private TableColumn<ReturnBookTableView, String> return_due_col_id;
+    @FXML private TableColumn<ReturnBookTableView, String> return_operator_col_id;
+
     ObservableList<SearchReaderTableView> readersObservableList = FXCollections.observableArrayList();
     ObservableList<SearchBookTableView> searchBooksObservableList = FXCollections.observableArrayList();
-
+    ObservableList<ReturnBookTableView> returnObservableList = FXCollections.observableArrayList();
     public OperatorController() {}
 
     public boolean createReader(){
@@ -277,18 +231,6 @@ public class OperatorController {
         lendBookDTO.setBookIDs(books);
         return operatorService.lendBook(lendBookDTO, currentUser.getUserId());
     };
-
-    public void logout() {
-        ((Stage) greeting_label.getScene().getWindow()).close();
-        try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/initial.fxml")){
-            Parent root = (Parent) fxmlLoader.load(fxml);
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void initialize() {
         for (BookCovers bc : retrieveBookCovers()) {
@@ -445,6 +387,11 @@ public class OperatorController {
                 scrap_year_id.setText(selectedBook.getYear());
             }
         });
+        return_search_btn.setOnAction(event -> {
+            List<RentBook> result = commonAdminOperatorFunctionalities.findLentBooks(operatorService, return_reader_id,
+                    return_fname_id, return_lname_id, return_inv_id, return_title_id
+                    );
+            //commonAdminOperatorFunctionalities.displayLentBooks();
+        });
     }
-
 }

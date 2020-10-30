@@ -3,6 +3,7 @@ package com.lms.servicesImpl;
 import com.lms.models.dtos.AddBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.Book;
+import com.lms.models.entities.RentBook;
 import com.lms.models.entities.User;
 import com.lms.repositories.AdminRepository;
 import com.lms.services.AdminService;
@@ -51,6 +52,11 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public boolean scrapBook(PrivilegedUserService pu, Long bookId) {
         return false;
+    }
+
+    @Override
+    public List<RentBook> findLentBooks(Map<String, String> values) {
+        return null;
     }
 
 

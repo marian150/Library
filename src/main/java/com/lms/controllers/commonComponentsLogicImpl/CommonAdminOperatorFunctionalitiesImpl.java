@@ -5,7 +5,9 @@ import com.lms.controllers.LoginController;
 import com.lms.controllers.commonComponentsLogic.CommonAdminOperatorFunctionalities;
 import com.lms.models.entities.Author;
 import com.lms.models.entities.Book;
+import com.lms.models.entities.RentBook;
 import com.lms.models.entities.User;
+import com.lms.models.nonpersistentclasses.ReturnBookTableView;
 import com.lms.models.nonpersistentclasses.SearchBookTableView;
 import com.lms.models.nonpersistentclasses.SearchReaderTableView;
 import com.lms.services.PrivilegedUserService;
@@ -157,6 +159,54 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
     @Override
     public boolean scrapBook(PrivilegedUserService pu, TextField bookId) {
         return pu.scrapBook(pu, Long.parseLong(bookId.getText()));
+    }
+
+    @Override
+    public List<RentBook> findLentBooks(PrivilegedUserService pu, TextField rid, TextField fname, TextField lname, TextField inv, TextField title) {
+        Map<String, String> values = new HashMap<>();
+        if(rid.getText() != "")
+            values.put("userId", rid.getText());
+        if(fname.getText() != "")
+            values.put("firstName", fname.getText());
+        if(lname.getText() != "")
+            values.put("lastName", lname.getText());
+        if(inv.getText() != "")
+            values.put("bookId", inv.getText());
+        if(title.getText() != "")
+            values.put("title", title.getText());
+        return pu.findLentBooks(values);
+    }
+
+    @Override
+    public void displayLentBooks(List<RentBook> books, TableView<ReturnBookTableView> tableView, ObservableList<ReturnBookTableView> observableList, TableColumn<ReturnBookTableView, String> rid,
+                                 TableColumn<ReturnBookTableView, String> inv, TableColumn<ReturnBookTableView, String> title, TableColumn<ReturnBookTableView, String> author,
+                                 TableColumn<ReturnBookTableView, String> lend, TableColumn<ReturnBookTableView, String> due, TableColumn<ReturnBookTableView, String> operator) {
+        tableView.getItems().clear();
+        for(int i = 0; i < books.size(); i ++){
+            String authors = "";
+            for (Author a : books.get(i).getBook().getAuthors()) {
+                authors += a.getName() + ", ";
+            }
+
+            observableList.add(new ReturnBookTableView(
+                    new SimpleStringProperty(books.get(i).getClient().getUserId().toString()),
+                    new SimpleStringProperty(books.get(i).getBook().getBookId().toString()),
+                    new SimpleStringProperty(books.get(i).getBook().getTitle()),
+                    new SimpleStringProperty(authors),
+                    new SimpleStringProperty(books.get(i).getRentDate().toString()),
+                    new SimpleStringProperty(books.get(i).getDueDate().toString()),
+                    new SimpleStringProperty(books.get(i).getLibrarian().getFirstName() + " " + books.get(i).getLibrarian().getLastName())
+            ));
+        }
+        rid.setCellValueFactory(new PropertyValueFactory<>("readerId"));
+        inv.setCellValueFactory(new PropertyValueFactory<>("inv"));
+        title.setCellValueFactory(new PropertyValueFactory<>("title"));
+        author.setCellValueFactory(new PropertyValueFactory<>("author"));
+        lend.setCellValueFactory(new PropertyValueFactory<>("lendDate"));
+        due.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+        operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
+        tableView.setItems(observableList);
+
     }
 
 }

@@ -1,7 +1,9 @@
 package com.lms.controllers.commonComponentsLogic;
 
 import com.lms.models.entities.Book;
+import com.lms.models.entities.RentBook;
 import com.lms.models.entities.User;
+import com.lms.models.nonpersistentclasses.ReturnBookTableView;
 import com.lms.models.nonpersistentclasses.SearchBookTableView;
 import com.lms.models.nonpersistentclasses.SearchReaderTableView;
 import com.lms.services.PrivilegedUserService;
@@ -29,4 +31,10 @@ public interface CommonAdminOperatorFunctionalities {
 
     void showLendBrowseReaderWindow(ActionEvent event, FXMLLoader fxmlLoader);
     boolean scrapBook(PrivilegedUserService pu, TextField bookId);
+    List<RentBook> findLentBooks(PrivilegedUserService pu, TextField rid, TextField fname, TextField lname, TextField inv, TextField title);
+    void displayLentBooks(List<RentBook> books, TableView<ReturnBookTableView> tableView, ObservableList<ReturnBookTableView> observableList,
+                          TableColumn<ReturnBookTableView, String> rid, TableColumn<ReturnBookTableView, String> inv,
+                          TableColumn<ReturnBookTableView, String> title, TableColumn<ReturnBookTableView, String> author,
+                          TableColumn<ReturnBookTableView, String> lend, TableColumn<ReturnBookTableView, String> due,
+                          TableColumn<ReturnBookTableView, String> operator);
 }

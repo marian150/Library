@@ -15,7 +15,7 @@
         <!-- Assume test is the database name -->
 
         <property name = "hibernate.connection.url">
-            jdbc:oracle:thin:@//localhost:1522/xe
+            jdbc:oracle:thin:@//localhost:1521/xe
         </property>
 
         <property name = "hibernate.connection.username">
@@ -51,6 +51,7 @@
         <mapping class="com.lms.models.entities.ReturnBook" />
         <mapping class="com.lms.models.entities.UserType" />
         <mapping class="com.lms.models.entities.Book" />
+        <mapping class="com.lms.models.entities.RentType" />
 
 
     </session-factory>

@@ -24,4 +24,5 @@ public interface OperatorRepository {
     boolean addAuthor(String author);
     boolean lendBook(LendBookDTO lendBookDTO, Long userId);
     boolean scrapBook(Long id);
+    List<RentBook> findLentBooks(Map<String, String> values);
 }
