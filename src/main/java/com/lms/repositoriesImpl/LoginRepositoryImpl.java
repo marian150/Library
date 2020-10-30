@@ -60,7 +60,6 @@ public class LoginRepositoryImpl implements LoginRepository {
 
             FormStatus formStatus = (FormStatus) session.load(FormStatus.class, (Long)(long)1);
             form.setFormStatus(formStatus);
-            System.out.println(formStatus.getStatusId() + " "+ formStatus.getStatusName());
             session.save(form);
             tx.commit();
         } catch (Exception e){
