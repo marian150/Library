@@ -46,6 +46,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             user.setPassword(Password.hashPassword(signUpDTO.getPassword()));
             user.setPhone(signUpDTO.getPhone());
             user.setRegDate(LocalDate.now());
+            user.setRating(50);
         } catch (Exception e) {}
 
         Transaction tx = null;

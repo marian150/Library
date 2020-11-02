@@ -33,14 +33,14 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "type_id", foreignKey = @ForeignKey(name = "USER_USER_TYPE_FK"))
     private UserType userType;
-/*
-    @OneToOne(mappedBy = "user")
-    private ReaderRating readerRating;
-*/
+
+    @Column(name = "rating")
+    private Integer rating;
+
     public User() {}
 
     public User(long userId, String firstName, String lastName,
-                String email, String password, String phone, LocalDate regDate, UserType userType) {
+                String email, String password, String phone, LocalDate regDate, UserType userType, Integer rating) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,6 +49,7 @@ public class User {
         this.phone = phone;
         this.regDate = regDate;
         this.userType = userType;
+        this.rating = rating;
     }
 
     public Long getUserId() {
@@ -114,4 +115,8 @@ public class User {
     public void setUserType(UserType userType) {
         this.userType = userType;
     }
+
+    public Integer getRating() { return rating; }
+
+    public void setRating(Integer rating) { this.rating = rating; }
 }
