@@ -1,6 +1,5 @@
 package com.lms.controllers.commonComponentsLogicImpl;
 
-import com.lms.controllers.BrowseReaderController;
 import com.lms.controllers.LoginController;
 import com.lms.controllers.commonComponentsLogic.CommonAdminOperatorFunctionalities;
 import com.lms.models.entities.Author;
@@ -143,21 +142,6 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
     }
 
     @Override
-    public void showLendBrowseReaderWindow(ActionEvent event, FXMLLoader fxmlLoader) {
-        try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/lendBookBrowseReader.fxml")){
-            Parent root = (Parent) fxmlLoader.load(fxml);
-            BrowseReaderController browseReaderController = fxmlLoader.getController();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(((Node)event.getSource()).getScene().getWindow());
-            stage.show();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public boolean scrapBook(PrivilegedUserService pu, TextField bookId) {
         return pu.scrapBook(pu, Long.parseLong(bookId.getText()));
     }
@@ -179,7 +163,7 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
     }
 
     @Override
-    public void displayLentBooks(List<RentBook> books, TableView<ReturnBookTableView> tableView, ObservableList<ReturnBookTableView> observableList, TableColumn<ReturnBookTableView, String> rid,
+    public void displayLentBooks(List<RentBook> books, TableView<ReturnBookTableView> tableView, ObservableList<ReturnBookTableView> observableList, TableColumn<ReturnBookTableView, String> lid,TableColumn<ReturnBookTableView, String> rid,
                                  TableColumn<ReturnBookTableView, String> inv, TableColumn<ReturnBookTableView, String> title, TableColumn<ReturnBookTableView, String> author,
                                  TableColumn<ReturnBookTableView, String> lend, TableColumn<ReturnBookTableView, String> due, TableColumn<ReturnBookTableView, String> operator) {
         tableView.getItems().clear();
@@ -190,6 +174,7 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
             }
 
             observableList.add(new ReturnBookTableView(
+                    new SimpleStringProperty(books.get(i).getRentId().toString()),
                     new SimpleStringProperty(books.get(i).getClient().getUserId().toString()),
                     new SimpleStringProperty(books.get(i).getBook().getBookId().toString()),
                     new SimpleStringProperty(books.get(i).getBook().getTitle()),
@@ -199,6 +184,10 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
                     new SimpleStringProperty(books.get(i).getLibrarian().getFirstName() + " " + books.get(i).getLibrarian().getLastName())
             ));
         }
+        for(ReturnBookTableView r : observableList){
+            System.out.println(r.getLendId() + " " + r.getOperator());
+        }
+        lid.setCellValueFactory(new PropertyValueFactory<>("lendId"));
         rid.setCellValueFactory(new PropertyValueFactory<>("readerId"));
         inv.setCellValueFactory(new PropertyValueFactory<>("inv"));
         title.setCellValueFactory(new PropertyValueFactory<>("title"));

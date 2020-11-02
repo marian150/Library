@@ -12,8 +12,6 @@
             oracle.jdbc.driver.OracleDriver
         </property>
 
-        <!-- Assume test is the database name -->
-
         <property name = "hibernate.connection.url">
             jdbc:oracle:thin:@//localhost:1521/xe
         </property>
@@ -35,6 +33,7 @@
         </property>
         -->
         <property name="show_sql"> true </property>
+
         <!-- List of XML mapping files -->
 
         <mapping class="com.lms.models.entities.User" />

@@ -34,10 +34,14 @@ public class RentBook {
     @JoinColumn(name = "rent_type",  referencedColumnName= "rent_type_id", foreignKey = @ForeignKey(name = "RENT_TYPE_FK"))
     private RentType rentType;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "return_id", referencedColumnName = "return_id")
+    private ReturnBook returnBook;
+
     public RentBook() {}
 
     public RentBook(Long rentId, User client, User librarian,
-                    Book book, LocalDate rentDate, LocalDate dueDate, RentType rentType) {
+                    Book book, LocalDate rentDate, LocalDate dueDate, RentType rentType, ReturnBook returnBook) {
         this.rentId = rentId;
         this.client = client;
         this.librarian = librarian;
@@ -45,6 +49,7 @@ public class RentBook {
         this.rentDate = rentDate;
         this.dueDate = dueDate;
         this.rentType = rentType;
+        this.returnBook = returnBook;
     }
 
     public Long getRentId() {
@@ -98,4 +103,12 @@ public class RentBook {
     public RentType getRentType() { return rentType; }
 
     public void setRentType(RentType rentType) { this.rentType = rentType; }
+
+    public ReturnBook getReturnBook() {
+        return returnBook;
+    }
+
+    public void setReturnBook(ReturnBook returnBook) {
+        this.returnBook = returnBook;
+    }
 }

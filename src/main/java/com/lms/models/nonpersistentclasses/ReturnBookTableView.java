@@ -3,6 +3,7 @@ package com.lms.models.nonpersistentclasses;
 import javafx.beans.property.SimpleStringProperty;
 
 public class ReturnBookTableView {
+    private SimpleStringProperty lendId;
     private SimpleStringProperty readerId;
     private SimpleStringProperty inv;
     private SimpleStringProperty title;
@@ -11,7 +12,8 @@ public class ReturnBookTableView {
     private SimpleStringProperty dueDate;
     private SimpleStringProperty operator;
 
-    public ReturnBookTableView(SimpleStringProperty readerId, SimpleStringProperty inv, SimpleStringProperty title, SimpleStringProperty author, SimpleStringProperty lendDate, SimpleStringProperty dueDate, SimpleStringProperty operator) {
+    public ReturnBookTableView( SimpleStringProperty lendId, SimpleStringProperty readerId, SimpleStringProperty inv, SimpleStringProperty title, SimpleStringProperty author, SimpleStringProperty lendDate, SimpleStringProperty dueDate, SimpleStringProperty operator) {
+        this.lendId = lendId;
         this.readerId = readerId;
         this.inv = inv;
         this.title = title;
@@ -19,6 +21,18 @@ public class ReturnBookTableView {
         this.lendDate = lendDate;
         this.dueDate = dueDate;
         this.operator = operator;
+    }
+
+    public String getLendId() {
+        return lendId.get();
+    }
+
+    public SimpleStringProperty lendIdProperty() {
+        return lendId;
+    }
+
+    public void setLendId(String lendId) {
+        this.lendId.set(lendId);
     }
 
     public String getReaderId() {

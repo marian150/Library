@@ -5,6 +5,7 @@ import com.lms.models.dtos.AddBookDTO;
 import com.lms.controllers.commonComponentsLogic.CommonAdminOperatorFunctionalities;
 import com.lms.controllers.commonComponentsLogic.CommonUserFunctionalities;
 import com.lms.models.dtos.LendBookDTO;
+import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.*;
@@ -196,6 +197,7 @@ public class OperatorController {
     @FXML private Button return_btn;
     @FXML private Button return_extend_btn;
     @FXML private TableView<ReturnBookTableView> return_table_view;
+    @FXML private TableColumn<ReturnBookTableView, String> return_lendid_col_id;
     @FXML private TableColumn<ReturnBookTableView, String> return_reader_col_id;
     @FXML private TableColumn<ReturnBookTableView, String> return_inv_col_id;
     @FXML private TableColumn<ReturnBookTableView, String> return_title_col_id;
@@ -206,6 +208,7 @@ public class OperatorController {
 
     ObservableList<SearchReaderTableView> readersObservableList = FXCollections.observableArrayList();
     ObservableList<SearchBookTableView> searchBooksObservableList = FXCollections.observableArrayList();
+    ObservableList<ReturnBookTableView> returnObservableList = FXCollections.observableArrayList();
 
     public OperatorController() {}
 
@@ -246,16 +249,6 @@ public class OperatorController {
 
     public boolean searchPublisher(String publisherName) {return operatorService.searchPublisher(publisherName);}
 
-
-
-    public void setBrowsedUserDetails(BrowseReaderTableView user) {
-        System.out.println(user.getId() + " " + user.getFname());
-        lend_rd_id.setText(String.valueOf(user.getId()));
-        System.out.println(lend_rd_id.getText());
-        lend_rd_name.setText(user.getFname() + " " + user.getLname());
-        lend_rd_email.setText(user.getEmail());
-        lend_rd_phone.setText(user.getPhone());
-    }
     public void nullifyAddBookFields() {
         add_book_genre.setValue(null);
         add_book_cover.setValue(null);
@@ -304,23 +297,39 @@ public class OperatorController {
         lendBookDTO.setUserID(Long.parseLong(lend_rd_id.getText()));
         List<Long> books = new ArrayList<>();
         for(Object item : chosen_books_for_rent.getItems()) {
-            books.add(Long.parseLong(item.toString().substring(0, 1)));
+            String[] values = item.toString().split(" ");
+            books.add(Long.parseLong(values[0]));
         }
         lendBookDTO.setBookIDs(books);
         lendBookDTO.setLendType(lendType);
         return operatorService.lendBook(lendBookDTO, currentUser.getUserId());
     };
 
-    public void logout() {
-        ((Stage) greeting_label.getScene().getWindow()).close();
-        try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/initial.fxml")){
-            Parent root = (Parent) fxmlLoader.load(fxml);
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch(IOException e) {
-            e.printStackTrace();
+    public boolean returnBooks(){
+        ReturnBookDTO returnBookDTO = new ReturnBookDTO();
+        returnBookDTO.setLibId(currentUser.getUserId());
+        List<Long> returnBookIds = new ArrayList<>();
+        TableView.TableViewSelectionModel<ReturnBookTableView> selectionModel = return_table_view.getSelectionModel();
+        ObservableList<ReturnBookTableView> selectedItems = selectionModel.getSelectedItems();
+
+        for(ReturnBookTableView i : selectedItems){
+            returnBookIds.add(Long.parseLong(i.getLendId()));
         }
+        returnBookDTO.setBookIds(returnBookIds);
+        return operatorService.returnBooks(returnBookDTO, currentUser.getUserId());
+    }
+    public void updateAfterReturn(Boolean isSuccessful){
+        if(isSuccessful){
+            TableView.TableViewSelectionModel<ReturnBookTableView> selectionModel = return_table_view.getSelectionModel();
+            ObservableList<ReturnBookTableView> selectedItems = selectionModel.getSelectedItems();
+            return_table_view.getItems().removeAll(selectedItems);
+            return_table_view.getSelectionModel().clearSelection();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Something went wrong");
+            alert.show();
+        }
+
     }
 
     public void initialize() {
@@ -346,11 +355,11 @@ public class OperatorController {
             Error passError = new NotNullErrorDecorator(new UpperErrorDecorator(new LongLengthErrorDecorator(new ShortLengthErrorDecorator(new PasswordError()))));
             Error nameError = new NotNullErrorDecorator(new OnlyCharErrorDecorator(new LongLengthErrorDecorator(new NameError())));
             Error phoneError = new NotNullErrorDecorator(new OnlyNumbersErrorDecorator(new PhoneError()));
-            if (nameError.errors(fname.getText()) != "Name errors:") {
+            if (!nameError.errors(fname.getText()).equals("Name errors:")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(nameError.errors(fname.getText()));
                 alert.show();
-            } else if (nameError.errors(lname.getText()) != "Name errors:") {
+            } else if (!nameError.errors(lname.getText()).equals("Name errors:")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(nameError.errors(lname.getText()));
                 alert.show();
@@ -358,26 +367,26 @@ public class OperatorController {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(emailError.errors(email.getText()));
                 alert.show();
-            } else if(passError.errors(pass.getText()) != "Password errors:") {
+            } else if(!passError.errors(pass.getText()).equals("Password errors:")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(passError.errors(pass.getText()));
                 alert.show();
-            }else if (phoneError.errors(phone.getText()) != "Phone errors:") {
+            }else if (!phoneError.errors(phone.getText()).equals("Phone errors:")) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(phoneError.errors(phone.getText()));
                 alert.show();
             } else {
                 boolean isCreated = createReader();
                 nullifyCreateReaderFields();
+                Alert alert;
                 if (isCreated) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setContentText("Succesfully created reader");
-                    alert.show();
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Successfully created reader");
                 } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert = new Alert(Alert.AlertType.ERROR);
                     alert.setContentText("Something went wrong");
-                    alert.show();
                 }
+                alert.show();
             }
         });
 
@@ -415,15 +424,15 @@ public class OperatorController {
         });
 
         add_book_btn.setOnAction(event -> {
-            boolean addBookSuccessfull = false;
+            boolean addBookSuccessful = false;
             List<String> authorListString = Arrays.asList(add_book_author.getText().split(","));
             if(searchPublisher(add_book_publisher.getText())) {
-                addBookSuccessfull = addBook();
+                addBookSuccessful = addBook();
             } else {
                 addPublisher(add_book_publisher.getText());
-                addBookSuccessfull = addBook();
+                addBookSuccessful = addBook();
             }
-            if (addBookSuccessfull) {
+            if (addBookSuccessful) {
                 Label addedBook = new Label("Successfully added Book.");
                 addedBook.setTextFill(Color.GREEN);
                 add_book_anchor.getChildren().add(addedBook);
@@ -511,9 +520,15 @@ public class OperatorController {
             List<RentBook> result = commonAdminOperatorFunctionalities.findLentBooks(operatorService, return_reader_id,
                     return_fname_id, return_lname_id, return_inv_id, return_title_id
                     );
-            commonAdminOperatorFunctionalities.displayLentBooks(result, return_table_view, returnObservableList, return_reader_col_id,
+            commonAdminOperatorFunctionalities.displayLentBooks(result, return_table_view, returnObservableList, return_lendid_col_id,return_reader_col_id,
                     return_inv_col_id,return_title_col_id, return_author_col_id,return_lend_col_id,
                     return_due_col_id, return_operator_col_id);
+            TableView.TableViewSelectionModel<ReturnBookTableView> selectionModel = return_table_view.getSelectionModel();
+            selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
+        });
+        return_btn.setOnAction(event -> {
+            //returnBooks();
+            updateAfterReturn(returnBooks());
         });
     }
 

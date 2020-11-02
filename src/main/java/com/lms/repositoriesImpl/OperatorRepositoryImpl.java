@@ -3,16 +3,20 @@ package com.lms.repositoriesImpl;
 import com.lms.config.ConfigurationSessionFactory;
 import com.lms.models.dtos.AddBookDTO;
 import com.lms.models.dtos.LendBookDTO;
+import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.repositories.OperatorRepository;
 import com.lms.security.Password;
 import net.bytebuddy.asm.Advice;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.loader.custom.sql.SQLQueryParser;
+import org.hibernate.query.NativeQuery;
 import org.jboss.weld.exceptions.NullInstanceException;
 
 import javax.enterprise.context.Dependent;
@@ -23,6 +27,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.lang.reflect.Array;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -452,7 +457,8 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             rb.fetch("librarian", JoinType.LEFT);
             rb.fetch("book", JoinType.LEFT).fetch("authors", JoinType.LEFT);
             rb.fetch("rentType", JoinType.LEFT);
-            cq.select(rb);
+            cq.select(rb).distinct(true);
+
 
             if(values.containsKey("userId"))
                 predicates.add(cb.equal(rb.get("client").get("userId"), Long.parseLong(values.get("userId"))));
@@ -464,6 +470,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
                 predicates.add(cb.equal(rb.get("book").get("bookId"), Long.parseLong(values.get("bookId"))));
             if(values.containsKey("title"))
                 predicates.add(cb.like(rb.get("book").get("title"), values.get("title")));
+            predicates.add(cb.isNull(rb.get("returnBook")));
             Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
             cq.where(finalPredicate);
             TypedQuery<RentBook> typedQuery = session.createQuery(cq);
@@ -479,9 +486,45 @@ public class OperatorRepositoryImpl implements OperatorRepository {
     }
 
     @Override
+    public boolean returnBooks(ReturnBookDTO books, Long libId) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+
+            for(Long id : books.getBookIds()){
+                // get the lent book into object/entity
+                RentBook rentBook = session.get(RentBook.class, id);
+                // create new entity ReturnBook which will be filled with details about the returning
+                ReturnBook returnBook = new ReturnBook();
+                returnBook.setReturnId(rentBook.getRentId()); // set the id of the row from rent_book
+                returnBook.setLibId(libId); // set id of librarian who accepted the book
+                returnBook.setReturnDate(LocalDate.now()); // set current date
+                returnBook.setBookId(rentBook.getBook().getBookId()); // set the id of the book
+                returnBook.setClientId(rentBook.getClient().getUserId()); // set id of the reader
+                // save entity to DB
+                session.save(returnBook);
+                // find the row from table return_book by the retrieved id
+                ReturnBook lastReturnedBook = session.get(ReturnBook.class, id);
+                // insert the id of the newly created row in return_book into the FK in rent_book
+                rentBook.setReturnBook(lastReturnedBook);
+                // save updated entity to DB
+                session.save(rentBook);
+            }
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            if(tx != null) tx.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
     public boolean lendBook(LendBookDTO lendBookDTO, Long userId) {
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
-
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
@@ -500,7 +543,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
                 rentBook.setClient(client);
 
                 Query queryL = session.createQuery("Select u from User u where u.userId = :userId");
-                queryL.setParameter("userId", 1L); // this must be current operator's ID
+                queryL.setParameter("userId", userId);
                 User lib = (User) queryL.getSingleResult();
 
                 Query queryRT = session.createQuery("Select rt from RentType rt where rt.typeId = :typeId");
@@ -511,8 +554,6 @@ public class OperatorRepositoryImpl implements OperatorRepository {
                 rentBook.setLibrarian(lib);
                 rentBook.setRentDate(LocalDate.now());
                 rentBook.setDueDate(LocalDate.now().plusMonths(1));
-
-
                 session.save(rentBook);
             }
             tx.commit();

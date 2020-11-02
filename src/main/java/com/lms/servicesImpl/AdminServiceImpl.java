@@ -2,6 +2,7 @@ package com.lms.servicesImpl;
 
 import com.lms.models.dtos.AddBookDTO;
 import com.lms.models.dtos.LendBookDTO;
+import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.repositories.AdminRepository;
@@ -95,6 +96,11 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public boolean lendBook(LendBookDTO lendBookDTO, Long userId) {
+        return false;
+    }
+
+    @Override
+    public boolean returnBooks(ReturnBookDTO returnBookDTO, Long libId) {
         return false;
     }
 

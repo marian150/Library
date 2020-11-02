@@ -2,6 +2,7 @@ package com.lms.repositories;
 
 import com.lms.models.dtos.AddBookDTO;
 import com.lms.models.dtos.LendBookDTO;
+import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 
@@ -25,4 +26,5 @@ public interface OperatorRepository {
     boolean lendBook(LendBookDTO lendBookDTO, Long userId);
     boolean scrapBook(Long id);
     List<RentBook> findLentBooks(Map<String, String> values);
+    boolean returnBooks(ReturnBookDTO books, Long libId);
 }

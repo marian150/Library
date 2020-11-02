@@ -29,12 +29,11 @@ public interface CommonAdminOperatorFunctionalities {
     List<User> searchReader(TextField id, TextField fname, TextField lname, TextField email, TextField phone,
                             DatePicker from, DatePicker to, PrivilegedUserService pu);
 
-    void showLendBrowseReaderWindow(ActionEvent event, FXMLLoader fxmlLoader);
     boolean scrapBook(PrivilegedUserService pu, TextField bookId);
     List<RentBook> findLentBooks(PrivilegedUserService pu, TextField rid, TextField fname, TextField lname, TextField inv, TextField title);
     void displayLentBooks(List<RentBook> books, TableView<ReturnBookTableView> tableView, ObservableList<ReturnBookTableView> observableList,
-                          TableColumn<ReturnBookTableView, String> rid, TableColumn<ReturnBookTableView, String> inv,
-                          TableColumn<ReturnBookTableView, String> title, TableColumn<ReturnBookTableView, String> author,
-                          TableColumn<ReturnBookTableView, String> lend, TableColumn<ReturnBookTableView, String> due,
-                          TableColumn<ReturnBookTableView, String> operator);
+                          TableColumn<ReturnBookTableView, String> lid, TableColumn<ReturnBookTableView, String> rid,
+                          TableColumn<ReturnBookTableView, String> inv, TableColumn<ReturnBookTableView, String> title,
+                          TableColumn<ReturnBookTableView, String> author, TableColumn<ReturnBookTableView, String> lend,
+                          TableColumn<ReturnBookTableView, String> due, TableColumn<ReturnBookTableView, String> operator);
 }

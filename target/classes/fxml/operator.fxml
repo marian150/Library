@@ -70,8 +70,9 @@
                                                         </AnchorPane>
                                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                              <children>
-                                                <TableView fx:id="return_table_view" layoutY="-2.0" prefHeight="315.0" prefWidth="642.0">
+                                                <TableView fx:id="return_table_view" editable="true" layoutY="-2.0" prefHeight="315.0" prefWidth="642.0">
                                                   <columns>
+                                                      <TableColumn fx:id="return_lendid_col_id" prefWidth="75.0" text="Lend ID" visible="false" />
                                                     <TableColumn fx:id="return_reader_col_id" prefWidth="75.0" text="Reader ID" />
                                                     <TableColumn fx:id="return_inv_col_id" prefWidth="75.0" text="Inventory number" />
                                                       <TableColumn fx:id="return_title_col_id" prefWidth="75.0" text="Title" />

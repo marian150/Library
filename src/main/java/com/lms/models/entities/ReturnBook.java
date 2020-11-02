@@ -1,9 +1,6 @@
 package com.lms.models.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -12,24 +9,26 @@ public class ReturnBook {
     @Id
     @Column(name = "return_id")
     private Long returnId;
-
+    @Column(name = "client_id")
     private Long clientId;
-
+    @Column(name = "lib_id")
     private Long libId;
-
+    @Column(name = "book_id")
     private Long bookId;
-
     @Column(name = "return_date")
     private LocalDate returnDate;
+    @OneToOne(mappedBy = "returnBook")
+    private RentBook rentBook;
 
     public ReturnBook() {}
 
-    public ReturnBook(Long returnId, Long clientId, Long libId, Long bookId, LocalDate returnDate) {
+    public ReturnBook(Long returnId, Long clientId, Long libId, Long bookId, LocalDate returnDate, RentBook rentBook) {
         this.returnId = returnId;
         this.clientId = clientId;
         this.libId = libId;
         this.bookId = bookId;
         this.returnDate = returnDate;
+        this.rentBook = rentBook;
     }
 
     public Long getReturnId() {
@@ -70,5 +69,13 @@ public class ReturnBook {
 
     public void setReturnDate(LocalDate returnDate) {
         this.returnDate = returnDate;
+    }
+
+    public RentBook getRentBook() {
+        return rentBook;
+    }
+
+    public void setRentBook(RentBook rentBook) {
+        this.rentBook = rentBook;
     }
 }
