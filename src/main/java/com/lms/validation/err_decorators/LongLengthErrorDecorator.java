@@ -1,6 +1,9 @@
-package com.lms.validation;
+package com.lms.validation.err_decorators;
 
-public class LongLengthErrorDecorator extends ErrorDecorator{
+import com.lms.validation.base.Error;
+import com.lms.validation.base.ErrorDecorator;
+
+public class LongLengthErrorDecorator extends ErrorDecorator {
     Error error;
 
     public LongLengthErrorDecorator(Error error) {
