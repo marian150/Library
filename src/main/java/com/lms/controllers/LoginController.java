@@ -4,8 +4,12 @@ import com.lms.models.dtos.LoginDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.User;
 import com.lms.services.LoginService;
-import com.lms.validation.*;
-import com.lms.validation.Error;
+import com.lms.validation.base.Error;
+import com.lms.validation.err_decorators.*;
+import com.lms.validation.err_types.EmailError;
+import com.lms.validation.err_types.NameError;
+import com.lms.validation.err_types.PasswordError;
+import com.lms.validation.err_types.PhoneError;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -55,9 +59,19 @@ public class LoginController {
     }
     public void signup(){
         SignUpDTO signUpDTO = new SignUpDTO(reg_first_name_id.getText(), reg_last_name_id.getText(), reg_email_id.getText(), reg_passwd_id.getText(), reg_phone_id.getText());
-        Error emailError = new EmailError();
-        Error passError = new UpperErrorDecorator(new LongLengthErrorDecorator(new ShortLengthErrorDecorator(new PasswordError())));
-        if(emailError.errors(signUpDTO.getEmail()) != null) {
+        Error emailError = new NotNullErrorDecorator(new EmailError());
+        Error passError = new NotNullErrorDecorator(new UpperErrorDecorator(new LongLengthErrorDecorator(new ShortLengthErrorDecorator(new PasswordError()))));
+        Error nameError = new NotNullErrorDecorator(new OnlyCharErrorDecorator(new LongLengthErrorDecorator(new NameError())));
+        Error phoneError = new NotNullErrorDecorator(new OnlyNumbersErrorDecorator(new PhoneError()));
+        if (nameError.errors(signUpDTO.getFirstname()) != "Name errors:") {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(nameError.errors(signUpDTO.getFirstname()));
+            alert.show();
+        } else if (nameError.errors(signUpDTO.getLastname()) != "Name errors:") {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(nameError.errors(signUpDTO.getLastname()));
+            alert.show();
+        } else if(emailError.errors(signUpDTO.getEmail()) != null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(emailError.errors(signUpDTO.getEmail()));
             alert.show();
@@ -65,7 +79,11 @@ public class LoginController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(passError.errors(signUpDTO.getPassword()));
             alert.show();
-        }else{
+        }else if (phoneError.errors(signUpDTO.getPhone()) != "Phone errors:") {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(phoneError.errors(signUpDTO.getPhone()));
+            alert.show();
+        }else {
             loginService.signup(signUpDTO);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("You have successfully send a registration form. \n" +
