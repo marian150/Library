@@ -499,7 +499,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
                 rentBook.setClient(client);
 
                 Query queryL = session.createQuery("Select u from User u where u.userId = :userId");
-                queryL.setParameter("userId", 1L); // this must be current operator's ID
+                queryL.setParameter("userId", userId);
                 User lib = (User) queryL.getSingleResult();
 
                 Query queryRT = session.createQuery("Select rt from RentType rt where rt.typeId = :typeId");
@@ -511,12 +511,12 @@ public class OperatorRepositoryImpl implements OperatorRepository {
                 rentBook.setRentDate(LocalDate.now());
                 rentBook.setDueDate(LocalDate.now().plusMonths(1));
 
-
                 session.save(rentBook);
             }
             tx.commit();
             return true;
-        } catch (Exception e) {
+        }catch (Exception e) {
+            e.printStackTrace();
             if (tx != null) tx.rollback();
             return false;
         } finally {

@@ -34,6 +34,8 @@ public class ReaderController {
     @FXML
     private Label greeting_label;
     @FXML
+    private ListView personal_data_list;
+    @FXML
     private TableView<ReaderTableView> books_table_view;
     @FXML
     private TableColumn<ReaderTableView, String> title_column_id;
@@ -51,8 +53,8 @@ public class ReaderController {
     public ReaderController() {}
 
     // Object[] to be changed to RentBook entity
-    public List<Object[]> loadBooks() {
-        List<Object[]> books = readerService.loadBooks();
+    public List<Object[]> loadBooks(Long userId) {
+        List<Object[]> books = readerService.loadBooks(userId);
         return books;
     }
 
@@ -88,11 +90,15 @@ public class ReaderController {
             commonUserFunctionalities.logout(greeting_label, fxmlLoader);
         });
 
-        System.out.println(currentUser.getFirstName());
-
         Platform.runLater(() -> {
             System.out.println(currentUser.getFirstName());
+            displayBooks(loadBooks(currentUser.getUserId()));
+            personal_data_list.getItems().add(currentUser.getUserId());
+            personal_data_list.getItems().add(currentUser.getFirstName());
+            personal_data_list.getItems().add(currentUser.getLastName());
+            personal_data_list.getItems().add(currentUser.getPhone());
+            personal_data_list.getItems().add(currentUser.getEmail());
+            personal_data_list.getItems().add(currentUser.getRegDate());
         });
-        displayBooks(loadBooks());
     }
 }

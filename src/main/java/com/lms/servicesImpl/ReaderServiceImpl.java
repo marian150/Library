@@ -14,8 +14,8 @@ public class ReaderServiceImpl implements ReaderService {
     @Inject
     private ReaderRepository readerRepository;
 
-    public List<Object[]> loadBooks() {
-        List<Object[]> books = readerRepository.loadBooks();
+    public List<Object[]> loadBooks(Long userId) {
+        List<Object[]> books = readerRepository.loadBooks(userId);
         return books;
     }
 }

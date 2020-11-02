@@ -12,7 +12,7 @@ import java.util.List;
 @Dependent
 public class ReaderRepositoryImpl implements ReaderRepository {
     @Override
-    public List<Object[]> loadBooks() {
+    public List<Object[]> loadBooks(Long userId) {
 
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
@@ -27,11 +27,10 @@ public class ReaderRepositoryImpl implements ReaderRepository {
                     "join rb.book b \n" +
                     "join b.authors aut \n" +
                     "join b.publisher pub \n" +
-                    "where uc.firstName like :fname and uc.lastName like :lname";
+                    "where uc.userId like :userId";
 
         Query query = session.createQuery(hql);
-        query.setParameter("fname", "Pesho");
-        query.setParameter("lname", "Peshev");
+        query.setParameter("userId", userId);
 
         List<Object[]> result;
 

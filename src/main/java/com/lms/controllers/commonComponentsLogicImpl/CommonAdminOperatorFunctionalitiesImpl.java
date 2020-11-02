@@ -1,6 +1,5 @@
 package com.lms.controllers.commonComponentsLogicImpl;
 
-import com.lms.controllers.BrowseReaderController;
 import com.lms.controllers.LoginController;
 import com.lms.controllers.commonComponentsLogic.CommonAdminOperatorFunctionalities;
 import com.lms.models.entities.Author;

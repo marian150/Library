@@ -206,6 +206,7 @@ public class OperatorController {
 
     ObservableList<SearchReaderTableView> readersObservableList = FXCollections.observableArrayList();
     ObservableList<SearchBookTableView> searchBooksObservableList = FXCollections.observableArrayList();
+    ObservableList<ReturnBookTableView> returnObservableList = FXCollections.observableArrayList();
 
     public OperatorController() {}
 
@@ -467,7 +468,16 @@ public class OperatorController {
                 alert.setContentText("You cannot lend Archived books for home!");
                 alert.show();
             } else {
-                lendBook(1L);
+                boolean successfulLend = lendBook(1L);
+                if (successfulLend) {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Lend successful");
+                    alert.show();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Error when lending books");
+                    alert.show();
+                }
                 chosen_books_for_rent.getItems().clear();
                 nullifyLendBookUserDetails();
             }

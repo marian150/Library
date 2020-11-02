@@ -6,5 +6,5 @@ import com.lms.models.entities.User;
 import java.util.List;
 
 public interface ReaderRepository {
-    List<Object[]> loadBooks();
+    List<Object[]> loadBooks(Long userId);
 }
