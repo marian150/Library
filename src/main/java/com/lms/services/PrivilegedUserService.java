@@ -1,10 +1,9 @@
 package com.lms.services;
 
 import com.lms.models.dtos.AddBookDTO;
+import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.SignUpDTO;
-import com.lms.models.entities.Book;
-import com.lms.models.entities.RentBook;
-import com.lms.models.entities.User;
+import com.lms.models.entities.*;
 
 import java.util.List;
 import java.util.Map;
@@ -17,4 +16,12 @@ public interface PrivilegedUserService {
     boolean addBook(AddBookDTO addBookDTO);
     boolean scrapBook(PrivilegedUserService pu, Long bookId);
     List<RentBook> findLentBooks(Map<String, String> values);
+    List<BookCovers> retrieveBookCovers();
+    List<Genre> retrieveBookGenre();
+    List<BookState> retrieveBookState();
+    boolean addPublisher(String publisherName);
+    boolean searchPublisher(String publisherName);
+    boolean searchAuthor(String author);
+    boolean addAuthor(String author);
+    boolean lendBook(LendBookDTO lendBookDTO, Long userId);
 }

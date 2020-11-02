@@ -2,6 +2,7 @@ package com.lms.controllers.commonComponentsLogicImpl;
 
 import com.lms.controllers.LoginController;
 import com.lms.controllers.commonComponentsLogic.CommonUserFunctionalities;
+import com.lms.models.entities.User;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,6 +15,7 @@ import java.io.InputStream;
 
 @Dependent
 public class CommonUserFunctionalitiesImpl implements CommonUserFunctionalities {
+
     @Override
     public void logout(Label greeting_label, FXMLLoader fxmlLoader) {
         ((Stage) greeting_label.getScene().getWindow()).close();

@@ -1,7 +1,9 @@
 package com.lms.controllers;
 
+import com.lms.controllers.commonComponentsLogic.CommonAdminOperatorFunctionalities;
 import com.lms.controllers.commonComponentsLogic.CommonUserFunctionalities;
 import com.lms.models.dtos.SignUpDTO;
+import com.lms.models.entities.User;
 import com.lms.services.AdminService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +23,9 @@ public class AdminController {
     FXMLLoader fxmlLoader;
     @Inject
     private CommonUserFunctionalities commonUserFunctionalities;
+    @Inject
+    private CommonAdminOperatorFunctionalities commonAdminOperatorFunctionalities;
+    private User currentUser;
     @FXML
     private Label greeting_label;
     @FXML
@@ -45,6 +50,13 @@ public class AdminController {
         return adminService.createOperator(signUpDTO);
     }
 
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
+    }
+
+    public void setGreeting_label(String names) {
+        greeting_label.setText(names);
+    }
     public void initialize(){
         logout_btn.setOnAction(event -> {
             commonUserFunctionalities.logout(greeting_label, fxmlLoader);

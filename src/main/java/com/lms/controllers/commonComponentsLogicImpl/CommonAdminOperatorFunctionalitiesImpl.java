@@ -33,6 +33,7 @@ import java.util.Map;
 
 @Dependent
 public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperatorFunctionalities {
+
     public List<Book> searchBook(TextField inv, TextField title, TextField isbn, TextField author, ComboBox genre, TextField publ, TextField year, ComboBox state, PrivilegedUserService pu) {
         Map<String, String> values = new HashMap<>();
         if(inv.getText() != "")

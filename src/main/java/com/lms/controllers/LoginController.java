@@ -111,9 +111,9 @@ public class LoginController {
                         ((Stage) login_email_id.getScene().getWindow()).close();
                         try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/admin.fxml")){
                             Parent root = (Parent) fxmlLoader.load(fxml);
-                            OperatorController operatorController = fxmlLoader.getController();
-                            operatorController.setGreeting_label("Hello, " + loadedUser.getFirstName() + " " + loadedUser.getLastName());
-                            operatorController.setCurrentUser(loadedUser);
+                            AdminController adminController = fxmlLoader.getController();
+                            adminController.setGreeting_label("Hello, " + loadedUser.getFirstName() + " " + loadedUser.getLastName());
+                            adminController.setCurrentUser(loadedUser);
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root));
                             stage.show();

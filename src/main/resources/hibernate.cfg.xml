@@ -46,7 +46,6 @@
         <mapping class="com.lms.models.entities.BookState" />
         <mapping class="com.lms.models.entities.Genre" />
         <mapping class="com.lms.models.entities.Publisher" />
-        <mapping class="com.lms.models.entities.ReaderRating" />
         <mapping class="com.lms.models.entities.RentBook" />
         <mapping class="com.lms.models.entities.ReturnBook" />
         <mapping class="com.lms.models.entities.UserType" />

@@ -142,6 +142,13 @@ public class OperatorController {
     ObservableList<ReturnBookTableView> returnObservableList = FXCollections.observableArrayList();
     public OperatorController() {}
 
+    public void setCurrentUser(User user) {
+        this.currentUser = user;
+    }
+
+    public void setGreeting_label(String names) {
+        greeting_label.setText(names);
+    }
     public boolean createReader(){
         SignUpDTO signUpDTO = new SignUpDTO(fname.getText(), lname.getText(), email.getText(), pass.getText(), phone.getText());
         return operatorService.createReader(signUpDTO);
@@ -172,13 +179,7 @@ public class OperatorController {
 
     public boolean searchPublisher(String publisherName) {return operatorService.searchPublisher(publisherName);}
 
-    public void setCurrentUser(User user) {
-        this.currentUser = user;
-    }
 
-    public void setGreeting_label(String names) {
-        greeting_label.setText(names);
-    }
 
     public void setBrowsedUserDetails(BrowseReaderTableView user) {
         System.out.println(user.getId() + " " + user.getFname());
