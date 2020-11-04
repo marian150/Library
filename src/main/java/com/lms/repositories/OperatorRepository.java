@@ -6,7 +6,7 @@ import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 
-
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -26,5 +26,6 @@ public interface OperatorRepository {
     boolean lendBook(LendBookDTO lendBookDTO, Long userId);
     boolean scrapBook(Long id);
     List<RentBook> findLentBooks(Map<String, String> values);
-    boolean returnBooks(ReturnBookDTO books, Long libId);
+    boolean returnBooks(ReturnBookDTO books);
+    LocalDate extendDueDate(Long id);
 }

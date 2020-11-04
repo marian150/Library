@@ -11,6 +11,7 @@ import com.lms.services.PrivilegedUserService;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -100,8 +101,13 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public boolean returnBooks(ReturnBookDTO returnBookDTO, Long libId) {
+    public boolean returnBooks(ReturnBookDTO returnBookDTO) {
         return false;
+    }
+
+    @Override
+    public LocalDate extendDueDate(Long id) {
+        return null;
     }
 
 

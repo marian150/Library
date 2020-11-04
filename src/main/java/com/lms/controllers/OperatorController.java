@@ -16,27 +16,14 @@ import com.lms.validation.err_types.EmailError;
 import com.lms.validation.err_types.NameError;
 import com.lms.validation.err_types.PasswordError;
 import com.lms.validation.err_types.PhoneError;
-import javafx.beans.property.SimpleLongProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import net.bytebuddy.asm.Advice;
-import org.dom4j.Text;
-
 import javax.inject.Inject;
-import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -316,7 +303,7 @@ public class OperatorController {
             returnBookIds.add(Long.parseLong(i.getLendId()));
         }
         returnBookDTO.setBookIds(returnBookIds);
-        return operatorService.returnBooks(returnBookDTO, currentUser.getUserId());
+        return operatorService.returnBooks(returnBookDTO);
     }
     public void updateAfterReturn(Boolean isSuccessful){
         if(isSuccessful){
@@ -330,6 +317,22 @@ public class OperatorController {
             alert.show();
         }
 
+    }
+
+    public LocalDate extendDueDate(){
+        ReturnBookTableView selectedItem = return_table_view.getSelectionModel().getSelectedItem();
+        return operatorService.extendDueDate(Long.parseLong(selectedItem.getLendId()));
+    }
+
+    public void updateAfterExtendDueDate(LocalDate newDueDate){
+
+        if(newDueDate == null || newDueDate.equals(return_table_view.getSelectionModel().getSelectedItem().getDueDate())){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Something went wrong");
+            alert.show();
+        } else {
+            return_table_view.getSelectionModel().getSelectedItem().setDueDate(newDueDate.toString());
+        }
     }
 
     public void initialize() {
@@ -536,8 +539,11 @@ public class OperatorController {
             selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
         });
         return_btn.setOnAction(event -> {
-            //returnBooks();
             updateAfterReturn(returnBooks());
+        });
+
+        return_extend_btn.setOnAction(event -> {
+            updateAfterExtendDueDate(extendDueDate());
         });
     }
 

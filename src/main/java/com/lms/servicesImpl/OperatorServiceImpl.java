@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +91,10 @@ public class OperatorServiceImpl implements OperatorService {
     public boolean lendBook(LendBookDTO lendBookDTO, Long userId) { return operatorRepository.lendBook(lendBookDTO, userId); }
 
     @Override
-    public boolean returnBooks(ReturnBookDTO returnBookDTO, Long libId) { return operatorRepository.returnBooks(returnBookDTO, libId); }
+    public boolean returnBooks(ReturnBookDTO returnBookDTO) { return operatorRepository.returnBooks(returnBookDTO); }
+
+    @Override
+    public LocalDate extendDueDate(Long id) { return operatorRepository.extendDueDate(id); }
 
     @Override
     public List<RentBook> findLentBooks(Map<String, String> values) { return operatorRepository.findLentBooks(values); }

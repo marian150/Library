@@ -486,7 +486,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
     }
 
     @Override
-    public boolean returnBooks(ReturnBookDTO books, Long libId) {
+    public boolean returnBooks(ReturnBookDTO books) {
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
         Transaction tx = null;
 
@@ -499,7 +499,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
                 // create new entity ReturnBook which will be filled with details about the returning
                 ReturnBook returnBook = new ReturnBook();
                 returnBook.setReturnId(rentBook.getRentId()); // set the id of the row from rent_book
-                returnBook.setLibId(libId); // set id of librarian who accepted the book
+                returnBook.setLibId(books.getLibId()); // set id of librarian who accepted the book
                 returnBook.setReturnDate(LocalDate.now()); // set current date
                 returnBook.setBookId(rentBook.getBook().getBookId()); // set the id of the book
                 returnBook.setClientId(rentBook.getClient().getUserId()); // set id of the reader
@@ -517,6 +517,29 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         } catch (Exception e) {
             if(tx != null) tx.rollback();
             return false;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public LocalDate extendDueDate(Long id) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            RentBook rentBookToBeUpdated = session.get(RentBook.class, id);
+            rentBookToBeUpdated.setDueDate(rentBookToBeUpdated.getDueDate().plusMonths(1));
+            session.save(rentBookToBeUpdated);
+
+            tx.commit();
+
+            RentBook rentBook = session.get(RentBook.class, id);
+            return rentBook.getDueDate();
+        } catch (Exception e) {
+            if(tx != null) tx.rollback();
+            return null;
         } finally {
             session.close();
         }
