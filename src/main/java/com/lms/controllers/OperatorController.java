@@ -500,9 +500,11 @@ public class OperatorController {
         });
 
         clear_archived_lend_book_listview_btn.setOnAction(event -> {
-            for(Object item : chosen_books_for_rent.getItems()) {
+            for(int i = 0; i < chosen_books_for_rent.getItems().size(); i++) {
+                Object item = chosen_books_for_rent.getItems().get(i);
                 if(item.toString().contains("Archived")) {
                     chosen_books_for_rent.getItems().remove(item);
+                    i--;
                 }
             }
         });
