@@ -236,36 +236,7 @@ public class OperatorController {
 
     public boolean searchPublisher(String publisherName) {return operatorService.searchPublisher(publisherName);}
 
-    public void nullifyAddBookFields() {
-        add_book_genre.setValue(null);
-        add_book_cover.setValue(null);
-        add_book_isbn.clear();
-        add_book_ID.clear();
-        add_book_author.clear();
-        add_book_issue_date.clear();
-        add_book_publisher.clear();
-        add_book_title.clear();
-    }
 
-    public void nullifyCreateReaderFields() {
-        fname.clear(); lname.clear(); email.clear(); pass.clear(); phone.clear();
-    }
-    public void nullifyLendBookUserDetails() {
-        lend_rd_phone.clear();
-        lend_rd_email.clear();
-        lend_rd_name.clear();
-        lend_rd_id.clear();
-    }
-
-    public void nullifyCrapBookFields() {
-        scrap_author_id.clear();
-        scrap_genre_id.clear();
-        scrap_inv_id.clear();
-        scrap_isbn_id.clear();
-        scrap_publ_id.clear();
-        scrap_title_id.clear();
-        scrap_year_id.clear();
-    }
 
     public boolean addPublisher(String publisherName) {
         return operatorService.addPublisher(publisherName);
@@ -326,7 +297,7 @@ public class OperatorController {
 
     public void updateAfterExtendDueDate(LocalDate newDueDate){
 
-        if(newDueDate == null || newDueDate.equals(return_table_view.getSelectionModel().getSelectedItem().getDueDate())){
+        if(newDueDate == null || newDueDate.equals(LocalDate.parse(return_table_view.getSelectionModel().getSelectedItem().getDueDate()))){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Something went wrong");
             alert.show();
@@ -380,7 +351,7 @@ public class OperatorController {
                 alert.show();
             } else {
                 boolean isCreated = createReader();
-                nullifyCreateReaderFields();
+                commonAdminOperatorFunctionalities.nullifyCreateReaderFields(fname, lname, email, pass, phone);
                 Alert alert;
                 if (isCreated) {
                     alert = new Alert(Alert.AlertType.INFORMATION);
@@ -398,11 +369,10 @@ public class OperatorController {
                     search_reader_fname,search_reader_lname, search_reader_email, search_reader_phone,
                     search_reader_from, search_reader_to, operatorService
             );
-            // rating_column_id is still missing, to be added later
             commonAdminOperatorFunctionalities.displayUsers(
                     result, reader_table_id, readersObservableList, readerid_column_id,
                     fname_column_id, lname_column_id, email_column_id, phone_column_id,
-                    regdate_column_id
+                    regdate_column_id, rating_column_id
             );
         });
 
@@ -444,7 +414,7 @@ public class OperatorController {
                 addedBook.setTextFill(Color.RED);
                 add_book_anchor.getChildren().add(addedBook);
             }
-            nullifyAddBookFields();
+            commonAdminOperatorFunctionalities.nullifyAddBookFields(add_book_genre, add_book_cover,add_book_isbn,add_book_ID,add_book_author,add_book_issue_date, add_book_publisher,add_book_title);
         });
 
         add_book_to_listview_btn.setOnAction(event -> {
@@ -464,7 +434,7 @@ public class OperatorController {
         lend_for_reading_room_btn.setOnAction(event -> {
             lendBook(2L);
             chosen_books_for_rent.getItems().clear();
-            nullifyLendBookUserDetails();
+            commonAdminOperatorFunctionalities.nullifyLendBookUserDetails(lend_rd_phone, lend_rd_email, lend_rd_name, lend_rd_id);
         });
 
         lend_for_home_btn.setOnAction(event -> {
@@ -491,7 +461,7 @@ public class OperatorController {
                     alert.show();
                 }
                 chosen_books_for_rent.getItems().clear();
-                nullifyLendBookUserDetails();
+                commonAdminOperatorFunctionalities.nullifyLendBookUserDetails(lend_rd_phone, lend_rd_email, lend_rd_name, lend_rd_id);
             }
         });
 
@@ -515,7 +485,7 @@ public class OperatorController {
 
         scrap_btn.setOnAction(event -> {
             commonAdminOperatorFunctionalities.scrapBook(operatorService, scrap_inv_id);
-            nullifyCrapBookFields();
+            commonAdminOperatorFunctionalities.nullifyCrapBookFields(scrap_author_id,scrap_genre_id, scrap_inv_id, scrap_isbn_id,scrap_publ_id, scrap_title_id, scrap_year_id );
         });
         add_scrap_btn.setOnAction(event -> {
             SearchBookTableView selectedBook = search_book_table_view.getSelectionModel().getSelectedItem();

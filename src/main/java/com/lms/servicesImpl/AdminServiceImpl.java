@@ -27,27 +27,22 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<Book> searchBook(Map<String, String> values) {
-        return null;
+        return adminRepository.searchBook(values);
     }
 
     @Override
     public List<User> searchReader(Map<String, String> values) {
-        return null;
+        return adminRepository.searchReader(values);
     }
 
     @Override
     public boolean createReader(SignUpDTO signUpDTO) {
-        return false;
-    }
-
-    @Override
-    public User browseUser(Map<String, String> values) {
-        return null;
+        return adminRepository.createReader(signUpDTO);
     }
 
     @Override
     public boolean addBook(AddBookDTO addBookDTO) {
-        return false;
+        return adminRepository.addBook(addBookDTO);
     }
 
     @Override
@@ -109,6 +104,4 @@ public class AdminServiceImpl implements AdminService {
     public LocalDate extendDueDate(Long id) {
         return null;
     }
-
-
 }

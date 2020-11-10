@@ -14,14 +14,14 @@ public class SearchReaderTableView {
     private SimpleStringProperty rating;
 
     public SearchReaderTableView(SimpleLongProperty id, SimpleStringProperty fname, SimpleStringProperty lname,
-                                 SimpleStringProperty email, SimpleStringProperty phone, SimpleStringProperty regdate) {
+                                 SimpleStringProperty email, SimpleStringProperty phone, SimpleStringProperty regdate, SimpleStringProperty rating) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
         this.phone = phone;
         this.regdate = regdate;
-
+        this.rating = rating;
     }
 
     public Long getId() {

@@ -31,18 +31,20 @@ public class OperatorServiceImpl implements OperatorService {
 
     @Override
     public List<User> searchReader(Map<String, String> values) {
-        return operatorRepository.searchReader(values);
+        List<User> users = operatorRepository.searchReader(values);
+        for(User u : users){
+            if(u.getRating() == null){
+                u.setRating(-1);
+            }
+        }
+        return users;
     }
 
     @Override
     public List<Book> searchBook(Map<String, String> values) {
         return operatorRepository.searchBook(values);
     }
-
-    @Override
-    public User browseUser(Map<String, String> values) {
-        return operatorRepository.browseUser(values);
-    }
+    
 
     @Override
     public boolean addBook(AddBookDTO addBookDTO) {

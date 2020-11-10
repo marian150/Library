@@ -25,7 +25,7 @@ public interface CommonAdminOperatorFunctionalities {
     void displayUsers(List<User> users, TableView<SearchReaderTableView> tableView, ObservableList<SearchReaderTableView> observableList,
                       TableColumn<SearchReaderTableView, String> rid, TableColumn<SearchReaderTableView, String> fname,
                       TableColumn<SearchReaderTableView, String> lname, TableColumn<SearchReaderTableView, String> email,
-                      TableColumn<SearchReaderTableView, String> phone, TableColumn<SearchReaderTableView, String> date);
+                      TableColumn<SearchReaderTableView, String> phone, TableColumn<SearchReaderTableView, String> date,TableColumn<SearchReaderTableView, String> rating);
     List<User> searchReader(TextField id, TextField fname, TextField lname, TextField email, TextField phone,
                             DatePicker from, DatePicker to, PrivilegedUserService pu);
 
@@ -36,4 +36,9 @@ public interface CommonAdminOperatorFunctionalities {
                           TableColumn<ReturnBookTableView, String> inv, TableColumn<ReturnBookTableView, String> title,
                           TableColumn<ReturnBookTableView, String> author, TableColumn<ReturnBookTableView, String> lend,
                           TableColumn<ReturnBookTableView, String> due, TableColumn<ReturnBookTableView, String> operator);
+
+    void nullifyCreateReaderFields(TextField fname, TextField lname, TextField email, TextField pass, TextField phone);
+    void nullifyLendBookUserDetails(TextField phone, TextField email, TextField name, TextField id);
+    void nullifyCrapBookFields(TextField author, TextField genre, TextField inv, TextField isbn, TextField publ, TextField title, TextField year);
+    void nullifyAddBookFields(ComboBox genre, ComboBox cover, TextField isbn, TextField id, TextField author, TextField issueDate, TextField publ, TextField title);
 }

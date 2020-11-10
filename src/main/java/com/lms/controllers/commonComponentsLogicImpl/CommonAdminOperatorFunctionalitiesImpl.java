@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -94,17 +95,25 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
     public void displayUsers(List<User> users, TableView<SearchReaderTableView> tableView, ObservableList<SearchReaderTableView> observableList,
                              TableColumn<SearchReaderTableView, String> rid, TableColumn<SearchReaderTableView, String> fname,
                              TableColumn<SearchReaderTableView, String> lname, TableColumn<SearchReaderTableView, String> email,
-                             TableColumn<SearchReaderTableView, String> phone,  TableColumn<SearchReaderTableView, String> date
+                             TableColumn<SearchReaderTableView, String> phone,  TableColumn<SearchReaderTableView, String> date,
+                             TableColumn<SearchReaderTableView, String> rating
                              ){
         tableView.getItems().clear();
         for(int i = 0; i < users.size(); i ++){
+            String ratingString;
+            if(users.get(i).getRating() == -1){
+                ratingString = "N/A";
+            }else{
+                ratingString = users.get(i).getRating().toString();
+            }
             observableList.add(new SearchReaderTableView(
                     new SimpleLongProperty(users.get(i).getUserId()),
                     new SimpleStringProperty(users.get(i).getFirstName()),
                     new SimpleStringProperty(users.get(i).getLastName()),
                     new SimpleStringProperty(users.get(i).getEmail()),
                     new SimpleStringProperty(users.get(i).getPhone()),
-                    new SimpleStringProperty(users.get(i).getRegDate().toString())));
+                    new SimpleStringProperty(users.get(i).getRegDate().toString()),
+                    new SimpleStringProperty(ratingString)));
         }
         rid.setCellValueFactory(new PropertyValueFactory<>("id"));
         fname.setCellValueFactory(new PropertyValueFactory<>("fname"));
@@ -112,6 +121,7 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
         phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         date.setCellValueFactory(new PropertyValueFactory<>("regdate"));
+        rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
         tableView.setItems(observableList);
     }
     public List<User> searchReader(TextField id, TextField fname, TextField lname, TextField email, TextField phone,
@@ -197,6 +207,65 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
         tableView.setItems(observableList);
 
+    }
+    public void nullifyAddBookFields(ComboBox genre, ComboBox cover, TextField isbn, TextField id, TextField author,
+                                     TextField issueDate, TextField publ, TextField title) {
+
+        genre.setValue(null);
+        cover.setValue(null);
+        isbn.clear();
+        author.clear();
+        issueDate.clear();
+        publ.clear();
+        title.clear();
+/*        add_book_genre.setValue(null);
+        add_book_cover.setValue(null);
+        add_book_isbn.clear();
+        add_book_ID.clear();
+        add_book_author.clear();
+        add_book_issue_date.clear();
+        add_book_publisher.clear();
+        add_book_title.clear();
+
+ */
+    }
+
+    public void nullifyCreateReaderFields(TextField fname, TextField lname, TextField email, TextField pass, TextField phone) {
+        fname.clear(); lname.clear(); email.clear(); pass.clear(); phone.clear();
+    }
+    public void nullifyLendBookUserDetails(TextField phone, TextField email, TextField name, TextField id) {
+        phone.clear();
+        email.clear();
+        name.clear();
+        id.clear();
+        /*
+        lend_rd_phone.clear();
+        lend_rd_email.clear();
+        lend_rd_name.clear();
+        lend_rd_id.clear();
+
+         */
+    }
+
+    public void nullifyCrapBookFields(TextField author, TextField genre, TextField inv, TextField isbn, TextField publ, TextField title, TextField year) {
+        author.clear();
+        genre.clear();
+        inv.clear();
+        isbn.clear();
+        publ.clear();
+        title.clear();
+        year.clear();
+
+        /*
+        scrap_author_id.clear();
+        scrap_genre_id.clear();
+        scrap_inv_id.clear();
+        scrap_isbn_id.clear();
+        scrap_publ_id.clear();
+        scrap_title_id.clear();
+        scrap_year_id.clear();
+
+         */
     }
 
 }
