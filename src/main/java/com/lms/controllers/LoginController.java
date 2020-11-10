@@ -23,12 +23,14 @@ import javafx.stage.Stage;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 public class LoginController {
     @Inject
     private LoginService loginService;
     @Inject
     FXMLLoader fxmlLoader;
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     @FXML
     private TextField login_email_id;
     @FXML
@@ -107,6 +109,7 @@ public class LoginController {
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root));
                             stage.show();
+                            logger.info(loadedUser.getUserId().toString() + " logged in");
                         } catch(IOException e) {
                             e.printStackTrace();
                         }
@@ -121,6 +124,7 @@ public class LoginController {
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root));
                             stage.show();
+                            logger.info(loadedUser.getUserId().toString() + " logged in");
                         } catch(IOException e) {
                             e.printStackTrace();
                         }
@@ -135,6 +139,7 @@ public class LoginController {
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root));
                             stage.show();
+                            logger.info(loadedUser.getUserId().toString() + " logged in");
                         } catch(IOException e) {
                             e.printStackTrace();
                         }

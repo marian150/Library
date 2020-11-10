@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class ReaderController {
 
@@ -27,6 +28,7 @@ public class ReaderController {
     FXMLLoader fxmlLoader;
     @Inject
     private CommonUserFunctionalities commonUserFunctionalities;
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     private User currentUser;
     @FXML

@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
 import javax.inject.Inject;
+import java.util.logging.Logger;
 
 public class AdminController {
 
@@ -21,6 +22,7 @@ public class AdminController {
     private AdminService adminService;
     @Inject
     FXMLLoader fxmlLoader;
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
     @Inject
     private CommonUserFunctionalities commonUserFunctionalities;
     @Inject

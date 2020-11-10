@@ -26,6 +26,7 @@ import javafx.scene.paint.Color;
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.logging.Logger;
 
 public class OperatorController {
 
@@ -37,6 +38,7 @@ public class OperatorController {
     private CommonAdminOperatorFunctionalities commonAdminOperatorFunctionalities;
 
     private User currentUser;
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     @Inject
     FXMLLoader fxmlLoader;
@@ -350,6 +352,7 @@ public class OperatorController {
                 alert.setContentText(phoneError.errors(phone.getText()));
                 alert.show();
             } else {
+                logger.info(currentUser.getUserId().toString() + " attempting to create a new Reader");
                 boolean isCreated = createReader();
                 commonAdminOperatorFunctionalities.nullifyCreateReaderFields(fname, lname, email, pass, phone);
                 Alert alert;
@@ -400,9 +403,12 @@ public class OperatorController {
             boolean addBookSuccessful = false;
             List<String> authorListString = Arrays.asList(add_book_author.getText().split(","));
             if(searchPublisher(add_book_publisher.getText())) {
+                logger.info(currentUser.getUserId().toString() + " attempting to add book");
                 addBookSuccessful = addBook();
             } else {
+                logger.info(currentUser.getUserId().toString() + " attempting to add publisher");
                 addPublisher(add_book_publisher.getText());
+                logger.info(currentUser.getUserId().toString() + " attempting to add book");
                 addBookSuccessful = addBook();
             }
             if (addBookSuccessful) {
@@ -432,6 +438,7 @@ public class OperatorController {
         });
 
         lend_for_reading_room_btn.setOnAction(event -> {
+            logger.info(currentUser.getUserId().toString() + " is attempting to lend for Reading Room");
             lendBook(2L);
             chosen_books_for_rent.getItems().clear();
             commonAdminOperatorFunctionalities.nullifyLendBookUserDetails(lend_rd_phone, lend_rd_email, lend_rd_name, lend_rd_id);
@@ -450,6 +457,7 @@ public class OperatorController {
                 alert.setContentText("You cannot lend Archived books for home!");
                 alert.show();
             } else {
+                logger.info(currentUser.getUserId().toString() + " is attempting to lend for Home");
                 boolean successfulLend = lendBook(1L);
                 if (successfulLend) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);

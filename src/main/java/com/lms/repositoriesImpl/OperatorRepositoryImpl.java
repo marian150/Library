@@ -26,16 +26,20 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Dependent
 public class OperatorRepositoryImpl implements OperatorRepository {
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     @Override
     public boolean createReader(SignUpDTO signUpDTO) {
@@ -60,11 +64,13 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
             UserType userType = (UserType) session.load(UserType.class, 2L);
             user.setUserType(userType);
-            session.save(user);
+            Serializable userId = session.save(user);
             tx.commit();
+            logger.info("Reader " + userId + " is created");
             return true;
         } catch (Exception e){
             if(tx != null) tx.rollback();
+            logger.log(Level.SEVERE, "Unable to create reader", e);
             return false;
         } finally {
             session.close();
@@ -276,11 +282,13 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
             tx = session.beginTransaction();
 
-            session.save(book);
+            Serializable newBookId = session.save(book);
             tx.commit();
+            logger.info("Book " + newBookId + " is added");
             return true;
         } catch (Exception e){
             if(tx != null) tx.rollback();
+            logger.log(Level.SEVERE, "Unable to add book", e);
             return false;
         } finally {
             session.close();
@@ -352,11 +360,13 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         try {
             tx = session.beginTransaction();
 
-            session.save(publisher);
+            Serializable newPubId = session.save(publisher);
             tx.commit();
+            logger.info("Publisher" + newPubId + " is created");
             return true;
         } catch (Exception e) {
             if(tx != null )tx.rollback();
+            logger.log(Level.SEVERE, "Unable to create publisher", e);
             return false;
         } finally {
             session.close();
@@ -408,11 +418,13 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         try {
             tx = session.beginTransaction();
 
-            session.save(authorObject);
+            Serializable newAuthorId = session.save(authorObject);
             tx.commit();
+            logger.info("Publisher" + newAuthorId + " is created");
             return true;
         } catch (Exception e) {
             if(tx != null)tx.rollback();
+            logger.log(Level.SEVERE, "Unable to create publisher", e);
             return false;
         } finally {
             session.close();
@@ -431,9 +443,11 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             Book book = (Book)session.load(Book.class, id);
             book.setBookState(bs);
             tx.commit();
+            logger.info("Book " + book.getBookId().toString() + " status is changed to " + bs.getStateName());
             return true;
         } catch (Exception e) {
             if(tx != null)tx.rollback();
+            logger.log(Level.SEVERE, "Unable to scrap book", e);
             return false;
         } finally {
             session.close();
@@ -492,6 +506,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
         try {
             tx = session.beginTransaction();
+            List<Serializable> returnedBooksIds = new ArrayList<>();
 
             for(Long id : books.getBookIds()){
                 // get the lent book into object/entity
@@ -510,12 +525,17 @@ public class OperatorRepositoryImpl implements OperatorRepository {
                 // insert the id of the newly created row in return_book into the FK in rent_book
                 rentBook.setReturnBook(lastReturnedBook);
                 // save updated entity to DB
-                session.save(rentBook);
+                Serializable returnBookId = session.save(rentBook);
+                returnedBooksIds.add(returnBookId);
             }
             tx.commit();
+            for (Serializable id : returnedBooksIds) {
+                logger.info("Book " + id + " is returned");
+            }
             return true;
         } catch (Exception e) {
             if(tx != null) tx.rollback();
+            logger.log(Level.SEVERE, "Unable to return books", e);
             return false;
         } finally {
             session.close();
@@ -551,6 +571,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
+            List<Serializable> lentBooksIds = new ArrayList<>();
 
             for (Long bookId : lendBookDTO.getBookIDs()) {
                 RentBook rentBook = new RentBook();
@@ -577,12 +598,17 @@ public class OperatorRepositoryImpl implements OperatorRepository {
                 rentBook.setLibrarian(lib);
                 rentBook.setRentDate(LocalDate.now());
                 rentBook.setDueDate(LocalDate.now().plusMonths(1));
-                session.save(rentBook);
+                Serializable lentBookId = session.save(rentBook);
+                lentBooksIds.add(lentBookId);
             }
             tx.commit();
+            for (Serializable id : lentBooksIds) {
+                logger.info("Book " + id + " is lent");
+            }
             return true;
         } catch (Exception e) {
             if (tx != null) tx.rollback();
+            logger.log(Level.SEVERE, "Unable to lend books", e);
             return false;
         } finally {
             session.close();
