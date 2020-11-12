@@ -13,7 +13,7 @@
         </property>
 
         <property name = "hibernate.connection.url">
-            jdbc:oracle:thin:@//localhost:1522/xe
+            jdbc:oracle:thin:@//localhost:1521/xe
         </property>
 
         <property name = "hibernate.connection.username">

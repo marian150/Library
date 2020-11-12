@@ -35,7 +35,8 @@ public interface CommonAdminOperatorFunctionalities {
                           TableColumn<ReturnBookTableView, String> lid, TableColumn<ReturnBookTableView, String> rid,
                           TableColumn<ReturnBookTableView, String> inv, TableColumn<ReturnBookTableView, String> title,
                           TableColumn<ReturnBookTableView, String> author, TableColumn<ReturnBookTableView, String> lend,
-                          TableColumn<ReturnBookTableView, String> due, TableColumn<ReturnBookTableView, String> operator);
+                          TableColumn<ReturnBookTableView, String> due, TableColumn<ReturnBookTableView, String> operator,
+                          TableColumn<ReturnBookTableView, String> type);
 
     void nullifyCreateReaderFields(TextField fname, TextField lname, TextField email, TextField pass, TextField phone);
     void nullifyLendBookUserDetails(TextField phone, TextField email, TextField name, TextField id);

@@ -11,8 +11,9 @@ public class ReturnBookTableView {
     private SimpleStringProperty lendDate;
     private SimpleStringProperty dueDate;
     private SimpleStringProperty operator;
+    private SimpleStringProperty type;
 
-    public ReturnBookTableView( SimpleStringProperty lendId, SimpleStringProperty readerId, SimpleStringProperty inv, SimpleStringProperty title, SimpleStringProperty author, SimpleStringProperty lendDate, SimpleStringProperty dueDate, SimpleStringProperty operator) {
+    public ReturnBookTableView( SimpleStringProperty lendId, SimpleStringProperty readerId, SimpleStringProperty inv, SimpleStringProperty title, SimpleStringProperty author, SimpleStringProperty lendDate, SimpleStringProperty dueDate, SimpleStringProperty operator, SimpleStringProperty type) {
         this.lendId = lendId;
         this.readerId = readerId;
         this.inv = inv;
@@ -21,6 +22,7 @@ public class ReturnBookTableView {
         this.lendDate = lendDate;
         this.dueDate = dueDate;
         this.operator = operator;
+        this.type = type;
     }
 
     public String getLendId() {
@@ -117,5 +119,17 @@ public class ReturnBookTableView {
 
     public void setOperator(String operator) {
         this.operator.set(operator);
+    }
+
+    public String getType() {
+        return type.get();
+    }
+
+    public SimpleStringProperty typeProperty() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type.set(type);
     }
 }

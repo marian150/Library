@@ -175,7 +175,8 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
     @Override
     public void displayLentBooks(List<RentBook> books, TableView<ReturnBookTableView> tableView, ObservableList<ReturnBookTableView> observableList, TableColumn<ReturnBookTableView, String> lid,TableColumn<ReturnBookTableView, String> rid,
                                  TableColumn<ReturnBookTableView, String> inv, TableColumn<ReturnBookTableView, String> title, TableColumn<ReturnBookTableView, String> author,
-                                 TableColumn<ReturnBookTableView, String> lend, TableColumn<ReturnBookTableView, String> due, TableColumn<ReturnBookTableView, String> operator) {
+                                 TableColumn<ReturnBookTableView, String> lend, TableColumn<ReturnBookTableView, String> due, TableColumn<ReturnBookTableView, String> operator,
+                                 TableColumn<ReturnBookTableView, String> type) {
         tableView.getItems().clear();
         for(int i = 0; i < books.size(); i++){
             String authors = "";
@@ -191,11 +192,9 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
                     new SimpleStringProperty(authors),
                     new SimpleStringProperty(books.get(i).getRentDate().toString()),
                     new SimpleStringProperty(books.get(i).getDueDate().toString()),
-                    new SimpleStringProperty(books.get(i).getLibrarian().getFirstName() + " " + books.get(i).getLibrarian().getLastName())
+                    new SimpleStringProperty(books.get(i).getLibrarian().getFirstName() + " " + books.get(i).getLibrarian().getLastName()),
+                    new SimpleStringProperty(books.get(i).getRentType().getTypeName())
             ));
-        }
-        for(ReturnBookTableView r : observableList){
-            System.out.println(r.getLendId() + " " + r.getOperator());
         }
         lid.setCellValueFactory(new PropertyValueFactory<>("lendId"));
         rid.setCellValueFactory(new PropertyValueFactory<>("readerId"));
@@ -205,6 +204,7 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         lend.setCellValueFactory(new PropertyValueFactory<>("lendDate"));
         due.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         operator.setCellValueFactory(new PropertyValueFactory<>("operator"));
+        type.setCellValueFactory(new PropertyValueFactory<>("type"));
         tableView.setItems(observableList);
 
     }

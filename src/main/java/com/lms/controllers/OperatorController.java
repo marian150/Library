@@ -194,7 +194,7 @@ public class OperatorController {
     @FXML private TableColumn<ReturnBookTableView, String> return_lend_col_id;
     @FXML private TableColumn<ReturnBookTableView, String> return_due_col_id;
     @FXML private TableColumn<ReturnBookTableView, String> return_operator_col_id;
-
+    @FXML private TableColumn<ReturnBookTableView, String> return_type_col_id;
     ObservableList<SearchReaderTableView> readersObservableList = FXCollections.observableArrayList();
     ObservableList<SearchBookTableView> searchBooksObservableList = FXCollections.observableArrayList();
     ObservableList<ReturnBookTableView> returnObservableList = FXCollections.observableArrayList();
@@ -519,7 +519,7 @@ public class OperatorController {
                     );
             commonAdminOperatorFunctionalities.displayLentBooks(result, return_table_view, returnObservableList, return_lendid_col_id,return_reader_col_id,
                     return_inv_col_id,return_title_col_id, return_author_col_id,return_lend_col_id,
-                    return_due_col_id, return_operator_col_id);
+                    return_due_col_id, return_operator_col_id, return_type_col_id);
             TableView.TableViewSelectionModel<ReturnBookTableView> selectionModel = return_table_view.getSelectionModel();
             selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
         });

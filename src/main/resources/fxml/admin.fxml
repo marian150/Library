@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="473.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="473.0" prefWidth="806.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lms.controllers.AdminController">
     <children>
         <SplitPane dividerPositions="0.16963528413910092" layoutX="-1.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="473.0" prefWidth="806.0">
             <items>
@@ -173,7 +173,7 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <Button layoutX="377.0" layoutY="306.0" mnemonicParsing="false" text="Create" />
+                                    <Button fx:id="create_operator_btn" layoutX="377.0" layoutY="306.0" mnemonicParsing="false" text="Create" />
                                     <TextField layoutX="329.0" layoutY="89.0" promptText="FIrst Name" />
                                     <TextField layoutX="329.0" layoutY="130.0" promptText="Last Name" />
                                     <TextField layoutX="329.0" layoutY="175.0" promptText="Email" />

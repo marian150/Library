@@ -52,6 +52,18 @@ Nov 12, 2020 5:09:42 PM com.lms.controllers.LoginController lambda$initialize$0
 INFO: 1 logged in
 Nov 12, 2020 7:19:56 PM com.lms.controllers.LoginController lambda$initialize$0
 INFO: 2 logged in
+Nov 12, 2020 7:47:18 PM com.lms.controllers.LoginController lambda$initialize$0
+INFO: 2 logged in
+Nov 12, 2020 7:52:39 PM com.lms.controllers.LoginController lambda$initialize$0
+INFO: 2 logged in
+Nov 12, 2020 7:53:29 PM com.lms.controllers.OperatorController lambda$initialize$4
+INFO: 2 attempting to add publisher
+Nov 12, 2020 7:53:30 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addPublisher
+INFO: Publisher1 is created
+Nov 12, 2020 7:53:30 PM com.lms.controllers.OperatorController lambda$initialize$4
+INFO: 2 attempting to add book
+Nov 12, 2020 7:53:30 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addBook
+INFO: Book 1 is added
 Nov 12, 2020 7:49:49 PM com.lms.controllers.LoginController lambda$initialize$0
 INFO: 2 logged in
 Nov 12, 2020 7:53:42 PM com.lms.controllers.OperatorController lambda$initialize$4
@@ -86,3 +98,47 @@ Nov 12, 2020 8:06:29 PM com.lms.controllers.OperatorController lambda$initialize
 INFO: 2 attempting to add book
 Nov 12, 2020 8:06:29 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addBook
 INFO: Book 3 is added
+Nov 12, 2020 8:12:07 PM com.lms.controllers.LoginController lambda$initialize$0
+INFO: 2 logged in
+Nov 12, 2020 8:12:53 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addAuthor
+INFO: Publisher1 is created
+Nov 12, 2020 8:12:53 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addAuthor
+INFO: Publisher2 is created
+Nov 12, 2020 8:12:53 PM com.lms.controllers.OperatorController lambda$initialize$4
+INFO: 2 attempting to add publisher
+Nov 12, 2020 8:12:53 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addPublisher
+INFO: Publisher2 is created
+Nov 12, 2020 8:12:53 PM com.lms.controllers.OperatorController lambda$initialize$4
+INFO: 2 attempting to add book
+Nov 12, 2020 8:16:22 PM com.lms.controllers.LoginController lambda$initialize$0
+INFO: 2 logged in
+Nov 12, 2020 8:17:07 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addAuthor
+INFO: Publisher3 is created
+Nov 12, 2020 8:17:08 PM com.lms.controllers.OperatorController lambda$initialize$4
+INFO: 2 attempting to add book
+Nov 12, 2020 8:19:53 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addBook
+INFO: Book 1 is added
+Nov 12, 2020 8:23:04 PM com.lms.controllers.LoginController lambda$initialize$0
+INFO: 2 logged in
+Nov 12, 2020 8:23:57 PM com.lms.controllers.OperatorController lambda$initialize$4
+INFO: 2 attempting to add book
+Nov 12, 2020 8:23:57 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addBook
+INFO: Book 2 is added
+Nov 12, 2020 8:45:12 PM com.lms.controllers.LoginController lambda$initialize$0
+INFO: 1 logged in
+Nov 12, 2020 8:49:02 PM com.lms.controllers.LoginController lambda$initialize$0
+INFO: 2 logged in
+Nov 12, 2020 8:49:42 PM com.lms.controllers.OperatorController lambda$initialize$0
+INFO: 2 attempting to create a new Reader
+Nov 12, 2020 8:49:42 PM com.lms.repositoriesImpl.OperatorRepositoryImpl createReader
+INFO: Reader 3 is created
+Nov 12, 2020 8:50:20 PM com.lms.controllers.OperatorController lambda$initialize$8
+INFO: 2 is attempting to lend for Home
+Nov 12, 2020 8:50:20 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
+INFO: Book 1 is lent
+Nov 12, 2020 8:50:20 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
+INFO: Book 2 is lent
+Nov 12, 2020 8:50:40 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
+INFO: Book 1 is returned
+Nov 12, 2020 8:50:40 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
+INFO: Book 2 is returned

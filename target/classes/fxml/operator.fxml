@@ -79,7 +79,8 @@
                                                       <TableColumn fx:id="return_author_col_id" prefWidth="75.0" text="Author" />
                                                       <TableColumn fx:id="return_lend_col_id" prefWidth="75.0" text="Lend date" />
                                                       <TableColumn fx:id="return_due_col_id" prefWidth="75.0" text="Due date" />
-                                                      <TableColumn fx:id="return_operator_col_id" prefWidth="75.0" text="Operator" />
+                                                      <TableColumn fx:id="return_operator_col_id" prefWidth="88.0" text="Operator" />
+                                                      <TableColumn fx:id="return_type_col_id" prefWidth="72.0" text="Type" />
                                                   </columns>
                                                    <columnResizePolicy>
                                                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
