@@ -8,34 +8,19 @@ import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.repositories.OperatorRepository;
 import com.lms.security.Password;
-import net.bytebuddy.asm.Advice;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.loader.custom.sql.SQLQueryParser;
-import org.hibernate.query.NativeQuery;
-import org.jboss.weld.exceptions.NullInstanceException;
 
 import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
-import javax.persistence.JoinColumn;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.math.BigInteger;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Dependent
 public class OperatorRepositoryImpl implements OperatorRepository {

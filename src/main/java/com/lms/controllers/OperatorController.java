@@ -402,6 +402,10 @@ public class OperatorController {
         add_book_btn.setOnAction(event -> {
             boolean addBookSuccessful = false;
             List<String> authorListString = Arrays.asList(add_book_author.getText().split(","));
+            for(String aut : authorListString) {
+                if(!searchAuthor(aut))
+                    addAuthor(aut);
+            }
             if(searchPublisher(add_book_publisher.getText())) {
                 logger.info(currentUser.getUserId().toString() + " attempting to add book");
                 addBookSuccessful = addBook();
@@ -488,6 +492,7 @@ public class OperatorController {
         });
 
         logout_btn.setOnAction(event -> {
+            logger.info(currentUser.getUserId().toString() + " is logging out");
             commonUserFunctionalities.logout(greeting_label, fxmlLoader);
         });
 

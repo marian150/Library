@@ -12,12 +12,17 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.enterprise.context.Dependent;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Dependent
 public class AdminRepositoryImpl implements AdminRepository {
+    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
     @Override
     public boolean createOperator(SignUpDTO signUpDTO) {
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
@@ -35,11 +40,13 @@ public class AdminRepositoryImpl implements AdminRepository {
             tx = session.beginTransaction();
             UserType userType = (UserType) session.load(UserType.class, 1L);
             user.setUserType(userType);
-            session.save(user);
+            Serializable userId = session.save(user);
             tx.commit();
+            logger.info("Operator" + userId + " is created");
             return true;
         } catch (Exception e){
             if(tx != null) tx.rollback();
+            logger.log(Level.SEVERE, "Unable to create operator", e);
             return false;
         } finally {
             session.close();

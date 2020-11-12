@@ -61,6 +61,7 @@ public class AdminController {
     }
     public void initialize(){
         logout_btn.setOnAction(event -> {
+            logger.info(currentUser.getUserId().toString() + " is logging out");
             commonUserFunctionalities.logout(greeting_label, fxmlLoader);
         });
         create_operator_btn.setOnAction(event -> {

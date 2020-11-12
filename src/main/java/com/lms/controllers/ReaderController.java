@@ -89,6 +89,7 @@ public class ReaderController {
 
     public void initialize() {
         logout_btn.setOnAction(event -> {
+            logger.info(currentUser.getUserId().toString() + " is logging out");
             commonUserFunctionalities.logout(greeting_label, fxmlLoader);
         });
 
