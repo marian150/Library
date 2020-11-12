@@ -108,7 +108,6 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         finally {
             session.close();
         }
-
         return null;
     }
 
@@ -122,6 +121,54 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             tx = session.beginTransaction();
             List<Predicate> predicates = new ArrayList<>();
 
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            // Main query - the thing (Book) that needs to get retrieved
+            CriteriaQuery<Book> cqBook = cb.createQuery(Book.class);
+            Root<Book> bookRoot = cqBook.from(Book.class);
+
+            //Subquery - to find which books have return_id != null, so that only books which are available can be displayed for lending
+            Subquery<RentBook> cqSubquery = cqBook.subquery(RentBook.class);
+            Root<RentBook> rentBookRoot = cqSubquery.from(RentBook.class);
+
+            // fetches to get additional data about books
+            bookRoot.fetch("publisher", JoinType.LEFT);
+            bookRoot.fetch("authors", JoinType.LEFT);
+            bookRoot.fetch("genre", JoinType.LEFT);
+            bookRoot.fetch("bookState", JoinType.LEFT);
+
+            // (SELECT DISTINCT book FROM rent_book JOIN book ON [...] WHERE book.publisher LIKE 'X' AND .... )
+            cqSubquery.select(rentBookRoot.get("book")).distinct(true);
+
+            if (values.containsKey("publisher"))
+                predicates.add(cb.like(cb.lower(rentBookRoot.get("book").get("publisher").get("publisherName")), values.get("publisher").toLowerCase()));
+            if (values.containsKey("authors"))
+                predicates.add(cb.like(rentBookRoot.join("book").join("authors").get("name"), values.get("authors")));
+            if (values.containsKey("genre"))
+                predicates.add(cb.like(rentBookRoot.get("genre").get("name"), values.get("genre")));
+            if (values.containsKey("bookState"))
+                predicates.add(cb.like(rentBookRoot.get("book").get("bookState").get("stateName"), values.get("bookState")));
+            if (values.containsKey("title"))
+                predicates.add(cb.like(rentBookRoot.get("book").get("title"), values.get("title")));
+            if (values.containsKey("isbn"))
+                predicates.add(cb.like(rentBookRoot.get("book").get("isbn"), values.get("isbn")));
+            if (values.containsKey("bookId"))
+                predicates.add(cb.equal(rentBookRoot.get("book").get("bookId"), Long.parseLong(values.get("bookId"))));
+            if (values.containsKey("issueDate"))
+                predicates.add(cb.like(rentBookRoot.get("book").get("issueDate"), values.get("issueDate")));
+
+            // WHERE return_id IS NULL
+            predicates.add(cb.isNull(rentBookRoot.get("returnBook")));
+
+            Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
+            cqSubquery.where(finalPredicate);
+
+            // SELECT DISTINCT * FROM book WHERE id NOT IN (cqSubquery) -> only books which have a return_id respectively return_date are allowed to be lent
+            cqBook.select(bookRoot).where(cb.not(bookRoot.in(cqSubquery))).distinct(true);
+            TypedQuery<Book> typedQuery = session.createQuery(cqBook);
+
+            List<Book> availableBooks = typedQuery.getResultList();
+
+/*
             CriteriaBuilder cb = session.getCriteriaBuilder();
             CriteriaQuery<Book> cq = cb.createQuery(Book.class);
             Root<Book> b = cq.from(Book.class);
@@ -150,14 +197,13 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
             Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
             cq.where(finalPredicate);
-
             TypedQuery<Book> typedQuery = session.createQuery(cq);
-
             List<Book> result;
-
             result = typedQuery.getResultList();
-
             return result;
+*/
+
+            return availableBooks;
         } catch (NoResultException e) {
             if (tx != null) tx.rollback();
             e.printStackTrace();
