@@ -26,7 +26,7 @@ public interface CommonAdminOperatorFunctionalities {
                       TableColumn<SearchReaderTableView, String> rid, TableColumn<SearchReaderTableView, String> fname,
                       TableColumn<SearchReaderTableView, String> lname, TableColumn<SearchReaderTableView, String> email,
                       TableColumn<SearchReaderTableView, String> phone, TableColumn<SearchReaderTableView, String> date,TableColumn<SearchReaderTableView, String> rating);
-    List<User> searchReader(TextField id, TextField fname, TextField lname, TextField email, TextField phone,
+    List<User> searchUsers(TextField id, TextField fname, TextField lname, TextField email, TextField phone,
                             DatePicker from, DatePicker to, PrivilegedUserService pu);
 
     boolean scrapBook(PrivilegedUserService pu, TextField bookId);

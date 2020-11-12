@@ -52,17 +52,12 @@ public class AdminRepositoryImpl implements AdminRepository {
     }
 
     @Override
-    public List<User> searchReader(Map<String, String> values) {
+    public List<User> searchUsers(Map<String, String> values) {
         return null;
     }
 
     @Override
     public List<Book> searchBook(Map<String, String> values) {
-        return null;
-    }
-
-    @Override
-    public User browseUser(Map<String, String> values) {
         return null;
     }
 

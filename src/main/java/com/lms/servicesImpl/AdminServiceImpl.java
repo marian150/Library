@@ -31,8 +31,8 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<User> searchReader(Map<String, String> values) {
-        return adminRepository.searchReader(values);
+    public List<User> searchUsers(Map<String, String> values) {
+        return adminRepository.searchUsers(values);
     }
 
     @Override

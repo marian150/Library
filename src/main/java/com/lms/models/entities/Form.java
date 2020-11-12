@@ -32,7 +32,7 @@ public class Form {
 
     @ManyToOne()
     @JoinColumn(name = "status_id", foreignKey = @ForeignKey(name = "FORM_FORM_STATUS_FK" ))
-    private FormStatus formStatus;
+    private Status formStatus;
 
     public Form() {}
 
@@ -92,11 +92,11 @@ public class Form {
         this.submitDate = submitDate;
     }
 
-    public FormStatus getFormStatus() {
+    public Status getFormStatus() {
         return formStatus;
     }
 
-    public void setFormStatus(FormStatus formStatus) {
+    public void setFormStatus(Status formStatus) {
         this.formStatus = formStatus;
     }
 }

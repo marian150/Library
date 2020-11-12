@@ -4,18 +4,17 @@ package com.lms.models.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "form_status")
-public class FormStatus {
+@Table(name = "status")
+public class Status {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "status_id")
     private Long statusId;
     @Column(name = "status_name")
     private String statusName;
 
-    public FormStatus() {}
+    public Status() {}
 
-    public FormStatus(Long statusId, String statusName) {
+    public Status(Long statusId, String statusName) {
         this.statusId = statusId;
         this.statusName = statusName;
     }

@@ -30,8 +30,8 @@ public class OperatorServiceImpl implements OperatorService {
     }
 
     @Override
-    public List<User> searchReader(Map<String, String> values) {
-        List<User> users = operatorRepository.searchReader(values);
+    public List<User> searchUsers(Map<String, String> values) {
+        List<User> users = operatorRepository.searchUsers(values);
         for(User u : users){
             if(u.getRating() == null){
                 u.setRating(-1);

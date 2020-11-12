@@ -9,12 +9,8 @@ public class ReturnBook {
     @Id
     @Column(name = "return_id")
     private Long returnId;
-    @Column(name = "client_id")
-    private Long clientId;
     @Column(name = "lib_id")
     private Long libId;
-    @Column(name = "book_id")
-    private Long bookId;
     @Column(name = "return_date")
     private LocalDate returnDate;
     @OneToOne(mappedBy = "returnBook")
@@ -22,11 +18,9 @@ public class ReturnBook {
 
     public ReturnBook() {}
 
-    public ReturnBook(Long returnId, Long clientId, Long libId, Long bookId, LocalDate returnDate, RentBook rentBook) {
+    public ReturnBook(Long returnId, Long libId,  LocalDate returnDate, RentBook rentBook) {
         this.returnId = returnId;
-        this.clientId = clientId;
         this.libId = libId;
-        this.bookId = bookId;
         this.returnDate = returnDate;
         this.rentBook = rentBook;
     }
@@ -39,28 +33,12 @@ public class ReturnBook {
         this.returnId = returnId;
     }
 
-    public Long getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(Long clientId) {
-        this.clientId = clientId;
-    }
-
     public Long getLibId() {
         return libId;
     }
 
     public void setLibId(Long libId) {
         this.libId = libId;
-    }
-
-    public Long getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(Long bookId) {
-        this.bookId = bookId;
     }
 
     public LocalDate getReturnDate() {

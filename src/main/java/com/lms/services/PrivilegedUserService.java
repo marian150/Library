@@ -14,7 +14,7 @@ import java.util.Map;
 
 public interface PrivilegedUserService {
     List<Book> searchBook(Map<String, String> values);
-    List<User> searchReader(Map<String, String> values);
+    List<User> searchUsers(Map<String, String> values);
     boolean createReader(SignUpDTO signUpDTO);
     boolean addBook(AddBookDTO addBookDTO);
     boolean scrapBook(PrivilegedUserService pu, Long bookId);

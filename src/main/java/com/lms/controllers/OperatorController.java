@@ -368,7 +368,7 @@ public class OperatorController {
         });
 
         search_reader_btn.setOnAction(event -> {
-            List<User> result = commonAdminOperatorFunctionalities.searchReader(search_reader_ID,
+            List<User> result = commonAdminOperatorFunctionalities.searchUsers(search_reader_ID,
                     search_reader_fname,search_reader_lname, search_reader_email, search_reader_phone,
                     search_reader_from, search_reader_to, operatorService
             );

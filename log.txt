@@ -36,3 +36,19 @@ Nov 10, 2020 10:23:03 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnB
 INFO: Book14 is returned
 Nov 10, 2020 10:23:07 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
 INFO: Book13 is returned
+Nov 10, 2020 11:50:48 PM com.lms.controllers.LoginController lambda$initialize$0
+INFO: 1 logged in
+Nov 10, 2020 11:51:07 PM com.lms.controllers.OperatorController lambda$initialize$8
+INFO: 1 is attempting to lend for Home
+Nov 10, 2020 11:51:07 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
+INFO: Book 26 is lent
+Nov 10, 2020 11:52:05 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
+INFO: Book 24 is returned
+Nov 10, 2020 11:52:08 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
+INFO: Book 20 is returned
+Nov 10, 2020 11:52:13 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
+INFO: Book 23 is returned
+Nov 12, 2020 5:09:42 PM com.lms.controllers.LoginController lambda$initialize$0
+INFO: 1 logged in
+Nov 12, 2020 7:19:56 PM com.lms.controllers.LoginController lambda$initialize$0
+INFO: 2 logged in

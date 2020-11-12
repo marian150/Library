@@ -31,11 +31,11 @@ public class RentBook {
     private LocalDate dueDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rent_type",  referencedColumnName= "rent_type_id", foreignKey = @ForeignKey(name = "RENT_TYPE_FK"))
+    @JoinColumn(name = "rent_type_id",  referencedColumnName= "rent_type_id", foreignKey = @ForeignKey(name = "RENT_TYPE_FK"))
     private RentType rentType;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "return_id", referencedColumnName = "return_id")
+    @JoinColumn(name = "return_id", referencedColumnName = "return_id", foreignKey = @ForeignKey(name = "RENT_RETURN_FK"))
     private ReturnBook returnBook;
 
     public RentBook() {}

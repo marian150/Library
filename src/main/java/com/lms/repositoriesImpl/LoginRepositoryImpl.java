@@ -4,17 +4,14 @@ import com.lms.config.ConfigurationSessionFactory;
 import com.lms.models.dtos.LoginDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.Form;
-import com.lms.models.entities.FormStatus;
+import com.lms.models.entities.Status;
 import com.lms.models.entities.User;
 import com.lms.repositories.LoginRepository;
 import com.lms.security.Password;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 import javax.enterprise.context.Dependent;
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.time.LocalDate;
 
@@ -58,7 +55,7 @@ public class LoginRepositoryImpl implements LoginRepository {
         try {
             tx = session.beginTransaction();
 
-            FormStatus formStatus = (FormStatus) session.load(FormStatus.class, (Long)(long)1);
+            Status formStatus = (Status) session.load(Status.class, (Long)(long)1);
             form.setFormStatus(formStatus);
             session.save(form);
             tx.commit();

@@ -124,7 +124,7 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
         tableView.setItems(observableList);
     }
-    public List<User> searchReader(TextField id, TextField fname, TextField lname, TextField email, TextField phone,
+    public List<User> searchUsers(TextField id, TextField fname, TextField lname, TextField email, TextField phone,
                                    DatePicker from, DatePicker to, PrivilegedUserService pu) {
         Map<String, String> values = new HashMap<>();
         if(id.getText() != "")
@@ -148,7 +148,7 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         phone.clear();
         from.setValue(null);
         to.setValue(null);
-        return pu.searchReader(values);
+        return pu.searchUsers(values);
     }
 
     @Override
