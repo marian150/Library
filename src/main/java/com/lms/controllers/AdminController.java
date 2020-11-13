@@ -12,9 +12,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import org.apache.log4j.Logger;
 
 import javax.inject.Inject;
-import java.util.logging.Logger;
 
 public class AdminController {
 
@@ -22,7 +22,7 @@ public class AdminController {
     private AdminService adminService;
     @Inject
     FXMLLoader fxmlLoader;
-    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    Logger logger = Logger.getLogger(AdminController.class);
     @Inject
     private CommonUserFunctionalities commonUserFunctionalities;
     @Inject
@@ -59,6 +59,7 @@ public class AdminController {
     public void setGreeting_label(String names) {
         greeting_label.setText(names);
     }
+
     public void initialize(){
         logout_btn.setOnAction(event -> {
             logger.info(currentUser.getUserId().toString() + " is logging out");

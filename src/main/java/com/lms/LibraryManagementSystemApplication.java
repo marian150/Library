@@ -2,12 +2,10 @@ package com.lms;
 
 import com.lms.config.ConfigurationSessionFactory;
 import com.lms.config.FXApplicationConfig;
-import com.lms.config.LoggerConfig;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.jboss.weld.environment.se.Weld;
 
-import java.util.logging.Logger;
 
 public class LibraryManagementSystemApplication extends Application {
 
@@ -25,7 +23,6 @@ public class LibraryManagementSystemApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        LoggerConfig.setup();
         weld.initialize().select(FXApplicationConfig.class).get().start(stage);
     }
 

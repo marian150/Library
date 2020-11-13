@@ -8,6 +8,8 @@ import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.repositories.OperatorRepository;
 import com.lms.security.Password;
+import org.apache.log4j.Logger;
+import org.apache.log4j.Priority;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -20,11 +22,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Dependent
 public class OperatorRepositoryImpl implements OperatorRepository {
-    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    Logger logger = Logger.getLogger(OperatorRepositoryImpl.class);
 
     @Override
     public boolean createReader(SignUpDTO signUpDTO) {
@@ -55,7 +56,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             return true;
         } catch (Exception e){
             if(tx != null) tx.rollback();
-            logger.log(Level.SEVERE, "Unable to create reader", e);
+            logger.error("Unable to create reader", e);
             return false;
         } finally {
             session.close();
@@ -276,7 +277,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             return true;
         } catch (Exception e){
             if(tx != null) tx.rollback();
-            logger.log(Level.SEVERE, "Unable to add book", e);
+            logger.error("Unable to add book", e);
             return false;
         } finally {
             session.close();
@@ -354,7 +355,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             return true;
         } catch (Exception e) {
             if(tx != null )tx.rollback();
-            logger.log(Level.SEVERE, "Unable to create publisher", e);
+            logger.error("Unable to create publisher", e);
             return false;
         } finally {
             session.close();
@@ -412,7 +413,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             return true;
         } catch (Exception e) {
             if(tx != null)tx.rollback();
-            logger.log(Level.SEVERE, "Unable to create publisher", e);
+            logger.error("Unable to create publisher", e);
             return false;
         } finally {
             session.close();
@@ -435,7 +436,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             return true;
         } catch (Exception e) {
             if(tx != null)tx.rollback();
-            logger.log(Level.SEVERE, "Unable to scrap book", e);
+            logger.error("Unable to scrap book", e);
             return false;
         } finally {
             session.close();
@@ -521,7 +522,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             return true;
         } catch (Exception e) {
             if(tx != null) tx.rollback();
-            logger.log(Level.SEVERE, "Unable to return books", e);
+            logger.error("Unable to return books", e);
             return false;
         } finally {
             session.close();
@@ -592,7 +593,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             return true;
         } catch (Exception e) {
             if (tx != null) tx.rollback();
-            logger.log(Level.SEVERE, "Unable to lend books", e);
+            logger.error("Unable to lend books", e);
             return false;
         } finally {
             session.close();

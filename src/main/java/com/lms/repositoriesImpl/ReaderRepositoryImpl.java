@@ -27,7 +27,7 @@ public class ReaderRepositoryImpl implements ReaderRepository {
                     "join rb.book b \n" +
                     "join b.authors aut \n" +
                     "join b.publisher pub \n" +
-                    "where uc.userId like :userId";
+                    "where uc.userId like :userId and rb.returnBook is null";
 
         Query query = session.createQuery(hql);
         query.setParameter("userId", userId);

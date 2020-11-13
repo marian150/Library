@@ -23,10 +23,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import org.apache.log4j.Logger;
+
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.logging.Logger;
 
 public class OperatorController {
 
@@ -38,7 +39,7 @@ public class OperatorController {
     private CommonAdminOperatorFunctionalities commonAdminOperatorFunctionalities;
 
     private User currentUser;
-    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    Logger logger = Logger.getLogger(OperatorController.class);
 
     @Inject
     FXMLLoader fxmlLoader;

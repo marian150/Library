@@ -19,18 +19,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.inject.Inject;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.logging.Logger;
 
 public class LoginController {
     @Inject
     private LoginService loginService;
     @Inject
     FXMLLoader fxmlLoader;
-    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private final Logger logger = LogManager.getLogger(LoginController.class);
     @FXML
     private TextField login_email_id;
     @FXML

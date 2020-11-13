@@ -8,6 +8,7 @@ import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.repositories.AdminRepository;
 import com.lms.security.Password;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -16,12 +17,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Dependent
 public class AdminRepositoryImpl implements AdminRepository {
-    Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    Logger logger = Logger.getLogger(AdminRepositoryImpl.class);
 
     @Override
     public boolean createOperator(SignUpDTO signUpDTO) {
@@ -46,7 +45,7 @@ public class AdminRepositoryImpl implements AdminRepository {
             return true;
         } catch (Exception e){
             if(tx != null) tx.rollback();
-            logger.log(Level.SEVERE, "Unable to create operator", e);
+            logger.error("Unable to create operator", e);
             return false;
         } finally {
             session.close();
