@@ -54,9 +54,6 @@ public class LoginRepositoryImpl implements LoginRepository {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-
-            Status formStatus = (Status) session.load(Status.class, (Long)(long)1);
-            form.setFormStatus(formStatus);
             session.save(form);
             tx.commit();
         } catch (Exception e){

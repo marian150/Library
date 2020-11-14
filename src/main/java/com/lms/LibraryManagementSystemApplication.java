@@ -2,9 +2,14 @@ package com.lms;
 
 import com.lms.config.ConfigurationSessionFactory;
 import com.lms.config.FXApplicationConfig;
+import com.lms.config.NotificationConfiguration;
+import com.lms.services.NotificationService;
+import com.lms.servicesImpl.NotificationServiceImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.jboss.weld.environment.se.Weld;
+
+import javax.inject.Inject;
 
 
 public class LibraryManagementSystemApplication extends Application {
@@ -23,11 +28,13 @@ public class LibraryManagementSystemApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        weld.initialize().select(FXApplicationConfig.class).get().start(stage);
+        weld.containerId("one").initialize().select(FXApplicationConfig.class).get().start(stage);
+        weld.containerId("two").initialize().select(NotificationConfiguration.class).get().start();
     }
 
     @Override
     public void stop() throws Exception {
         weld.shutdown();
     }
+
 }

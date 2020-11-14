@@ -1,6 +1,7 @@
 package com.lms.config;
 
 import com.lms.controllers.LoginController;
+import com.lms.services.NotificationService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

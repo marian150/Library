@@ -105,11 +105,11 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             return result;
         } catch (NoResultException e){
             e.printStackTrace();
+            return null;
         }
         finally {
             session.close();
         }
-        return null;
     }
 
     @Override
