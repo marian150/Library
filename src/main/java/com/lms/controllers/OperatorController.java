@@ -573,9 +573,9 @@ public class OperatorController {
 
         load_forms_btn.setOnAction(event -> {
             List<FormTableView> forms = operatorService.loadForms();
-            if (!forms.isEmpty())
-                commonAdminOperatorFunctionalities.displayForms(forms, forms_load_tableview, formsObservableList, form_tableview_fname,
-                        form_tableview_lname, form_tableview_email, form_tableview_phone, form_tableview_date, form_tableview_status);
+            if (forms != null) {
+
+            }
         });
     }
 

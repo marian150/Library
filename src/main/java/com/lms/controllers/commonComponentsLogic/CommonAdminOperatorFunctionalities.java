@@ -37,10 +37,10 @@ public interface CommonAdminOperatorFunctionalities {
                           TableColumn<ReturnBookTableView, String> due, TableColumn<ReturnBookTableView, String> operator,
                           TableColumn<ReturnBookTableView, String> type);
 
-    public void displayForms(List<FormTableView> forms, TableView tableView, ObservableList<FormTableView> observableList,
+    /*public void displayForms(List<FormTableView> forms, TableView tableView, ObservableList<FormTableView> observableList,
                              TableColumn<FormTableView, String> fname, TableColumn<FormTableView, String> lname,
                              TableColumn<FormTableView, String> email, TableColumn<FormTableView, String> phone,
-                             TableColumn<FormTableView, String> date, TableColumn<FormTableView, String> status);
+                             TableColumn<FormTableView, String> date, TableColumn<FormTableView, String> status);*/
 
     void nullifyCreateReaderFields(TextField fname, TextField lname, TextField email, TextField pass, TextField phone);
     void nullifyLendBookUserDetails(TextField phone, TextField email, TextField name, TextField id);

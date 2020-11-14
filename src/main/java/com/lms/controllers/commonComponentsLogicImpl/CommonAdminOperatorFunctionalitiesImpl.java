@@ -206,7 +206,7 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         tableView.setItems(observableList);
 
     }
-    @Override
+    /*@Override
     public void displayForms(List<FormTableView> forms, TableView tableView, ObservableList<FormTableView> observableList,
                              TableColumn<FormTableView, String> fname, TableColumn<FormTableView, String> lname,
                              TableColumn<FormTableView, String> email, TableColumn<FormTableView, String> phone,
@@ -229,7 +229,7 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         tableView.setItems(observableList);
-    }
+    }*/
 
     public void nullifyAddBookFields(ComboBox genre, ComboBox cover, TextField isbn, TextField id, TextField author,
                                      TextField issueDate, TextField publ, TextField title) {
