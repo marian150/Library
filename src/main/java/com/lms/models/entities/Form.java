@@ -29,11 +29,7 @@ public class Form {
 
     @Column(name = "submit_date")
     private LocalDate submitDate;
-/*
-    @ManyToOne()
-    @JoinColumn(name = "status_id", foreignKey = @ForeignKey(name = "FORM_FORM_STATUS_FK" ))
-    private Status formStatus;
-*/
+
     public Form() {}
 
     public Long getFormId() {
@@ -91,14 +87,4 @@ public class Form {
     public void setSubmitDate(LocalDate submitDate) {
         this.submitDate = submitDate;
     }
-/*
-    public Status getFormStatus() {
-        return formStatus;
-    }
-
-    public void setFormStatus(Status formStatus) {
-        this.formStatus = formStatus;
-    }
-
- */
 }

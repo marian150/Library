@@ -3,13 +3,12 @@ package com.lms.controllers.commonComponentsLogic;
 import com.lms.models.entities.Book;
 import com.lms.models.entities.RentBook;
 import com.lms.models.entities.User;
+import com.lms.models.nonpersistentclasses.FormTableView;
 import com.lms.models.nonpersistentclasses.ReturnBookTableView;
 import com.lms.models.nonpersistentclasses.SearchBookTableView;
 import com.lms.models.nonpersistentclasses.SearchReaderTableView;
 import com.lms.services.PrivilegedUserService;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
 import java.util.List;
@@ -37,6 +36,11 @@ public interface CommonAdminOperatorFunctionalities {
                           TableColumn<ReturnBookTableView, String> author, TableColumn<ReturnBookTableView, String> lend,
                           TableColumn<ReturnBookTableView, String> due, TableColumn<ReturnBookTableView, String> operator,
                           TableColumn<ReturnBookTableView, String> type);
+
+    public void displayForms(List<FormTableView> forms, TableView tableView, ObservableList<FormTableView> observableList,
+                             TableColumn<FormTableView, String> fname, TableColumn<FormTableView, String> lname,
+                             TableColumn<FormTableView, String> email, TableColumn<FormTableView, String> phone,
+                             TableColumn<FormTableView, String> date, TableColumn<FormTableView, String> status);
 
     void nullifyCreateReaderFields(TextField fname, TextField lname, TextField email, TextField pass, TextField phone);
     void nullifyLendBookUserDetails(TextField phone, TextField email, TextField name, TextField id);

@@ -9,6 +9,7 @@ public class Status {
     @Id
     @Column(name = "status_id")
     private Long statusId;
+
     @Column(name = "status_name")
     private String statusName;
 

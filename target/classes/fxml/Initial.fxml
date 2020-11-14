@@ -52,12 +52,12 @@
                                     <TextField id="reg_last_name_id" fx:id="reg_last_name_id" layoutX="159.0" layoutY="104.0" promptText="Last Name" />
                                     <TextField id="reg_email_id" fx:id="reg_email_id" layoutX="159.0" layoutY="143.0" promptText="Email" />
                                     <PasswordField id="reg_passwd_id" fx:id="reg_passwd_id" layoutX="160.0" layoutY="183.0" promptText="Password" />
+                                    <TextField fx:id="reg_phone_id" layoutX="160.0" layoutY="220.0" promptText="Phone" />
                                     <Button fx:id="reg_signup_btn" layoutX="191.0" layoutY="259.0" mnemonicParsing="false" text="Sign Up">
                                        <font>
                                           <Font size="17.0" />
                                        </font>
                                     </Button>
-                                    <TextField fx:id="reg_phone_id" layoutX="160.0" layoutY="220.0" promptText="Phone" />
                                  </children>
                               </AnchorPane>
                         </content>
