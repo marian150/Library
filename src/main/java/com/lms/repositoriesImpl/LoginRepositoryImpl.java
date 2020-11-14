@@ -47,16 +47,13 @@ public class LoginRepositoryImpl implements LoginRepository {
         form.setFirstName(signUpDTO.getFirstname());
         form.setLastName(signUpDTO.getLastname());
         form.setEmail(signUpDTO.getEmail());
-        form.setPassword(signUpDTO.getPassword());
+        form.setPassword(Password.hashPassword(signUpDTO.getPassword()));
         form.setPhone(signUpDTO.getPhone());
         form.setSubmitDate(LocalDate.now());
 
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-
-            Status formStatus = (Status) session.load(Status.class, (Long)(long)1);
-            form.setFormStatus(formStatus);
             session.save(form);
             tx.commit();
         } catch (Exception e){

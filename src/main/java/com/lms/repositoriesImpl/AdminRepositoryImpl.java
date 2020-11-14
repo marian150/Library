@@ -6,6 +6,7 @@ import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
+import com.lms.models.nonpersistentclasses.FormTableView;
 import com.lms.repositories.AdminRepository;
 import com.lms.security.Password;
 import org.apache.log4j.Logger;
@@ -129,6 +130,11 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     @Override
     public LocalDate extendDueDate(Long id) {
+        return null;
+    }
+
+    @Override
+    public List<FormTableView> loadForms() {
         return null;
     }
 }

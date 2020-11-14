@@ -6,6 +6,7 @@ import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
+import com.lms.models.nonpersistentclasses.FormTableView;
 import com.lms.repositories.OperatorRepository;
 import com.lms.security.Password;
 import org.apache.log4j.Logger;
@@ -548,6 +549,57 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         } finally {
             session.close();
         }
+    }
+
+    @Override
+    public List<FormTableView> loadForms() {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Form> cqForm = cb.createQuery(Form.class);
+        CriteriaQuery<Notifications> cqNotify = cb.createQuery(Notifications.class);
+        Root<Form> formRoot = cqForm.from(Form.class);
+
+        Subquery<Notifications> cqSubquery = cqNotify.subquery(Notifications.class);
+        Root<Notifications> notificationsRoot = cqSubquery.from(Notifications.class);
+
+        notificationsRoot.fetch("status", JoinType.LEFT);
+
+        predicates.add(cb.isNotNull(notificationsRoot.get("form")));
+        predicates.add(cb.equal(notificationsRoot.get("status").get("statusName"), 1));
+
+        Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
+        cqSubquery.where(finalPredicate);
+
+        cqSubquery.select(notificationsRoot.get("form")).from(Notifications.class);
+
+        Root subRoot = cqSubquery.from(Notifications.class);
+
+        cqForm.select(formRoot);
+        List<Form> forms = session.createQuery(cqForm).getResultList();
+
+        //List<Object[]> forms = typedQuery.getResultList();
+
+        /*String hql = "select f.firstName, f.lastName, f.email, f.phone, f.submitDate," +
+                "s.statusName from Form f\n" +
+                "join f.formId n \n" +
+                "join n.status s \n" +
+                "where n.status = 1";
+
+        Query query = session.createQuery(hql);*/
+
+        try {
+            //result = query.getResultList();
+            return null;
+        } catch (NoResultException e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
+        return null;
     }
 
     @Override

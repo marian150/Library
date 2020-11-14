@@ -2,10 +2,8 @@ package com.lms.controllers.commonComponentsLogicImpl;
 
 import com.lms.controllers.LoginController;
 import com.lms.controllers.commonComponentsLogic.CommonAdminOperatorFunctionalities;
-import com.lms.models.entities.Author;
-import com.lms.models.entities.Book;
-import com.lms.models.entities.RentBook;
-import com.lms.models.entities.User;
+import com.lms.models.entities.*;
+import com.lms.models.nonpersistentclasses.FormTableView;
 import com.lms.models.nonpersistentclasses.ReturnBookTableView;
 import com.lms.models.nonpersistentclasses.SearchBookTableView;
 import com.lms.models.nonpersistentclasses.SearchReaderTableView;
@@ -208,6 +206,31 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         tableView.setItems(observableList);
 
     }
+    @Override
+    public void displayForms(List<FormTableView> forms, TableView tableView, ObservableList<FormTableView> observableList,
+                             TableColumn<FormTableView, String> fname, TableColumn<FormTableView, String> lname,
+                             TableColumn<FormTableView, String> email, TableColumn<FormTableView, String> phone,
+                             TableColumn<FormTableView, String> date, TableColumn<FormTableView, String> status){
+        tableView.getItems().clear();
+        for (int i = 0; i < forms.size(); i++) {
+            observableList.add(new FormTableView(
+                    new SimpleStringProperty(forms.get(i).getFirst_name()),
+                    new SimpleStringProperty(forms.get(i).getLast_name()),
+                    new SimpleStringProperty(forms.get(i).getEmail()),
+                    new SimpleStringProperty(forms.get(i).getPhone()),
+                    new SimpleStringProperty(forms.get(i).getDate()),
+                    new SimpleStringProperty(forms.get(i).getStatus()))
+            );
+        }
+        fname.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        tableView.setItems(observableList);
+    }
+
     public void nullifyAddBookFields(ComboBox genre, ComboBox cover, TextField isbn, TextField id, TextField author,
                                      TextField issueDate, TextField publ, TextField title) {
 

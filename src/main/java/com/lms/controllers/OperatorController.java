@@ -16,6 +16,8 @@ import com.lms.validation.err_types.EmailError;
 import com.lms.validation.err_types.NameError;
 import com.lms.validation.err_types.PasswordError;
 import com.lms.validation.err_types.PhoneError;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -144,6 +146,22 @@ public class OperatorController {
     @FXML
     private AnchorPane add_book_anchor;
     @FXML
+    private Button load_forms_btn;
+    @FXML
+    private TableView<FormTableView> forms_load_tableview;
+    @FXML
+    private TableColumn<FormTableView, String> form_tableview_fname;
+    @FXML
+    private TableColumn<FormTableView, String> form_tableview_lname;
+    @FXML
+    private TableColumn<FormTableView, String> form_tableview_email;
+    @FXML
+    private TableColumn<FormTableView, String> form_tableview_phone;
+    @FXML
+    private TableColumn<FormTableView, String> form_tableview_date;
+    @FXML
+    private TableColumn<FormTableView, String> form_tableview_status;
+    @FXML
     private TableView<SearchReaderTableView> reader_table_id;
     @FXML
     private TableColumn<SearchReaderTableView, String> readerid_column_id;
@@ -186,6 +204,8 @@ public class OperatorController {
     @FXML private TextField return_title_id;
     @FXML private Button return_btn;
     @FXML private Button return_extend_btn;
+    @FXML private CheckBox loyal_check_box;
+    @FXML private CheckBox not_loyal_check_box;
     @FXML private TableView<ReturnBookTableView> return_table_view;
     @FXML private TableColumn<ReturnBookTableView, String> return_lendid_col_id;
     @FXML private TableColumn<ReturnBookTableView, String> return_reader_col_id;
@@ -199,6 +219,7 @@ public class OperatorController {
     ObservableList<SearchReaderTableView> readersObservableList = FXCollections.observableArrayList();
     ObservableList<SearchBookTableView> searchBooksObservableList = FXCollections.observableArrayList();
     ObservableList<ReturnBookTableView> returnObservableList = FXCollections.observableArrayList();
+    ObservableList<FormTableView> formsObservableList = FXCollections.observableArrayList();
 
     public OperatorController() {}
 
@@ -391,6 +412,24 @@ public class OperatorController {
                     isbn_column_id, genre_column_id, year_column_id, publisher_column_id, state_column_id);
         });
 
+        loyal_check_box.setOnAction(event -> {
+            if(loyal_check_box.isSelected()) {
+                reader_table_id.getItems().removeIf(item -> Integer.parseInt(item.getRating()) > 85);
+            }
+        });
+
+        loyal_check_box.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
+            if(loyal_check_box.isSelected()) {
+                reader_table_id.getItems().removeIf(item -> Integer.parseInt(item.getRating()) < 85);
+            }
+        });
+
+        not_loyal_check_box.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
+            if(not_loyal_check_box.isSelected()) {
+                reader_table_id.getItems().removeIf(item -> Integer.parseInt(item.getRating()) > 85);
+            }
+        });
+
         reader_to_rent_book_btn.setOnAction(event -> {
             SearchReaderTableView selectedReader = reader_table_id.getSelectionModel().getSelectedItem();
             tabPane.getSelectionModel().select(2);
@@ -530,6 +569,13 @@ public class OperatorController {
 
         return_extend_btn.setOnAction(event -> {
             updateAfterExtendDueDate(extendDueDate());
+        });
+
+        load_forms_btn.setOnAction(event -> {
+            List<FormTableView> forms = operatorService.loadForms();
+            if (!forms.isEmpty())
+                commonAdminOperatorFunctionalities.displayForms(forms, forms_load_tableview, formsObservableList, form_tableview_fname,
+                        form_tableview_lname, form_tableview_email, form_tableview_phone, form_tableview_date, form_tableview_status);
         });
     }
 

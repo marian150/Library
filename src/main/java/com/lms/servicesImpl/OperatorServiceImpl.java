@@ -5,6 +5,7 @@ import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
+import com.lms.models.nonpersistentclasses.FormTableView;
 import com.lms.models.nonpersistentclasses.ReturnBookTableView;
 import com.lms.repositories.OperatorRepository;
 import com.lms.services.OperatorService;
@@ -99,5 +100,12 @@ public class OperatorServiceImpl implements OperatorService {
     public LocalDate extendDueDate(Long id) { return operatorRepository.extendDueDate(id); }
 
     @Override
+    public List<FormTableView> loadForms() {
+        return operatorRepository.loadForms();
+    }
+
+    @Override
     public List<RentBook> findLentBooks(Map<String, String> values) { return operatorRepository.findLentBooks(values); }
+
+
 }
