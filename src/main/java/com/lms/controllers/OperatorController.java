@@ -476,6 +476,7 @@ public class OperatorController {
         });
 
         search_book_btn.setOnAction(event -> {
+            operatorService.checkForPostponed();
             List<Book> result = commonAdminOperatorFunctionalities.searchBook(
                     search_book_inv, search_book_title,search_book_isbn,
                     search_book_author,search_book_genre,search_book_publisher,
@@ -484,12 +485,6 @@ public class OperatorController {
                     result, search_book_table_view,searchBooksObservableList,
                     invnum_column_id, title_column_id, author_column_id,
                     isbn_column_id, genre_column_id, year_column_id, publisher_column_id, state_column_id);
-        });
-
-        loyal_check_box.setOnAction(event -> {
-            if(loyal_check_box.isSelected()) {
-                reader_table_id.getItems().removeIf(item -> Integer.parseInt(item.getRating()) > 85);
-            }
         });
 
         loyal_check_box.selectedProperty().addListener((observableValue, aBoolean, t1) -> {
@@ -638,7 +633,8 @@ public class OperatorController {
             selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
         });
         return_btn.setOnAction(event -> {
-            updateAfterReturn(returnBooks());
+            if (!return_table_view.getSelectionModel().isEmpty())
+                updateAfterReturn(returnBooks());
         });
 
         return_extend_btn.setOnAction(event -> {

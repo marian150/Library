@@ -495,10 +495,11 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         try {
             tx = session.beginTransaction();
             List<Serializable> returnedBooksIds = new ArrayList<>();
+            RentBook rentBook = new RentBook();
 
             for(Long id : books.getBookIds()){
                 // get the lent book into object/entity
-                RentBook rentBook = session.get(RentBook.class, id);
+                rentBook = session.get(RentBook.class, id);
                 // create new entity ReturnBook which will be filled with details about the returning
                 ReturnBook returnBook = new ReturnBook();
                 returnBook.setReturnId(rentBook.getRentId()); // set the id of the row from rent_book
@@ -514,6 +515,9 @@ public class OperatorRepositoryImpl implements OperatorRepository {
                 Serializable returnBookId = session.save(rentBook);
                 returnedBooksIds.add(returnBookId);
             }
+            User user = rentBook.getClient();
+            user.setRating(user.getRating() + 1);
+            session.update(user);
             tx.commit();
             for (Serializable id : returnedBooksIds) {
                 logger.info("Book " + id + " is returned");
@@ -659,6 +663,11 @@ public class OperatorRepositoryImpl implements OperatorRepository {
                 rentBook.setRentDate(LocalDate.now());
                 rentBook.setDueDate(LocalDate.now().plusMonths(1));
                 Serializable lentBookId = session.save(rentBook);
+                User user = rentBook.getClient();
+                if (user.getRating() < 100) {
+                    user.setRating(user.getRating() + 1);
+                    session.update(user);
+                }
                 lentBooksIds.add(lentBookId);
             }
             tx.commit();
@@ -673,5 +682,48 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         } finally {
             session.close();
         }
+    }
+
+    @Override
+    public void checkForPostponed() {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        LocalDate currentDate = LocalDate.now();
+
+        try {
+            tx = session.beginTransaction();
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<RentBook> cq = cb.createQuery(RentBook.class);
+            Root<RentBook> rentBookRoot = cq.from(RentBook.class);
+
+            Predicate checkDate = cb.lessThan(rentBookRoot.get("dueDate"), cb.currentDate());
+
+            cq.where(checkDate);
+
+            List<RentBook> postponedList = session.createQuery(cq).getResultList();
+
+            for (RentBook rb : postponedList) {
+                Notifications notification = new Notifications();
+                notification.setRentBook(rb);
+
+                Query queryL = session.createQuery("Select s from Status s where s.statusId = 1");
+                Status status = (Status) queryL.getSingleResult();
+                notification.setStatus(status);
+
+                User user = rb.getClient();
+                user.setRating(user.getRating() - 3);
+                session.update(user);
+
+                session.save(notification);
+            }
+            tx.commit();
+        } catch (Exception e) {
+            if(tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
     }
 }
