@@ -5,7 +5,7 @@ import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
-import com.lms.models.nonpersistentclasses.FormTableView;
+import com.lms.models.nonpersistentclasses.LoadFormsModel;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -28,5 +28,5 @@ public interface PrivilegedUserRepository {
     List<RentBook> findLentBooks(Map<String, String> values);
     boolean returnBooks(ReturnBookDTO books);
     LocalDate extendDueDate(Long id);
-    List<FormTableView> loadForms();
+    List<LoadFormsModel> loadForms();
 }

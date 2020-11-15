@@ -2,72 +2,95 @@ package com.lms.models.nonpersistentclasses;
 
 import javafx.beans.property.SimpleStringProperty;
 
-import java.time.LocalDate;
-
 public class FormTableView {
 
-    private String first_name;
-    private String last_name;
-    private String email;
-    private String phone;
-    private LocalDate date;
-    private String status;
+    private SimpleStringProperty fname;
+    private SimpleStringProperty lname;
+    private SimpleStringProperty email;
+    private SimpleStringProperty phone;
+    private SimpleStringProperty submitDate;
+    private SimpleStringProperty status;
 
-
-    public FormTableView(String first_name, String last_name, String email, String phone, LocalDate date, String status) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public FormTableView(SimpleStringProperty fname, SimpleStringProperty lname,
+                         SimpleStringProperty email, SimpleStringProperty phone,
+                         SimpleStringProperty submitDate, SimpleStringProperty status) {
+        this.fname = fname;
+        this.lname = lname;
         this.email = email;
         this.phone = phone;
-        this.date = date;
+        this.submitDate = submitDate;
         this.status = status;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFname() {
+        return fname.get();
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public SimpleStringProperty fnameProperty() {
+        return fname;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public void setFname(String fname) {
+        this.fname.set(fname);
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public String getLname() {
+        return lname.get();
+    }
+
+    public SimpleStringProperty lnameProperty() {
+        return lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname.set(lname);
     }
 
     public String getEmail() {
+        return email.get();
+    }
+
+    public SimpleStringProperty emailProperty() {
         return email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email.set(email);
     }
 
     public String getPhone() {
+        return phone.get();
+    }
+
+    public SimpleStringProperty phoneProperty() {
         return phone;
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.phone.set(phone);
     }
 
-    public LocalDate getDate() {
-        return date;
+    public String getSubmitDate() {
+        return submitDate.get();
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public SimpleStringProperty submitDateProperty() {
+        return submitDate;
+    }
+
+    public void setSubmitDate(String submitDate) {
+        this.submitDate.set(submitDate);
     }
 
     public String getStatus() {
+        return status.get();
+    }
+
+    public SimpleStringProperty statusProperty() {
         return status;
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        this.status.set(status);
     }
 }

@@ -6,11 +6,10 @@ import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
-import com.lms.models.nonpersistentclasses.FormTableView;
+import com.lms.models.nonpersistentclasses.LoadFormsModel;
 import com.lms.repositories.OperatorRepository;
 import com.lms.security.Password;
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -22,7 +21,6 @@ import javax.persistence.criteria.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.logging.Level;
 
 @Dependent
 public class OperatorRepositoryImpl implements OperatorRepository {
@@ -552,7 +550,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
     }
 
     @Override
-    public List<FormTableView> loadForms() {
+    public List<LoadFormsModel> loadForms() {
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
         Transaction tx = null;
 
@@ -561,13 +559,13 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             List<Predicate> predicates = new ArrayList<>();
 
             CriteriaBuilder cb = session.getCriteriaBuilder();
-            CriteriaQuery<FormTableView> cq = cb.createQuery(FormTableView.class);
+            CriteriaQuery<LoadFormsModel> cq = cb.createQuery(LoadFormsModel.class);
             Root<Notifications> notificationsRoot = cq.from(Notifications.class);
 
             notificationsRoot.join("form");
             notificationsRoot.join("status");
 
-            predicates.add(cb.equal(notificationsRoot.get("status"), 1));
+            //predicates.add(cb.like(notificationsRoot.get("status").get("statusName"), "New"));
             predicates.add(cb.isNotNull(notificationsRoot.get("form")));
 
             Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
@@ -576,8 +574,9 @@ public class OperatorRepositoryImpl implements OperatorRepository {
                     notificationsRoot.get("form").get("email"), notificationsRoot.get("form").get("phone"),
                     notificationsRoot.get("form").get("submitDate"), notificationsRoot.get("status").get("statusName"));
 
+            cq.where(finalPredicate);
 
-            List<FormTableView> notifications = session.createQuery(cq).getResultList();
+            List<LoadFormsModel> notifications = session.createQuery(cq).getResultList();
             return notifications;
         } catch (NoResultException e) {
             if(tx != null) tx.rollback();
