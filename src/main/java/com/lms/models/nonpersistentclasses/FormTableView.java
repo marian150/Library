@@ -11,6 +11,9 @@ public class FormTableView {
     private SimpleStringProperty submitDate;
     private SimpleStringProperty status;
 
+    public FormTableView() {
+    }
+
     public FormTableView(SimpleStringProperty fname, SimpleStringProperty lname,
                          SimpleStringProperty email, SimpleStringProperty phone,
                          SimpleStringProperty submitDate, SimpleStringProperty status) {
@@ -20,6 +23,13 @@ public class FormTableView {
         this.phone = phone;
         this.submitDate = submitDate;
         this.status = status;
+    }
+    public FormTableView(SimpleStringProperty fname, SimpleStringProperty lname,
+                         SimpleStringProperty email, SimpleStringProperty phone) {
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.phone = phone;
     }
 
     public String getFname() {

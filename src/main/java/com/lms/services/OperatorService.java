@@ -1,5 +1,9 @@
 package com.lms.services;
 
-public interface OperatorService extends PrivilegedUserService {
+import com.lms.models.nonpersistentclasses.LoadFormsModel;
 
+import java.util.List;
+
+public interface OperatorService extends PrivilegedUserService {
+    List<LoadFormsModel> loadNewForms();
 }

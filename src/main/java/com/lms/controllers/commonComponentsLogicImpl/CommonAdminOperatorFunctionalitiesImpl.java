@@ -227,16 +227,6 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         issueDate.clear();
         publ.clear();
         title.clear();
-/*        add_book_genre.setValue(null);
-        add_book_cover.setValue(null);
-        add_book_isbn.clear();
-        add_book_ID.clear();
-        add_book_author.clear();
-        add_book_issue_date.clear();
-        add_book_publisher.clear();
-        add_book_title.clear();
-
- */
     }
 
     public void nullifyCreateReaderFields(TextField fname, TextField lname, TextField email, TextField pass, TextField phone) {
@@ -247,13 +237,6 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         email.clear();
         name.clear();
         id.clear();
-        /*
-        lend_rd_phone.clear();
-        lend_rd_email.clear();
-        lend_rd_name.clear();
-        lend_rd_id.clear();
-
-         */
     }
 
     public void nullifyCrapBookFields(TextField author, TextField genre, TextField inv, TextField isbn, TextField publ, TextField title, TextField year) {
@@ -264,17 +247,24 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         publ.clear();
         title.clear();
         year.clear();
-
-        /*
-        scrap_author_id.clear();
-        scrap_genre_id.clear();
-        scrap_inv_id.clear();
-        scrap_isbn_id.clear();
-        scrap_publ_id.clear();
-        scrap_title_id.clear();
-        scrap_year_id.clear();
-
-         */
     }
 
+    public void displayNewForms(List<LoadFormsModel> newForms, TableView tableView, ObservableList<FormTableView> observableList,
+                                TableColumn<FormTableView, String> fname, TableColumn<FormTableView, String> lname, TableColumn<FormTableView, String> phone,
+                                TableColumn<FormTableView, String> email){
+        tableView.getItems().clear();
+        for (int i = 0; i < newForms.size(); i++) {
+            observableList.add(new FormTableView(
+                    new SimpleStringProperty(newForms.get(i).getFirstName()),
+                    new SimpleStringProperty(newForms.get(i).getLastName()),
+                    new SimpleStringProperty(newForms.get(i).getEmail()),
+                    new SimpleStringProperty(newForms.get(i).getPhone())
+            ));
+        }
+        fname.setCellValueFactory(new PropertyValueFactory<>("fname"));
+        lname.setCellValueFactory(new PropertyValueFactory<>("lname"));
+        email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        tableView.setItems(observableList);
+    }
 }

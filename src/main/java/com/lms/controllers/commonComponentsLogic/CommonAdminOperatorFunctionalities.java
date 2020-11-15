@@ -3,10 +3,7 @@ package com.lms.controllers.commonComponentsLogic;
 import com.lms.models.entities.Book;
 import com.lms.models.entities.RentBook;
 import com.lms.models.entities.User;
-import com.lms.models.nonpersistentclasses.FormTableView;
-import com.lms.models.nonpersistentclasses.ReturnBookTableView;
-import com.lms.models.nonpersistentclasses.SearchBookTableView;
-import com.lms.models.nonpersistentclasses.SearchReaderTableView;
+import com.lms.models.nonpersistentclasses.*;
 import com.lms.services.PrivilegedUserService;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -46,4 +43,7 @@ public interface CommonAdminOperatorFunctionalities {
     void nullifyLendBookUserDetails(TextField phone, TextField email, TextField name, TextField id);
     void nullifyCrapBookFields(TextField author, TextField genre, TextField inv, TextField isbn, TextField publ, TextField title, TextField year);
     void nullifyAddBookFields(ComboBox genre, ComboBox cover, TextField isbn, TextField id, TextField author, TextField issueDate, TextField publ, TextField title);
+    void displayNewForms(List<LoadFormsModel> newForms, TableView tableView, ObservableList<FormTableView> observableList,
+                         TableColumn<FormTableView, String> fname, TableColumn<FormTableView, String> lname, TableColumn<FormTableView, String> phone,
+                         TableColumn<FormTableView, String> email);
 }

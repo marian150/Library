@@ -585,6 +585,45 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             session.close();
         }
     }
+    @Override
+    public List<LoadFormsModel> loadNewForms() {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            List<Predicate> predicates = new ArrayList<>();
+
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<LoadFormsModel> cq = cb.createQuery(LoadFormsModel.class);
+            Root<Notifications> notificationsRoot = cq.from(Notifications.class);
+
+            notificationsRoot.join("form");
+            notificationsRoot.join("status");
+
+            predicates.add(cb.like(notificationsRoot.get("status").get("statusName"), "New"));
+            predicates.add(cb.isNotNull(notificationsRoot.get("form")));
+
+            Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
+
+            cq.multiselect(notificationsRoot.get("form").get("firstName"), notificationsRoot.get("form").get("lastName"),
+                    notificationsRoot.get("form").get("email"), notificationsRoot.get("form").get("phone"),
+                    notificationsRoot.get("form").get("submitDate"), notificationsRoot.get("status").get("statusName"));
+
+            cq.where(finalPredicate);
+
+            List<LoadFormsModel> notifications = session.createQuery(cq).getResultList();
+
+
+
+            return notifications;
+        } catch (NoResultException e) {
+            if(tx != null) tx.rollback();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
 
     @Override
     public boolean lendBook(LendBookDTO lendBookDTO, Long userId) {

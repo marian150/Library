@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="475.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lms.controllers.OperatorController">
+<AnchorPane prefHeight="475.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.lms.controllers.OperatorController">
     <children>
         <SplitPane dividerPositions="0.16963528413910092" layoutX="-1.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="473.0" prefWidth="806.0">
             <items>
@@ -47,7 +47,47 @@
                                     <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <ListView layoutY="64.0" prefHeight="298.0" prefWidth="805.0" />
+                                    <TableView fx:id="notif_overdue_table_view" layoutX="7.0" layoutY="20.0" prefHeight="110.0" prefWidth="791.0">
+                                      <columns>
+                                        <TableColumn fx:id="overdue_rid_col_id" prefWidth="75.0" text="Reader ID" />
+                                        <TableColumn fx:id="overdue_fname_col_id" prefWidth="75.0" text="First Name" />
+                                          <TableColumn fx:id="overdue_lname_col_id" prefWidth="75.0" text="Last Name" />
+                                          <TableColumn fx:id="overdue_phone_col_id" prefWidth="75.0" text="Phone Number" />
+                                          <TableColumn fx:id="overdue_inv_col_id" prefWidth="75.0" text="Book Inventory Number" />
+                                          <TableColumn fx:id="overdue_title_col_id" prefWidth="75.0" text="Title" />
+                                          <TableColumn fx:id="overdue_author_col_id" prefWidth="75.0" text="Author" />
+                                          <TableColumn fx:id="overdue_due_col_id" prefWidth="75.0" text="Due Date" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                    <TableView fx:id="notif_archive_table_view" layoutX="410.0" layoutY="160.0" prefHeight="186.0" prefWidth="388.0">
+                                      <columns>
+                                        <TableColumn fx:id="archive_inv_col_Id" prefWidth="75.0" text="Book Inventory Number" />
+                                        <TableColumn fx:id="archive_title_col_id" prefWidth="75.0" text="Title" />
+                                          <TableColumn fx:id="archive_author_col_id" prefWidth="75.0" text="Author" />
+                                          <TableColumn fx:id="archive_year_col_id" prefWidth="75.0" text="Year" />
+                                          <TableColumn fx:id="archive_isbn_col_id" prefWidth="75.0" text="ISBN" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                    <TableView fx:id="notif_form_table_view" layoutX="7.0" layoutY="160.0" prefHeight="186.0" prefWidth="384.0">
+                                      <columns>
+                                        <TableColumn fx:id="newform_fname_col_id" prefWidth="75.0" text="First Name" />
+                                        <TableColumn fx:id="newform_lname_col_id" prefWidth="75.0" text="Last Name" />
+                                          <TableColumn fx:id="newform_phone_col_id" prefWidth="75.0" text="Phone Number" />
+                                          <TableColumn fx:id="newform_email_col_id" prefWidth="75.0" text="Email" />
+                                      </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                    <Label layoutX="7.0" layoutY="3.0" text="Overdue books" />
+                                    <Label layoutX="7.0" layoutY="134.0" text="New application forms" />
+                                    <Label layoutX="410.0" layoutY="134.0" text="Books to be archived" />
                                  </children></AnchorPane>
                                     </content>
                                 </Tab>

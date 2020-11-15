@@ -9,6 +9,7 @@ import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.*;
+import com.lms.services.OperatorNotificationService;
 import com.lms.services.OperatorService;
 import com.lms.validation.base.Error;
 import com.lms.validation.err_decorators.*;
@@ -26,10 +27,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import org.apache.log4j.Logger;
 
+import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.se.SeContainer;
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.*;
 
+@Dependent
 public class OperatorController {
 
     @Inject
@@ -38,6 +43,7 @@ public class OperatorController {
     private CommonUserFunctionalities commonUserFunctionalities;
     @Inject
     private CommonAdminOperatorFunctionalities commonAdminOperatorFunctionalities;
+    @Inject private OperatorNotificationService operatorNotificationService;
 
     private User currentUser;
     Logger logger = Logger.getLogger(OperatorController.class);
@@ -215,10 +221,33 @@ public class OperatorController {
     @FXML private TableColumn<ReturnBookTableView, String> return_due_col_id;
     @FXML private TableColumn<ReturnBookTableView, String> return_operator_col_id;
     @FXML private TableColumn<ReturnBookTableView, String> return_type_col_id;
+    @FXML private TableView<OverdueBooksTableView> notif_overdue_table_view;
+    @FXML private TableView<FormTableView> notif_form_table_view;
+    @FXML private TableView<SearchBookTableView> notif_archive_table_view;
+    @FXML private TableColumn<OverdueBooksTableView, String> overdue_rid_col_id;
+    @FXML private TableColumn<OverdueBooksTableView, String> overdue_fname_col_id;
+    @FXML private TableColumn<OverdueBooksTableView, String> overdue_lname_col_id;
+    @FXML private TableColumn<OverdueBooksTableView, String> overdue_phone_col_id;
+    @FXML private TableColumn<OverdueBooksTableView, String> overdue_inv_col_id;
+    @FXML private TableColumn<OverdueBooksTableView, String> overdue_title_col_id;
+    @FXML private TableColumn<OverdueBooksTableView, String> overdue_author_col_id;
+    @FXML private TableColumn<OverdueBooksTableView, String> overdue_due_col_id;
+    @FXML private TableColumn<FormTableView, String> newform_fname_col_id;
+    @FXML private TableColumn<FormTableView, String> newform_lname_col_id;
+    @FXML private TableColumn<FormTableView, String> newform_phone_col_id;
+    @FXML private TableColumn<FormTableView, String> newform_email_col_id;
+    @FXML private TableColumn<SearchBookTableView, String> archive_inv_col_id;
+    @FXML private TableColumn<SearchBookTableView, String> archive_title_col_id;
+    @FXML private TableColumn<SearchBookTableView, String> archive_author_col_id;
+    @FXML private TableColumn<SearchBookTableView, String> archive_year_col_id;
+    @FXML private TableColumn<SearchBookTableView, String> archive_isbn_col_id;
     ObservableList<SearchReaderTableView> readersObservableList = FXCollections.observableArrayList();
     ObservableList<SearchBookTableView> searchBooksObservableList = FXCollections.observableArrayList();
     ObservableList<ReturnBookTableView> returnObservableList = FXCollections.observableArrayList();
     ObservableList<FormTableView> formsObservableList = FXCollections.observableArrayList();
+    ObservableList<OverdueBooksTableView> overdueObservableList = FXCollections.observableArrayList();
+    ObservableList<FormTableView> newFormsObservableList = FXCollections.observableArrayList();
+    ObservableList<SearchBookTableView> toBeArchivedObservableList = FXCollections.observableArrayList();
 
     public OperatorController() {}
 
@@ -258,8 +287,6 @@ public class OperatorController {
     public List<BookState> retrieveBookState() {return operatorService.retrieveBookState();}
 
     public boolean searchPublisher(String publisherName) {return operatorService.searchPublisher(publisherName);}
-
-
 
     public boolean addPublisher(String publisherName) {
         return operatorService.addPublisher(publisherName);
@@ -310,7 +337,6 @@ public class OperatorController {
             alert.setContentText("Something went wrong");
             alert.show();
         }
-
     }
 
     public LocalDate extendDueDate(){
@@ -329,7 +355,28 @@ public class OperatorController {
         }
     }
 
+    public void loadNewFormsAndDisplay(){
+        System.out.println("in method loadNewFormsAndDisplay");
+        List<LoadFormsModel> newForms = operatorService.loadNewForms();
+        for(LoadFormsModel x: newForms){
+            System.out.println(x.getFirstName() + " " + x.getLastName() + " " + x.getPhone() + " " + x.getEmail());
+        }
+        commonAdminOperatorFunctionalities.displayNewForms(newForms, notif_form_table_view, newFormsObservableList,
+                newform_fname_col_id, newform_lname_col_id, newform_phone_col_id, newform_email_col_id);
+    }
+
     public void initialize() {
+
+        Runnable task = () -> {
+            try {
+                loadNewFormsAndDisplay();
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+        };
+        operatorNotificationService.setTask(task);
+        operatorNotificationService.initialize();
+
         for (BookCovers bc : retrieveBookCovers()) {
             add_book_cover.getItems().add(bc.getCoverName());
         }
@@ -574,9 +621,9 @@ public class OperatorController {
             List<LoadFormsModel> forms = operatorService.loadForms();
             List<FormTableView> formsForDisplay = new ArrayList<>();
             for (LoadFormsModel lf : forms) {
-                System.out.println(lf.getFirst_name());
-                formsForDisplay.add(new FormTableView(new SimpleStringProperty(lf.getFirst_name()),
-                        new SimpleStringProperty(lf.getLast_name()),
+                System.out.println(lf.getFirstName());
+                formsForDisplay.add(new FormTableView(new SimpleStringProperty(lf.getFirstName()),
+                        new SimpleStringProperty(lf.getLastName()),
                         new SimpleStringProperty(lf.getEmail()), new SimpleStringProperty(lf.getPhone()),
                         new SimpleStringProperty(lf.getDate().toString()), new SimpleStringProperty(lf.getStatus())));
             }

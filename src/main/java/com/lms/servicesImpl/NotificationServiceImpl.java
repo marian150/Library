@@ -7,7 +7,6 @@ import com.lms.services.NotificationService;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
-import java.util.List;
 import java.util.concurrent.*;
 
 @Dependent
@@ -20,7 +19,7 @@ public class NotificationServiceImpl implements NotificationService {
     public void initialize() {
         executor = Executors.newScheduledThreadPool(1);
         Runnable task = () -> {
-            
+
         };
         executor.scheduleAtFixedRate(task, 0, 12, TimeUnit.SECONDS);
     }
