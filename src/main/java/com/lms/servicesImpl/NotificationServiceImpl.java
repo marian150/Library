@@ -20,7 +20,7 @@ public class NotificationServiceImpl implements NotificationService {
     public void initialize() {
         executor = Executors.newScheduledThreadPool(1);
         Runnable task = () -> {
-             notificationRepository.formTask();
+            
         };
         executor.scheduleAtFixedRate(task, 0, 12, TimeUnit.SECONDS);
     }
