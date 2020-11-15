@@ -105,4 +105,8 @@ public class OperatorServiceImpl implements OperatorService {
     public List<RentBook> findLentBooks(Map<String, String> values) { return operatorRepository.findLentBooks(values); }
 
 
+    @Override
+    public void checkForPostponed() {
+        operatorRepository.checkForPostponed();
+    }
 }
