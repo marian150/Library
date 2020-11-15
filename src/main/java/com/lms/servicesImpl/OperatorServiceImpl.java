@@ -6,8 +6,8 @@ import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.LoadFormsModel;
+import com.lms.models.nonpersistentclasses.LoadOverdueModel;
 import com.lms.repositories.OperatorRepository;
-import com.lms.services.LoginService;
 import com.lms.services.OperatorService;
 import com.lms.services.PrivilegedUserService;
 
@@ -16,8 +16,6 @@ import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicReference;
 
 @Dependent
 public class OperatorServiceImpl implements OperatorService {
@@ -112,4 +110,11 @@ public class OperatorServiceImpl implements OperatorService {
     public List<LoadFormsModel> loadNewForms() {
         return operatorRepository.loadNewForms();
     }
+
+    @Override
+    public List<RentBook> loadOverdue() {
+        return operatorRepository.loadOverdue();
+    }
+
+
 }

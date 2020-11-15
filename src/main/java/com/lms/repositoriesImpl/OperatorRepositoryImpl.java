@@ -7,8 +7,10 @@ import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.LoadFormsModel;
+import com.lms.models.nonpersistentclasses.LoadOverdueModel;
 import com.lms.repositories.OperatorRepository;
 import com.lms.security.Password;
+import com.sun.source.tree.LambdaExpressionTree;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -618,9 +620,47 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
             List<LoadFormsModel> notifications = session.createQuery(cq).getResultList();
 
-
-
             return notifications;
+        } catch (NoResultException e) {
+            if(tx != null) tx.rollback();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public List<RentBook> loadOverdue() {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+        List<Predicate> predicates = new ArrayList<>();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<RentBook> cq = cb.createQuery(RentBook.class);
+            Root<Notifications> root = cq.from(Notifications.class);
+
+            Join<Notifications, RentBook> rb = root.join("rentBook", JoinType.LEFT);
+            Fetch<RentBook, Book> b = rb.fetch("book", JoinType.LEFT);
+            b.fetch("authors", JoinType.LEFT);
+            rb.fetch("client", JoinType.LEFT);
+            root.join("status", JoinType.LEFT);
+
+            predicates.add(cb.like(root.get("status").get("statusName"), "New"));
+            predicates.add(cb.isNotNull(root.get("rentBook")));
+
+            Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
+            cq.select(root.get("rentBook")).distinct(true);
+            cq.where(finalPredicate);
+
+            TypedQuery<RentBook> typedQuery = session.createQuery(cq);
+            List<RentBook> result = typedQuery.getResultList();
+
+
+
+            return result;
         } catch (NoResultException e) {
             if(tx != null) tx.rollback();
             return null;
@@ -684,46 +724,6 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         }
     }
 
-    @Override
-    public void checkForPostponed() {
-        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
-        Transaction tx = null;
 
-        LocalDate currentDate = LocalDate.now();
 
-        try {
-            tx = session.beginTransaction();
-            CriteriaBuilder cb = session.getCriteriaBuilder();
-            CriteriaQuery<RentBook> cq = cb.createQuery(RentBook.class);
-            Root<RentBook> rentBookRoot = cq.from(RentBook.class);
-
-            Predicate checkDate = cb.lessThan(rentBookRoot.get("dueDate"), cb.currentDate());
-
-            cq.where(checkDate);
-
-            List<RentBook> postponedList = session.createQuery(cq).getResultList();
-
-            for (RentBook rb : postponedList) {
-                Notifications notification = new Notifications();
-                notification.setRentBook(rb);
-
-                Query queryL = session.createQuery("Select s from Status s where s.statusId = 1");
-                Status status = (Status) queryL.getSingleResult();
-                notification.setStatus(status);
-
-                User user = rb.getClient();
-                user.setRating(user.getRating() - 3);
-                session.update(user);
-
-                session.save(notification);
-            }
-            tx.commit();
-        } catch (Exception e) {
-            if(tx != null) tx.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-
-    }
 }

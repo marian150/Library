@@ -28,14 +28,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import org.apache.log4j.Logger;
 
-import javax.enterprise.context.Dependent;
-import javax.enterprise.inject.se.SeContainer;
 import javax.inject.Inject;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.concurrent.*;
 
-@Dependent
 public class OperatorController {
 
     @Inject
@@ -44,7 +40,8 @@ public class OperatorController {
     private CommonUserFunctionalities commonUserFunctionalities;
     @Inject
     private CommonAdminOperatorFunctionalities commonAdminOperatorFunctionalities;
-    @Inject private OperatorNotificationService operatorNotificationService;
+    @Inject
+    private OperatorNotificationService operatorNotificationService;
 
     private User currentUser;
     Logger logger = Logger.getLogger(OperatorController.class);
@@ -355,23 +352,36 @@ public class OperatorController {
             return_table_view.getSelectionModel().getSelectedItem().setDueDate(newDueDate.toString());
         }
     }
-    /*
-    public void displayOverdue(List<User> user, List<Book> book){
+
+    public void displayOverdue(List<RentBook> overdueBooks){
         notif_overdue_table_view.getItems().clear();
         for(int i = 0; i < overdueBooks.size(); i++){
+            String authors = "";
+            for (Author a : overdueBooks.get(i).getBook().getAuthors()) {
+                authors += a.getName() + ", ";
+            }
             overdueObservableList.add(new OverdueBooksTableView(
-                    new SimpleStringProperty(overdueBooks.get(i).getRid().toString()),
-                    new SimpleStringProperty(overdueBooks.get(i).getFname()),
-                    new SimpleStringProperty(overdueBooks.get(i).getLname()),
-                    new SimpleStringProperty(overdueBooks.get(i).getPhone()),
-                    new SimpleStringProperty(overdueBooks.get(i).getBid()),
-                    new SimpleStringProperty(overdueBooks.get(i).getTitle()),
-                    new SimpleStringProperty(overdueBooks.get(i).getAuthor()),
-                    new SimpleStringProperty(overdueBooks.get(i).getDueDate())
-            ))
+                    new SimpleStringProperty(overdueBooks.get(i).getClient().getUserId().toString()),
+                    new SimpleStringProperty(overdueBooks.get(i).getClient().getFirstName()),
+                    new SimpleStringProperty(overdueBooks.get(i).getClient().getLastName()),
+                    new SimpleStringProperty(overdueBooks.get(i).getClient().getPhone()),
+                    new SimpleStringProperty(overdueBooks.get(i).getBook().getBookId().toString()),
+                    new SimpleStringProperty(overdueBooks.get(i).getBook().getTitle()),
+                    new SimpleStringProperty(authors),
+                    new SimpleStringProperty(overdueBooks.get(i).getDueDate().toString())
+            ));
         }
+        overdue_rid_col_id.setCellValueFactory(new PropertyValueFactory<>("rid"));
+        overdue_fname_col_id.setCellValueFactory(new PropertyValueFactory<>("fname"));
+        overdue_lname_col_id.setCellValueFactory(new PropertyValueFactory<>("lname"));
+        overdue_phone_col_id.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        overdue_inv_col_id.setCellValueFactory(new PropertyValueFactory<>("bid"));
+        overdue_title_col_id.setCellValueFactory(new PropertyValueFactory<>("title"));
+        overdue_author_col_id.setCellValueFactory(new PropertyValueFactory<>("author"));
+        overdue_due_col_id.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+        notif_overdue_table_view.setItems(overdueObservableList);
     }
-    */
+
     public void displayNewForms(List<LoadFormsModel> newForms){
         notif_form_table_view.getItems().clear();
         for (int i = 0; i < newForms.size(); i++) {
@@ -394,6 +404,11 @@ public class OperatorController {
         displayNewForms(newForms);
     }
 
+    public void loadOverdueAndDisplay(){
+        List<RentBook> overdue = operatorService.loadOverdue();
+        displayOverdue(overdue);
+    }
+
     public void initialize() {
         Runnable task = () -> {
             try {
@@ -402,7 +417,15 @@ public class OperatorController {
                 e.printStackTrace();
             }
         };
+        Runnable task2 = () -> {
+            try{
+                loadOverdueAndDisplay();
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+        };
         operatorNotificationService.setTask(task);
+        operatorNotificationService.setTask(task2);
         operatorNotificationService.initialize();
 
         for (BookCovers bc : retrieveBookCovers()) {
@@ -476,7 +499,6 @@ public class OperatorController {
         });
 
         search_book_btn.setOnAction(event -> {
-            operatorService.checkForPostponed();
             List<Book> result = commonAdminOperatorFunctionalities.searchBook(
                     search_book_inv, search_book_title,search_book_isbn,
                     search_book_author,search_book_genre,search_book_publisher,
