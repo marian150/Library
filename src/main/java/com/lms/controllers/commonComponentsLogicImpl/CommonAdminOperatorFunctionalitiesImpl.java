@@ -249,22 +249,5 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         year.clear();
     }
 
-    public void displayNewForms(List<LoadFormsModel> newForms, TableView tableView, ObservableList<FormTableView> observableList,
-                                TableColumn<FormTableView, String> fname, TableColumn<FormTableView, String> lname, TableColumn<FormTableView, String> phone,
-                                TableColumn<FormTableView, String> email){
-        tableView.getItems().clear();
-        for (int i = 0; i < newForms.size(); i++) {
-            observableList.add(new FormTableView(
-                    new SimpleStringProperty(newForms.get(i).getFirstName()),
-                    new SimpleStringProperty(newForms.get(i).getLastName()),
-                    new SimpleStringProperty(newForms.get(i).getEmail()),
-                    new SimpleStringProperty(newForms.get(i).getPhone())
-            ));
-        }
-        fname.setCellValueFactory(new PropertyValueFactory<>("fname"));
-        lname.setCellValueFactory(new PropertyValueFactory<>("lname"));
-        email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        tableView.setItems(observableList);
-    }
+
 }

@@ -43,7 +43,5 @@ public interface CommonAdminOperatorFunctionalities {
     void nullifyLendBookUserDetails(TextField phone, TextField email, TextField name, TextField id);
     void nullifyCrapBookFields(TextField author, TextField genre, TextField inv, TextField isbn, TextField publ, TextField title, TextField year);
     void nullifyAddBookFields(ComboBox genre, ComboBox cover, TextField isbn, TextField id, TextField author, TextField issueDate, TextField publ, TextField title);
-    void displayNewForms(List<LoadFormsModel> newForms, TableView tableView, ObservableList<FormTableView> observableList,
-                         TableColumn<FormTableView, String> fname, TableColumn<FormTableView, String> lname, TableColumn<FormTableView, String> phone,
-                         TableColumn<FormTableView, String> email);
+
 }

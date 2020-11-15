@@ -23,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import org.apache.log4j.Logger;
@@ -354,19 +355,46 @@ public class OperatorController {
             return_table_view.getSelectionModel().getSelectedItem().setDueDate(newDueDate.toString());
         }
     }
+    /*
+    public void displayOverdue(List<User> user, List<Book> book){
+        notif_overdue_table_view.getItems().clear();
+        for(int i = 0; i < overdueBooks.size(); i++){
+            overdueObservableList.add(new OverdueBooksTableView(
+                    new SimpleStringProperty(overdueBooks.get(i).getRid().toString()),
+                    new SimpleStringProperty(overdueBooks.get(i).getFname()),
+                    new SimpleStringProperty(overdueBooks.get(i).getLname()),
+                    new SimpleStringProperty(overdueBooks.get(i).getPhone()),
+                    new SimpleStringProperty(overdueBooks.get(i).getBid()),
+                    new SimpleStringProperty(overdueBooks.get(i).getTitle()),
+                    new SimpleStringProperty(overdueBooks.get(i).getAuthor()),
+                    new SimpleStringProperty(overdueBooks.get(i).getDueDate())
+            ))
+        }
+    }
+    */
+    public void displayNewForms(List<LoadFormsModel> newForms){
+        notif_form_table_view.getItems().clear();
+        for (int i = 0; i < newForms.size(); i++) {
+            newFormsObservableList.add(new FormTableView(
+                    new SimpleStringProperty(newForms.get(i).getFirstName()),
+                    new SimpleStringProperty(newForms.get(i).getLastName()),
+                    new SimpleStringProperty(newForms.get(i).getEmail()),
+                    new SimpleStringProperty(newForms.get(i).getPhone())
+            ));
+        }
+        newform_fname_col_id.setCellValueFactory(new PropertyValueFactory<>("fname"));
+        newform_lname_col_id.setCellValueFactory(new PropertyValueFactory<>("lname"));
+        newform_phone_col_id.setCellValueFactory(new PropertyValueFactory<>("email"));
+        newform_email_col_id.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        notif_form_table_view.setItems(newFormsObservableList);
+    }
 
     public void loadNewFormsAndDisplay(){
-        System.out.println("in method loadNewFormsAndDisplay");
         List<LoadFormsModel> newForms = operatorService.loadNewForms();
-        for(LoadFormsModel x: newForms){
-            System.out.println(x.getFirstName() + " " + x.getLastName() + " " + x.getPhone() + " " + x.getEmail());
-        }
-        commonAdminOperatorFunctionalities.displayNewForms(newForms, notif_form_table_view, newFormsObservableList,
-                newform_fname_col_id, newform_lname_col_id, newform_phone_col_id, newform_email_col_id);
+        displayNewForms(newForms);
     }
 
     public void initialize() {
-
         Runnable task = () -> {
             try {
                 loadNewFormsAndDisplay();
