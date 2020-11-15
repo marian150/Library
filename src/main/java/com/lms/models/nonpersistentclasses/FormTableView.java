@@ -4,46 +4,46 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class FormTableView {
 
-    private SimpleStringProperty first_name;
-    private SimpleStringProperty last_name;
+    private SimpleStringProperty fname;
+    private SimpleStringProperty lname;
     private SimpleStringProperty email;
     private SimpleStringProperty phone;
-    private SimpleStringProperty date;
+    private SimpleStringProperty submitDate;
     private SimpleStringProperty status;
 
-    public FormTableView(SimpleStringProperty first_name, SimpleStringProperty last_name,
+    public FormTableView(SimpleStringProperty fname, SimpleStringProperty lname,
                          SimpleStringProperty email, SimpleStringProperty phone,
-                         SimpleStringProperty date, SimpleStringProperty status) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+                         SimpleStringProperty submitDate, SimpleStringProperty status) {
+        this.fname = fname;
+        this.lname = lname;
         this.email = email;
         this.phone = phone;
-        this.date = date;
+        this.submitDate = submitDate;
         this.status = status;
     }
 
-    public String getFirst_name() {
-        return first_name.get();
+    public String getFname() {
+        return fname.get();
     }
 
-    public SimpleStringProperty first_nameProperty() {
-        return first_name;
+    public SimpleStringProperty fnameProperty() {
+        return fname;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name.set(first_name);
+    public void setFname(String fname) {
+        this.fname.set(fname);
     }
 
-    public String getLast_name() {
-        return last_name.get();
+    public String getLname() {
+        return lname.get();
     }
 
-    public SimpleStringProperty last_nameProperty() {
-        return last_name;
+    public SimpleStringProperty lnameProperty() {
+        return lname;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name.set(last_name);
+    public void setLname(String lname) {
+        this.lname.set(lname);
     }
 
     public String getEmail() {
@@ -70,16 +70,16 @@ public class FormTableView {
         this.phone.set(phone);
     }
 
-    public String getDate() {
-        return date.get();
+    public String getSubmitDate() {
+        return submitDate.get();
     }
 
-    public SimpleStringProperty dateProperty() {
-        return date;
+    public SimpleStringProperty submitDateProperty() {
+        return submitDate;
     }
 
-    public void setDate(String date) {
-        this.date.set(date);
+    public void setSubmitDate(String submitDate) {
+        this.submitDate.set(submitDate);
     }
 
     public String getStatus() {

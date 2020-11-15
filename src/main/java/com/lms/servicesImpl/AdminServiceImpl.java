@@ -5,7 +5,7 @@ import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
-import com.lms.models.nonpersistentclasses.FormTableView;
+import com.lms.models.nonpersistentclasses.LoadFormsModel;
 import com.lms.repositories.AdminRepository;
 import com.lms.services.AdminService;
 import com.lms.services.PrivilegedUserService;
@@ -107,7 +107,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<FormTableView> loadForms() {
+    public List<LoadFormsModel> loadForms() {
         return null;
     }
 }

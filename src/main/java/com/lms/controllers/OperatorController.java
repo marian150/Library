@@ -16,8 +16,7 @@ import com.lms.validation.err_types.EmailError;
 import com.lms.validation.err_types.NameError;
 import com.lms.validation.err_types.PasswordError;
 import com.lms.validation.err_types.PhoneError;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -572,10 +571,20 @@ public class OperatorController {
         });
 
         load_forms_btn.setOnAction(event -> {
-            List<FormTableView> forms = operatorService.loadForms();
-            if (!forms.isEmpty())
-                commonAdminOperatorFunctionalities.displayForms(forms, forms_load_tableview, formsObservableList, form_tableview_fname,
-                        form_tableview_lname, form_tableview_email, form_tableview_phone, form_tableview_date, form_tableview_status);
+            List<LoadFormsModel> forms = operatorService.loadForms();
+            List<FormTableView> formsForDisplay = new ArrayList<>();
+            for (LoadFormsModel lf : forms) {
+                System.out.println(lf.getFirst_name());
+                formsForDisplay.add(new FormTableView(new SimpleStringProperty(lf.getFirst_name()),
+                        new SimpleStringProperty(lf.getLast_name()),
+                        new SimpleStringProperty(lf.getEmail()), new SimpleStringProperty(lf.getPhone()),
+                        new SimpleStringProperty(lf.getDate().toString()), new SimpleStringProperty(lf.getStatus())));
+            }
+            if (forms != null) {
+                commonAdminOperatorFunctionalities.displayForms(formsForDisplay, forms_load_tableview,
+                        formsObservableList, form_tableview_fname, form_tableview_lname, form_tableview_email,
+                        form_tableview_phone, form_tableview_date, form_tableview_status);
+            }
         });
     }
 

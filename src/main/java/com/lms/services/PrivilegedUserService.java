@@ -5,9 +5,7 @@ import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
-import com.lms.models.nonpersistentclasses.FormTableView;
-import com.lms.models.nonpersistentclasses.ReturnBookTableView;
-import javafx.collections.ObservableList;
+import com.lms.models.nonpersistentclasses.LoadFormsModel;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -30,5 +28,5 @@ public interface PrivilegedUserService {
     boolean lendBook(LendBookDTO lendBookDTO, Long userId);
     boolean returnBooks(ReturnBookDTO returnBookDTO);
     LocalDate extendDueDate(Long id);
-    List<FormTableView> loadForms();
+    List<LoadFormsModel> loadForms();
 }

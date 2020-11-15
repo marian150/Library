@@ -6,11 +6,10 @@ import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
-import com.lms.models.nonpersistentclasses.FormTableView;
+import com.lms.models.nonpersistentclasses.LoadFormsModel;
 import com.lms.repositories.OperatorRepository;
 import com.lms.security.Password;
 import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -22,7 +21,6 @@ import javax.persistence.criteria.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.logging.Level;
 
 @Dependent
 public class OperatorRepositoryImpl implements OperatorRepository {
@@ -552,54 +550,40 @@ public class OperatorRepositoryImpl implements OperatorRepository {
     }
 
     @Override
-    public List<FormTableView> loadForms() {
+    public List<LoadFormsModel> loadForms() {
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
-
-        List<Predicate> predicates = new ArrayList<>();
-
-        CriteriaBuilder cb = session.getCriteriaBuilder();
-        CriteriaQuery<Form> cqForm = cb.createQuery(Form.class);
-        CriteriaQuery<Notifications> cqNotify = cb.createQuery(Notifications.class);
-        Root<Form> formRoot = cqForm.from(Form.class);
-
-        Subquery<Notifications> cqSubquery = cqNotify.subquery(Notifications.class);
-        Root<Notifications> notificationsRoot = cqSubquery.from(Notifications.class);
-
-        notificationsRoot.fetch("status", JoinType.LEFT);
-
-        predicates.add(cb.isNotNull(notificationsRoot.get("form")));
-        predicates.add(cb.equal(notificationsRoot.get("status").get("statusName"), 1));
-
-        Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
-        cqSubquery.where(finalPredicate);
-
-        cqSubquery.select(notificationsRoot.get("form")).from(Notifications.class);
-
-        Root subRoot = cqSubquery.from(Notifications.class);
-
-        cqForm.select(formRoot);
-        List<Form> forms = session.createQuery(cqForm).getResultList();
-
-        //List<Object[]> forms = typedQuery.getResultList();
-
-        /*String hql = "select f.firstName, f.lastName, f.email, f.phone, f.submitDate," +
-                "s.statusName from Form f\n" +
-                "join f.formId n \n" +
-                "join n.status s \n" +
-                "where n.status = 1";
-
-        Query query = session.createQuery(hql);*/
+        Transaction tx = null;
 
         try {
-            //result = query.getResultList();
+            tx = session.beginTransaction();
+            List<Predicate> predicates = new ArrayList<>();
+
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<LoadFormsModel> cq = cb.createQuery(LoadFormsModel.class);
+            Root<Notifications> notificationsRoot = cq.from(Notifications.class);
+
+            notificationsRoot.join("form");
+            notificationsRoot.join("status");
+
+            //predicates.add(cb.like(notificationsRoot.get("status").get("statusName"), "New"));
+            predicates.add(cb.isNotNull(notificationsRoot.get("form")));
+
+            Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
+
+            cq.multiselect(notificationsRoot.get("form").get("firstName"), notificationsRoot.get("form").get("lastName"),
+                    notificationsRoot.get("form").get("email"), notificationsRoot.get("form").get("phone"),
+                    notificationsRoot.get("form").get("submitDate"), notificationsRoot.get("status").get("statusName"));
+
+            cq.where(finalPredicate);
+
+            List<LoadFormsModel> notifications = session.createQuery(cq).getResultList();
+            return notifications;
+        } catch (NoResultException e) {
+            if(tx != null) tx.rollback();
             return null;
-        } catch (NoResultException e){
-            e.printStackTrace();
-        }
-        finally {
+        } finally {
             session.close();
         }
-        return null;
     }
 
     @Override

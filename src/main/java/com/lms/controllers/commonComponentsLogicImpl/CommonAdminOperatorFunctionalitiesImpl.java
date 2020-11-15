@@ -1,30 +1,16 @@
 package com.lms.controllers.commonComponentsLogicImpl;
 
-import com.lms.controllers.LoginController;
 import com.lms.controllers.commonComponentsLogic.CommonAdminOperatorFunctionalities;
 import com.lms.models.entities.*;
-import com.lms.models.nonpersistentclasses.FormTableView;
-import com.lms.models.nonpersistentclasses.ReturnBookTableView;
-import com.lms.models.nonpersistentclasses.SearchBookTableView;
-import com.lms.models.nonpersistentclasses.SearchReaderTableView;
+import com.lms.models.nonpersistentclasses.*;
 import com.lms.services.PrivilegedUserService;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import javax.enterprise.context.Dependent;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -214,19 +200,19 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         tableView.getItems().clear();
         for (int i = 0; i < forms.size(); i++) {
             observableList.add(new FormTableView(
-                    new SimpleStringProperty(forms.get(i).getFirst_name()),
-                    new SimpleStringProperty(forms.get(i).getLast_name()),
+                    new SimpleStringProperty(forms.get(i).getFname()),
+                    new SimpleStringProperty(forms.get(i).getLname()),
                     new SimpleStringProperty(forms.get(i).getEmail()),
                     new SimpleStringProperty(forms.get(i).getPhone()),
-                    new SimpleStringProperty(forms.get(i).getDate()),
+                    new SimpleStringProperty(forms.get(i).getSubmitDate()),
                     new SimpleStringProperty(forms.get(i).getStatus()))
             );
         }
-        fname.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        lname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        fname.setCellValueFactory(new PropertyValueFactory<>("fname"));
+        lname.setCellValueFactory(new PropertyValueFactory<>("lname"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
         phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        date.setCellValueFactory(new PropertyValueFactory<>("date"));
+        date.setCellValueFactory(new PropertyValueFactory<>("submitDate"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         tableView.setItems(observableList);
     }

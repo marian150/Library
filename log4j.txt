@@ -752,12 +752,12 @@ ORA-12514, TNS:listener does not currently know of service requested in connect 
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
 	at java.base/java.lang.Thread.run(Thread.java:832)
-2020-11-14 14:48:54,749 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.FormTableView]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
-[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.FormTableView]
-2020-11-14 14:48:54,749 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.FormTableView]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
-[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.FormTableView]
- Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.FormTableView]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
-[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.FormTableView]
+2020-11-14 14:48:54,749 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.LoadFormsModel]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel]
+2020-11-14 14:48:54,749 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.LoadFormsModel]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel]
+ Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.LoadFormsModel]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel]
 	at org.hibernate.hql.internal.ast.tree.ConstructorNode.resolveConstructor(ConstructorNode.java:182)
 	at org.hibernate.hql.internal.ast.tree.ConstructorNode.prepare(ConstructorNode.java:144)
 	at org.hibernate.hql.internal.ast.HqlSqlWalker.processConstructor(HqlSqlWalker.java:1258)
@@ -838,7 +838,7 @@ ORA-12514, TNS:listener does not currently know of service requested in connect 
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 Cause:
-org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.FormTableView
+org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel
 	at org.hibernate.internal.util.ReflectHelper.getConstructor(ReflectHelper.java:346)
 	at org.hibernate.hql.internal.ast.tree.ConstructorNode.resolveConstructor(ConstructorNode.java:174)
 	at org.hibernate.hql.internal.ast.tree.ConstructorNode.prepare(ConstructorNode.java:144)
@@ -1187,12 +1187,12 @@ org.hibernate.PropertyNotFoundException: no appropriate constructor in class: co
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
 	at java.base/java.lang.Thread.run(Thread.java:832)
-2020-11-14 14:50:45,588 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.FormTableView]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
-[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.FormTableView]
-2020-11-14 14:50:45,588 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.FormTableView]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
-[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.FormTableView]
- Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.FormTableView]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
-[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.FormTableView]
+2020-11-14 14:50:45,588 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.LoadFormsModel]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel]
+2020-11-14 14:50:45,588 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.LoadFormsModel]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel]
+ Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.LoadFormsModel]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel]
 	at org.hibernate.hql.internal.ast.tree.ConstructorNode.resolveConstructor(ConstructorNode.java:182)
 	at org.hibernate.hql.internal.ast.tree.ConstructorNode.prepare(ConstructorNode.java:144)
 	at org.hibernate.hql.internal.ast.HqlSqlWalker.processConstructor(HqlSqlWalker.java:1258)
@@ -1273,7 +1273,7 @@ org.hibernate.PropertyNotFoundException: no appropriate constructor in class: co
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 Cause:
-org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.FormTableView
+org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel
 	at org.hibernate.internal.util.ReflectHelper.getConstructor(ReflectHelper.java:346)
 	at org.hibernate.hql.internal.ast.tree.ConstructorNode.resolveConstructor(ConstructorNode.java:174)
 	at org.hibernate.hql.internal.ast.tree.ConstructorNode.prepare(ConstructorNode.java:144)
@@ -1621,12 +1621,12 @@ org.hibernate.PropertyNotFoundException: no appropriate constructor in class: co
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
 	at java.base/java.lang.Thread.run(Thread.java:832)
-2020-11-14 14:53:23,364 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.FormTableView]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
-[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.FormTableView]
-2020-11-14 14:53:23,364 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.FormTableView]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
-[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.FormTableView]
- Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.FormTableView]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
-[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.FormTableView]
+2020-11-14 14:53:23,364 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.LoadFormsModel]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel]
+2020-11-14 14:53:23,364 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.LoadFormsModel]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel]
+ Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.LoadFormsModel]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel]
 	at org.hibernate.hql.internal.ast.tree.ConstructorNode.resolveConstructor(ConstructorNode.java:182)
 	at org.hibernate.hql.internal.ast.tree.ConstructorNode.prepare(ConstructorNode.java:144)
 	at org.hibernate.hql.internal.ast.HqlSqlWalker.processConstructor(HqlSqlWalker.java:1258)
@@ -1707,7 +1707,7 @@ org.hibernate.PropertyNotFoundException: no appropriate constructor in class: co
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
 	at java.base/java.lang.Thread.run(Thread.java:832)
 Cause:
-org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.FormTableView
+org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel
 	at org.hibernate.internal.util.ReflectHelper.getConstructor(ReflectHelper.java:346)
 	at org.hibernate.hql.internal.ast.tree.ConstructorNode.resolveConstructor(ConstructorNode.java:174)
 	at org.hibernate.hql.internal.ast.tree.ConstructorNode.prepare(ConstructorNode.java:144)
@@ -2415,3 +2415,474 @@ org.hibernate.PropertyNotFoundException: no appropriate constructor in class: co
 2020-11-14 15:18:24,496 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
 2020-11-14 15:18:25,563 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
 2020-11-14 15:18:31,190 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container eaf70c1b-4d14-4f38-993c-829b622f136a shut down
+2020-11-14 16:34:47,681 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-14 16:34:48,931 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-14 16:34:50,061 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-14 16:34:50,782 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container d3488c5d-c724-4d3d-a139-d1d91c77d7c7 initialized
+2020-11-14 16:35:01,940 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-14 16:35:04,412 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-14 16:35:05,245 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-14 16:35:06,112 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-14 16:35:06,113 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-14 16:35:06,113 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-14 16:35:06,115 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-14 16:35:08,564 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-14 16:35:09,945 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-14 16:35:13,154 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-14 16:35:16,869 [JavaFX Application Thread] WARN  org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - SQL Error: 904, SQLState: 42000
+2020-11-14 16:35:16,869 [JavaFX Application Thread] ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper  - ORA-00904: "NOTIFICATI0_"."NOTIFY_ID": invalid identifier
+
+2020-11-14 16:35:18,694 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container d3488c5d-c724-4d3d-a139-d1d91c77d7c7 shut down
+2020-11-14 16:37:33,855 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-14 16:37:33,962 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-14 16:37:34,215 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-14 16:37:34,611 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 1206055f-a9f2-44c6-8e94-748a9747af81 initialized
+2020-11-14 16:37:47,434 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-14 16:37:47,663 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-14 16:37:47,740 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-14 16:37:47,830 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-14 16:37:47,830 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-14 16:37:47,831 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-14 16:37:47,833 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-14 16:37:48,163 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-14 16:37:48,549 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-14 16:37:49,625 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-14 16:37:54,010 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 1206055f-a9f2-44c6-8e94-748a9747af81 shut down
+2020-11-14 16:44:29,737 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-14 16:44:29,861 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-14 16:44:30,106 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-14 16:44:30,422 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container f751766e-7ad0-4e9a-afee-c8b6e29624e7 initialized
+2020-11-14 16:45:10,889 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-14 16:45:11,020 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-14 16:45:11,268 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-14 16:45:11,600 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 2b471657-fc52-4c9f-a82c-23deba17f969 initialized
+2020-11-14 16:45:17,312 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-14 16:45:17,557 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-14 16:45:17,630 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-14 16:45:17,711 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-14 16:45:17,711 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-14 16:45:17,711 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-14 16:45:17,713 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-14 16:45:18,161 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-14 16:45:18,523 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-14 16:45:19,597 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-14 16:45:22,210 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.LoadFormsModel]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate, java.lang.String
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel]
+2020-11-14 16:45:22,210 [JavaFX Application Thread] ERROR org.hibernate.hql.internal.ast.ErrorTracker  -  Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.LoadFormsModel]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate, java.lang.String
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel]
+ Unable to locate appropriate constructor on class [com.lms.models.nonpersistentclasses.LoadFormsModel]. Expected arguments are: java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.time.LocalDate, java.lang.String
+[cause=org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel]
+	at org.hibernate.hql.internal.ast.tree.ConstructorNode.resolveConstructor(ConstructorNode.java:182)
+	at org.hibernate.hql.internal.ast.tree.ConstructorNode.prepare(ConstructorNode.java:144)
+	at org.hibernate.hql.internal.ast.HqlSqlWalker.processConstructor(HqlSqlWalker.java:1258)
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.selectExpr(HqlSqlBaseWalker.java:2390)
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.selectExprList(HqlSqlBaseWalker.java:2256)
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.selectClause(HqlSqlBaseWalker.java:1518)
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.query(HqlSqlBaseWalker.java:597)
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.selectStatement(HqlSqlBaseWalker.java:325)
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.statement(HqlSqlBaseWalker.java:273)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.analyze(QueryTranslatorImpl.java:276)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:192)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:144)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:113)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:73)
+	at org.hibernate.engine.query.spi.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:162)
+	at org.hibernate.internal.AbstractSharedSessionContract.getQueryPlan(AbstractSharedSessionContract.java:604)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:716)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:779)
+	at org.hibernate.query.criteria.internal.CriteriaQueryImpl$1.buildCompiledQuery(CriteriaQueryImpl.java:314)
+	at org.hibernate.query.criteria.internal.compile.CriteriaCompiler.compile(CriteriaCompiler.java:165)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:742)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:113)
+	at com.lms.repositoriesImpl.OperatorRepositoryImpl.loadForms(OperatorRepositoryImpl.java:576)
+	at com.lms.servicesImpl.OperatorServiceImpl.loadForms(OperatorServiceImpl.java:104)
+	at com.lms.controllers.OperatorController.lambda$initialize$23(OperatorController.java:575)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8879)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:200)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:206)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3851)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.access$1200(Scene.java:3579)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1849)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2588)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:397)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:434)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:390)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:433)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:556)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:942)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+Cause:
+org.hibernate.PropertyNotFoundException: no appropriate constructor in class: com.lms.models.nonpersistentclasses.LoadFormsModel
+	at org.hibernate.internal.util.ReflectHelper.getConstructor(ReflectHelper.java:346)
+	at org.hibernate.hql.internal.ast.tree.ConstructorNode.resolveConstructor(ConstructorNode.java:174)
+	at org.hibernate.hql.internal.ast.tree.ConstructorNode.prepare(ConstructorNode.java:144)
+	at org.hibernate.hql.internal.ast.HqlSqlWalker.processConstructor(HqlSqlWalker.java:1258)
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.selectExpr(HqlSqlBaseWalker.java:2390)
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.selectExprList(HqlSqlBaseWalker.java:2256)
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.selectClause(HqlSqlBaseWalker.java:1518)
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.query(HqlSqlBaseWalker.java:597)
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.selectStatement(HqlSqlBaseWalker.java:325)
+	at org.hibernate.hql.internal.antlr.HqlSqlBaseWalker.statement(HqlSqlBaseWalker.java:273)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.analyze(QueryTranslatorImpl.java:276)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:192)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:144)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:113)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:73)
+	at org.hibernate.engine.query.spi.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:162)
+	at org.hibernate.internal.AbstractSharedSessionContract.getQueryPlan(AbstractSharedSessionContract.java:604)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:716)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:779)
+	at org.hibernate.query.criteria.internal.CriteriaQueryImpl$1.buildCompiledQuery(CriteriaQueryImpl.java:314)
+	at org.hibernate.query.criteria.internal.compile.CriteriaCompiler.compile(CriteriaCompiler.java:165)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:742)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:113)
+	at com.lms.repositoriesImpl.OperatorRepositoryImpl.loadForms(OperatorRepositoryImpl.java:576)
+	at com.lms.servicesImpl.OperatorServiceImpl.loadForms(OperatorServiceImpl.java:104)
+	at com.lms.controllers.OperatorController.lambda$initialize$23(OperatorController.java:575)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8879)
+	at javafx.controls/javafx.scene.control.Button.fire(Button.java:200)
+	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:206)
+	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3851)
+	at javafx.graphics/javafx.scene.Scene$MouseHandler.access$1200(Scene.java:3579)
+	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1849)
+	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2588)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:397)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:434)
+	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:390)
+	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:433)
+	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:556)
+	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:942)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
+	at java.base/java.lang.Thread.run(Thread.java:832)
+2020-11-14 16:45:24,157 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 2b471657-fc52-4c9f-a82c-23deba17f969 shut down
+2020-11-14 16:48:55,602 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-14 16:48:55,720 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-14 16:48:55,975 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-14 16:48:56,312 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 1edb0922-6fe0-48eb-add1-20bd4470f084 initialized
+2020-11-14 16:49:15,581 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-14 16:49:15,815 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-14 16:49:15,891 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-14 16:49:15,974 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-14 16:49:15,974 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-14 16:49:15,975 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-14 16:49:15,977 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-14 16:49:16,278 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-14 16:49:16,647 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-14 16:49:17,742 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-14 16:50:43,105 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-14 16:50:43,226 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-14 16:50:43,479 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-14 16:50:43,831 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 4b6eb441-da31-4857-9d4f-5094d58295bb initialized
+2020-11-14 16:50:49,262 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-14 16:50:49,505 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-14 16:50:49,584 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-14 16:50:49,674 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-14 16:50:49,675 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-14 16:50:49,675 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-14 16:50:49,677 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-14 16:50:50,027 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-14 16:50:50,376 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-14 16:50:51,475 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-14 16:50:57,421 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 4b6eb441-da31-4857-9d4f-5094d58295bb shut down
+2020-11-14 16:51:14,515 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-14 16:51:14,647 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-14 16:51:14,904 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-14 16:51:15,242 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 8cc80608-52c7-47fa-b0cc-f5dfcf73377d initialized
+2020-11-14 16:51:20,894 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-14 16:51:21,127 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-14 16:51:21,200 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-14 16:51:21,287 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-14 16:51:21,287 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-14 16:51:21,287 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-14 16:51:21,289 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-14 16:51:21,585 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-14 16:51:21,948 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-14 16:51:23,094 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-14 16:54:59,025 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-14 16:54:59,144 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-14 16:54:59,421 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-14 16:54:59,774 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 1bc19abc-034b-4a9c-bacd-89fc10f95951 initialized
+2020-11-14 16:55:07,370 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-14 16:55:07,602 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-14 16:55:07,676 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-14 16:55:07,763 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-14 16:55:07,763 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-14 16:55:07,763 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-14 16:55:07,768 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-14 16:55:08,189 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-14 16:55:08,570 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-14 16:55:09,673 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-14 16:55:18,887 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 1bc19abc-034b-4a9c-bacd-89fc10f95951 shut down
+2020-11-15 11:17:25,266 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-15 11:17:25,947 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-15 11:17:27,206 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-15 11:17:28,673 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 91cb31f5-4cfe-474b-ae4f-00d44577f14d initialized
+2020-11-15 11:18:09,155 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-15 11:18:10,600 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-15 11:18:10,998 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-15 11:18:11,517 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-15 11:18:11,518 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-15 11:18:11,519 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-15 11:18:11,533 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-15 11:18:13,106 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-15 11:18:15,040 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-15 11:19:46,948 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 91cb31f5-4cfe-474b-ae4f-00d44577f14d shut down
+2020-11-15 11:37:29,334 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-15 11:37:29,820 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-15 11:37:30,823 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-15 11:37:32,164 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 695e6dae-684d-4179-a229-83acb9aa5780 initialized
+2020-11-15 11:37:46,663 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-15 11:37:47,832 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-15 11:37:48,175 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-15 11:37:48,526 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-15 11:37:48,527 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-15 11:37:48,528 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-15 11:37:48,536 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-15 11:37:49,995 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-15 11:37:51,534 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-15 11:37:56,441 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-15 11:38:02,460 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 695e6dae-684d-4179-a229-83acb9aa5780 shut down
+2020-11-15 11:40:11,740 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-15 11:40:12,229 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-15 11:40:13,538 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-15 11:40:15,052 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 911f7db2-4ed1-4a48-a1b5-369587cbfd62 initialized
+2020-11-15 11:40:29,984 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-15 11:40:31,012 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-15 11:40:31,325 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-15 11:40:31,619 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-15 11:40:31,620 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-15 11:40:31,621 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-15 11:40:31,629 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-15 11:40:32,657 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-15 11:40:34,232 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-15 11:40:38,697 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-15 11:41:03,506 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 911f7db2-4ed1-4a48-a1b5-369587cbfd62 shut down
+2020-11-15 11:41:42,387 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-15 11:41:42,991 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-15 11:41:44,139 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-15 11:41:45,650 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container a2f18503-ed8e-4707-a356-c6b197a29498 initialized
+2020-11-15 11:41:55,577 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-15 11:41:56,652 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-15 11:41:56,960 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-15 11:41:57,277 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-15 11:41:57,278 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-15 11:41:57,278 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-15 11:41:57,286 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-15 11:41:58,492 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-15 11:41:59,892 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-15 11:42:04,417 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-15 11:42:10,855 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container a2f18503-ed8e-4707-a356-c6b197a29498 shut down
+2020-11-15 11:55:07,130 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-15 11:55:07,588 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-15 11:55:08,551 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-15 11:55:09,871 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container d60a979a-ade8-40d8-9c4b-87baa89f8b83 initialized
+2020-11-15 11:55:20,543 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-15 11:55:21,558 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-15 11:55:21,906 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-15 11:55:22,225 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-15 11:55:22,227 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-15 11:55:22,227 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-15 11:55:22,233 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-15 11:55:23,784 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-15 11:55:25,229 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-15 11:55:29,858 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-15 11:55:46,851 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container d60a979a-ade8-40d8-9c4b-87baa89f8b83 shut down
+2020-11-15 11:56:22,537 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-15 11:56:23,000 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-15 11:56:24,124 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-15 11:56:25,625 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 0c1609cc-5989-42c9-90ca-31023b7ea1e7 initialized
+2020-11-15 11:56:34,576 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-15 11:56:35,582 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-15 11:56:35,917 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-15 11:56:36,206 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-15 11:56:36,207 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-15 11:56:36,208 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-15 11:56:36,216 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-15 11:56:37,520 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-15 11:56:38,873 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-15 11:56:43,332 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-15 11:56:52,758 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 0c1609cc-5989-42c9-90ca-31023b7ea1e7 shut down
+2020-11-15 11:57:09,765 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-15 11:57:10,255 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-15 11:57:11,177 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-15 11:57:12,469 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 5d513a95-f601-4b88-b3da-f37dc691a5ab initialized
+2020-11-15 11:57:22,967 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-15 11:57:24,015 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-15 11:57:24,333 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-15 11:57:24,688 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-15 11:57:24,689 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-15 11:57:24,690 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-15 11:57:24,698 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-15 11:57:25,894 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-15 11:57:27,280 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-15 11:57:31,779 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-15 11:57:51,225 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 5d513a95-f601-4b88-b3da-f37dc691a5ab shut down
+2020-11-15 11:58:11,198 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-15 11:58:11,717 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-15 11:58:12,682 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-15 11:58:14,119 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container fd0f6d03-0713-4a88-8d40-2f79e9cdcc0d initialized
+2020-11-15 11:58:23,811 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-15 11:58:24,840 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-15 11:58:25,160 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-15 11:58:25,456 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-15 11:58:25,457 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-15 11:58:25,457 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-15 11:58:25,463 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-15 11:58:26,750 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-15 11:58:28,274 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-15 11:58:33,200 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-15 11:58:39,937 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container fd0f6d03-0713-4a88-8d40-2f79e9cdcc0d shut down
+2020-11-15 11:59:11,023 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-15 11:59:11,504 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-15 11:59:12,480 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-15 11:59:13,890 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 08a34899-b4e0-4f36-a539-213dc95eb5c1 initialized
+2020-11-15 11:59:24,423 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-15 11:59:25,455 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-15 11:59:25,761 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-15 11:59:26,066 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-15 11:59:26,067 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-15 11:59:26,068 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-15 11:59:26,074 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-15 11:59:27,098 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-15 11:59:28,523 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-15 11:59:32,966 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-15 11:59:45,342 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 08a34899-b4e0-4f36-a539-213dc95eb5c1 shut down
+2020-11-15 12:00:56,617 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-15 12:00:57,125 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-15 12:00:58,267 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-15 12:00:59,792 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 5beb66d8-a6ed-4ca8-8074-82167bd4b336 initialized
+2020-11-15 12:01:09,125 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-15 12:01:10,216 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-15 12:01:10,543 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-15 12:01:10,855 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-15 12:01:10,857 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-15 12:01:10,858 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-15 12:01:10,868 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-15 12:01:12,295 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-15 12:01:13,843 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-15 12:01:19,082 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-15 12:01:31,548 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 5beb66d8-a6ed-4ca8-8074-82167bd4b336 shut down
+2020-11-15 12:02:00,439 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-15 12:02:00,932 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-15 12:02:01,996 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-15 12:02:03,454 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 700b1d8b-92f1-4bc0-acfd-78cfffbef292 initialized
+2020-11-15 12:02:11,779 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-15 12:02:12,801 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-15 12:02:13,138 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-15 12:02:13,484 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-15 12:02:13,485 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-15 12:02:13,485 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-15 12:02:13,494 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-15 12:02:14,813 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-15 12:02:16,218 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-15 12:02:21,306 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-15 12:02:29,462 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 700b1d8b-92f1-4bc0-acfd-78cfffbef292 shut down
+2020-11-15 12:04:20,031 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-15 12:04:20,491 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-15 12:04:21,487 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-15 12:04:22,835 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 5993781f-5ba5-47c0-8481-abed7ad8790d initialized
+2020-11-15 12:04:42,617 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-15 12:04:43,606 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-15 12:04:43,923 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-15 12:04:44,210 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-15 12:04:44,211 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-15 12:04:44,212 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-15 12:04:44,219 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-15 12:04:45,532 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-15 12:04:47,141 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-15 12:04:51,896 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-15 12:05:35,722 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 5993781f-5ba5-47c0-8481-abed7ad8790d shut down
+2020-11-15 12:05:51,050 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-15 12:05:51,540 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-15 12:05:52,537 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-15 12:05:53,999 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container 7a07e95a-c93a-477b-952d-5cb49b4d5081 initialized
+2020-11-15 12:06:03,586 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-15 12:06:04,593 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-15 12:06:04,908 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-15 12:06:05,259 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1522/xe]
+2020-11-15 12:06:05,260 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-15 12:06:05,261 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-15 12:06:05,270 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-15 12:06:06,832 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-15 12:06:08,205 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-15 12:06:12,525 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-15 12:06:20,433 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container 7a07e95a-c93a-477b-952d-5cb49b4d5081 shut down

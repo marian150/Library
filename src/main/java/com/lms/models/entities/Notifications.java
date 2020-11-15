@@ -20,7 +20,7 @@ public class Notifications {
     @JoinColumn(name = "rent_id", referencedColumnName= "rent_id", foreignKey = @ForeignKey (name = "FK_RENT_ID"))
     private RentBook rentBook;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "form_id", referencedColumnName= "form_id", foreignKey = @ForeignKey (name = "FK_FORM_ID"))
     private Form form;
 
