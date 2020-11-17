@@ -5,19 +5,22 @@ import com.lms.models.entities.User;
 import com.lms.models.nonpersistentclasses.ReaderTableView;
 import com.lms.services.ReaderService;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.inject.Inject;
-import java.net.URL;
+
 import java.util.List;
-import java.util.ResourceBundle;
+
 import java.util.logging.Logger;
 
 public class ReaderController {
@@ -69,7 +72,6 @@ public class ReaderController {
     }
 
     public void displayBooks(List<Object[]> books){
-
         Object[][] array = books.toArray(new Object[books.size()][]);
         for(int i = 0; i < array.length; i ++){
             booksObservableList.add(new ReaderTableView(
@@ -87,6 +89,14 @@ public class ReaderController {
         books_table_view.setItems(booksObservableList);
     }
 
+    public void displayPersonalData(){
+        personal_data_list.getItems().add("Reader №:  " + currentUser.getUserId());
+        personal_data_list.getItems().add("First Name:  " + currentUser.getFirstName());
+        personal_data_list.getItems().add("Last Name:  " +currentUser.getLastName());
+        personal_data_list.getItems().add("Phone:  " + currentUser.getPhone());
+        personal_data_list.getItems().add("Email:  " + currentUser.getEmail());
+        personal_data_list.getItems().add("Registration:  " + currentUser.getRegDate());
+    }
     public void initialize() {
         logout_btn.setOnAction(event -> {
             logger.info(currentUser.getUserId().toString() + " is logging out");
@@ -94,14 +104,22 @@ public class ReaderController {
         });
 
         Platform.runLater(() -> {
-            System.out.println(currentUser.getFirstName());
             displayBooks(loadBooks(currentUser.getUserId()));
-            personal_data_list.getItems().add(currentUser.getUserId());
-            personal_data_list.getItems().add(currentUser.getFirstName());
-            personal_data_list.getItems().add(currentUser.getLastName());
-            personal_data_list.getItems().add(currentUser.getPhone());
-            personal_data_list.getItems().add(currentUser.getEmail());
-            personal_data_list.getItems().add(currentUser.getRegDate());
+            displayPersonalData();
         });
+        /*
+        books_table_view.setRowFactory(tv -> {
+            for(int i = 0; i < booksObservableList.size(); i++) {
+                TableRow<ReaderTableView> row = new TableRow<>();
+                LocalDate dueDate = LocalDate.parse(row.getTableView().getItems().get(i).getDuedate());
+                BooleanBinding critical = row.getTableView().getItems().get(i).getDuedate().;
+                        row.styleProperty().bind(Bindings.when(critical)
+                        .then("-fx-background-color: red ;")
+                        .otherwise(""));
+                return row;
+            }
+        });
+
+         */
     }
 }

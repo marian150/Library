@@ -1,570 +1,173 @@
-Nov 10, 2020 9:06:13 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: Login Successful
-Nov 10, 2020 9:07:39 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: Login Successful
-Nov 10, 2020 9:18:02 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 1
-Nov 10, 2020 9:22:15 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 1 logged in
-Nov 10, 2020 9:28:27 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 1 logged in
-Nov 10, 2020 9:28:52 PM com.lms.controllers.OperatorController lambda$initialize$0
-INFO: 1 created Reader
-Nov 10, 2020 9:30:17 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 1 logged in
-Nov 10, 2020 9:38:52 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 1 logged in
-Nov 10, 2020 9:39:21 PM com.lms.repositoriesImpl.OperatorRepositoryImpl createReader
-FINE: Reader 164 is created
-Nov 10, 2020 9:39:21 PM com.lms.controllers.OperatorController lambda$initialize$0
-INFO: 1 created Reader
-Nov 10, 2020 9:41:53 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 1 logged in
-Nov 10, 2020 9:42:16 PM com.lms.controllers.OperatorController lambda$initialize$0
-INFO: 1 attempting to create a new Reader
-Nov 10, 2020 9:42:16 PM com.lms.repositoriesImpl.OperatorRepositoryImpl createReader
-FINE: Reader 165 is created
-Nov 10, 2020 10:21:46 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 1 logged in
-Nov 10, 2020 10:22:07 PM com.lms.controllers.OperatorController lambda$initialize$7
-INFO: 1 is attempting to lend for Reading Room
-Nov 10, 2020 10:22:08 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book13 is lent
-Nov 10, 2020 10:22:08 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book14 is lent
-Nov 10, 2020 10:23:03 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book14 is returned
-Nov 10, 2020 10:23:07 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book13 is returned
-Nov 10, 2020 11:50:48 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 1 logged in
-Nov 10, 2020 11:51:07 PM com.lms.controllers.OperatorController lambda$initialize$8
-INFO: 1 is attempting to lend for Home
-Nov 10, 2020 11:51:07 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 26 is lent
-Nov 10, 2020 11:52:05 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 24 is returned
-Nov 10, 2020 11:52:08 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 20 is returned
-Nov 10, 2020 11:52:13 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 23 is returned
-Nov 12, 2020 5:09:42 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 1 logged in
-Nov 12, 2020 7:19:56 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 7:47:18 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 7:52:39 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 7:53:29 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add publisher
-Nov 12, 2020 7:53:30 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addPublisher
-INFO: Publisher1 is created
-Nov 12, 2020 7:53:30 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add book
-Nov 12, 2020 7:53:30 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addBook
-INFO: Book 1 is added
-Nov 12, 2020 7:49:49 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 7:53:42 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add publisher
-Nov 12, 2020 7:53:42 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addPublisher
-INFO: Publisher1 is created
-Nov 12, 2020 7:53:42 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add book
-Nov 12, 2020 7:53:42 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addBook
-INFO: Book 1 is added
-Nov 12, 2020 8:01:10 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 8:03:28 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addAuthor
-INFO: Publisher1 is created
-Nov 12, 2020 8:03:28 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add publisher
-Nov 12, 2020 8:03:28 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addPublisher
-INFO: Publisher2 is created
-Nov 12, 2020 8:03:28 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add book
-Nov 12, 2020 8:03:29 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addBook
-INFO: Book 2 is added
-Nov 12, 2020 8:06:29 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addAuthor
-INFO: Publisher2 is created
-Nov 12, 2020 8:06:29 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addAuthor
-INFO: Publisher3 is created
-Nov 12, 2020 8:06:29 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add publisher
-Nov 12, 2020 8:06:29 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addPublisher
-INFO: Publisher3 is created
-Nov 12, 2020 8:06:29 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add book
-Nov 12, 2020 8:06:29 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addBook
-INFO: Book 3 is added
-Nov 12, 2020 8:13:22 PM com.lms.controllers.OperatorController lambda$initialize$0
-INFO: 2 attempting to create a new Reader
-Nov 12, 2020 8:13:22 PM com.lms.repositoriesImpl.OperatorRepositoryImpl createReader
-INFO: Reader 3 is created
-Nov 12, 2020 8:15:42 PM com.lms.controllers.OperatorController lambda$initialize$8
-INFO: 2 is attempting to lend for Home
-Nov 12, 2020 8:15:43 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-SEVERE: Unable to lend books
-javax.persistence.PersistenceException: org.hibernate.exception.ConstraintViolationException: could not execute statement
-	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:154)
-	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:181)
-	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:188)
-	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1367)
-	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:454)
-	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3213)
-	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2381)
-	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:447)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281)
-	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
-	at com.lms.repositoriesImpl.OperatorRepositoryImpl.lendBook(OperatorRepositoryImpl.java:542)
-	at com.lms.servicesImpl.OperatorServiceImpl.lendBook(OperatorServiceImpl.java:93)
-	at com.lms.controllers.OperatorController.lendBook(OperatorController.java:265)
-	at com.lms.controllers.OperatorController.lambda$initialize$8(OperatorController.java:465)
-	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
-	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
-	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
-	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
-	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
-	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
-	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8879)
-	at javafx.controls/javafx.scene.control.Button.fire(Button.java:200)
-	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:206)
-	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
-	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
-	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
-	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
-	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
-	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
-	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
-	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
-	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3851)
-	at javafx.graphics/javafx.scene.Scene$MouseHandler.access$1200(Scene.java:3579)
-	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1849)
-	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2588)
-	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:397)
-	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
-	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:434)
-	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:390)
-	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:433)
-	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:556)
-	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:942)
-	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
-	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
-	at java.base/java.lang.Thread.run(Thread.java:832)
-Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
-	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:59)
-	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42)
-	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113)
-	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99)
-	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:200)
-	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3255)
-	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3782)
-	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:107)
-	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604)
-	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478)
-	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:723)
-	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475)
-	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:348)
-	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:102)
-	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1363)
-	... 70 more
-Caused by: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: cannot insert NULL into ("C##LIB"."RENT_BOOK"."RETURN_ID")
-
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:509)
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:461)
-	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1104)
-	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:553)
-	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:269)
-	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:655)
-	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:270)
-	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:91)
-	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:970)
-	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1205)
-	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3666)
-	at oracle.jdbc.driver.T4CPreparedStatement.executeInternal(T4CPreparedStatement.java:1426)
-	at oracle.jdbc.driver.OraclePreparedStatement.executeLargeUpdate(OraclePreparedStatement.java:3756)
-	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3736)
-	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1063)
-	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
-	... 81 more
-Caused by: Error : 1400, Position : 145, Sql = insert into rent_book (book_id, client_id, due_date, lib_id, rent_date, rent_type_id, return_id, rent_id) values (:1 , :2 , :3 , :4 , :5 , :6 , :7 , :8 ), OriginalSql = insert into rent_book (book_id, client_id, due_date, lib_id, rent_date, rent_type_id, return_id, rent_id) values (?, ?, ?, ?, ?, ?, ?, ?), Error Msg = ORA-01400: cannot insert NULL into ("C##LIB"."RENT_BOOK"."RETURN_ID")
-
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:513)
-	... 96 more
-
-Nov 12, 2020 8:17:14 PM com.lms.controllers.OperatorController lambda$initialize$7
-INFO: 2 is attempting to lend for Reading Room
-Nov 12, 2020 8:17:14 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-SEVERE: Unable to lend books
-javax.persistence.PersistenceException: org.hibernate.exception.ConstraintViolationException: could not execute statement
-	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:154)
-	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:181)
-	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:188)
-	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1367)
-	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:454)
-	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3213)
-	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2381)
-	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:447)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281)
-	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
-	at com.lms.repositoriesImpl.OperatorRepositoryImpl.lendBook(OperatorRepositoryImpl.java:542)
-	at com.lms.servicesImpl.OperatorServiceImpl.lendBook(OperatorServiceImpl.java:93)
-	at com.lms.controllers.OperatorController.lendBook(OperatorController.java:265)
-	at com.lms.controllers.OperatorController.lambda$initialize$7(OperatorController.java:446)
-	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
-	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
-	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
-	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
-	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
-	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
-	at javafx.graphics/javafx.scene.Node.fireEvent(Node.java:8879)
-	at javafx.controls/javafx.scene.control.Button.fire(Button.java:200)
-	at javafx.controls/com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:206)
-	at javafx.controls/com.sun.javafx.scene.control.inputmap.InputMap.handle(InputMap.java:274)
-	at javafx.base/com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
-	at javafx.base/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
-	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
-	at javafx.base/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
-	at javafx.base/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
-	at javafx.base/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
-	at javafx.base/javafx.event.Event.fireEvent(Event.java:198)
-	at javafx.graphics/javafx.scene.Scene$MouseHandler.process(Scene.java:3851)
-	at javafx.graphics/javafx.scene.Scene$MouseHandler.access$1200(Scene.java:3579)
-	at javafx.graphics/javafx.scene.Scene.processMouseEvent(Scene.java:1849)
-	at javafx.graphics/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2588)
-	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:397)
-	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:391)
-	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:434)
-	at javafx.graphics/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:390)
-	at javafx.graphics/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:433)
-	at javafx.graphics/com.sun.glass.ui.View.handleMouseEvent(View.java:556)
-	at javafx.graphics/com.sun.glass.ui.View.notifyMouse(View.java:942)
-	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
-	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
-	at java.base/java.lang.Thread.run(Thread.java:832)
-Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement
-	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:59)
-	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42)
-	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:113)
-	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:99)
-	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:200)
-	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3255)
-	at org.hibernate.persister.entity.AbstractEntityPersister.insert(AbstractEntityPersister.java:3782)
-	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:107)
-	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604)
-	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478)
-	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:723)
-	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475)
-	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:348)
-	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:102)
-	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1363)
-	... 70 more
-Caused by: java.sql.SQLIntegrityConstraintViolationException: ORA-01400: cannot insert NULL into ("C##LIB"."RENT_BOOK"."RETURN_ID")
-
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:509)
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:461)
-	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:1104)
-	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:553)
-	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:269)
-	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:655)
-	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:270)
-	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:91)
-	at oracle.jdbc.driver.T4CPreparedStatement.executeForRows(T4CPreparedStatement.java:970)
-	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1205)
-	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:3666)
-	at oracle.jdbc.driver.T4CPreparedStatement.executeInternal(T4CPreparedStatement.java:1426)
-	at oracle.jdbc.driver.OraclePreparedStatement.executeLargeUpdate(OraclePreparedStatement.java:3756)
-	at oracle.jdbc.driver.OraclePreparedStatement.executeUpdate(OraclePreparedStatement.java:3736)
-	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeUpdate(OraclePreparedStatementWrapper.java:1063)
-	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
-	... 81 more
-Caused by: Error : 1400, Position : 145, Sql = insert into rent_book (book_id, client_id, due_date, lib_id, rent_date, rent_type_id, return_id, rent_id) values (:1 , :2 , :3 , :4 , :5 , :6 , :7 , :8 ), OriginalSql = insert into rent_book (book_id, client_id, due_date, lib_id, rent_date, rent_type_id, return_id, rent_id) values (?, ?, ?, ?, ?, ?, ?, ?), Error Msg = ORA-01400: cannot insert NULL into ("C##LIB"."RENT_BOOK"."RETURN_ID")
-
-	at oracle.jdbc.driver.T4CTTIoer11.processError(T4CTTIoer11.java:513)
-	... 96 more
-
-Nov 12, 2020 8:21:15 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 8:21:39 PM com.lms.controllers.OperatorController lambda$initialize$7
-INFO: 2 is attempting to lend for Reading Room
-Nov 12, 2020 8:21:39 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 4 is lent
-Nov 12, 2020 8:21:39 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 5 is lent
-Nov 12, 2020 8:22:10 PM com.lms.controllers.OperatorController lambda$initialize$8
-INFO: 2 is attempting to lend for Home
-Nov 12, 2020 8:22:11 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 6 is lent
-Nov 12, 2020 8:24:52 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 5 is returned
-Nov 12, 2020 8:24:56 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 6 is returned
-Nov 12, 2020 8:26:26 PM com.lms.controllers.OperatorController lambda$initialize$11
-INFO: 2 is logging out
-Nov 12, 2020 8:30:12 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 8:30:15 PM com.lms.controllers.OperatorController lambda$initialize$11
-INFO: 2 is logging out
-Nov 12, 2020 8:31:13 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 3 logged in
-Nov 12, 2020 8:34:26 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 3 logged in
-Nov 12, 2020 8:34:32 PM com.lms.controllers.ReaderController lambda$initialize$0
-INFO: 3 is logging out
-Nov 12, 2020 8:34:38 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 8:34:58 PM com.lms.controllers.OperatorController lambda$initialize$7
-INFO: 2 is attempting to lend for Reading Room
-Nov 12, 2020 8:34:58 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 7 is lent
-Nov 12, 2020 8:35:00 PM com.lms.controllers.OperatorController lambda$initialize$11
-INFO: 2 is logging out
-Nov 12, 2020 8:35:08 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 3 logged in
-Nov 12, 2020 8:35:14 PM com.lms.controllers.ReaderController lambda$initialize$0
-INFO: 3 is logging out
-Nov 12, 2020 8:35:20 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 8:35:27 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 7 is returned
-Nov 12, 2020 8:35:43 PM com.lms.controllers.OperatorController lambda$initialize$11
-INFO: 2 is logging out
-Nov 12, 2020 8:35:50 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 3 logged in
-Nov 12, 2020 8:43:28 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 1 logged in
-Nov 12, 2020 8:43:58 PM com.lms.controllers.AdminController lambda$initialize$0
-INFO: 1 is logging out
-Nov 12, 2020 8:44:07 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 8:12:07 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 8:12:53 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addAuthor
-INFO: Publisher1 is created
-Nov 12, 2020 8:12:53 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addAuthor
-INFO: Publisher2 is created
-Nov 12, 2020 8:12:53 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add publisher
-Nov 12, 2020 8:12:53 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addPublisher
-INFO: Publisher2 is created
-Nov 12, 2020 8:12:53 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add book
-Nov 12, 2020 8:16:22 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 8:17:07 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addAuthor
-INFO: Publisher3 is created
-Nov 12, 2020 8:17:08 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add book
-Nov 12, 2020 8:19:53 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addBook
-INFO: Book 1 is added
-Nov 12, 2020 8:23:04 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 8:23:57 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add book
-Nov 12, 2020 8:23:57 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addBook
-INFO: Book 2 is added
-Nov 12, 2020 8:45:12 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 1 logged in
-Nov 12, 2020 8:49:02 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 8:49:42 PM com.lms.controllers.OperatorController lambda$initialize$0
-INFO: 2 attempting to create a new Reader
-Nov 12, 2020 8:49:42 PM com.lms.repositoriesImpl.OperatorRepositoryImpl createReader
-INFO: Reader 3 is created
-Nov 12, 2020 8:50:20 PM com.lms.controllers.OperatorController lambda$initialize$8
-INFO: 2 is attempting to lend for Home
-Nov 12, 2020 8:50:20 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 1 is lent
-Nov 12, 2020 8:50:20 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 2 is lent
-Nov 12, 2020 8:50:40 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 1 is returned
-Nov 12, 2020 8:50:40 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 2 is returned
-Nov 12, 2020 8:52:51 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 8:53:07 PM com.lms.controllers.OperatorController lambda$initialize$8
-INFO: 2 is attempting to lend for Home
-Nov 12, 2020 8:53:08 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 3 is lent
-Nov 12, 2020 8:53:08 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 4 is lent
-Nov 12, 2020 8:53:24 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 3 is returned
-Nov 12, 2020 8:53:26 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 4 is returned
-Nov 12, 2020 8:53:40 PM com.lms.controllers.OperatorController lambda$initialize$7
-INFO: 2 is attempting to lend for Reading Room
-Nov 12, 2020 8:53:40 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 5 is lent
-Nov 12, 2020 8:53:49 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 5 is returned
-Nov 12, 2020 8:57:12 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 8:57:13 PM com.lms.controllers.OperatorController lambda$initialize$11
-INFO: 2 is logging out
-Nov 12, 2020 8:57:21 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 1 logged in
-Nov 12, 2020 9:25:20 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 9:27:34 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 9:30:07 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 9:37:25 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 9:38:30 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 9:44:25 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 9:44:46 PM com.lms.controllers.OperatorController lambda$initialize$8
-INFO: 2 is attempting to lend for Home
-Nov 12, 2020 9:44:46 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 6 is lent
-Nov 12, 2020 9:44:46 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 7 is lent
-Nov 12, 2020 9:44:46 PM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 8 is lent
-Nov 12, 2020 9:45:44 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 9:48:01 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 9:49:16 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 10:01:14 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 10:06:14 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 10:07:40 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 10:13:39 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 10:14:39 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 10:15:51 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 10:23:05 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 10:23:11 PM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 7 is returned
-Nov 12, 2020 10:30:52 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 10:32:34 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addAuthor
-INFO: Publisher4 is created
-Nov 12, 2020 10:32:34 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add publisher
-Nov 12, 2020 10:32:34 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addPublisher
-INFO: Publisher3 is created
-Nov 12, 2020 10:32:34 PM com.lms.controllers.OperatorController lambda$initialize$4
-INFO: 2 attempting to add book
-Nov 12, 2020 10:32:35 PM com.lms.repositoriesImpl.OperatorRepositoryImpl addBook
-INFO: Book 3 is added
-Nov 12, 2020 10:46:05 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 10:53:57 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 10:55:40 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 10:56:28 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 11:06:55 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 11:18:42 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 11:22:06 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 11:22:34 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 11:27:54 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 11:38:26 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 11:43:13 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 11:44:10 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 11:57:10 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 11:58:53 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 12, 2020 11:59:40 PM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 13, 2020 12:00:00 AM com.lms.controllers.OperatorController lambda$initialize$8
-INFO: 2 is attempting to lend for Home
-Nov 13, 2020 12:00:00 AM com.lms.repositoriesImpl.OperatorRepositoryImpl lendBook
-INFO: Book 9 is lent
-Nov 13, 2020 12:00:07 AM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 9 is returned
-Nov 13, 2020 12:00:53 AM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 13, 2020 12:03:16 AM com.lms.repositoriesImpl.OperatorRepositoryImpl returnBooks
-INFO: Book 6 is returned
-Nov 13, 2020 12:12:42 AM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 13, 2020 12:13:28 AM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 13, 2020 12:16:56 AM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
-Nov 13, 2020 12:18:46 AM com.lms.controllers.LoginController lambda$initialize$0
-INFO: 2 logged in
+2020-11-17 23:19:33,924 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-17 23:19:34,041 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-17 23:19:34,254 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-17 23:19:34,683 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container client initialized
+2020-11-17 23:19:35,459 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-17 23:19:35,507 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-17 23:19:35,563 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container notifications initialized
+2020-11-17 23:19:42,410 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-17 23:19:43,080 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-17 23:19:43,280 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-17 23:19:43,532 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1521/xe]
+2020-11-17 23:19:43,532 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-17 23:19:43,532 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-17 23:19:43,541 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-17 23:19:44,128 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-17 23:19:44,645 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-17 23:19:46,615 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-17 23:20:22,660 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container client shut down
+2020-11-17 23:20:22,662 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container notifications shut down
+2020-11-17 23:57:11,050 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-17 23:57:11,358 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-17 23:57:12,115 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-17 23:57:12,507 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container client initialized
+2020-11-17 23:57:13,289 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-17 23:57:13,333 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-17 23:57:13,391 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container notifications initialized
+2020-11-17 23:57:20,116 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-17 23:57:20,806 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-17 23:57:21,038 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-17 23:57:21,332 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1521/xe]
+2020-11-17 23:57:21,332 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-17 23:57:21,332 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-17 23:57:21,336 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-17 23:57:22,056 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-17 23:57:22,473 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-17 23:57:23,442 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 3 logged in
+2020-11-17 23:57:29,843 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container client shut down
+2020-11-17 23:57:29,845 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container notifications shut down
+2020-11-18 00:10:47,137 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-18 00:10:47,247 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-18 00:10:47,582 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-18 00:10:48,018 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container client initialized
+2020-11-18 00:10:48,629 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-18 00:10:48,706 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-18 00:10:48,773 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container notifications initialized
+2020-11-18 00:10:55,778 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-18 00:10:56,037 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-18 00:10:56,151 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-18 00:10:56,236 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1521/xe]
+2020-11-18 00:10:56,236 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-18 00:10:56,236 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-18 00:10:56,239 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-18 00:10:56,534 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-18 00:10:56,950 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-18 00:10:58,468 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-18 00:13:02,873 [JavaFX Application Thread] INFO  com.lms.repositoriesImpl.OperatorRepositoryImpl  - Publisher5 is created
+2020-11-18 00:13:02,887 [JavaFX Application Thread] INFO  com.lms.controllers.OperatorController  - 2 attempting to add publisher
+2020-11-18 00:13:02,915 [JavaFX Application Thread] INFO  com.lms.repositoriesImpl.OperatorRepositoryImpl  - Publisher4 is created
+2020-11-18 00:13:02,915 [JavaFX Application Thread] INFO  com.lms.controllers.OperatorController  - 2 attempting to add book
+2020-11-18 00:13:03,061 [JavaFX Application Thread] INFO  com.lms.repositoriesImpl.OperatorRepositoryImpl  - Book 4 is added
+2020-11-18 00:15:37,831 [JavaFX Application Thread] INFO  com.lms.repositoriesImpl.OperatorRepositoryImpl  - Publisher6 is created
+2020-11-18 00:15:37,832 [JavaFX Application Thread] INFO  com.lms.controllers.OperatorController  - 2 attempting to add publisher
+2020-11-18 00:15:37,835 [JavaFX Application Thread] INFO  com.lms.repositoriesImpl.OperatorRepositoryImpl  - Publisher5 is created
+2020-11-18 00:15:37,835 [JavaFX Application Thread] INFO  com.lms.controllers.OperatorController  - 2 attempting to add book
+2020-11-18 00:15:37,843 [JavaFX Application Thread] INFO  com.lms.repositoriesImpl.OperatorRepositoryImpl  - Book 5 is added
+2020-11-18 00:16:07,283 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container client shut down
+2020-11-18 00:16:07,285 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container notifications shut down
+2020-11-18 00:16:41,983 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-18 00:16:42,101 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-18 00:16:42,338 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-18 00:16:42,669 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container client initialized
+2020-11-18 00:16:43,159 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-18 00:16:43,215 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-18 00:16:43,300 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container notifications initialized
+2020-11-18 00:16:51,734 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-18 00:16:52,034 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-18 00:16:52,163 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-18 00:16:52,249 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1521/xe]
+2020-11-18 00:16:52,250 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-18 00:16:52,250 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-18 00:16:52,254 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-18 00:16:52,727 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-18 00:16:53,123 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-18 00:16:54,049 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container client shut down
+2020-11-18 00:16:54,052 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container notifications shut down
+2020-11-18 00:17:18,271 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-18 00:17:18,383 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-18 00:17:18,594 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-18 00:17:18,944 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container client initialized
+2020-11-18 00:17:19,429 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-18 00:17:19,477 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-18 00:17:19,528 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container notifications initialized
+2020-11-18 00:17:28,543 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-18 00:17:28,795 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-18 00:17:28,915 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-18 00:17:28,997 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1521/xe]
+2020-11-18 00:17:28,997 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-18 00:17:28,997 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-18 00:17:28,999 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-18 00:17:29,392 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-18 00:17:29,744 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-18 00:17:31,130 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-18 00:18:15,391 [JavaFX Application Thread] INFO  com.lms.controllers.OperatorController  - 2 attempting to create a new Reader
+2020-11-18 00:18:15,506 [JavaFX Application Thread] INFO  com.lms.repositoriesImpl.OperatorRepositoryImpl  - Reader 4 is created
+2020-11-18 00:18:47,948 [JavaFX Application Thread] INFO  com.lms.controllers.OperatorController  - 2 is attempting to lend for Home
+2020-11-18 00:18:48,074 [JavaFX Application Thread] INFO  com.lms.repositoriesImpl.OperatorRepositoryImpl  - Book 11 is lent
+2020-11-18 00:19:06,186 [JavaFX Application Thread] INFO  com.lms.controllers.OperatorController  - 2 is logging out
+2020-11-18 00:19:14,989 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 4 logged in
+2020-11-18 00:19:29,570 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container client shut down
+2020-11-18 00:19:29,572 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container notifications shut down
+2020-11-18 00:19:56,148 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-18 00:19:56,269 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-18 00:19:56,473 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-18 00:19:56,799 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container client initialized
+2020-11-18 00:19:57,269 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-18 00:19:57,315 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-18 00:19:57,366 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container notifications initialized
+2020-11-18 00:20:04,311 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-18 00:20:04,574 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-18 00:20:04,688 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-18 00:20:04,777 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1521/xe]
+2020-11-18 00:20:04,777 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-18 00:20:04,778 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-18 00:20:04,780 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-18 00:20:05,198 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-18 00:20:05,594 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-18 00:20:07,020 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-18 00:22:38,959 [JavaFX Application Thread] INFO  com.lms.controllers.OperatorController  - 2 attempting to add book
+2020-11-18 00:22:39,012 [JavaFX Application Thread] INFO  com.lms.repositoriesImpl.OperatorRepositoryImpl  - Book 6 is added
+2020-11-18 00:22:52,317 [JavaFX Application Thread] INFO  com.lms.controllers.OperatorController  - 2 is logging out
+2020-11-18 00:22:53,814 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container client shut down
+2020-11-18 00:22:53,815 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container notifications shut down
+2020-11-18 00:23:56,405 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-18 00:23:56,522 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-18 00:23:56,724 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-18 00:23:57,066 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container client initialized
+2020-11-18 00:23:57,559 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-18 00:23:57,606 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-18 00:23:57,675 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container notifications initialized
+2020-11-18 00:24:03,238 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-18 00:24:03,497 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-18 00:24:03,611 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-18 00:24:03,696 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1521/xe]
+2020-11-18 00:24:03,696 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-18 00:24:03,696 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-18 00:24:03,702 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-18 00:24:04,042 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-18 00:24:04,416 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-18 00:24:05,879 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-18 00:24:18,130 [JavaFX Application Thread] INFO  com.lms.repositoriesImpl.OperatorRepositoryImpl  - Book 11 is returned
+2020-11-18 00:25:21,552 [JavaFX Application Thread] INFO  com.lms.controllers.OperatorController  - 2 is logging out
+2020-11-18 00:25:23,149 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container client shut down
+2020-11-18 00:25:23,152 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container notifications shut down
+2020-11-18 00:27:46,431 [JavaFX Application Thread] INFO  org.jboss.weld.Version  - WELD-000900: 3.1.5 (Final)
+2020-11-18 00:27:46,571 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-18 00:27:46,826 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-18 00:27:47,233 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container client initialized
+2020-11-18 00:27:47,745 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-000020: Using jandex for bean discovery
+2020-11-18 00:27:47,792 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-000101: Transactional services not available. Injection of @Inject UserTransaction not available. Transactional observers will be invoked synchronously.
+2020-11-18 00:27:47,856 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002003: Weld SE container notifications initialized
+2020-11-18 00:27:54,620 [JavaFX Application Thread] INFO  org.hibernate.Version  - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-18 00:27:54,874 [JavaFX Application Thread] INFO  org.hibernate.annotations.common.Version  - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-18 00:27:54,993 [JavaFX Application Thread] WARN  org.hibernate.orm.connections.pooling  - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2020-11-18 00:27:55,078 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001005: using driver [oracle.jdbc.driver.OracleDriver] at URL [jdbc:oracle:thin:@//localhost:1521/xe]
+2020-11-18 00:27:55,079 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001001: Connection properties: {password=****, user=c##lib}
+2020-11-18 00:27:55,079 [JavaFX Application Thread] INFO  org.hibernate.orm.connections.pooling  - HHH10001003: Autocommit mode: false
+2020-11-18 00:27:55,081 [JavaFX Application Thread] INFO  org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl  - HHH000115: Hibernate connection pool size: 20 (min=1)
+2020-11-18 00:27:55,390 [JavaFX Application Thread] INFO  org.hibernate.dialect.Dialect  - HHH000400: Using dialect: org.hibernate.dialect.Oracle10gDialect
+2020-11-18 00:27:55,762 [JavaFX Application Thread] INFO  org.hibernate.orm.beans  - HHH10005002: No explicit CDI BeanManager reference was passed to Hibernate, but CDI is available on the Hibernate ClassLoader.
+2020-11-18 00:27:56,612 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 4 logged in
+2020-11-18 00:28:06,154 [JavaFX Application Thread] INFO  com.lms.controllers.LoginController  - 2 logged in
+2020-11-18 00:28:29,309 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container client shut down
+2020-11-18 00:28:29,311 [JavaFX Application Thread] INFO  org.jboss.weld.Bootstrap  - WELD-ENV-002001: Weld SE container notifications shut down

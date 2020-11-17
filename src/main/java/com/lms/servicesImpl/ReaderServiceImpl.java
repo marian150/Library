@@ -1,6 +1,5 @@
 package com.lms.servicesImpl;
 
-import com.lms.models.entities.User;
 import com.lms.repositories.ReaderRepository;
 import com.lms.services.ReaderService;
 

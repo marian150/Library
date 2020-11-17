@@ -1,6 +1,7 @@
 package com.lms.repositoriesImpl;
 
 import com.lms.config.ConfigurationSessionFactory;
+import com.lms.models.nonpersistentclasses.ReaderTableView;
 import com.lms.repositories.ReaderRepository;
 import org.hibernate.Session;
 
@@ -16,9 +17,6 @@ public class ReaderRepositoryImpl implements ReaderRepository {
 
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
         session.beginTransaction();
-
-        // Query for current reader's personal data
-        //String hql = "select u.firstName, u.lastName, u.email, u.phone, u.regDate from User u ";
 
         // Query for the books currently taken by the reader
         String hql = "select b.title, aut.name, pub.publisherName, rb.rentDate, rb.dueDate " +
@@ -39,11 +37,11 @@ public class ReaderRepositoryImpl implements ReaderRepository {
             return result;
         } catch (NoResultException e){
             e.printStackTrace();
+            return null;
         }
         finally {
             session.close();
         }
 
-        return null;
     }
 }
