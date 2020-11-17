@@ -14,8 +14,12 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.enterprise.context.Dependent;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -60,6 +64,47 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     @Override
     public List<User> searchUsers(Map<String, String> values) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        Transaction tx = session.beginTransaction();
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<User> cq = cb.createQuery(User.class);
+        Root<User> u = cq.from(User.class);
+        Join<User, UserType> userTypeJoin = u.join("userType");
+        cq.select(u);
+
+        if(values.containsKey("id"))
+            predicates.add(cb.equal(u.get("userId"), values.get("id")));
+        if(values.containsKey("firstName"))
+            predicates.add(cb.equal(u.get("firstName"), values.get("firstName")));
+        if(values.containsKey("lastName"))
+            predicates.add(cb.equal(u.get("lastName"), values.get("lastName")));
+        if(values.containsKey("email"))
+            predicates.add(cb.equal(u.get("email"), values.get("email")));
+        if(values.containsKey("phone"))
+            predicates.add(cb.equal(u.get("phone"), values.get("phone")));
+        if(values.containsKey("fromDate") && values.containsKey("toDate"))
+            predicates.add(cb.between(u.get("regDate"), LocalDate.parse(values.get("fromDate")), LocalDate.parse(values.get("toDate"))));
+
+        Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
+        cq.where(finalPredicate);
+
+        TypedQuery<User> typedQuery = session.createQuery(cq);
+
+        List<User> result;
+
+        try {
+            result = typedQuery.getResultList();
+            return result;
+        } catch (NoResultException e){
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
         return null;
     }
 
