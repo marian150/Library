@@ -27,13 +27,19 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<Book> searchBook(Map<String, String> values) {
-        return adminRepository.searchBook(values);
+    public List<User> searchUsers(Map<String, String> values) {
+        List<User> users = adminRepository.searchUsers(values);
+        for(User u : users){
+            if(u.getRating() == null){
+                u.setRating(-1);
+            }
+        }
+        return users;
     }
 
     @Override
-    public List<User> searchUsers(Map<String, String> values) {
-        return adminRepository.searchUsers(values);
+    public List<Book> searchBook(Map<String, String> values) {
+        return adminRepository.searchBook(values);
     }
 
     @Override

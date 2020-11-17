@@ -18,14 +18,10 @@ public interface CommonAdminOperatorFunctionalities {
                       TableColumn<SearchBookTableView, String> author, TableColumn<SearchBookTableView, String> isbn,
                       TableColumn<SearchBookTableView, String> genre, TableColumn<SearchBookTableView, String> year,
                       TableColumn<SearchBookTableView, String> publ, TableColumn<SearchBookTableView, String> state);
-    void displayUsers(List<User> users, TableView<SearchReaderTableView> tableView, ObservableList<SearchReaderTableView> observableList,
-                      TableColumn<SearchReaderTableView, String> rid, TableColumn<SearchReaderTableView, String> fname,
-                      TableColumn<SearchReaderTableView, String> lname, TableColumn<SearchReaderTableView, String> email,
-                      TableColumn<SearchReaderTableView, String> phone, TableColumn<SearchReaderTableView, String> date,TableColumn<SearchReaderTableView, String> rating);
-    List<User> searchUsers(TextField id, TextField fname, TextField lname, TextField email, TextField phone,
-                            DatePicker from, DatePicker to, PrivilegedUserService pu);
 
     boolean scrapBook(PrivilegedUserService pu, TextField bookId);
+    public List<User> searchUsers(TextField id, TextField fname, TextField lname, TextField email, TextField phone,
+                                    DatePicker from, DatePicker to, PrivilegedUserService pu);
     List<RentBook> findLentBooks(PrivilegedUserService pu, TextField rid, TextField fname, TextField lname, TextField inv, TextField title);
     void displayLentBooks(List<RentBook> books, TableView<ReturnBookTableView> tableView, ObservableList<ReturnBookTableView> observableList,
                           TableColumn<ReturnBookTableView, String> lid, TableColumn<ReturnBookTableView, String> rid,

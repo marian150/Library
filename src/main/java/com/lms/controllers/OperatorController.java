@@ -11,12 +11,14 @@ import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.*;
 import com.lms.services.OperatorNotificationService;
 import com.lms.services.OperatorService;
+import com.lms.services.PrivilegedUserService;
 import com.lms.validation.base.Error;
 import com.lms.validation.err_decorators.*;
 import com.lms.validation.err_types.EmailError;
 import com.lms.validation.err_types.NameError;
 import com.lms.validation.err_types.PasswordError;
 import com.lms.validation.err_types.PhoneError;
+import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -286,6 +288,26 @@ public class OperatorController {
 
     public boolean searchPublisher(String publisherName) {return operatorService.searchPublisher(publisherName);}
 
+    public boolean checkNullValuesAddBook() {
+        List<TextField> addBookValues = new ArrayList<>();
+        addBookValues.add(add_book_author);
+        addBookValues.add(add_book_title);
+        addBookValues.add(add_book_issue_date);
+        addBookValues.add(add_book_isbn);
+        addBookValues.add(add_book_publisher);
+        addBookValues.add(add_book_ID);
+        for (TextField item : addBookValues) {
+            if (item.getText().equals("")) {
+                return true;
+            }
+        }
+        if(add_book_genre.getSelectionModel().getSelectedItem() == null)
+            return true;
+        if (add_book_cover.getSelectionModel().getSelectedItem() == null)
+            return true;
+        return false;
+    }
+
     public boolean addPublisher(String publisherName) {
         return operatorService.addPublisher(publisherName);
     }
@@ -409,6 +431,39 @@ public class OperatorController {
         displayOverdue(overdue);
     }
 
+    public void displayReaders(List<User> users, TableView<SearchReaderTableView> tableView, ObservableList<SearchReaderTableView> observableList,
+                               TableColumn<SearchReaderTableView, String> rid, TableColumn<SearchReaderTableView, String> fname,
+                               TableColumn<SearchReaderTableView, String> lname, TableColumn<SearchReaderTableView, String> email,
+                               TableColumn<SearchReaderTableView, String> phone,  TableColumn<SearchReaderTableView, String> date,
+                               TableColumn<SearchReaderTableView, String> rating
+    ){
+        tableView.getItems().clear();
+        for(int i = 0; i < users.size(); i ++){
+            String ratingString;
+            if(users.get(i).getRating() == -1){
+                ratingString = "N/A";
+            }else{
+                ratingString = users.get(i).getRating().toString();
+            }
+            observableList.add(new SearchReaderTableView(
+                    new SimpleLongProperty(users.get(i).getUserId()),
+                    new SimpleStringProperty(users.get(i).getFirstName()),
+                    new SimpleStringProperty(users.get(i).getLastName()),
+                    new SimpleStringProperty(users.get(i).getEmail()),
+                    new SimpleStringProperty(users.get(i).getPhone()),
+                    new SimpleStringProperty(users.get(i).getRegDate().toString()),
+                    new SimpleStringProperty(ratingString)));
+        }
+        rid.setCellValueFactory(new PropertyValueFactory<>("id"));
+        fname.setCellValueFactory(new PropertyValueFactory<>("fname"));
+        lname.setCellValueFactory(new PropertyValueFactory<>("lname"));
+        email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        date.setCellValueFactory(new PropertyValueFactory<>("regdate"));
+        rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
+        tableView.setItems(observableList);
+    }
+
     public void initialize() {
         Runnable task = () -> {
             try {
@@ -491,7 +546,7 @@ public class OperatorController {
                     search_reader_fname,search_reader_lname, search_reader_email, search_reader_phone,
                     search_reader_from, search_reader_to, operatorService
             );
-            commonAdminOperatorFunctionalities.displayUsers(
+            displayReaders(
                     result, reader_table_id, readersObservableList, readerid_column_id,
                     fname_column_id, lname_column_id, email_column_id, phone_column_id,
                     regdate_column_id, rating_column_id
@@ -531,31 +586,37 @@ public class OperatorController {
         });
 
         add_book_btn.setOnAction(event -> {
-            boolean addBookSuccessful = false;
-            List<String> authorListString = Arrays.asList(add_book_author.getText().split(","));
-            for(String aut : authorListString) {
-                if(!searchAuthor(aut))
-                    addAuthor(aut);
-            }
-            if(searchPublisher(add_book_publisher.getText())) {
-                logger.info(currentUser.getUserId().toString() + " attempting to add book");
-                addBookSuccessful = addBook();
+            if(checkNullValuesAddBook()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("You must fill all fields");
+                alert.show();
             } else {
-                logger.info(currentUser.getUserId().toString() + " attempting to add publisher");
-                addPublisher(add_book_publisher.getText());
-                logger.info(currentUser.getUserId().toString() + " attempting to add book");
-                addBookSuccessful = addBook();
+                boolean addBookSuccessful = false;
+                List<String> authorListString = Arrays.asList(add_book_author.getText().split(","));
+                for (String aut : authorListString) {
+                    if (!searchAuthor(aut))
+                        addAuthor(aut);
+                }
+                if (searchPublisher(add_book_publisher.getText())) {
+                    logger.info(currentUser.getUserId().toString() + " attempting to add book");
+                    addBookSuccessful = addBook();
+                } else {
+                    logger.info(currentUser.getUserId().toString() + " attempting to add publisher");
+                    addPublisher(add_book_publisher.getText());
+                    logger.info(currentUser.getUserId().toString() + " attempting to add book");
+                    addBookSuccessful = addBook();
+                }
+                if (addBookSuccessful) {
+                    Label addedBook = new Label("Successfully added Book.");
+                    addedBook.setTextFill(Color.GREEN);
+                    add_book_anchor.getChildren().add(addedBook);
+                } else {
+                    Label addedBook = new Label("Something went wrong.");
+                    addedBook.setTextFill(Color.RED);
+                    add_book_anchor.getChildren().add(addedBook);
+                }
+                commonAdminOperatorFunctionalities.nullifyAddBookFields(add_book_genre, add_book_cover, add_book_isbn, add_book_ID, add_book_author, add_book_issue_date, add_book_publisher, add_book_title);
             }
-            if (addBookSuccessful) {
-                Label addedBook = new Label("Successfully added Book.");
-                addedBook.setTextFill(Color.GREEN);
-                add_book_anchor.getChildren().add(addedBook);
-            }else {
-                Label addedBook = new Label("Something went wrong.");
-                addedBook.setTextFill(Color.RED);
-                add_book_anchor.getChildren().add(addedBook);
-            }
-            commonAdminOperatorFunctionalities.nullifyAddBookFields(add_book_genre, add_book_cover,add_book_isbn,add_book_ID,add_book_author,add_book_issue_date, add_book_publisher,add_book_title);
         });
 
         add_book_to_listview_btn.setOnAction(event -> {

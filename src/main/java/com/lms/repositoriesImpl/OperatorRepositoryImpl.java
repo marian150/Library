@@ -723,7 +723,4 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             session.close();
         }
     }
-
-
-
 }

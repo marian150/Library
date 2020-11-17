@@ -43,7 +43,6 @@ public class OperatorServiceImpl implements OperatorService {
     public List<Book> searchBook(Map<String, String> values) {
         return operatorRepository.searchBook(values);
     }
-    
 
     @Override
     public boolean addBook(AddBookDTO addBookDTO) {

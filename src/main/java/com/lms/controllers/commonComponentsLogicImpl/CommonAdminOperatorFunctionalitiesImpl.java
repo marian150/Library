@@ -76,40 +76,10 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         state.setCellValueFactory(new PropertyValueFactory<>("state"));
         tableView.setItems(observableList);
     }
-    public void displayUsers(List<User> users, TableView<SearchReaderTableView> tableView, ObservableList<SearchReaderTableView> observableList,
-                             TableColumn<SearchReaderTableView, String> rid, TableColumn<SearchReaderTableView, String> fname,
-                             TableColumn<SearchReaderTableView, String> lname, TableColumn<SearchReaderTableView, String> email,
-                             TableColumn<SearchReaderTableView, String> phone,  TableColumn<SearchReaderTableView, String> date,
-                             TableColumn<SearchReaderTableView, String> rating
-                             ){
-        tableView.getItems().clear();
-        for(int i = 0; i < users.size(); i ++){
-            String ratingString;
-            if(users.get(i).getRating() == -1){
-                ratingString = "N/A";
-            }else{
-                ratingString = users.get(i).getRating().toString();
-            }
-            observableList.add(new SearchReaderTableView(
-                    new SimpleLongProperty(users.get(i).getUserId()),
-                    new SimpleStringProperty(users.get(i).getFirstName()),
-                    new SimpleStringProperty(users.get(i).getLastName()),
-                    new SimpleStringProperty(users.get(i).getEmail()),
-                    new SimpleStringProperty(users.get(i).getPhone()),
-                    new SimpleStringProperty(users.get(i).getRegDate().toString()),
-                    new SimpleStringProperty(ratingString)));
-        }
-        rid.setCellValueFactory(new PropertyValueFactory<>("id"));
-        fname.setCellValueFactory(new PropertyValueFactory<>("fname"));
-        lname.setCellValueFactory(new PropertyValueFactory<>("lname"));
-        email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        date.setCellValueFactory(new PropertyValueFactory<>("regdate"));
-        rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
-        tableView.setItems(observableList);
-    }
+
+    @Override
     public List<User> searchUsers(TextField id, TextField fname, TextField lname, TextField email, TextField phone,
-                                   DatePicker from, DatePicker to, PrivilegedUserService pu) {
+                                    DatePicker from, DatePicker to, PrivilegedUserService pu) {
         Map<String, String> values = new HashMap<>();
         if(id.getText() != "")
             values.put("id", id.getText());

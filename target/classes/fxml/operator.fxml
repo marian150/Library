@@ -306,7 +306,7 @@
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="670.0">
                                              <children>
-                                                <TableView fx:id="reader_table_id" layoutX="-6.0" layoutY="35.0" prefHeight="273.0" prefWidth="571.0">
+                                                <TableView fx:id="reader_table_id" layoutY="35.0" prefHeight="274.0" prefWidth="565.0">
                                                   <columns>
                                                     <TableColumn fx:id="readerid_column_id" prefWidth="75.0" text="Reader ID" />
                                                     <TableColumn fx:id="fname_column_id" prefWidth="75.0" text="First Name" />
