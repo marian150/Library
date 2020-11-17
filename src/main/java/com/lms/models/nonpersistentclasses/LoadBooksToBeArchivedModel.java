@@ -1,11 +1,22 @@
 package com.lms.models.nonpersistentclasses;
 
-public class BooksToBeArchivedModel {
+import java.util.List;
+import java.util.Set;
+
+public class LoadBooksToBeArchivedModel {
     private String inv;
     private String title;
     private String author;
     private String year;
     private String isbn;
+
+    public LoadBooksToBeArchivedModel(String inv, String title, String author, String year, String isbn) {
+        this.inv = inv;
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.isbn = isbn;
+    }
 
     public String getInv() {
         return inv;

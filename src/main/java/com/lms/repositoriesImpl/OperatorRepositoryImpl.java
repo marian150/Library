@@ -6,14 +6,14 @@ import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
+import com.lms.models.nonpersistentclasses.LoadBooksToBeArchivedModel;
 import com.lms.models.nonpersistentclasses.LoadFormsModel;
-import com.lms.models.nonpersistentclasses.LoadOverdueModel;
 import com.lms.repositories.OperatorRepository;
 import com.lms.security.Password;
-import com.sun.source.tree.LambdaExpressionTree;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 
 import javax.enterprise.context.Dependent;
 import javax.persistence.NoResultException;
@@ -21,6 +21,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -658,7 +659,41 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             TypedQuery<RentBook> typedQuery = session.createQuery(cq);
             List<RentBook> result = typedQuery.getResultList();
 
+            return result;
+        } catch (NoResultException e) {
+            if(tx != null) tx.rollback();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
 
+    @Override
+    public List<Book> loadBooksToBeArchived() {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+        List<Predicate> predicates = new ArrayList<>();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<Book> cq = cb.createQuery(Book.class);
+            Root<Notifications> root = cq.from(Notifications.class);
+
+            root.join("status", JoinType.LEFT);
+            Join<Notifications, Book> rb = root.join("book", JoinType.LEFT);
+            rb.fetch("authors", JoinType.LEFT);
+
+            predicates.add(cb.like(root.get("status").get("statusName"), "New"));
+            predicates.add(cb.isNotNull(root.get("book")));
+
+            Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
+            cq.select(root.get("book")).distinct(true);
+            cq.where(finalPredicate);
+
+
+            List<Book> result = session.createQuery(cq).getResultList();
 
             return result;
         } catch (NoResultException e) {

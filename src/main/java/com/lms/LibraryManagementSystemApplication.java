@@ -24,8 +24,8 @@ public class LibraryManagementSystemApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        weld.containerId("one").initialize().select(FXApplicationConfig.class).get().start(stage);
-        weld.containerId("two").initialize().select(NotificationConfiguration.class).get().start();
+        weld.containerId("client").initialize().select(FXApplicationConfig.class).get().start(stage);
+        weld.containerId("notifications").initialize().select(NotificationConfiguration.class).get().start();
     }
 
     @Override

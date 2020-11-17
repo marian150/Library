@@ -5,8 +5,8 @@ import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
+import com.lms.models.nonpersistentclasses.LoadBooksToBeArchivedModel;
 import com.lms.models.nonpersistentclasses.LoadFormsModel;
-import com.lms.models.nonpersistentclasses.LoadOverdueModel;
 import com.lms.repositories.OperatorRepository;
 import com.lms.services.OperatorService;
 import com.lms.services.PrivilegedUserService;
@@ -14,6 +14,7 @@ import com.lms.services.PrivilegedUserService;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -113,6 +114,24 @@ public class OperatorServiceImpl implements OperatorService {
     @Override
     public List<RentBook> loadOverdue() {
         return operatorRepository.loadOverdue();
+    }
+
+    @Override
+    public List<LoadBooksToBeArchivedModel> loadBooksToBeArchived() {
+        List<Book> books = operatorRepository.loadBooksToBeArchived();
+        List<LoadBooksToBeArchivedModel> booksToBeArchivedModels = new ArrayList<>();
+        for(int i = 0; i < books.size(); i++) {
+            String authors = "";
+            for (Author a : books.get(i).getAuthors())
+                authors += a.getName() + ", ";
+            booksToBeArchivedModels.add(new LoadBooksToBeArchivedModel(
+                    books.get(i).getBookId().toString(),
+                    books.get(i).getTitle(),
+                    authors,
+                    books.get(i).getIssueDate(),
+                    books.get(i).getIsbn()));
+        }
+        return booksToBeArchivedModels;
     }
 
 

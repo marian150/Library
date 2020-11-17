@@ -1,21 +1,19 @@
 package com.lms.repositoriesImpl;
 
 import com.lms.config.ConfigurationSessionFactory;
-import com.lms.models.entities.Notifications;
-import com.lms.models.entities.RentBook;
-import com.lms.models.entities.Status;
-import com.lms.models.entities.User;
+import com.lms.models.entities.*;
 import com.lms.repositories.NotificationRepository;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 
 import javax.enterprise.context.Dependent;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -61,6 +59,50 @@ public class NotificationRepositoryImpl implements NotificationRepository {
         } finally {
             session.close();
         }
+    }
+    @Override
+    public void checkBooksToBeArchived() {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+        List<Predicate> predicates = new ArrayList<>();
+        Transaction tx = null;
 
+        try {
+            tx = session.beginTransaction();
+
+            NativeQuery<BigDecimal> query = session.createSQLQuery(
+                    "SELECT rb.book_id FROM book b \n" +
+                            "JOIN rent_book rb \n" +
+                            "ON rb.book_id = b.book_id \n" +
+                            "GROUP BY rb.book_id, TO_NUMBER(b.issue_date) \n" +
+                            "HAVING -0.8*(2020-TO_NUMBER(b.issue_date))+60 < COUNT(rb.book_id)");
+
+            List<BigDecimal> ids = query.getResultList();
+
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<Book> cq = cb.createQuery(Book.class);
+            Root<Book> root = cq.from(Book.class);
+
+            root.join("authors", JoinType.LEFT);
+
+            cq.select(root).where(root.in(ids)).distinct(true);
+            List<Book> result = session.createQuery(cq).getResultList();
+            for (Book rb : result) {
+                Notifications notification = new Notifications();
+                notification.setBook(rb);
+
+                Status status = session.load(Status.class, 1L);
+                notification.setStatus(status);
+
+                session.save(notification);
+            }
+            tx.commit();
+        } catch (NoResultException e) {
+            if(tx != null)
+                tx.rollback();
+            e.printStackTrace();
+            return;
+        } finally {
+            session.close();
+        }
     }
 }

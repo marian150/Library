@@ -23,6 +23,14 @@ public class SearchBookTableView {
         this.state = state;
     }
 
+    public SearchBookTableView(SimpleStringProperty inventoryNumber, SimpleStringProperty title, SimpleStringProperty author, SimpleStringProperty isbn, SimpleStringProperty year) {
+        this.inventoryNumber = inventoryNumber;
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.year = year;
+    }
+
     public String getInventoryNumber() {
         return inventoryNumber.get();
     }

@@ -420,6 +420,24 @@ public class OperatorController {
         newform_email_col_id.setCellValueFactory(new PropertyValueFactory<>("phone"));
         notif_form_table_view.setItems(newFormsObservableList);
     }
+    public void displayBooksToBeArchived(List<LoadBooksToBeArchivedModel> books){
+        notif_archive_table_view.getItems().clear();
+        for (int i = 0; i < books.size(); i++) {
+            toBeArchivedObservableList.add(new SearchBookTableView(
+                    new SimpleStringProperty(books.get(i).getInv()),
+                    new SimpleStringProperty(books.get(i).getTitle()),
+                    new SimpleStringProperty(books.get(i).getAuthor()),
+                    new SimpleStringProperty(books.get(i).getIsbn()),
+                    new SimpleStringProperty(books.get(i).getYear())
+            ));
+        }
+        archive_inv_col_id.setCellValueFactory(new PropertyValueFactory<>("inventoryNumber"));
+        archive_title_col_id.setCellValueFactory(new PropertyValueFactory<>("title"));
+        archive_author_col_id.setCellValueFactory(new PropertyValueFactory<>("author"));
+        archive_isbn_col_id.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+        archive_year_col_id.setCellValueFactory(new PropertyValueFactory<>("year"));
+        notif_archive_table_view.setItems(toBeArchivedObservableList);
+    }
 
     public void loadNewFormsAndDisplay(){
         List<LoadFormsModel> newForms = operatorService.loadNewForms();
@@ -429,6 +447,10 @@ public class OperatorController {
     public void loadOverdueAndDisplay(){
         List<RentBook> overdue = operatorService.loadOverdue();
         displayOverdue(overdue);
+    }
+    public void loadBookToBeArchivedAndDisplay(){
+        List<LoadBooksToBeArchivedModel> books = operatorService.loadBooksToBeArchived();
+        displayBooksToBeArchived(books);
     }
 
     public void displayReaders(List<User> users, TableView<SearchReaderTableView> tableView, ObservableList<SearchReaderTableView> observableList,
@@ -465,22 +487,30 @@ public class OperatorController {
     }
 
     public void initialize() {
-        Runnable task = () -> {
+        Runnable newFormsTask = () -> {
             try {
                 loadNewFormsAndDisplay();
             } catch(Exception e){
                 e.printStackTrace();
             }
         };
-        Runnable task2 = () -> {
+        Runnable overdueBooksTask = () -> {
             try{
                 loadOverdueAndDisplay();
             } catch(Exception e){
                 e.printStackTrace();
             }
         };
-        operatorNotificationService.setTask(task);
-        operatorNotificationService.setTask(task2);
+        Runnable booksToBeArchivedTask = () -> {
+            try{
+                loadBookToBeArchivedAndDisplay();
+            } catch(Exception e){
+                e.printStackTrace();
+            }
+        };
+        operatorNotificationService.setTask(newFormsTask);
+        operatorNotificationService.setTask(overdueBooksTask);
+        operatorNotificationService.setTask(booksToBeArchivedTask);
         operatorNotificationService.initialize();
 
         for (BookCovers bc : retrieveBookCovers()) {

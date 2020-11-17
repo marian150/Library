@@ -18,6 +18,7 @@ public class NotificationServiceImpl implements NotificationService {
         executor = Executors.newScheduledThreadPool(1);
         Runnable task = () -> {
             //notificationRepository.checkForOverdue();
+            notificationRepository.checkBooksToBeArchived();
         };
         executor.scheduleAtFixedRate(task, 0, 12, TimeUnit.SECONDS);
     }
