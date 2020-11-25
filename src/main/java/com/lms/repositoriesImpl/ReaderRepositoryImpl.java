@@ -1,10 +1,8 @@
 package com.lms.repositoriesImpl;
 
 import com.lms.config.ConfigurationSessionFactory;
-import com.lms.models.nonpersistentclasses.ReaderTableView;
 import com.lms.repositories.ReaderRepository;
 import org.hibernate.Session;
-
 import javax.enterprise.context.Dependent;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;

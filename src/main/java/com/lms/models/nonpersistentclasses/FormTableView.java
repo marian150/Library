@@ -2,6 +2,8 @@ package com.lms.models.nonpersistentclasses;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.Objects;
+
 public class FormTableView {
 
     private SimpleStringProperty fname;
@@ -102,5 +104,23 @@ public class FormTableView {
 
     public void setStatus(String status) {
         this.status.set(status);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FormTableView that = (FormTableView) o;
+        return Objects.equals(fname, that.fname) &&
+                Objects.equals(lname, that.lname) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(phone, that.phone) &&
+                Objects.equals(submitDate, that.submitDate) &&
+                Objects.equals(status, that.status);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fname, lname, email, phone, submitDate, status);
     }
 }

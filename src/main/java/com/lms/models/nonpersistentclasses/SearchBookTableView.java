@@ -2,6 +2,8 @@ package com.lms.models.nonpersistentclasses;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.Objects;
+
 public class SearchBookTableView {
     private SimpleStringProperty inventoryNumber;
     private SimpleStringProperty title;
@@ -125,5 +127,25 @@ public class SearchBookTableView {
 
     public void setState(String state) {
         this.state.set(state);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SearchBookTableView that = (SearchBookTableView) o;
+        return Objects.equals(inventoryNumber, that.inventoryNumber) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(author, that.author) &&
+                Objects.equals(isbn, that.isbn) &&
+                Objects.equals(genre, that.genre) &&
+                Objects.equals(publisher, that.publisher) &&
+                Objects.equals(year, that.year) &&
+                Objects.equals(state, that.state);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(inventoryNumber, title, author, isbn, genre, publisher, year, state);
     }
 }

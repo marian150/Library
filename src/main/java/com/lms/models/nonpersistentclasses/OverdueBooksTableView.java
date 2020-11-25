@@ -2,6 +2,8 @@ package com.lms.models.nonpersistentclasses;
 
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.Objects;
+
 public class OverdueBooksTableView {
     private SimpleStringProperty rid;
     private SimpleStringProperty fname;
@@ -117,5 +119,25 @@ public class OverdueBooksTableView {
 
     public void setDueDate(String dueDate) {
         this.dueDate.set(dueDate);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OverdueBooksTableView that = (OverdueBooksTableView) o;
+        return Objects.equals(rid, that.rid) &&
+                Objects.equals(fname, that.fname) &&
+                Objects.equals(lname, that.lname) &&
+                Objects.equals(phone, that.phone) &&
+                Objects.equals(bid, that.bid) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(author, that.author) &&
+                Objects.equals(dueDate, that.dueDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rid, fname, lname, phone, bid, title, author, dueDate);
     }
 }

@@ -107,7 +107,7 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
 
     @Override
     public boolean scrapBook(PrivilegedUserService pu, TextField bookId) {
-        return pu.scrapBook(pu, Long.parseLong(bookId.getText()));
+        return pu.scrapBook(Long.parseLong(bookId.getText()));
     }
 
     @Override

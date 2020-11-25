@@ -11,7 +11,6 @@ import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.*;
 import com.lms.services.OperatorNotificationService;
 import com.lms.services.OperatorService;
-import com.lms.services.PrivilegedUserService;
 import com.lms.validation.base.Error;
 import com.lms.validation.err_decorators.*;
 import com.lms.validation.err_types.EmailError;
@@ -21,6 +20,7 @@ import com.lms.validation.err_types.PhoneError;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -50,6 +50,7 @@ public class OperatorController {
 
     @Inject
     FXMLLoader fxmlLoader;
+    @FXML private Tab notifications_tab;
     @FXML
     private Label greeting_label;
     @FXML
@@ -401,6 +402,8 @@ public class OperatorController {
         overdue_title_col_id.setCellValueFactory(new PropertyValueFactory<>("title"));
         overdue_author_col_id.setCellValueFactory(new PropertyValueFactory<>("author"));
         overdue_due_col_id.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+
+        //if(!overdueObservableList.equals(notif_overdue_table_view.getItems())) notifications_tab.setStyle("-fx-background-color: red");
         notif_overdue_table_view.setItems(overdueObservableList);
     }
 
@@ -418,6 +421,15 @@ public class OperatorController {
         newform_lname_col_id.setCellValueFactory(new PropertyValueFactory<>("lname"));
         newform_phone_col_id.setCellValueFactory(new PropertyValueFactory<>("email"));
         newform_email_col_id.setCellValueFactory(new PropertyValueFactory<>("phone"));
+
+        //if (!newFormsObservableList.equals(notif_form_table_view.getItems())) notifications_tab.setStyle("-fx-background-color: red");
+/*
+        for(FormTableView newForm : newFormsObservableList){
+            if(!notif_form_table_view.getItems().contains(newForm)){
+                notifications_tab.setStyle("-fx-background-color: red");
+            }
+        }
+*/
         notif_form_table_view.setItems(newFormsObservableList);
     }
     public void displayBooksToBeArchived(List<LoadBooksToBeArchivedModel> books){
@@ -436,6 +448,8 @@ public class OperatorController {
         archive_author_col_id.setCellValueFactory(new PropertyValueFactory<>("author"));
         archive_isbn_col_id.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         archive_year_col_id.setCellValueFactory(new PropertyValueFactory<>("year"));
+
+        //if(!toBeArchivedObservableList.equals(notif_archive_table_view.getItems())) notifications_tab.setStyle("-fx-background-color: red");
         notif_archive_table_view.setItems(toBeArchivedObservableList);
     }
 
@@ -512,6 +526,19 @@ public class OperatorController {
         operatorNotificationService.setTask(overdueBooksTask);
         operatorNotificationService.setTask(booksToBeArchivedTask);
         operatorNotificationService.initialize();
+
+        tabPane.getSelectionModel().selectedItemProperty().addListener((observable, oldTab, newTab) -> {
+            if(newTab.equals(notifications_tab)) {
+                notifications_tab.setStyle(null);
+            }
+        });
+/*
+        newFormsObservableList.addListener((ListChangeListener<FormTableView>) change -> {
+            while(change.next())
+                if(!change.wasPermutated())
+                    notifications_tab.setStyle("-fx-background-color: red");
+        });
+*/
 
         for (BookCovers bc : retrieveBookCovers()) {
             add_book_cover.getItems().add(bc.getCoverName());

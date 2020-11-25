@@ -43,7 +43,7 @@
                     <children>
                         <TabPane fx:id="tabPane" prefHeight="389.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE">
                             <tabs>
-                                <Tab text="Notifications">
+                                <Tab fx:id="notifications_tab" text="Notifications">
                                     <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>

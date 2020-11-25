@@ -1,4 +1,4 @@
-package com.lms.services;
+package com.lms.repositories;
 
 import com.lms.models.dtos.AddBookDTO;
 import com.lms.models.dtos.LendBookDTO;
@@ -11,13 +11,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-public interface PrivilegedUserService {
-    List<Book> searchBook(Map<String, String> values);
-    List<User> searchUsers(Map<String, String> values);
+public interface CommonAdminOperatorRepository {
     boolean createReader(SignUpDTO signUpDTO);
+    List<Book> searchBook(Map<String, String> values);
     boolean addBook(AddBookDTO addBookDTO);
-    boolean scrapBook(Long bookId);
-    List<RentBook> findLentBooks(Map<String, String> values);
     List<BookCovers> retrieveBookCovers();
     List<Genre> retrieveBookGenre();
     List<BookState> retrieveBookState();
@@ -26,7 +23,9 @@ public interface PrivilegedUserService {
     boolean searchAuthor(String author);
     boolean addAuthor(String author);
     boolean lendBook(LendBookDTO lendBookDTO, Long userId);
-    boolean returnBooks(ReturnBookDTO returnBookDTO);
+    boolean scrapBook(Long id);
+    List<RentBook> findLentBooks(Map<String, String> values);
+    boolean returnBooks(ReturnBookDTO books);
     LocalDate extendDueDate(Long id);
     List<LoadFormsModel> loadForms();
 }
