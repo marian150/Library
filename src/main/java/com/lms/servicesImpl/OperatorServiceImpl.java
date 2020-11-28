@@ -130,6 +130,4 @@ public class OperatorServiceImpl implements OperatorService {
         }
         return booksToBeArchivedModels;
     }
-
-
 }

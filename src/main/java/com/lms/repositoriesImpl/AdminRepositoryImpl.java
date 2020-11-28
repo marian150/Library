@@ -14,6 +14,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.enterprise.context.Dependent;
+import javax.inject.Inject;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
@@ -26,6 +27,9 @@ import java.util.Map;
 @Dependent
 public class AdminRepositoryImpl implements AdminRepository {
     Logger logger = Logger.getLogger(AdminRepositoryImpl.class);
+
+    @Inject
+    private CommonAdminOperatorRepositoryImpl commonAdminOperatorRepository;
 
     @Override
     public boolean createOperator(SignUpDTO signUpDTO) {
@@ -59,7 +63,7 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     @Override
     public boolean createReader(SignUpDTO signUpDTO) {
-        return false;
+        return commonAdminOperatorRepository.createReader(signUpDTO);
     }
 
     @Override
@@ -73,7 +77,8 @@ public class AdminRepositoryImpl implements AdminRepository {
         CriteriaBuilder cb = session.getCriteriaBuilder();
         CriteriaQuery<User> cq = cb.createQuery(User.class);
         Root<User> u = cq.from(User.class);
-        Join<User, UserType> userTypeJoin = u.join("userType");
+
+        u.fetch("userType", JoinType.LEFT);
         cq.select(u);
 
         if(values.containsKey("id"))
@@ -110,76 +115,76 @@ public class AdminRepositoryImpl implements AdminRepository {
 
     @Override
     public List<Book> searchBook(Map<String, String> values) {
-        return null;
+        return commonAdminOperatorRepository.searchBook(values);
     }
 
     @Override
     public boolean addBook(AddBookDTO addBookDTO) {
-        return false;
+        return commonAdminOperatorRepository.addBook(addBookDTO);
     }
 
     @Override
     public List<BookCovers> retrieveBookCovers() {
-        return null;
+        return commonAdminOperatorRepository.retrieveBookCovers();
     }
 
     @Override
     public List<Genre> retrieveBookGenre() {
-        return null;
+        return commonAdminOperatorRepository.retrieveBookGenre();
     }
 
     @Override
     public List<BookState> retrieveBookState() {
-        return null;
+        return commonAdminOperatorRepository.retrieveBookState();
     }
 
     @Override
     public boolean addPublisher(String publisherName) {
-        return false;
+        return commonAdminOperatorRepository.addPublisher(publisherName);
     }
 
     @Override
     public boolean searchPublisher(String publisherName) {
-        return false;
+        return commonAdminOperatorRepository.searchPublisher(publisherName);
     }
 
     @Override
     public boolean searchAuthor(String author) {
-        return false;
+        return commonAdminOperatorRepository.searchAuthor(author);
     }
 
     @Override
     public boolean addAuthor(String author) {
-        return false;
+        return commonAdminOperatorRepository.addAuthor(author);
     }
 
     @Override
     public boolean lendBook(LendBookDTO lendBookDTO, Long userId) {
-        return false;
+        return commonAdminOperatorRepository.lendBook(lendBookDTO, userId);
     }
 
     @Override
     public boolean scrapBook(Long id) {
-        return false;
+        return commonAdminOperatorRepository.scrapBook(id);
     }
 
     @Override
     public List<RentBook> findLentBooks(Map<String, String> values) {
-        return null;
+        return commonAdminOperatorRepository.findLentBooks(values);
     }
 
     @Override
     public boolean returnBooks(ReturnBookDTO books) {
-        return false;
+        return commonAdminOperatorRepository.returnBooks(books);
     }
 
     @Override
     public LocalDate extendDueDate(Long id) {
-        return null;
+        return commonAdminOperatorRepository.extendDueDate(id);
     }
 
     @Override
     public List<LoadFormsModel> loadForms() {
-        return null;
+        return commonAdminOperatorRepository.loadForms();
     }
 }

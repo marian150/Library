@@ -31,6 +31,7 @@ public class LibraryManagementSystemApplication extends Application {
     @Override
     public void stop() throws Exception {
         weld.shutdown();
+        System.exit(0);
     }
 
 }

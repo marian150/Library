@@ -187,9 +187,10 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         tableView.setItems(observableList);
     }
 
-    public void nullifyAddBookFields(ComboBox genre, ComboBox cover, TextField isbn, TextField id, TextField author,
+    public void nullifyAddBookFields(TextField inv, ComboBox genre, ComboBox cover, TextField isbn, TextField author,
                                      TextField issueDate, TextField publ, TextField title) {
 
+        inv.clear();
         genre.setValue(null);
         cover.setValue(null);
         isbn.clear();

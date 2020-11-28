@@ -1,5 +1,6 @@
 package com.lms.controllers.commonComponentsLogic;
 
+import com.lms.models.dtos.AddBookDTO;
 import com.lms.models.entities.Book;
 import com.lms.models.entities.RentBook;
 import com.lms.models.entities.User;
@@ -38,6 +39,5 @@ public interface CommonAdminOperatorFunctionalities {
     void nullifyCreateReaderFields(TextField fname, TextField lname, TextField email, TextField pass, TextField phone);
     void nullifyLendBookUserDetails(TextField phone, TextField email, TextField name, TextField id);
     void nullifyCrapBookFields(TextField author, TextField genre, TextField inv, TextField isbn, TextField publ, TextField title, TextField year);
-    void nullifyAddBookFields(ComboBox genre, ComboBox cover, TextField isbn, TextField id, TextField author, TextField issueDate, TextField publ, TextField title);
-
+    void nullifyAddBookFields(TextField inv, ComboBox genre, ComboBox cover, TextField isbn, TextField author, TextField issueDate, TextField publ, TextField title);
 }
