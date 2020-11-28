@@ -422,7 +422,8 @@ public class OperatorController {
         newform_phone_col_id.setCellValueFactory(new PropertyValueFactory<>("email"));
         newform_email_col_id.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
-        //if (!newFormsObservableList.equals(notif_form_table_view.getItems())) notifications_tab.setStyle("-fx-background-color: red");
+        //if (!newFormsObservableList.equals(notif_form_table_view.getItems()))
+        // notifications_tab.setStyle("-fx-background-color: red");
 /*
         for(FormTableView newForm : newFormsObservableList){
             if(!notif_form_table_view.getItems().contains(newForm)){
@@ -449,7 +450,8 @@ public class OperatorController {
         archive_isbn_col_id.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         archive_year_col_id.setCellValueFactory(new PropertyValueFactory<>("year"));
 
-        //if(!toBeArchivedObservableList.equals(notif_archive_table_view.getItems())) notifications_tab.setStyle("-fx-background-color: red");
+        //if(!toBeArchivedObservableList.equals(notif_archive_table_view.getItems()))
+        // notifications_tab.setStyle("-fx-background-color: red");
         notif_archive_table_view.setItems(toBeArchivedObservableList);
     }
 
