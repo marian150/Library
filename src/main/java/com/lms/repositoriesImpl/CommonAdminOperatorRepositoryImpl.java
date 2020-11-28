@@ -346,6 +346,7 @@ public class CommonAdminOperatorRepositoryImpl implements CommonAdminOperatorRep
             BookState bs = (BookState)query.getSingleResult();
             Book book = (Book)session.load(Book.class, id);
             book.setBookState(bs);
+            session.update(book);
             tx.commit();
             logger.info("Book " + book.getBookId().toString() + " status is changed to " + bs.getStateName());
             return true;
@@ -457,11 +458,12 @@ public class CommonAdminOperatorRepositoryImpl implements CommonAdminOperatorRep
             tx = session.beginTransaction();
             RentBook rentBookToBeUpdated = session.get(RentBook.class, id);
             rentBookToBeUpdated.setDueDate(rentBookToBeUpdated.getDueDate().plusMonths(1));
-            session.save(rentBookToBeUpdated);
+            session.update(rentBookToBeUpdated);
             tx.commit();
             RentBook rentBook = session.get(RentBook.class, id);
             return rentBook.getDueDate();
         } catch (Exception e) {
+            e.printStackTrace();
             if(tx != null) tx.rollback();
             return null;
         } finally {

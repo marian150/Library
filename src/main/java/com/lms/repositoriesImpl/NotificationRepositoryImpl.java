@@ -74,6 +74,7 @@ public class NotificationRepositoryImpl implements NotificationRepository {
                     "SELECT rb.book_id FROM book b \n" +
                             "JOIN rent_book rb \n" +
                             "ON rb.book_id = b.book_id \n" +
+                            "WHERE b.state_id = 1" +
                             "GROUP BY rb.book_id, TO_NUMBER(b.issue_date) \n" +
                             "HAVING -0.8*(2020-TO_NUMBER(b.issue_date))+60 < COUNT(rb.book_id)");
 

@@ -166,4 +166,19 @@ public class OperatorServiceImpl implements OperatorService {
         }
         return booksToBeArchivedModels;
     }
+
+    @Override
+    public boolean changeNotificationStatus(String notifID, int statusID) {
+        return operatorRepository.changeNotificationStatus(Long.parseLong(notifID), (long) statusID);
+    }
+
+    @Override
+    public Notifications getNotification(String id) {
+        return operatorRepository.getNotification(Long.parseLong(id));
+    }
+
+    @Override
+    public boolean archiveBook(String id) {
+        return operatorRepository.archiveBook(Long.parseLong(id));
+    }
 }

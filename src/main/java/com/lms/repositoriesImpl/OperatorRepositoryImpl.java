@@ -12,6 +12,8 @@ import com.lms.repositories.OperatorRepository;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
@@ -259,6 +261,80 @@ public class OperatorRepositoryImpl implements OperatorRepository {
         } catch (NoResultException e) {
             if(tx != null) tx.rollback();
             return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean changeNotificationStatus(Long notifID, Long statusID) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            tx = session.beginTransaction();
+            String hql = "select n from Notifications n where n.notifyId like :idN";
+            Query query = session.createQuery(hql);
+            query.setParameter("idN", notifID);
+
+            String hql2 = "select s from Status s where s.statusId like :idS";
+            Query query2 = session.createQuery(hql2);
+            query2.setParameter("idS", statusID);
+
+            Notifications notification = (Notifications) query.getSingleResult();
+            Status status = (Status) query2.getSingleResult();
+            System.out.println(status.getStatusId());
+            System.out.println(notification.getNotifyId());
+            notification.setStatus(status);
+            session.update(notification);
+            tx.commit();
+            return true;
+        } catch (Exception e) {
+            if(tx != null) tx.rollback();
+            return false;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public Notifications getNotification(Long id) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        String hql = "select n from Notifications n where n.notifyId like :idN";
+        Query query = session.createQuery(hql);
+        query.setParameter("idN", id);
+
+        Notifications notification;
+        try {
+            notification = (Notifications)query.getSingleResult();
+            return notification;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    @Override
+    public boolean archiveBook(Long id) {
+        Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
+
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            javax.persistence.Query query = session.createQuery("select bs from BookState bs where bs.stateName like 'Archived'");
+            BookState bs = (BookState)query.getSingleResult();
+            Book book = (Book)session.load(Book.class, id);
+            book.setBookState(bs);
+            session.update(book);
+            tx.commit();
+            logger.info("Book " + book.getBookId().toString() + " status is changed to " + bs.getStateName());
+            return true;
+        } catch (Exception e) {
+            if(tx != null)tx.rollback();
+            logger.error("Unable to archive book", e);
+            return false;
         } finally {
             session.close();
         }

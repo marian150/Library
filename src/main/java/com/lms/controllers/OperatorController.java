@@ -269,6 +269,10 @@ public class OperatorController {
         return operatorService.createReader(signUpDTO);
     }
 
+    public boolean createReader(SignUpDTO signUpDTO){
+        return operatorService.createReader(signUpDTO);
+    }
+
     public boolean addBook() {
         AddBookDTO addBookDTO = new AddBookDTO();
         addBookDTO.setBookId(Long.parseLong(add_book_ID.getText()));
@@ -764,10 +768,63 @@ public class OperatorController {
                             "Due date: " + row.getItem().getDueDate() + "\n" +
                             "EXTEND THE RETURN DATE?");
                     alert.showAndWait().ifPresent(response -> {
-                        //operatorService.changeNotificationStatus(2);
+                        operatorService.changeNotificationStatus(row.getItem().getNotif_id(), 2);
                         if(response == ButtonType.OK) {
-                            System.out.println("OK clicked!");
-                            operatorService.extendDueDate(Long.parseLong(row.getItem().getBid()));
+                            operatorService.extendDueDate(Long.parseLong(row.getItem().getRid()));
+                            operatorService.changeNotificationStatus(row.getItem().getNotif_id(), 3);
+                            OverdueBooksTableView selectedItem = notif_overdue_table_view.getSelectionModel().getSelectedItem();
+                            notif_overdue_table_view.getItems().remove(selectedItem);
+                        }
+                    });
+                }
+            });
+            return row;
+        });
+
+        notif_form_table_view.setRowFactory(tv -> {
+            TableRow<FormTableView> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if(event.getClickCount() == 2 && !row.isEmpty()) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setContentText("Name: " + row.getItem().getFname() + " " + row.getItem().getLname() + "\n" +
+                            "Email: " + row.getItem().getEmail() + "\n" +
+                            "Phone: " + row.getItem().getPhone() + "\n" +
+                            "CREATE READER?");
+                    alert.showAndWait().ifPresent(response -> {
+                        operatorService.changeNotificationStatus(row.getItem().getNotif_id(), 2);
+                        if(response == ButtonType.OK) {
+                            Notifications notification = operatorService.getNotification(row.getItem().getNotif_id());
+                            Form form = notification.getForm();
+                            SignUpDTO signUpDTO = new SignUpDTO(form.getFirstName(), form.getLastName(), form.getEmail(),
+                                    form.getPassword(), form.getPhone());
+                            createReader(signUpDTO);
+                            operatorService.changeNotificationStatus(row.getItem().getNotif_id(), 3);
+                            FormTableView selectedItem = notif_form_table_view.getSelectionModel().getSelectedItem();
+                            notif_form_table_view.getItems().remove(selectedItem);
+                        }
+                    });
+                }
+            });
+            return row;
+        });
+
+        notif_archive_table_view.setRowFactory(tv -> {
+            TableRow<LoadBooksToBeArchivedModel> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if(event.getClickCount() == 2 && !row.isEmpty()) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setContentText("Book ID: " + row.getItem().getInv() + "\n" +
+                            "Title: " + row.getItem().getTitle() + "\n" +
+                            "Author: " + row.getItem().getAuthor() + "\n" +
+                            "ISBN: " + row.getItem().getIsbn() + "\n" +
+                            "ARCHIVE BOOK?");
+                    alert.showAndWait().ifPresent(response -> {
+                        operatorService.changeNotificationStatus(row.getItem().getNotifId(), 2);
+                        if(response == ButtonType.OK) {
+                            operatorService.archiveBook(row.getItem().getInv());
+                            operatorService.changeNotificationStatus(row.getItem().getNotifId(), 3);
+                            LoadBooksToBeArchivedModel selectedItem = notif_archive_table_view.getSelectionModel().getSelectedItem();
+                            notif_archive_table_view.getItems().remove(selectedItem);
                         }
                     });
                 }

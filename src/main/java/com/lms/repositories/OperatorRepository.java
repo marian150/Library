@@ -10,4 +10,7 @@ public interface OperatorRepository extends PrivilegedUserRepository {
     List<LoadFormsModel> loadNewForms();
     List<Notifications> loadOverdue();
     List<Notifications> loadBooksToBeArchived();
+    boolean changeNotificationStatus(Long notifID, Long statusID);
+    Notifications getNotification(Long id);
+    boolean archiveBook(Long id);
 }
