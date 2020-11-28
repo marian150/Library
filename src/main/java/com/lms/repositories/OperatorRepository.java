@@ -9,5 +9,5 @@ import java.util.List;
 public interface OperatorRepository extends PrivilegedUserRepository {
     List<LoadFormsModel> loadNewForms();
     List<Notifications> loadOverdue();
-    List<Book> loadBooksToBeArchived();
+    List<Notifications> loadBooksToBeArchived();
 }

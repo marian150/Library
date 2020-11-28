@@ -149,18 +149,20 @@ public class OperatorServiceImpl implements OperatorService {
 
     @Override
     public List<LoadBooksToBeArchivedModel> loadBooksToBeArchived() {
-        List<Book> books = operatorRepository.loadBooksToBeArchived();
+        List<Notifications> notifications = operatorRepository.loadBooksToBeArchived();
         List<LoadBooksToBeArchivedModel> booksToBeArchivedModels = new ArrayList<>();
-        for(int i = 0; i < books.size(); i++) {
+        for(Notifications n : notifications) {
             String authors = "";
-            for (Author a : books.get(i).getAuthors())
+            for (Author a : n.getBook().getAuthors())
                 authors += a.getName() + ", ";
             booksToBeArchivedModels.add(new LoadBooksToBeArchivedModel(
-                    books.get(i).getBookId().toString(),
-                    books.get(i).getTitle(),
-                    authors,
-                    books.get(i).getIssueDate(),
-                    books.get(i).getIsbn()));
+                    new SimpleStringProperty(n.getBook().getBookId().toString()),
+                    new SimpleStringProperty(n.getBook().getTitle()),
+                    new SimpleStringProperty(authors),
+                    new SimpleStringProperty(n.getBook().getIssueDate()),
+                    new SimpleStringProperty(n.getBook().getIsbn()),
+                    new SimpleStringProperty(n.getNotifyId().toString())
+            ));
         }
         return booksToBeArchivedModels;
     }

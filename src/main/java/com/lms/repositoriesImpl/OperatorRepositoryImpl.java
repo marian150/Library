@@ -229,7 +229,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
     }
 
     @Override
-    public List<Book> loadBooksToBeArchived() {
+    public List<Notifications> loadBooksToBeArchived() {
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
         List<Predicate> predicates = new ArrayList<>();
         Transaction tx = null;
@@ -238,22 +238,22 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             tx = session.beginTransaction();
 
             CriteriaBuilder cb = session.getCriteriaBuilder();
-            CriteriaQuery<Book> cq = cb.createQuery(Book.class);
+            CriteriaQuery<Notifications> cq = cb.createQuery(Notifications.class);
             Root<Notifications> root = cq.from(Notifications.class);
 
-            root.join("status", JoinType.LEFT);
-            Join<Notifications, Book> rb = root.join("book", JoinType.LEFT);
+            root.fetch("status", JoinType.LEFT);
+            Fetch<Notifications, Book> rb = root.fetch("book", JoinType.LEFT);
             rb.fetch("authors", JoinType.LEFT);
 
             predicates.add(cb.like(root.get("status").get("statusName"), "New"));
             predicates.add(cb.isNotNull(root.get("book")));
 
             Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
-            cq.select(root.get("book")).distinct(true);
+            cq.select(root).distinct(true);
             cq.where(finalPredicate);
 
 
-            List<Book> result = session.createQuery(cq).getResultList();
+            List<Notifications> result = session.createQuery(cq).getResultList();
 
             return result;
         } catch (NoResultException e) {

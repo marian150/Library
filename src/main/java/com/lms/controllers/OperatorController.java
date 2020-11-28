@@ -224,7 +224,7 @@ public class OperatorController {
     @FXML private TableColumn<ReturnBookTableView, String> return_type_col_id;
     @FXML private TableView<OverdueBooksTableView> notif_overdue_table_view;
     @FXML private TableView<FormTableView> notif_form_table_view;
-    @FXML private TableView<SearchBookTableView> notif_archive_table_view;
+    @FXML private TableView<LoadBooksToBeArchivedModel> notif_archive_table_view;
     @FXML private TableColumn<OverdueBooksTableView, String> overdue_notif_id;
     @FXML private TableColumn<OverdueBooksTableView, String> overdue_rid_col_id;
     @FXML private TableColumn<OverdueBooksTableView, String> overdue_fname_col_id;
@@ -252,7 +252,7 @@ public class OperatorController {
     ObservableList<FormTableView> formsObservableList = FXCollections.observableArrayList();
     ObservableList<OverdueBooksTableView> overdueObservableList = FXCollections.observableArrayList();
     ObservableList<FormTableView> newFormsObservableList = FXCollections.observableArrayList();
-    ObservableList<SearchBookTableView> toBeArchivedObservableList = FXCollections.observableArrayList();
+    ObservableList<LoadBooksToBeArchivedModel> toBeArchivedObservableList = FXCollections.observableArrayList();
 
     public OperatorController() {}
 
@@ -394,7 +394,7 @@ public class OperatorController {
         overdue_title_col_id.setCellValueFactory(new PropertyValueFactory<>("title"));
         overdue_author_col_id.setCellValueFactory(new PropertyValueFactory<>("author"));
         overdue_due_col_id.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-        overdue_notif_id.setCellValueFactory(new PropertyValueFactory<>("notif_id"));
+        overdue_notif_id.setCellValueFactory(new PropertyValueFactory<>("notifId"));
 
         //if(!overdueObservableList.equals(notif_overdue_table_view.getItems())) notifications_tab.setStyle("-fx-background-color: red");
         notif_overdue_table_view.setItems(overdueObservableList);
@@ -409,7 +409,7 @@ public class OperatorController {
         newform_lname_col_id.setCellValueFactory(new PropertyValueFactory<>("lname"));
         newform_phone_col_id.setCellValueFactory(new PropertyValueFactory<>("email"));
         newform_email_col_id.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        newform_notif_id.setCellValueFactory(new PropertyValueFactory<>("notif_id"));
+        newform_notif_id.setCellValueFactory(new PropertyValueFactory<>("notifId"));
 
         //if (!newFormsObservableList.equals(notif_form_table_view.getItems()))
         // notifications_tab.setStyle("-fx-background-color: red");
@@ -424,20 +424,15 @@ public class OperatorController {
     }
     public void displayBooksToBeArchived(List<LoadBooksToBeArchivedModel> books){
         notif_archive_table_view.getItems().clear();
-        for (int i = 0; i < books.size(); i++) {
-            toBeArchivedObservableList.add(new SearchBookTableView(
-                    new SimpleStringProperty(books.get(i).getInv()),
-                    new SimpleStringProperty(books.get(i).getTitle()),
-                    new SimpleStringProperty(books.get(i).getAuthor()),
-                    new SimpleStringProperty(books.get(i).getIsbn()),
-                    new SimpleStringProperty(books.get(i).getYear())
-            ));
+        for (LoadBooksToBeArchivedModel book : books) {
+            toBeArchivedObservableList.add(book);
         }
-        archive_inv_col_id.setCellValueFactory(new PropertyValueFactory<>("inventoryNumber"));
+        archive_inv_col_id.setCellValueFactory(new PropertyValueFactory<>("inv"));
         archive_title_col_id.setCellValueFactory(new PropertyValueFactory<>("title"));
         archive_author_col_id.setCellValueFactory(new PropertyValueFactory<>("author"));
         archive_isbn_col_id.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         archive_year_col_id.setCellValueFactory(new PropertyValueFactory<>("year"));
+        tobearchived_notif_id.setCellValueFactory(new PropertyValueFactory<>("notifId"));
 
         //if(!toBeArchivedObservableList.equals(notif_archive_table_view.getItems()))
         // notifications_tab.setStyle("-fx-background-color: red");
