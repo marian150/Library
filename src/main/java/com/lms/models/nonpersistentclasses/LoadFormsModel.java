@@ -10,15 +10,17 @@ public class LoadFormsModel {
     private String phone;
     private LocalDate date;
     private String status;
+    private Long notifId;
 
 
-    public LoadFormsModel(String firstName, String lastName, String email, String phone, LocalDate date, String status) {
+    public LoadFormsModel(String firstName, String lastName, String email, String phone, LocalDate date, String status, Long notifId) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
         this.date = date;
         this.status = status;
+        this.notifId = notifId;
     }
 
     public String getFirstName() {
@@ -67,5 +69,13 @@ public class LoadFormsModel {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Long getNotifId() {
+        return notifId;
+    }
+
+    public void setNotifId(Long notifId) {
+        this.notifId = notifId;
     }
 }

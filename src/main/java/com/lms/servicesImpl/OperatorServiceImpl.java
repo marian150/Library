@@ -5,12 +5,15 @@ import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
+import com.lms.models.nonpersistentclasses.FormTableView;
 import com.lms.models.nonpersistentclasses.LoadBooksToBeArchivedModel;
 import com.lms.models.nonpersistentclasses.LoadFormsModel;
+import com.lms.models.nonpersistentclasses.OverdueBooksTableView;
 import com.lms.repositories.OperatorRepository;
 import com.lms.services.CommonAdminOperatorService;
 import com.lms.services.OperatorService;
 import com.lms.services.PrivilegedUserService;
+import javafx.beans.property.SimpleStringProperty;
 
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
@@ -104,13 +107,44 @@ public class OperatorServiceImpl implements OperatorService {
     public List<RentBook> findLentBooks(Map<String, String> values) { return commonAdminOperatorService.findLentBooks(operatorRepository, values); }
 
     @Override
-    public List<LoadFormsModel> loadNewForms() {
-        return operatorRepository.loadNewForms();
+    public List<FormTableView> loadNewForms() {
+        List<LoadFormsModel> notifications = operatorRepository.loadNewForms();
+        List<FormTableView> newForms = new ArrayList<>();
+        for(LoadFormsModel form : notifications){
+            newForms.add(new FormTableView(
+                    new SimpleStringProperty(form.getFirstName()),
+                    new SimpleStringProperty(form.getLastName()),
+                    new SimpleStringProperty(form.getEmail()),
+                    new SimpleStringProperty(form.getPhone()),
+                    new SimpleStringProperty(form.getDate().toString()),
+                    new SimpleStringProperty(form.getStatus()),
+                    new SimpleStringProperty(form.getNotifId().toString())
+            ));
+        }
+        return newForms;
     }
 
     @Override
-    public List<RentBook> loadOverdue() {
-        return operatorRepository.loadOverdue();
+    public List<OverdueBooksTableView> loadOverdue() {
+        List<Notifications> notifications = operatorRepository.loadOverdue();
+        List<OverdueBooksTableView> overdueBooks = new ArrayList<>();
+        for(Notifications n : notifications){
+            StringBuilder authors = new StringBuilder();
+            for(Author a : n.getRentBook().getBook().getAuthors()){
+                authors.append(a.getName()).append(", ");
+            }
+            overdueBooks.add(new OverdueBooksTableView(
+                    new SimpleStringProperty(n.getRentBook().getClient().getUserId().toString()),
+                    new SimpleStringProperty(n.getRentBook().getClient().getFirstName()),
+                    new SimpleStringProperty(n.getRentBook().getClient().getLastName()),
+                    new SimpleStringProperty(n.getRentBook().getClient().getPhone()),
+                    new SimpleStringProperty(n.getRentBook().getBook().getBookId().toString()),
+                    new SimpleStringProperty(n.getRentBook().getBook().getTitle()),
+                    new SimpleStringProperty(authors.toString()),
+                    new SimpleStringProperty(n.getRentBook().getRentDate().toString()),
+                    new SimpleStringProperty(n.getNotifyId().toString())));
+        }
+        return overdueBooks;
     }
 
     @Override

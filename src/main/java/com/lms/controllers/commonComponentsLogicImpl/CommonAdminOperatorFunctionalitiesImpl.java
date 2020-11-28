@@ -175,8 +175,9 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
                     new SimpleStringProperty(forms.get(i).getEmail()),
                     new SimpleStringProperty(forms.get(i).getPhone()),
                     new SimpleStringProperty(forms.get(i).getSubmitDate()),
-                    new SimpleStringProperty(forms.get(i).getStatus()))
-            );
+                    new SimpleStringProperty(forms.get(i).getStatus()),
+                    new SimpleStringProperty("")
+            ));
         }
         fname.setCellValueFactory(new PropertyValueFactory<>("fname"));
         lname.setCellValueFactory(new PropertyValueFactory<>("lname"));

@@ -620,10 +620,15 @@ public class AdminController {
             List<FormTableView> formsForDisplay = new ArrayList<>();
             for (LoadFormsModel lf : forms) {
                 System.out.println(lf.getFirstName());
-                formsForDisplay.add(new FormTableView(new SimpleStringProperty(lf.getFirstName()),
+                formsForDisplay.add(new FormTableView(
+                        new SimpleStringProperty(lf.getFirstName()),
                         new SimpleStringProperty(lf.getLastName()),
-                        new SimpleStringProperty(lf.getEmail()), new SimpleStringProperty(lf.getPhone()),
-                        new SimpleStringProperty(lf.getDate().toString()), new SimpleStringProperty(lf.getStatus())));
+                        new SimpleStringProperty(lf.getEmail()),
+                        new SimpleStringProperty(lf.getPhone()),
+                        new SimpleStringProperty(lf.getDate().toString()),
+                        new SimpleStringProperty(lf.getStatus()),
+                        new SimpleStringProperty("")
+                ));
             }
             if (forms != null) {
                 commonAdminOperatorFunctionalities.displayForms(formsForDisplay, forms_load_tableview,

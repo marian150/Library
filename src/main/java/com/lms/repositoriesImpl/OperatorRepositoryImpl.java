@@ -9,17 +9,14 @@ import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.LoadFormsModel;
 import com.lms.repositories.CommonAdminOperatorRepository;
 import com.lms.repositories.OperatorRepository;
-import com.lms.security.Password;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -177,7 +174,8 @@ public class OperatorRepositoryImpl implements OperatorRepository {
 
             cq.multiselect(notificationsRoot.get("form").get("firstName"), notificationsRoot.get("form").get("lastName"),
                     notificationsRoot.get("form").get("email"), notificationsRoot.get("form").get("phone"),
-                    notificationsRoot.get("form").get("submitDate"), notificationsRoot.get("status").get("statusName"));
+                    notificationsRoot.get("form").get("submitDate"), notificationsRoot.get("status").get("statusName"),
+                    notificationsRoot.get("notifyId"));
 
             cq.where(finalPredicate);
 
@@ -193,7 +191,7 @@ public class OperatorRepositoryImpl implements OperatorRepository {
     }
 
     @Override
-    public List<RentBook> loadOverdue() {
+    public List<Notifications> loadOverdue() {
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
         List<Predicate> predicates = new ArrayList<>();
         Transaction tx = null;
@@ -202,24 +200,24 @@ public class OperatorRepositoryImpl implements OperatorRepository {
             tx = session.beginTransaction();
 
             CriteriaBuilder cb = session.getCriteriaBuilder();
-            CriteriaQuery<RentBook> cq = cb.createQuery(RentBook.class);
+            CriteriaQuery<Notifications> cq = cb.createQuery(Notifications.class);
             Root<Notifications> root = cq.from(Notifications.class);
 
-            Join<Notifications, RentBook> rb = root.join("rentBook", JoinType.LEFT);
+            Fetch<Notifications, RentBook> rb = root.fetch("rentBook", JoinType.LEFT);
             Fetch<RentBook, Book> b = rb.fetch("book", JoinType.LEFT);
             b.fetch("authors", JoinType.LEFT);
             rb.fetch("client", JoinType.LEFT);
-            root.join("status", JoinType.LEFT);
+            root.fetch("status", JoinType.LEFT);
 
             predicates.add(cb.like(root.get("status").get("statusName"), "New"));
             predicates.add(cb.isNotNull(root.get("rentBook")));
 
             Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
-            cq.select(root.get("rentBook")).distinct(true);
+            cq.select(root).distinct(true);
             cq.where(finalPredicate);
 
-            TypedQuery<RentBook> typedQuery = session.createQuery(cq);
-            List<RentBook> result = typedQuery.getResultList();
+            TypedQuery<Notifications> typedQuery = session.createQuery(cq);
+            List<Notifications> result = typedQuery.getResultList();
 
             return result;
         } catch (NoResultException e) {

@@ -13,8 +13,9 @@ public class OverdueBooksTableView {
     private SimpleStringProperty title;
     private SimpleStringProperty author;
     private SimpleStringProperty dueDate;
+    private SimpleStringProperty notif_id;
 
-    public OverdueBooksTableView(SimpleStringProperty rid, SimpleStringProperty fname, SimpleStringProperty lname, SimpleStringProperty phone, SimpleStringProperty bid, SimpleStringProperty title, SimpleStringProperty author, SimpleStringProperty dueDate) {
+    public OverdueBooksTableView(SimpleStringProperty rid, SimpleStringProperty fname, SimpleStringProperty lname, SimpleStringProperty phone, SimpleStringProperty bid, SimpleStringProperty title, SimpleStringProperty author, SimpleStringProperty dueDate, SimpleStringProperty notif_id) {
         this.rid = rid;
         this.fname = fname;
         this.lname = lname;
@@ -23,6 +24,7 @@ public class OverdueBooksTableView {
         this.title = title;
         this.author = author;
         this.dueDate = dueDate;
+        this.notif_id = notif_id;
     }
 
     public String getRid() {
@@ -119,6 +121,18 @@ public class OverdueBooksTableView {
 
     public void setDueDate(String dueDate) {
         this.dueDate.set(dueDate);
+    }
+
+    public String getNotif_id() {
+        return notif_id.get();
+    }
+
+    public SimpleStringProperty notif_idProperty() {
+        return notif_id;
+    }
+
+    public void setNotif_id(String notif_id) {
+        this.notif_id.set(notif_id);
     }
 
     @Override

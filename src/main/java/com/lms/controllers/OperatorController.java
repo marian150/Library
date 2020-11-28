@@ -381,23 +381,10 @@ public class OperatorController {
         }
     }
 
-    public void displayOverdue(List<RentBook> overdueBooks){
+    public void displayOverdue(List<OverdueBooksTableView> overdueBooks){
         notif_overdue_table_view.getItems().clear();
-        for(int i = 0; i < overdueBooks.size(); i++){
-            String authors = "";
-            for (Author a : overdueBooks.get(i).getBook().getAuthors()) {
-                authors += a.getName() + ", ";
-            }
-            overdueObservableList.add(new OverdueBooksTableView(
-                    new SimpleStringProperty(overdueBooks.get(i).getClient().getUserId().toString()),
-                    new SimpleStringProperty(overdueBooks.get(i).getClient().getFirstName()),
-                    new SimpleStringProperty(overdueBooks.get(i).getClient().getLastName()),
-                    new SimpleStringProperty(overdueBooks.get(i).getClient().getPhone()),
-                    new SimpleStringProperty(overdueBooks.get(i).getBook().getBookId().toString()),
-                    new SimpleStringProperty(overdueBooks.get(i).getBook().getTitle()),
-                    new SimpleStringProperty(authors),
-                    new SimpleStringProperty(overdueBooks.get(i).getDueDate().toString())
-            ));
+        for(OverdueBooksTableView book : overdueBooks){
+            overdueObservableList.add(book);
         }
         overdue_rid_col_id.setCellValueFactory(new PropertyValueFactory<>("rid"));
         overdue_fname_col_id.setCellValueFactory(new PropertyValueFactory<>("fname"));
@@ -407,25 +394,22 @@ public class OperatorController {
         overdue_title_col_id.setCellValueFactory(new PropertyValueFactory<>("title"));
         overdue_author_col_id.setCellValueFactory(new PropertyValueFactory<>("author"));
         overdue_due_col_id.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+        overdue_notif_id.setCellValueFactory(new PropertyValueFactory<>("notif_id"));
 
         //if(!overdueObservableList.equals(notif_overdue_table_view.getItems())) notifications_tab.setStyle("-fx-background-color: red");
         notif_overdue_table_view.setItems(overdueObservableList);
     }
 
-    public void displayNewForms(List<LoadFormsModel> newForms){
+    public void displayNewForms(List<FormTableView> newForms){
         notif_form_table_view.getItems().clear();
-        for (int i = 0; i < newForms.size(); i++) {
-            newFormsObservableList.add(new FormTableView(
-                    new SimpleStringProperty(newForms.get(i).getFirstName()),
-                    new SimpleStringProperty(newForms.get(i).getLastName()),
-                    new SimpleStringProperty(newForms.get(i).getEmail()),
-                    new SimpleStringProperty(newForms.get(i).getPhone())
-            ));
+        for (FormTableView newForm : newForms) {
+            newFormsObservableList.add(newForm);
         }
         newform_fname_col_id.setCellValueFactory(new PropertyValueFactory<>("fname"));
         newform_lname_col_id.setCellValueFactory(new PropertyValueFactory<>("lname"));
         newform_phone_col_id.setCellValueFactory(new PropertyValueFactory<>("email"));
         newform_email_col_id.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        newform_notif_id.setCellValueFactory(new PropertyValueFactory<>("notif_id"));
 
         //if (!newFormsObservableList.equals(notif_form_table_view.getItems()))
         // notifications_tab.setStyle("-fx-background-color: red");
@@ -461,12 +445,12 @@ public class OperatorController {
     }
 
     public void loadNewFormsAndDisplay(){
-        List<LoadFormsModel> newForms = operatorService.loadNewForms();
+        List<FormTableView> newForms = operatorService.loadNewForms();
         displayNewForms(newForms);
     }
 
     public void loadOverdueAndDisplay(){
-        List<RentBook> overdue = operatorService.loadOverdue();
+        List<OverdueBooksTableView> overdue = operatorService.loadOverdue();
         displayOverdue(overdue);
     }
     public void loadBookToBeArchivedAndDisplay(){
@@ -802,8 +786,12 @@ public class OperatorController {
             for (LoadFormsModel lf : forms) {
                 formsForDisplay.add(new FormTableView(new SimpleStringProperty(lf.getFirstName()),
                         new SimpleStringProperty(lf.getLastName()),
-                        new SimpleStringProperty(lf.getEmail()), new SimpleStringProperty(lf.getPhone()),
-                        new SimpleStringProperty(lf.getDate().toString()), new SimpleStringProperty(lf.getStatus())));
+                        new SimpleStringProperty(lf.getEmail()),
+                        new SimpleStringProperty(lf.getPhone()),
+                        new SimpleStringProperty(lf.getDate().toString()),
+                        new SimpleStringProperty(lf.getStatus()),
+                        new SimpleStringProperty("")
+                ));
             }
             if (forms != null) {
                 commonAdminOperatorFunctionalities.displayForms(formsForDisplay, forms_load_tableview,

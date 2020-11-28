@@ -1,14 +1,14 @@
 package com.lms.services;
 
-import com.lms.models.entities.Book;
-import com.lms.models.entities.RentBook;
+import com.lms.models.nonpersistentclasses.FormTableView;
 import com.lms.models.nonpersistentclasses.LoadBooksToBeArchivedModel;
-import com.lms.models.nonpersistentclasses.LoadFormsModel;
+
+import com.lms.models.nonpersistentclasses.OverdueBooksTableView;
 
 import java.util.List;
 
 public interface OperatorService extends PrivilegedUserService {
-    List<LoadFormsModel> loadNewForms();
-    List<RentBook> loadOverdue();
+    List<FormTableView> loadNewForms();
+    List<OverdueBooksTableView> loadOverdue();
     List<LoadBooksToBeArchivedModel> loadBooksToBeArchived();
 }

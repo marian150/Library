@@ -12,19 +12,20 @@ public class FormTableView {
     private SimpleStringProperty phone;
     private SimpleStringProperty submitDate;
     private SimpleStringProperty status;
+    private SimpleStringProperty notif_id;
 
-    public FormTableView() {
-    }
+    public FormTableView() {}
 
     public FormTableView(SimpleStringProperty fname, SimpleStringProperty lname,
                          SimpleStringProperty email, SimpleStringProperty phone,
-                         SimpleStringProperty submitDate, SimpleStringProperty status) {
+                         SimpleStringProperty submitDate, SimpleStringProperty status, SimpleStringProperty notif_id) {
         this.fname = fname;
         this.lname = lname;
         this.email = email;
         this.phone = phone;
         this.submitDate = submitDate;
         this.status = status;
+        this.notif_id = notif_id;
     }
     public FormTableView(SimpleStringProperty fname, SimpleStringProperty lname,
                          SimpleStringProperty email, SimpleStringProperty phone) {
@@ -104,6 +105,18 @@ public class FormTableView {
 
     public void setStatus(String status) {
         this.status.set(status);
+    }
+
+    public String getNotif_id() {
+        return notif_id.get();
+    }
+
+    public SimpleStringProperty notif_idProperty() {
+        return notif_id;
+    }
+
+    public void setNotif_id(String notif_id) {
+        this.notif_id.set(notif_id);
     }
 
     @Override
