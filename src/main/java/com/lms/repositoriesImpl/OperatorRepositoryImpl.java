@@ -6,7 +6,6 @@ import com.lms.models.dtos.LendBookDTO;
 import com.lms.models.dtos.ReturnBookDTO;
 import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
-import com.lms.models.nonpersistentclasses.LoadBooksToBeArchivedModel;
 import com.lms.models.nonpersistentclasses.LoadFormsModel;
 import com.lms.repositories.CommonAdminOperatorRepository;
 import com.lms.repositories.OperatorRepository;
@@ -14,8 +13,6 @@ import com.lms.security.Password;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.NativeQuery;
-
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
@@ -23,7 +20,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 

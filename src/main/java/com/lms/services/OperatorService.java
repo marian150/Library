@@ -1,5 +1,6 @@
 package com.lms.services;
 
+import com.lms.models.entities.Book;
 import com.lms.models.entities.RentBook;
 import com.lms.models.nonpersistentclasses.LoadBooksToBeArchivedModel;
 import com.lms.models.nonpersistentclasses.LoadFormsModel;

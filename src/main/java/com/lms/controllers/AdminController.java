@@ -9,7 +9,6 @@ import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.*;
 import com.lms.services.AdminService;
-import com.lms.services.PrivilegedUserService;
 import com.lms.validation.base.Error;
 import com.lms.validation.err_decorators.*;
 import com.lms.validation.err_types.EmailError;
@@ -369,7 +368,7 @@ public class AdminController {
                             new SimpleStringProperty(users.get(i).getPhone()),
                             new SimpleStringProperty(users.get(i).getRegDate().toString()),
                             new SimpleStringProperty(ratingString),
-                            new SimpleStringProperty(users.get(i).getUserType().toString())));
+                            new SimpleStringProperty(users.get(i).getUserType().getTypeName())));
         }
         rid.setCellValueFactory(new PropertyValueFactory<>("id"));
         fname.setCellValueFactory(new PropertyValueFactory<>("fname"));
@@ -508,7 +507,7 @@ public class AdminController {
                 addedBook.setTextFill(Color.RED);
                 add_book_anchor.getChildren().add(addedBook);
             }
-            commonAdminOperatorFunctionalities.nullifyAddBookFields(add_book_genre, add_book_cover,add_book_isbn,add_book_ID,add_book_author,add_book_issue_date, add_book_publisher,add_book_title);
+            commonAdminOperatorFunctionalities.nullifyAddBookFields(add_book_ID, add_book_genre, add_book_cover,add_book_isbn,add_book_author,add_book_issue_date, add_book_publisher,add_book_title);
         });
 
         add_book_to_listview_btn.setOnAction(event -> {

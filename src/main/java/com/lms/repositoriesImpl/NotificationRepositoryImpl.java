@@ -24,7 +24,7 @@ public class NotificationRepositoryImpl implements NotificationRepository {
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
         Transaction tx = null;
 
-        LocalDate currentDate = LocalDate.now();
+        List<Predicate> predicates = new ArrayList<>();
 
         try {
             tx = session.beginTransaction();
@@ -32,9 +32,11 @@ public class NotificationRepositoryImpl implements NotificationRepository {
             CriteriaQuery<RentBook> cq = cb.createQuery(RentBook.class);
             Root<RentBook> rentBookRoot = cq.from(RentBook.class);
 
-            Predicate checkDate = cb.lessThan(rentBookRoot.get("dueDate"), cb.currentDate());
+            predicates.add(cb.lessThan(rentBookRoot.get("dueDate"), cb.currentDate()));
+            predicates.add(cb.isNull(rentBookRoot.get("returnBook")));
 
-            cq.where(checkDate);
+            Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
+            cq.where(finalPredicate);
 
             List<RentBook> overdueList = session.createQuery(cq).getResultList();
 

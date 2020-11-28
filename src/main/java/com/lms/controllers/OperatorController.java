@@ -259,6 +259,7 @@ public class OperatorController {
     public void setGreeting_label(String names) {
         greeting_label.setText(names);
     }
+
     public boolean createReader(){
         SignUpDTO signUpDTO = new SignUpDTO(fname.getText(), lname.getText(), email.getText(), pass.getText(), phone.getText());
         return operatorService.createReader(signUpDTO);
@@ -648,31 +649,17 @@ public class OperatorController {
                 alert.setContentText("You must fill all fields");
                 alert.show();
             } else {
-                boolean addBookSuccessful = false;
-                List<String> authorListString = Arrays.asList(add_book_author.getText().split(","));
-                for (String aut : authorListString) {
-                    if (!searchAuthor(aut))
-                        addAuthor(aut);
-                }
-                if (searchPublisher(add_book_publisher.getText())) {
-                    logger.info(currentUser.getUserId().toString() + " attempting to add book");
-                    addBookSuccessful = addBook();
+
+                if (addBook()) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setContentText("Successfully added book");
+                    alert.show();
                 } else {
-                    logger.info(currentUser.getUserId().toString() + " attempting to add publisher");
-                    addPublisher(add_book_publisher.getText());
-                    logger.info(currentUser.getUserId().toString() + " attempting to add book");
-                    addBookSuccessful = addBook();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText("Adding book failed");
+                    alert.show();
                 }
-                if (addBookSuccessful) {
-                    Label addedBook = new Label("Successfully added Book.");
-                    addedBook.setTextFill(Color.GREEN);
-                    add_book_anchor.getChildren().add(addedBook);
-                } else {
-                    Label addedBook = new Label("Something went wrong.");
-                    addedBook.setTextFill(Color.RED);
-                    add_book_anchor.getChildren().add(addedBook);
-                }
-                commonAdminOperatorFunctionalities.nullifyAddBookFields(add_book_genre, add_book_cover, add_book_isbn, add_book_ID, add_book_author, add_book_issue_date, add_book_publisher, add_book_title);
+                commonAdminOperatorFunctionalities.nullifyAddBookFields(add_book_ID, add_book_genre, add_book_cover, add_book_isbn, add_book_author, add_book_issue_date, add_book_publisher, add_book_title);
             }
         });
 
@@ -781,11 +768,32 @@ public class OperatorController {
             updateAfterExtendDueDate(extendDueDate());
         });
 
+        notif_overdue_table_view.setRowFactory(tv -> {
+            TableRow<OverdueBooksTableView> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if(event.getClickCount() == 2 && !row.isEmpty()) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setContentText("Book: " + row.getItem().getBid() + " " + row.getItem().getTitle() + "\n" +
+                            "Taken by: " + row.getItem().getFname() +  " " + row.getItem().getLname() + "\n" +
+                            "Phone: " + row.getItem().getPhone() + "\n" +
+                            "Due date: " + row.getItem().getDueDate() + "\n" +
+                            "EXTEND THE RETURN DATE?");
+                    alert.showAndWait().ifPresent(response -> {
+                        //operatorService.changeNotificationStatus(2);
+                        if(response == ButtonType.OK) {
+                            System.out.println("OK clicked!");
+                            operatorService.extendDueDate(Long.parseLong(row.getItem().getBid()));
+                        }
+                    });
+                }
+            });
+            return row;
+        });
+
         load_forms_btn.setOnAction(event -> {
             List<LoadFormsModel> forms = operatorService.loadForms();
             List<FormTableView> formsForDisplay = new ArrayList<>();
             for (LoadFormsModel lf : forms) {
-                System.out.println(lf.getFirstName());
                 formsForDisplay.add(new FormTableView(new SimpleStringProperty(lf.getFirstName()),
                         new SimpleStringProperty(lf.getLastName()),
                         new SimpleStringProperty(lf.getEmail()), new SimpleStringProperty(lf.getPhone()),

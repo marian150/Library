@@ -11,6 +11,7 @@ import com.lms.services.CommonAdminOperatorService;
 
 import javax.enterprise.context.Dependent;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +40,14 @@ public class CommonAdminOperatorServiceImpl implements CommonAdminOperatorServic
 
     @Override
     public boolean addBook(PrivilegedUserRepository pu, AddBookDTO addBookDTO) {
+        List<String> authorListString = Arrays.asList(addBookDTO.getAuthor().split(","));
+        for (String aut : authorListString) {
+            if (!pu.searchAuthor(aut))
+                pu.addAuthor(aut);
+        }
+        if (!pu.searchPublisher(addBookDTO.getPublisher())) {
+            pu.addPublisher(addBookDTO.getPublisher());
+        }
         return pu.addBook(addBookDTO);
     }
 

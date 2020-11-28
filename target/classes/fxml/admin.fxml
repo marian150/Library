@@ -221,7 +221,7 @@
                                                         <TextField fx:id="search_book_publisher" layoutX="26.0" layoutY="164.0" promptText="Publisher" />
                                                         <TextField fx:id="search_book_date" layoutX="26.0" layoutY="201.0" promptText="Issue date" />
                                                         <ComboBox fx:id="search_book_state" layoutX="41.0" layoutY="273.0" prefWidth="150.0" />
-                                                        <Button layoutX="74.0" layoutY="318.0" mnemonicParsing="false" text="Search" />
+                                                        <Button fx:id="search_book_btn" layoutX="74.0" layoutY="318.0" mnemonicParsing="false" text="Search" />
                                                 <ComboBox fx:id="search_book_genre" layoutX="41.0" layoutY="238.0" prefWidth="150.0" />
                                                 <Label layoutX="6.0" layoutY="242.0" text="Genre:" />
                                                 <Label layoutX="11.0" layoutY="277.0" text="State:" />
