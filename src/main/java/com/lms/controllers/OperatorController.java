@@ -225,6 +225,7 @@ public class OperatorController {
     @FXML private TableView<OverdueBooksTableView> notif_overdue_table_view;
     @FXML private TableView<FormTableView> notif_form_table_view;
     @FXML private TableView<SearchBookTableView> notif_archive_table_view;
+    @FXML private TableColumn<OverdueBooksTableView, String> overdue_notif_id;
     @FXML private TableColumn<OverdueBooksTableView, String> overdue_rid_col_id;
     @FXML private TableColumn<OverdueBooksTableView, String> overdue_fname_col_id;
     @FXML private TableColumn<OverdueBooksTableView, String> overdue_lname_col_id;
@@ -233,15 +234,18 @@ public class OperatorController {
     @FXML private TableColumn<OverdueBooksTableView, String> overdue_title_col_id;
     @FXML private TableColumn<OverdueBooksTableView, String> overdue_author_col_id;
     @FXML private TableColumn<OverdueBooksTableView, String> overdue_due_col_id;
+    @FXML private TableColumn<FormTableView, String> newform_notif_id;
     @FXML private TableColumn<FormTableView, String> newform_fname_col_id;
     @FXML private TableColumn<FormTableView, String> newform_lname_col_id;
     @FXML private TableColumn<FormTableView, String> newform_phone_col_id;
     @FXML private TableColumn<FormTableView, String> newform_email_col_id;
+    @FXML private TableColumn<SearchBookTableView, String> tobearchived_notif_id;
     @FXML private TableColumn<SearchBookTableView, String> archive_inv_col_id;
     @FXML private TableColumn<SearchBookTableView, String> archive_title_col_id;
     @FXML private TableColumn<SearchBookTableView, String> archive_author_col_id;
     @FXML private TableColumn<SearchBookTableView, String> archive_year_col_id;
     @FXML private TableColumn<SearchBookTableView, String> archive_isbn_col_id;
+
     ObservableList<SearchReaderTableView> readersObservableList = FXCollections.observableArrayList();
     ObservableList<SearchBookTableView> searchBooksObservableList = FXCollections.observableArrayList();
     ObservableList<ReturnBookTableView> returnObservableList = FXCollections.observableArrayList();

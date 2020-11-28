@@ -49,6 +49,7 @@
                                  <children>
                                     <TableView fx:id="notif_overdue_table_view" layoutX="7.0" layoutY="20.0" prefHeight="110.0" prefWidth="791.0">
                                       <columns>
+                                          <TableColumn fx:id="overdue_notif_id" prefWidth="75.0" text="Column X" visible="false" />
                                         <TableColumn fx:id="overdue_rid_col_id" prefWidth="75.0" text="Reader ID" />
                                         <TableColumn fx:id="overdue_fname_col_id" prefWidth="75.0" text="First Name" />
                                           <TableColumn fx:id="overdue_lname_col_id" prefWidth="75.0" text="Last Name" />
@@ -64,6 +65,7 @@
                                     </TableView>
                                     <TableView fx:id="notif_archive_table_view" layoutX="410.0" layoutY="160.0" prefHeight="186.0" prefWidth="388.0">
                                       <columns>
+                                          <TableColumn fx:id="tobearchived_notif_id" prefWidth="75.0" text="Column X" visible="false" />
                                         <TableColumn fx:id="archive_inv_col_id" prefWidth="75.0" text="Book ID" />
                                         <TableColumn fx:id="archive_title_col_id" prefWidth="75.0" text="Title" />
                                           <TableColumn fx:id="archive_author_col_id" prefWidth="75.0" text="Author" />
@@ -76,6 +78,7 @@
                                     </TableView>
                                     <TableView fx:id="notif_form_table_view" layoutX="7.0" layoutY="160.0" prefHeight="186.0" prefWidth="384.0">
                                       <columns>
+                                          <TableColumn fx:id="newform_notif_id" prefWidth="75.0" text="Column X" visible="false" />
                                         <TableColumn fx:id="newform_fname_col_id" prefWidth="75.0" text="First Name" />
                                         <TableColumn fx:id="newform_lname_col_id" prefWidth="75.0" text="Last Name" />
                                           <TableColumn fx:id="newform_phone_col_id" prefWidth="75.0" text="Phone Number" />
