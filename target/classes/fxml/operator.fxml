@@ -31,7 +31,7 @@
                                 <Insets />
                             </opaqueInsets>
                         </Label>
-                        <Label fx:id="greeting_label" layoutX="349.0" layoutY="29.0" text="Hello, ">
+                        <Label fx:id="greetingLabel" layoutX="349.0" layoutY="29.0" text="Hello, ">
                             <font>
                                 <Font name="David Libre Regular" size="18.0" />
                             </font>

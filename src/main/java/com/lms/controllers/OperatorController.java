@@ -20,14 +20,12 @@ import com.lms.validation.err_types.PhoneError;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import org.apache.log4j.Logger;
 
 import javax.inject.Inject;
@@ -52,7 +50,7 @@ public class OperatorController {
     FXMLLoader fxmlLoader;
     @FXML private Tab notifications_tab;
     @FXML
-    private Label greeting_label;
+    private Label greetingLabel;
     @FXML
     private ListView add_book_for_rent_listview;
     @FXML
@@ -260,129 +258,8 @@ public class OperatorController {
         this.currentUser = user;
     }
 
-    public void setGreeting_label(String names) {
-        greeting_label.setText(names);
-    }
-
-    public boolean createReader(){
-        SignUpDTO signUpDTO = new SignUpDTO(fname.getText(), lname.getText(), email.getText(), pass.getText(), phone.getText());
-        return operatorService.createReader(signUpDTO);
-    }
-
-    public boolean createReader(SignUpDTO signUpDTO){
-        return operatorService.createReader(signUpDTO);
-    }
-
-    public boolean addBook() {
-        AddBookDTO addBookDTO = new AddBookDTO();
-        addBookDTO.setBookId(Long.parseLong(add_book_ID.getText()));
-        addBookDTO.setIsbn(add_book_isbn.getText());
-        addBookDTO.setIssueDate(add_book_issue_date.getText());
-        addBookDTO.setGenre(add_book_genre.getValue().toString());
-        addBookDTO.setBookCovers(add_book_cover.getValue().toString());
-        addBookDTO.setPublisher(add_book_publisher.getText());
-        addBookDTO.setTitle(add_book_title.getText());
-        addBookDTO.setAuthor(add_book_author.getText());
-        return operatorService.addBook(addBookDTO);
-    }
-
-    public List<BookCovers> retrieveBookCovers() {
-        return operatorService.retrieveBookCovers();
-    }
-
-    public List<Genre> retrieveBookGenre() {
-        return operatorService.retrieveBookGenre();
-    }
-
-    public List<BookState> retrieveBookState() {return operatorService.retrieveBookState();}
-
-    public boolean searchPublisher(String publisherName) {return operatorService.searchPublisher(publisherName);}
-
-    public boolean checkNullValuesAddBook() {
-        List<TextField> addBookValues = new ArrayList<>();
-        addBookValues.add(add_book_author);
-        addBookValues.add(add_book_title);
-        addBookValues.add(add_book_issue_date);
-        addBookValues.add(add_book_isbn);
-        addBookValues.add(add_book_publisher);
-        addBookValues.add(add_book_ID);
-        for (TextField item : addBookValues) {
-            if (item.getText().equals("")) {
-                return true;
-            }
-        }
-        if(add_book_genre.getSelectionModel().getSelectedItem() == null)
-            return true;
-        if (add_book_cover.getSelectionModel().getSelectedItem() == null)
-            return true;
-        return false;
-    }
-
-    public boolean addPublisher(String publisherName) {
-        return operatorService.addPublisher(publisherName);
-    }
-
-    public boolean searchAuthor(String author) {
-        return operatorService.searchAuthor(author);
-    }
-
-    public boolean addAuthor(String author) {
-        return operatorService.addAuthor(author);
-    }
-
-    public boolean lendBook(Long lendType) {
-        LendBookDTO lendBookDTO = new LendBookDTO();
-        lendBookDTO.setUserID(Long.parseLong(lend_rd_id.getText()));
-        List<Long> books = new ArrayList<>();
-        for(Object item : chosen_books_for_rent.getItems()) {
-            String[] values = item.toString().split(" ");
-            books.add(Long.parseLong(values[0]));
-        }
-        lendBookDTO.setBookIDs(books);
-        lendBookDTO.setLendType(lendType);
-        return operatorService.lendBook(lendBookDTO, currentUser.getUserId());
-    };
-
-    public boolean returnBooks(){
-        ReturnBookDTO returnBookDTO = new ReturnBookDTO();
-        returnBookDTO.setLibId(currentUser.getUserId());
-        List<Long> returnBookIds = new ArrayList<>();
-        TableView.TableViewSelectionModel<ReturnBookTableView> selectionModel = return_table_view.getSelectionModel();
-        ObservableList<ReturnBookTableView> selectedItems = selectionModel.getSelectedItems();
-
-        for(ReturnBookTableView i : selectedItems){
-            returnBookIds.add(Long.parseLong(i.getLendId()));
-        }
-        returnBookDTO.setBookIds(returnBookIds);
-        return operatorService.returnBooks(returnBookDTO);
-    }
-    public void updateAfterReturn(Boolean isSuccessful){
-        if(isSuccessful){
-            TableView.TableViewSelectionModel<ReturnBookTableView> selectionModel = return_table_view.getSelectionModel();
-            ObservableList<ReturnBookTableView> selectedItems = selectionModel.getSelectedItems();
-            return_table_view.getItems().removeAll(selectedItems);
-            return_table_view.getSelectionModel().clearSelection();
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Something went wrong");
-            alert.show();
-        }
-    }
-
-    public LocalDate extendDueDate(){
-        ReturnBookTableView selectedItem = return_table_view.getSelectionModel().getSelectedItem();
-        return operatorService.extendDueDate(Long.parseLong(selectedItem.getLendId()));
-    }
-
-    public void updateAfterExtendDueDate(LocalDate newDueDate){
-
-        if(newDueDate == null || newDueDate.equals(LocalDate.parse(return_table_view.getSelectionModel().getSelectedItem().getDueDate()))){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Something went wrong");
-            alert.show();
-        } else {
-            return_table_view.getSelectionModel().getSelectedItem().setDueDate(newDueDate.toString());
-        }
+    public void setGreetingLabel(String names) {
+        greetingLabel.setText(names);
     }
 
     public void displayOverdue(List<OverdueBooksTableView> overdueBooks){
@@ -400,7 +277,8 @@ public class OperatorController {
         overdue_due_col_id.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         overdue_notif_id.setCellValueFactory(new PropertyValueFactory<>("notifId"));
 
-        //if(!overdueObservableList.equals(notif_overdue_table_view.getItems())) notifications_tab.setStyle("-fx-background-color: red");
+        if(overdueObservableList.size() != notif_overdue_table_view.getItems().size())
+            notifications_tab.setStyle("-fx-background-color: red");
         notif_overdue_table_view.setItems(overdueObservableList);
     }
 
@@ -415,15 +293,9 @@ public class OperatorController {
         newform_email_col_id.setCellValueFactory(new PropertyValueFactory<>("phone"));
         newform_notif_id.setCellValueFactory(new PropertyValueFactory<>("notifId"));
 
-        //if (!newFormsObservableList.equals(notif_form_table_view.getItems()))
-        // notifications_tab.setStyle("-fx-background-color: red");
-/*
-        for(FormTableView newForm : newFormsObservableList){
-            if(!notif_form_table_view.getItems().contains(newForm)){
-                notifications_tab.setStyle("-fx-background-color: red");
-            }
-        }
-*/
+        if (newFormsObservableList.size() != notif_form_table_view.getItems().size())
+            notifications_tab.setStyle("-fx-background-color: red");
+
         notif_form_table_view.setItems(newFormsObservableList);
     }
     public void displayBooksToBeArchived(List<LoadBooksToBeArchivedModel> books){
@@ -438,8 +310,8 @@ public class OperatorController {
         archive_year_col_id.setCellValueFactory(new PropertyValueFactory<>("year"));
         tobearchived_notif_id.setCellValueFactory(new PropertyValueFactory<>("notifId"));
 
-        //if(!toBeArchivedObservableList.equals(notif_archive_table_view.getItems()))
-        // notifications_tab.setStyle("-fx-background-color: red");
+        if(toBeArchivedObservableList.size() != notif_archive_table_view.getItems().size())
+            notifications_tab.setStyle("-fx-background-color: red");
         notif_archive_table_view.setItems(toBeArchivedObservableList);
     }
 
@@ -522,25 +394,18 @@ public class OperatorController {
                 notifications_tab.setStyle(null);
             }
         });
-/*
-        newFormsObservableList.addListener((ListChangeListener<FormTableView>) change -> {
-            while(change.next())
-                if(!change.wasPermutated())
-                    notifications_tab.setStyle("-fx-background-color: red");
-        });
-*/
 
-        for (BookCovers bc : retrieveBookCovers()) {
+        for (BookCovers bc : commonAdminOperatorFunctionalities.retrieveBookCovers(operatorService)) {
             add_book_cover.getItems().add(bc.getCoverName());
         }
 
         search_book_state.getItems().add("All");
-        for (BookState bs : retrieveBookState()) {
+        for (BookState bs : commonAdminOperatorFunctionalities.retrieveBookState(operatorService)) {
             search_book_state.getItems().add(bs.getStateName());
         }
 
         search_book_genre.getItems().add("All");
-        for (Genre g : retrieveBookGenre()) {
+        for (Genre g : commonAdminOperatorFunctionalities.retrieveBookGenre(operatorService)) {
             add_book_genre.getItems().add(g.getName());
             search_book_genre.getItems().add(g.getName());
         }
@@ -574,7 +439,7 @@ public class OperatorController {
                 alert.show();
             } else {
                 logger.info(currentUser.getUserId().toString() + " attempting to create a new Reader");
-                boolean isCreated = createReader();
+                boolean isCreated = commonAdminOperatorFunctionalities.createReader(operatorService, fname, lname, email, pass, phone);
                 commonAdminOperatorFunctionalities.nullifyCreateReaderFields(fname, lname, email, pass, phone);
                 Alert alert;
                 if (isCreated) {
@@ -633,13 +498,13 @@ public class OperatorController {
         });
 
         add_book_btn.setOnAction(event -> {
-            if(checkNullValuesAddBook()) {
+            if(commonAdminOperatorFunctionalities.checkNullValuesAddBook(add_book_ID, add_book_isbn, add_book_issue_date, add_book_genre, add_book_cover, add_book_publisher, add_book_title, add_book_author)) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("You must fill all fields");
                 alert.show();
             } else {
 
-                if (addBook()) {
+                if (commonAdminOperatorFunctionalities.addBook(operatorService, add_book_ID, add_book_isbn, add_book_issue_date, add_book_genre, add_book_cover, add_book_publisher, add_book_title, add_book_author )) {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setContentText("Successfully added book");
                     alert.show();
@@ -668,7 +533,7 @@ public class OperatorController {
 
         lend_for_reading_room_btn.setOnAction(event -> {
             logger.info(currentUser.getUserId().toString() + " is attempting to lend for Reading Room");
-            lendBook(2L);
+            commonAdminOperatorFunctionalities.lendBook(operatorService, 2L, currentUser, chosen_books_for_rent, lend_rd_id);
             chosen_books_for_rent.getItems().clear();
             commonAdminOperatorFunctionalities.nullifyLendBookUserDetails(lend_rd_phone, lend_rd_email, lend_rd_name, lend_rd_id);
         });
@@ -687,16 +552,16 @@ public class OperatorController {
                 alert.show();
             } else {
                 logger.info(currentUser.getUserId().toString() + " is attempting to lend for Home");
-                boolean successfulLend = lendBook(1L);
+                boolean successfulLend = commonAdminOperatorFunctionalities.lendBook(operatorService, 1L, currentUser, chosen_books_for_rent, lend_rd_id);
+                Alert alert;
                 if (successfulLend) {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setContentText("Lend successful");
-                    alert.show();
                 } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert = new Alert(Alert.AlertType.ERROR);
                     alert.setContentText("Error when lending books");
-                    alert.show();
                 }
+                alert.show();
                 chosen_books_for_rent.getItems().clear();
                 commonAdminOperatorFunctionalities.nullifyLendBookUserDetails(lend_rd_phone, lend_rd_email, lend_rd_name, lend_rd_id);
             }
@@ -718,7 +583,7 @@ public class OperatorController {
 
         logout_btn.setOnAction(event -> {
             logger.info(currentUser.getUserId().toString() + " is logging out");
-            commonUserFunctionalities.logout(greeting_label, fxmlLoader);
+            commonUserFunctionalities.logout(greetingLabel, fxmlLoader);
         });
 
         scrap_btn.setOnAction(event -> {
@@ -750,11 +615,11 @@ public class OperatorController {
         });
         return_btn.setOnAction(event -> {
             if (!return_table_view.getSelectionModel().isEmpty())
-                updateAfterReturn(returnBooks());
+                commonAdminOperatorFunctionalities.updateAfterReturn(commonAdminOperatorFunctionalities.returnBooks(operatorService, currentUser, return_table_view), return_table_view);
         });
 
         return_extend_btn.setOnAction(event -> {
-            updateAfterExtendDueDate(extendDueDate());
+           commonAdminOperatorFunctionalities.updateAfterExtendDueDate(commonAdminOperatorFunctionalities.extendDueDate(operatorService, return_table_view), return_table_view);
         });
 
         notif_overdue_table_view.setRowFactory(tv -> {
@@ -797,7 +662,7 @@ public class OperatorController {
                             Form form = notification.getForm();
                             SignUpDTO signUpDTO = new SignUpDTO(form.getFirstName(), form.getLastName(), form.getEmail(),
                                     form.getPassword(), form.getPhone());
-                            createReader(signUpDTO);
+                            commonAdminOperatorFunctionalities.createReader(operatorService, signUpDTO);
                             operatorService.changeNotificationStatus(row.getItem().getNotif_id(), 3);
                             FormTableView selectedItem = notif_form_table_view.getSelectionModel().getSelectedItem();
                             notif_form_table_view.getItems().remove(selectedItem);
