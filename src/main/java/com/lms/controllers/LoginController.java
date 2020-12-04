@@ -105,7 +105,7 @@ public class LoginController {
                         try(InputStream fxml = LoginController.class.getResourceAsStream("/fxml/operator.fxml")){
                             Parent root = (Parent) fxmlLoader.load(fxml);
                             OperatorController operatorController = fxmlLoader.getController();
-                            operatorController.setGreeting_label("Hello, " + loadedUser.getFirstName() + " " + loadedUser.getLastName());
+                            operatorController.setGreetingLabel("Hello, " + loadedUser.getFirstName() + " " + loadedUser.getLastName());
                             operatorController.setCurrentUser(loadedUser);
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root));

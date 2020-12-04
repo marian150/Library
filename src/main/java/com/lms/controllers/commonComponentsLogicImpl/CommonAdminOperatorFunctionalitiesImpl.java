@@ -1,6 +1,10 @@
 package com.lms.controllers.commonComponentsLogicImpl;
 
 import com.lms.controllers.commonComponentsLogic.CommonAdminOperatorFunctionalities;
+import com.lms.models.dtos.AddBookDTO;
+import com.lms.models.dtos.LendBookDTO;
+import com.lms.models.dtos.ReturnBookDTO;
+import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.*;
 import com.lms.services.PrivilegedUserService;
@@ -11,6 +15,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.enterprise.context.Dependent;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -221,5 +227,120 @@ public class CommonAdminOperatorFunctionalitiesImpl implements CommonAdminOperat
         year.clear();
     }
 
+    public List<BookCovers> retrieveBookCovers(PrivilegedUserService pu) {
+        return pu.retrieveBookCovers();
+    }
+
+    public List<Genre> retrieveBookGenre(PrivilegedUserService pu) {
+        return pu.retrieveBookGenre();
+    }
+
+    public List<BookState> retrieveBookState(PrivilegedUserService pu) {return pu.retrieveBookState();}
+
+    public boolean searchPublisher(PrivilegedUserService pu, String publisherName) {return pu.searchPublisher(publisherName);}
+
+    public boolean addPublisher(PrivilegedUserService pu, String publisherName) {
+        return pu.addPublisher(publisherName);
+    }
+
+    public boolean searchAuthor(PrivilegedUserService pu, String author) {
+        return pu.searchAuthor(author);
+    }
+
+    public boolean addAuthor(PrivilegedUserService pu, String author) {
+        return pu.addAuthor(author);
+    }
+    public boolean createReader(PrivilegedUserService pu, TextField fname, TextField lname, TextField email, TextField pass, TextField phone){
+        SignUpDTO signUpDTO = new SignUpDTO(fname.getText(), lname.getText(), email.getText(), pass.getText(), phone.getText());
+        return pu.createReader(signUpDTO);
+    }
+
+    public boolean createReader(PrivilegedUserService pu, SignUpDTO signUpDTO){
+        return pu.createReader(signUpDTO);
+    }
+    public boolean lendBook(PrivilegedUserService pu, Long lendType, User currentUser, ListView chosen_books_for_rent, TextField lend_rd_id) {
+        LendBookDTO lendBookDTO = new LendBookDTO();
+        lendBookDTO.setUserID(Long.parseLong(lend_rd_id.getText()));
+        List<Long> books = new ArrayList<>();
+        for(Object item : chosen_books_for_rent.getItems()) {
+            String[] values = item.toString().split(" ");
+            books.add(Long.parseLong(values[0]));
+        }
+        lendBookDTO.setBookIDs(books);
+        lendBookDTO.setLendType(lendType);
+        return pu.lendBook(lendBookDTO, currentUser.getUserId());
+    };
+
+    public boolean returnBooks(PrivilegedUserService pu, User currentUser, TableView<ReturnBookTableView> return_table_view){
+        ReturnBookDTO returnBookDTO = new ReturnBookDTO();
+        returnBookDTO.setLibId(currentUser.getUserId());
+        List<Long> returnBookIds = new ArrayList<>();
+        TableView.TableViewSelectionModel<ReturnBookTableView> selectionModel = return_table_view.getSelectionModel();
+        ObservableList<ReturnBookTableView> selectedItems = selectionModel.getSelectedItems();
+
+        for(ReturnBookTableView i : selectedItems){
+            returnBookIds.add(Long.parseLong(i.getLendId()));
+        }
+        returnBookDTO.setBookIds(returnBookIds);
+        return pu.returnBooks(returnBookDTO);
+    }
+    public void updateAfterReturn(Boolean isSuccessful, TableView<ReturnBookTableView> return_table_view){
+        if(isSuccessful){
+            TableView.TableViewSelectionModel<ReturnBookTableView> selectionModel = return_table_view.getSelectionModel();
+            ObservableList<ReturnBookTableView> selectedItems = selectionModel.getSelectedItems();
+            return_table_view.getItems().removeAll(selectedItems);
+            return_table_view.getSelectionModel().clearSelection();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Something went wrong");
+            alert.show();
+        }
+    }
+
+    public LocalDate extendDueDate(PrivilegedUserService pu, TableView<ReturnBookTableView> return_table_view){
+        ReturnBookTableView selectedItem = return_table_view.getSelectionModel().getSelectedItem();
+        return pu.extendDueDate(Long.parseLong(selectedItem.getLendId()));
+    }
+
+    public void updateAfterExtendDueDate(LocalDate newDueDate, TableView<ReturnBookTableView> return_table_view){
+
+        if(newDueDate == null || newDueDate.equals(LocalDate.parse(return_table_view.getSelectionModel().getSelectedItem().getDueDate()))){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Something went wrong");
+            alert.show();
+        } else {
+            return_table_view.getSelectionModel().getSelectedItem().setDueDate(newDueDate.toString());
+        }
+    }
+
+    public boolean addBook(PrivilegedUserService pu, TextField bookId, TextField isbn, TextField year, ComboBox genre, ComboBox cover, TextField publisher, TextField title, TextField author) {
+        AddBookDTO addBookDTO = new AddBookDTO();
+        addBookDTO.setBookId(Long.parseLong(bookId.getText()));
+        addBookDTO.setIsbn(isbn.getText());
+        addBookDTO.setIssueDate(year.getText());
+        addBookDTO.setGenre(genre.getValue().toString());
+        addBookDTO.setBookCovers(cover.getValue().toString());
+        addBookDTO.setPublisher(publisher.getText());
+        addBookDTO.setTitle(title.getText());
+        addBookDTO.setAuthor(author.getText());
+        return pu.addBook(addBookDTO);
+    }
+    public boolean checkNullValuesAddBook(TextField bookId, TextField isbn, TextField year, ComboBox genre, ComboBox cover, TextField publisher, TextField title, TextField author) {
+        List<TextField> addBookValues = new ArrayList<>();
+        addBookValues.add(author);
+        addBookValues.add(title);
+        addBookValues.add(year);
+        addBookValues.add(isbn);
+        addBookValues.add(publisher);
+        addBookValues.add(bookId);
+        for (TextField item : addBookValues) {
+            if (item.getText().equals("")) {
+                return true;
+            }
+        }
+        if(genre.getSelectionModel().getSelectedItem() == null)
+            return true;
+        return cover.getSelectionModel().getSelectedItem() == null;
+    }
 
 }
