@@ -277,7 +277,7 @@ public class OperatorController {
         overdue_due_col_id.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
         overdue_notif_id.setCellValueFactory(new PropertyValueFactory<>("notifId"));
 
-        if(overdueObservableList.size() != notif_overdue_table_view.getItems().size())
+        if(!overdueObservableList.isEmpty())
             notifications_tab.setStyle("-fx-background-color: red");
         notif_overdue_table_view.setItems(overdueObservableList);
     }
@@ -293,7 +293,7 @@ public class OperatorController {
         newform_email_col_id.setCellValueFactory(new PropertyValueFactory<>("phone"));
         newform_notif_id.setCellValueFactory(new PropertyValueFactory<>("notifId"));
 
-        if (newFormsObservableList.size() != notif_form_table_view.getItems().size())
+        if (!newFormsObservableList.isEmpty())
             notifications_tab.setStyle("-fx-background-color: red");
 
         notif_form_table_view.setItems(newFormsObservableList);
@@ -310,7 +310,7 @@ public class OperatorController {
         archive_year_col_id.setCellValueFactory(new PropertyValueFactory<>("year"));
         tobearchived_notif_id.setCellValueFactory(new PropertyValueFactory<>("notifId"));
 
-        if(toBeArchivedObservableList.size() != notif_archive_table_view.getItems().size())
+        if(!toBeArchivedObservableList.isEmpty())
             notifications_tab.setStyle("-fx-background-color: red");
         notif_archive_table_view.setItems(toBeArchivedObservableList);
     }
