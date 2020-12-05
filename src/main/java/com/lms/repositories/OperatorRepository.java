@@ -1,6 +1,5 @@
 package com.lms.repositories;
 
-import com.lms.models.entities.Book;
 import com.lms.models.entities.Notifications;
 import com.lms.models.nonpersistentclasses.LoadFormsModel;
 

@@ -61,10 +61,8 @@ public class CommonAdminOperatorRepositoryImpl implements CommonAdminOperatorRep
             session.close();
         }
     }
-
     @Override
     public List<Book> searchBook(Map<String, String> values) {
-
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
 
         Transaction tx =null;
@@ -91,30 +89,28 @@ public class CommonAdminOperatorRepositoryImpl implements CommonAdminOperatorRep
             cqSubquery.select(rentBookRoot.get("book")).distinct(true);
 
             if (values.containsKey("publisher"))
-                predicates.add(cb.like(cb.lower(rentBookRoot.get("book").get("publisher").get("publisherName")), values.get("publisher").toLowerCase()));
+                predicates.add(cb.like(cb.lower(bookRoot.get("publisher").get("publisherName")), values.get("publisher").toLowerCase()));
             if (values.containsKey("authors"))
-                predicates.add(cb.like(rentBookRoot.join("book").join("authors").get("name"), values.get("authors")));
+                predicates.add(cb.like(bookRoot.join("authors").get("name"), values.get("authors")));
             if (values.containsKey("genre"))
-                predicates.add(cb.like(rentBookRoot.get("genre").get("name"), values.get("genre")));
+                predicates.add(cb.like(bookRoot.get("genre").get("name"), values.get("genre")));
             if (values.containsKey("bookState"))
-                predicates.add(cb.like(rentBookRoot.get("book").get("bookState").get("stateName"), values.get("bookState")));
+                predicates.add(cb.like(bookRoot.get("bookState").get("stateName"), values.get("bookState")));
             if (values.containsKey("title"))
-                predicates.add(cb.like(rentBookRoot.get("book").get("title"), values.get("title")));
+                predicates.add(cb.like(bookRoot.get("title"), values.get("title")));
             if (values.containsKey("isbn"))
-                predicates.add(cb.like(rentBookRoot.get("book").get("isbn"), values.get("isbn")));
+                predicates.add(cb.like(bookRoot.get("isbn"), values.get("isbn")));
             if (values.containsKey("bookId"))
-                predicates.add(cb.equal(rentBookRoot.get("book").get("bookId"), Long.parseLong(values.get("bookId"))));
+                predicates.add(cb.equal(bookRoot.get("bookId"), Long.parseLong(values.get("bookId"))));
             if (values.containsKey("issueDate"))
-                predicates.add(cb.like(rentBookRoot.get("book").get("issueDate"), values.get("issueDate")));
+                predicates.add(cb.like(bookRoot.get("issueDate"), values.get("issueDate")));
 
-            // WHERE return_id IS NULL
-            predicates.add(cb.isNull(rentBookRoot.get("returnBook")));
 
             Predicate finalPredicate = cb.and(predicates.toArray(new Predicate[predicates.size()]));
-            cqSubquery.where(finalPredicate);
+            cqSubquery.where(cb.isNull(rentBookRoot.get("returnBook")));
 
             // SELECT DISTINCT * FROM book WHERE id NOT IN (cqSubquery) -> only books which have a return_id respectively return_date are allowed to be lent
-            cqBook.select(bookRoot).where(cb.not(bookRoot.in(cqSubquery))).distinct(true);
+            cqBook.select(bookRoot).where(cb.not(bookRoot.in(cqSubquery)), finalPredicate).distinct(true);
             TypedQuery<Book> typedQuery = session.createQuery(cqBook);
 
             List<Book> availableBooks = typedQuery.getResultList();
@@ -128,7 +124,6 @@ public class CommonAdminOperatorRepositoryImpl implements CommonAdminOperatorRep
             session.close();
         }
     }
-
     @Override
     public boolean addBook(AddBookDTO addBookDTO) {
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
