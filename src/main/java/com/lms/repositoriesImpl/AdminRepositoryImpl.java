@@ -8,6 +8,7 @@ import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.LoadFormsModel;
 import com.lms.repositories.AdminRepository;
+import com.lms.repositories.CommonAdminOperatorRepository;
 import com.lms.security.Password;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
@@ -28,8 +29,12 @@ import java.util.Map;
 public class AdminRepositoryImpl implements AdminRepository {
     Logger logger = Logger.getLogger(AdminRepositoryImpl.class);
 
+    private CommonAdminOperatorRepository commonAdminOperatorRepository;
+
     @Inject
-    private CommonAdminOperatorRepositoryImpl commonAdminOperatorRepository;
+    public AdminRepositoryImpl(CommonAdminOperatorRepository commonAdminOperatorRepository){
+        this.commonAdminOperatorRepository = commonAdminOperatorRepository;
+    }
 
     @Override
     public boolean createOperator(SignUpDTO signUpDTO) {

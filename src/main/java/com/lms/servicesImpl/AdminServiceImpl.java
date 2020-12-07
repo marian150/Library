@@ -7,6 +7,7 @@ import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.LoadFormsModel;
 import com.lms.repositories.AdminRepository;
+import com.lms.repositories.CommonAdminOperatorRepository;
 import com.lms.services.AdminService;
 import com.lms.services.CommonAdminOperatorService;
 import com.lms.services.PrivilegedUserService;
@@ -19,10 +20,15 @@ import java.util.Map;
 
 @Dependent
 public class AdminServiceImpl implements AdminService {
-    @Inject
+
     private AdminRepository adminRepository;
-    @Inject
     private CommonAdminOperatorService commonAdminOperatorService;
+
+    @Inject
+    public AdminServiceImpl(AdminRepository adminRepository, CommonAdminOperatorService commonAdminOperatorService){
+        this.adminRepository = adminRepository;
+        this.commonAdminOperatorService = commonAdminOperatorService;
+    }
 
     @Override
     public boolean createOperator(SignUpDTO signUpDTO) {

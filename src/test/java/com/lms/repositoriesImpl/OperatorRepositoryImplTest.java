@@ -5,6 +5,7 @@ import com.lms.repositories.CommonAdminOperatorRepository;
 import com.lms.repositories.OperatorRepository;
 import org.junit.Test;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,17 +16,14 @@ public class OperatorRepositoryImplTest {
 
     @Test
     public void searchUsers() {
-        OperatorRepository operatorRepository = new OperatorRepositoryImpl();
+        CommonAdminOperatorRepository commonAdminOperatorRepository = new CommonAdminOperatorRepositoryImpl();
+        OperatorRepository operatorRepository = new OperatorRepositoryImpl(commonAdminOperatorRepository);
         Map<String, String> values = new HashMap<>();
         values.put("firstName", "Curtis");
         List<User> result = operatorRepository.searchUsers(values);
-        assertEquals(result.get(0).getFirstName(), "Curtis");
-    }
-
-    @Test
-    public void searchPublisher() {
-        CommonAdminOperatorRepository commonAdminOperatorRepository = new CommonAdminOperatorRepositoryImpl();
-        boolean result = commonAdminOperatorRepository.searchPublisher("Bloomsbury");
-        assertTrue(result);
+        for(User user : result){
+            assertEquals("Curtis", user.getFirstName());
+            assertEquals("Reader", user.getUserType().getTypeName());
+        }
     }
 }

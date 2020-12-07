@@ -25,8 +25,12 @@ import java.util.*;
 @Dependent
 public class OperatorRepositoryImpl implements OperatorRepository {
 
-    @Inject
     private CommonAdminOperatorRepository commonAdminOperatorRepository;
+
+    @Inject
+    public OperatorRepositoryImpl(CommonAdminOperatorRepository commonAdminOperatorRepository){
+        this.commonAdminOperatorRepository = commonAdminOperatorRepository;
+    }
 
     Logger logger = Logger.getLogger(OperatorRepositoryImpl.class);
 
