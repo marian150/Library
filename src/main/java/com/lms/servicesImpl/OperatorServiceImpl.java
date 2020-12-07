@@ -9,6 +9,7 @@ import com.lms.models.nonpersistentclasses.FormTableView;
 import com.lms.models.nonpersistentclasses.LoadBooksToBeArchivedModel;
 import com.lms.models.nonpersistentclasses.LoadFormsModel;
 import com.lms.models.nonpersistentclasses.OverdueBooksTableView;
+import com.lms.repositories.CommonAdminOperatorRepository;
 import com.lms.repositories.OperatorRepository;
 import com.lms.services.CommonAdminOperatorService;
 import com.lms.services.OperatorService;
@@ -25,10 +26,16 @@ import java.util.Map;
 @Dependent
 public class OperatorServiceImpl implements OperatorService {
 
-    @Inject
+    //@Inject
     private OperatorRepository operatorRepository;
-    @Inject
+    //@Inject
     private CommonAdminOperatorService commonAdminOperatorService;
+
+    @Inject
+    public OperatorServiceImpl(OperatorRepository operatorRepository, CommonAdminOperatorService commonAdminOperatorService){
+        this.operatorRepository = operatorRepository;
+        this.commonAdminOperatorService = commonAdminOperatorService;
+    }
 
     @Override
     public boolean createReader(SignUpDTO signUpDTO) {
