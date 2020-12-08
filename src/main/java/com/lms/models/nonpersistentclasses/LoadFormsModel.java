@@ -23,6 +23,15 @@ public class LoadFormsModel {
         this.notifId = notifId;
     }
 
+    public LoadFormsModel(String firstName, String lastName, String email, String phone, LocalDate date, String status) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.date = date;
+        this.status = status;
+    }
+
     public String getFirstName() {
         return firstName;
     }

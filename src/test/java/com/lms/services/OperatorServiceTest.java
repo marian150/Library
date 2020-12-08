@@ -24,11 +24,11 @@ public class OperatorServiceTest {
         CommonAdminOperatorService commonAdminOperatorService = new CommonAdminOperatorServiceImpl();
         OperatorService operatorService = new OperatorServiceImpl(operatorRepository, commonAdminOperatorService);
         Map<String, String> values = new HashMap<>();
-        values.put("title", "Brave New World");
+        values.put("title", "Das Kapital");
         List<Book> actualBooks = operatorService.searchBook(values);
         if(!actualBooks.isEmpty()){
             for(Book book : actualBooks){
-                Assert.assertEquals("Brave New World", book.getTitle());
+                Assert.assertEquals("Das Kapital", book.getTitle());
             }
         }
     }
@@ -39,11 +39,11 @@ public class OperatorServiceTest {
         CommonAdminOperatorService commonAdminOperatorService = new CommonAdminOperatorServiceImpl();
         OperatorService operatorService = new OperatorServiceImpl(operatorRepository, commonAdminOperatorService);
         Map<String, String> values = new HashMap<>();
-        values.put("firstName", "John");
+        values.put("firstName", "Sadio");
         List<User> actualUsers = operatorService.searchUsers(values);
         if(!actualUsers.isEmpty()){
             for(User user : actualUsers){
-                Assert.assertEquals("John", user.getFirstName());
+                Assert.assertEquals("Sadio", user.getFirstName());
             }
         }
     }
@@ -89,7 +89,7 @@ public class OperatorServiceTest {
         OperatorRepository operatorRepository = new OperatorRepositoryImpl(commonAdminOperatorRepository);
         CommonAdminOperatorService commonAdminOperatorService = new CommonAdminOperatorServiceImpl();
         OperatorService operatorService = new OperatorServiceImpl(operatorRepository, commonAdminOperatorService);
-        boolean isAuthorFound = operatorService.searchAuthor("Steven King");
+        boolean isAuthorFound = operatorService.searchAuthor("Karl Marx");
         Assert.assertTrue(isAuthorFound);
     }
 

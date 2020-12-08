@@ -23,7 +23,6 @@ public class OperatorRepositoryImplTest {
         List<User> result = operatorRepository.searchUsers(values);
         for(User user : result){
             assertEquals("Curtis", user.getFirstName());
-            assertEquals("Reader", user.getUserType().getTypeName());
         }
     }
 }
