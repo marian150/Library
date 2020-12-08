@@ -17,10 +17,10 @@ public class NotificationServiceImpl implements NotificationService {
     public void initialize() {
         executor = Executors.newScheduledThreadPool(1);
         Runnable task = () -> {
-            //notificationRepository.checkForOverdue();
-            //notificationRepository.checkBooksToBeArchived();
+            notificationRepository.checkForOverdue();
+            notificationRepository.checkBooksToBeArchived();
         };
-        executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.MINUTES);
+        executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.HOURS);
     }
     public void stop(){
         executor.shutdown();
