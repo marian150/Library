@@ -103,19 +103,5 @@ public class ReaderController {
             displayBooks(loadBooks(currentUser.getUserId()));
             displayPersonalData();
         });
-        /*
-        books_table_view.setRowFactory(tv -> {
-            for(int i = 0; i < booksObservableList.size(); i++) {
-                TableRow<ReaderTableView> row = new TableRow<>();
-                LocalDate dueDate = LocalDate.parse(row.getTableView().getItems().get(i).getDuedate());
-                BooleanBinding critical = row.getTableView().getItems().get(i).getDuedate().;
-                        row.styleProperty().bind(Bindings.when(critical)
-                        .then("-fx-background-color: red ;")
-                        .otherwise(""));
-                return row;
-            }
-        });
-
-         */
     }
 }
