@@ -41,7 +41,7 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TabPane prefHeight="389.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane fx:id="tabPane" prefHeight="389.0" prefWidth="806.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                         <Tab text="Return Book">
                           <content>
@@ -51,7 +51,7 @@
                                       <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                              <children>
-                                                <TextField layoutX="5.0" layoutY="33.0" promptText="ID" />
+                                                <TextField fx:id="return_reader_id" layoutX="5.0" layoutY="33.0" promptText="ID" />
                                                 <TextField fx:id="return_fname_id" layoutX="5.0" layoutY="73.0" promptText="First Name" />
                                                 <TextField fx:id="return_lname_id" layoutX="5.0" layoutY="112.0" promptText="Last Name" />
                                                 <TextField fx:id="return_inv_id" layoutX="4.0" layoutY="180.0" promptText="Inventory number" />
@@ -65,6 +65,7 @@
                                              <children>
                                                 <TableView fx:id="return_table_view" prefHeight="294.0" prefWidth="641.0">
                                                   <columns>
+                                                      <TableColumn fx:id="return_lendid_col_id" prefWidth="75.0" text="Column X" visible="false" />
                                                     <TableColumn fx:id="return_reader_col_id" prefWidth="59.99993973970413" text="ReaderID" />
                                                     <TableColumn fx:id="return_inv_col_id" prefWidth="75.1999626159668" text="Inventory number" />
                                                       <TableColumn fx:id="return_title_col_id" prefWidth="103.20001220703125" text="Title" />

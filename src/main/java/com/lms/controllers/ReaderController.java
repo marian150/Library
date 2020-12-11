@@ -2,6 +2,7 @@ package com.lms.controllers;
 
 import com.lms.controllers.commonComponentsLogic.CommonUserFunctionalities;
 import com.lms.models.entities.User;
+import com.lms.models.nonpersistentclasses.BooksReaderView;
 import com.lms.models.nonpersistentclasses.ReaderTableView;
 import com.lms.services.ReaderService;
 import javafx.application.Platform;
@@ -54,8 +55,8 @@ public class ReaderController {
     public ReaderController() {}
 
     // Object[] to be changed to RentBook entity
-    public List<Object[]> loadBooks(Long userId) {
-        List<Object[]> books = readerService.loadBooks(userId);
+    public List<BooksReaderView> loadBooks(Long userId) {
+        List<BooksReaderView> books = readerService.loadBooks(userId);
         return books;
     }
 
@@ -67,15 +68,14 @@ public class ReaderController {
         greeting_label.setText(names);
     }
 
-    public void displayBooks(List<Object[]> books){
-        Object[][] array = books.toArray(new Object[books.size()][]);
-        for(int i = 0; i < array.length; i ++){
+    public void displayBooks(List<BooksReaderView> books){
+        for(BooksReaderView b : books){
             booksObservableList.add(new ReaderTableView(
-                    new SimpleStringProperty((String)array[i][0]),
-                    new SimpleStringProperty((String)array[i][1]),
-                    new SimpleStringProperty((String)array[i][2]),
-                    new SimpleStringProperty(array[i][3].toString()),
-                    new SimpleStringProperty(array[i][4].toString())));
+                    new SimpleStringProperty(b.getTitle()),
+                    new SimpleStringProperty(b.getAuthor()),
+                    new SimpleStringProperty(b.getPublisher()),
+                    new SimpleStringProperty(b.getLendDate()),
+                    new SimpleStringProperty(b.getDueDate())));
         }
         title_column_id.setCellValueFactory(new PropertyValueFactory<>("title"));
         author_column_id.setCellValueFactory(new PropertyValueFactory<>("author"));
@@ -95,7 +95,6 @@ public class ReaderController {
     }
     public void initialize() {
         logout_btn.setOnAction(event -> {
-            logger.info(currentUser.getUserId().toString() + " is logging out");
             commonUserFunctionalities.logout(greeting_label, fxmlLoader);
         });
 

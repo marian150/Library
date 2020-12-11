@@ -18,7 +18,7 @@ public class OperatorNotificationServiceImpl implements OperatorNotificationServ
     }
     public void initialize(){
         for(Runnable task : tasks)
-            executor.scheduleAtFixedRate(task, 0, 2, TimeUnit.MINUTES);
+            executor.scheduleAtFixedRate(task, 0, 10, TimeUnit.MINUTES);
     }
 
 }

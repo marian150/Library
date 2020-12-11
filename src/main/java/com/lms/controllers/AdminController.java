@@ -377,7 +377,7 @@ public class AdminController {
 
         user_to_rent_book_btn.setOnAction(event -> {
             SearchUserTableView selectedUser = reader_table_id.getSelectionModel().getSelectedItem();
-            tabPane.getSelectionModel().select(2);
+            tabPane.getSelectionModel().select(1);
             lend_rd_id.setText(selectedUser.getId().toString());
             lend_rd_name.setText(selectedUser.getFname() + " " + selectedUser.getLname());
             lend_rd_email.setText(selectedUser.getEmail());
@@ -414,7 +414,7 @@ public class AdminController {
 
         add_listview_to_rent_book_btn.setOnAction(event -> {
             chosen_books_for_rent.getItems().addAll(add_book_for_rent_listview.getItems());
-            tabPane.getSelectionModel().select(2);
+            tabPane.getSelectionModel().select(1);
             add_book_for_rent_listview.getItems().clear();
         });
 
@@ -488,7 +488,7 @@ public class AdminController {
                 scrap_genre_id.setText(selectedBook.getGenre());
                 scrap_year_id.setText(selectedBook.getYear());
             }
-            tabPane.getSelectionModel().select(4);
+            tabPane.getSelectionModel().select(3);
         });
         return_search_btn.setOnAction(event -> {
             List<RentBook> result = commonAdminOperatorFunctionalities.findLentBooks(adminService, return_reader_id,

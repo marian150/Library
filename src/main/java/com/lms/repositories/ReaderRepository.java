@@ -7,5 +7,5 @@ import com.lms.models.nonpersistentclasses.ReaderTableView;
 import java.util.List;
 
 public interface ReaderRepository {
-    List<Object[]> loadBooks(Long userId);
+    List<RentBook> loadBooks(Long userId);
 }

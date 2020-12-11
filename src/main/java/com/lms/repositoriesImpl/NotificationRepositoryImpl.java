@@ -50,8 +50,14 @@ public class NotificationRepositoryImpl implements NotificationRepository {
                 User user = rb.getClient();
                 user.setRating(user.getRating() - 3);
                 session.update(user);
+                Query q = session.createQuery("select n from Notifications n where n.rentBook = :rent and n.status = :status");
+                q.setParameter("rent", notification.getRentBook());
+                q.setParameter("status", notification.getStatus());
 
-                session.save(notification);
+                Notifications n = (Notifications) q.getSingleResult();
+                if(n == null) {
+                    session.save(notification);
+                }
             }
             tx.commit();
         } catch (Exception e) {

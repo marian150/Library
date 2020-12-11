@@ -20,7 +20,7 @@ public class NotificationServiceImpl implements NotificationService {
             notificationRepository.checkForOverdue();
             notificationRepository.checkBooksToBeArchived();
         };
-        executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.HOURS);
+        executor.scheduleAtFixedRate(task, 0, 2, TimeUnit.MINUTES);
     }
     public void stop(){
         executor.shutdown();
