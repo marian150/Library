@@ -7,6 +7,7 @@ import com.lms.models.dtos.SignUpDTO;
 import com.lms.models.entities.*;
 import com.lms.models.nonpersistentclasses.LoadFormsModel;
 import com.lms.repositories.PrivilegedUserRepository;
+import com.lms.security.Password;
 import com.lms.services.CommonAdminOperatorService;
 
 import javax.enterprise.context.Dependent;
@@ -35,7 +36,16 @@ public class CommonAdminOperatorServiceImpl implements CommonAdminOperatorServic
 
     @Override
     public boolean createReader(PrivilegedUserRepository pu, SignUpDTO signUpDTO) {
-        return pu.createReader(signUpDTO);
+        User user = new User();
+        user.setFirstName(signUpDTO.getFirstname());
+        user.setLastName(signUpDTO.getLastname());
+        user.setEmail(signUpDTO.getEmail());
+        user.setPassword(Password.hashPassword(signUpDTO.getPassword()));
+        user.setPhone(signUpDTO.getPhone());
+        user.setRegDate(LocalDate.now());
+        user.setRating(50);
+
+        return pu.createReader(user);
     }
 
     @Override

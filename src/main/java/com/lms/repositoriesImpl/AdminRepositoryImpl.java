@@ -67,8 +67,8 @@ public class AdminRepositoryImpl implements AdminRepository {
     }
 
     @Override
-    public boolean createReader(SignUpDTO signUpDTO) {
-        return commonAdminOperatorRepository.createReader(signUpDTO);
+    public boolean createReader(User user) {
+        return commonAdminOperatorRepository.createReader(user);
     }
 
     @Override

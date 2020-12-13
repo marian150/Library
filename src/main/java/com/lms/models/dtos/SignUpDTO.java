@@ -36,4 +36,8 @@ public class SignUpDTO {
     public String getPhone() {
         return phone;
     }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

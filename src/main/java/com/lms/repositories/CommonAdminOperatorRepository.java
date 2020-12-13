@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface CommonAdminOperatorRepository {
-    boolean createReader(SignUpDTO signUpDTO);
+    boolean createReader(User user);
     List<Book> searchBook(Map<String, String> values);
     boolean addBook(AddBookDTO addBookDTO);
     List<BookCovers> retrieveBookCovers();

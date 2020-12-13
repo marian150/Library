@@ -27,21 +27,9 @@ public class CommonAdminOperatorRepositoryImpl implements CommonAdminOperatorRep
     Logger logger = Logger.getLogger(CommonAdminOperatorRepositoryImpl.class);
 
     @Override
-    public boolean createReader(SignUpDTO signUpDTO) {
+    public boolean createReader(User user) {
 
         Session session = ConfigurationSessionFactory.getSessionFactory().openSession();
-
-        User user = new User();
-
-        try {
-            user.setFirstName(signUpDTO.getFirstname());
-            user.setLastName(signUpDTO.getLastname());
-            user.setEmail(signUpDTO.getEmail());
-            user.setPassword(Password.hashPassword(signUpDTO.getPassword()));
-            user.setPhone(signUpDTO.getPhone());
-            user.setRegDate(LocalDate.now());
-            user.setRating(50);
-        } catch (Exception e) {}
 
         Transaction tx = null;
         try {

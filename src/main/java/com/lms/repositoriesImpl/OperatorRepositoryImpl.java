@@ -35,8 +35,8 @@ public class OperatorRepositoryImpl implements OperatorRepository {
     Logger logger = Logger.getLogger(OperatorRepositoryImpl.class);
 
     @Override
-    public boolean createReader(SignUpDTO signUpDTO) {
-        return commonAdminOperatorRepository.createReader(signUpDTO);
+    public boolean createReader(User user) {
+        return commonAdminOperatorRepository.createReader(user);
     }
 
     @Override

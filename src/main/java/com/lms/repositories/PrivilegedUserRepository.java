@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface PrivilegedUserRepository {
-    boolean createReader(SignUpDTO signUpDTO);
+    boolean createReader(User user);
     List<User> searchUsers(Map<String, String> values);
     List<Book> searchBook(Map<String, String> values);
     boolean addBook(AddBookDTO addBookDTO);
